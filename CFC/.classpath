@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/Users/AL/Dropbox/School/GradSchool/SchoolStuff/UWF/CSProject/Workspace/lib/jackcess-2.1.2.jar"/>
+	<classpathentry kind="lib" path="/Users/AL/Dropbox/School/GradSchool/SchoolStuff/UWF/CSProject/Workspace/lib/ucanaccess-3.0.1.jar"/>
+	<classpathentry kind="lib" path="/Users/AL/Dropbox/School/GradSchool/SchoolStuff/UWF/CSProject/Workspace/hsqldb-2.3.3/hsqldb/lib/hsqldb.jar"/>
+	<classpathentry kind="lib" path="/Users/AL/Dropbox/School/GradSchool/SchoolStuff/UWF/CSProject/Workspace/hsqldb-2.3.3/hsqldb/lib/sqltool.jar"/>
+	<classpathentry kind="lib" path="/Users/AL/Dropbox/School/GradSchool/SchoolStuff/UWF/CSProject/Workspace/poi-3.13/poi-3.13-20150929.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
