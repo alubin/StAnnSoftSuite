@@ -6,8 +6,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JPanel;
 
 import cfc.CFCControlPanel;
 import cfc.CFCDisplayPanel;
@@ -29,10 +31,12 @@ public class MainPanel extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		setLayout(new GridLayout(1, 3));
-		add(optionMenuBar);
+//		add(optionMenuBar);
+		add(new JLabel());
 		add(cfcBtn);
 		add(inqBtn);
 		add(printBtn);
+		add(new JLabel());
 
 
 		optionMenuBar.add(cfcOption);
