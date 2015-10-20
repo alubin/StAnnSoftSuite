@@ -10,6 +10,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
 import cfc.CFCControlPanel;
+import cfc.CFCDisplayPanel;
 
 public class MainPanel extends JFrame{
 
@@ -50,10 +51,8 @@ public class MainPanel extends JFrame{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Starting CFC Display");
 			// TODO Display the CFC Dialog
-			new CFCControlPanel();
-
+			new CFCControlPanel().setVisible(true);
 		}
 
 	}

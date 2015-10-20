@@ -4,34 +4,37 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
-public class CFCControlPanel extends JPanel {
+public class CFCControlPanel extends JFrame {
 
 
 	private static final long serialVersionUID = 1L;
 	private JMenuBar cfcMenuBar = new JMenuBar();
 	private JMenu loadAccess = new JMenu("Load Access File");
 	private JMenu searchDataBase = new JMenu("Search Database");
+	private JPanel displayPanel = new JPanel();
 
 
 	public CFCControlPanel()
 	{
-		setLayout(new BorderLayout());
+		displayPanel.setLayout(new BorderLayout());
 
 
 		cfcMenuBar.add(loadAccess);
 		cfcMenuBar.add(searchDataBase);
 
-		add(cfcMenuBar, BorderLayout.NORTH);
+		displayPanel.add(cfcMenuBar, BorderLayout.NORTH);
 
-		loadAccess.addActionListener(new AccessDialog());
-		setVisible(true);
+		loadAccess.addActionListener(new AccessListener());
+		add(displayPanel);
+		pack();
 	}
 
-	private class AccessDialog implements ActionListener
+	private class AccessListener implements ActionListener
 	{
 
 		@Override
@@ -42,7 +45,7 @@ public class CFCControlPanel extends JPanel {
 
 	}
 
-	private class SearchDialog implements ActionListener
+	private class SearchListener implements ActionListener
 	{
 
 		@Override
