@@ -9,13 +9,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JPanel;
 
 import ccf.CCFControlPanel;
-import ccf.CCFDisplayPanel;
 
 public class MainPanel extends JFrame{
 
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 8947518661404713452L;
 	JMenuBar optionMenuBar = new JMenuBar();
 	JMenu ccfOption = new JMenu("CCF");
 	JMenu printOption = new JMenu("Print");

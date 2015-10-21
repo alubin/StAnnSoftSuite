@@ -30,6 +30,7 @@ public class CCFControlPanel extends JFrame {
 		displayPanel.add(ccfMenuBar, BorderLayout.NORTH);
 
 		loadAccess.addActionListener(new AccessListener());
+		searchDataBase.addActionListener(new SearchListener());
 		add(displayPanel);
 		pack();
 	}
