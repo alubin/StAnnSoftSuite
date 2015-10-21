@@ -1,8 +1,8 @@
-package cfc;
+package ccf;
 
 import javax.swing.JPanel;
 
-public class CFCDisplayPanel extends JPanel{
+public class CCFDisplayPanel extends JPanel{
 
 	/**
 	 *

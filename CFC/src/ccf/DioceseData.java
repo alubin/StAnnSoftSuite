@@ -1,4 +1,4 @@
-package cfc;
+package ccf;
 
 public class DioceseData {
 

@@ -11,19 +11,19 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
-import cfc.CFCControlPanel;
-import cfc.CFCDisplayPanel;
+import ccf.CCFControlPanel;
+import ccf.CCFDisplayPanel;
 
 public class MainPanel extends JFrame{
 
 	JMenuBar optionMenuBar = new JMenuBar();
-	JMenu cfcOption = new JMenu("CFC");
+	JMenu ccfOption = new JMenu("CCF");
 	JMenu printOption = new JMenu("Print");
-	JMenu inquirerOption = new JMenu("Inquirers");
+	JMenu rciaOption = new JMenu("RCIA");
 
-	JButton cfcBtn = new JButton("CFC");
+	JButton ccfBtn = new JButton("CCF");
 	JButton printBtn = new JButton("Print");
-	JButton inqBtn = new JButton("Inquirer");
+	JButton rciaBtn = new JButton("RCIA");
 
 	public MainPanel()
 	{
@@ -33,30 +33,30 @@ public class MainPanel extends JFrame{
 		setLayout(new GridLayout(1, 3));
 //		add(optionMenuBar);
 		add(new JLabel());
-		add(cfcBtn);
-		add(inqBtn);
+		add(ccfBtn);
+		add(rciaBtn);
 		add(printBtn);
 		add(new JLabel());
 
 
-		optionMenuBar.add(cfcOption);
-		optionMenuBar.add(inquirerOption);
+		optionMenuBar.add(ccfOption);
+		optionMenuBar.add(rciaOption);
 		optionMenuBar.add(printOption);
 
 
-		cfcBtn.addActionListener(new CFCActionListener());
+		ccfBtn.addActionListener(new CCFActionListener());
 
 		pack();
 		setVisible(true);
 	}
 
-	public class CFCActionListener implements ActionListener
+	public class CCFActionListener implements ActionListener
 	{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Display the CFC Dialog
-			new CFCControlPanel().setVisible(true);
+			new CCFControlPanel().setVisible(true);
 		}
 
 	}
@@ -72,7 +72,7 @@ public class MainPanel extends JFrame{
 
 	}
 
-	public class InquirerActionListener implements ActionListener
+	public class rciaActionListener implements ActionListener
 	{
 
 		@Override

@@ -1,8 +1,8 @@
-package cfc;
+package ccf;
 
 import java.util.ArrayList;
 
-import cfc.DioceseData;
+import ccf.DioceseData;
 
 public class DataHandler {
 

@@ -1,4 +1,4 @@
-package cfc;
+package ccf;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class CFCAccessPanel extends JPanel {
+public class CCFAccessPanel extends JPanel {
 
 	/**
 	 * 
@@ -19,7 +19,7 @@ public class CFCAccessPanel extends JPanel {
 	JTextField fileTxtName = new JTextField("Select File to Convert");
 	
 	
-	public CFCAccessPanel()
+	public CCFAccessPanel()
 	{
 		JPanel topPanel = new JPanel();
 		JPanel btnPanel = new JPanel();
