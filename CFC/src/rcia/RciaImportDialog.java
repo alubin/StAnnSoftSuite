@@ -1,4 +1,4 @@
-package ccf;
+package rcia;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -15,7 +15,7 @@ import javax.swing.BoxLayout;
 
 
 
-public class CCFImportDialog extends JDialog {
+public class RciaImportDialog extends JDialog {
 
 	/**
 	 *
@@ -24,7 +24,7 @@ public class CCFImportDialog extends JDialog {
 	JTextField fileTxtName = new JTextField("Select File to Convert");
 
 
-	public CCFImportDialog()
+	public RciaImportDialog()
 	{
 		JPanel bodyPanel = new JPanel();
 		JPanel topPanel = new JPanel();

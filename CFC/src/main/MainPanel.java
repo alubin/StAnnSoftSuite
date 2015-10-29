@@ -24,10 +24,12 @@ public class MainPanel extends JFrame{
 	private static final long serialVersionUID = 8947518661404713452L;
 	/** This menu bar for the main screen */
 	JMenuBar optionMenuBar = new JMenuBar();
+	JMenu fileOption = new JMenu("File");
 	JMenu ccfOption = new JMenu("CCF");
 	JMenu printOption = new JMenu("Print");
 	JMenu rciaOption = new JMenu("RCIA");
 
+	JMenuItem exitItem = new JMenuItem("Exit");
 	JMenuItem ccfImport = new JMenuItem("Import CCF Data");
 	JMenuItem rciaImport = new JMenuItem("Import RCIA Data");
 	JMenuItem ccfAdmin = new JMenuItem("Administer CCF Data");
@@ -46,14 +48,19 @@ public class MainPanel extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		setLayout(new GridLayout(1, 1));
+//		displayPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
 
 		//Set the screen to Full Size
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		//Populate the Menu Bar
+		optionMenuBar.add(fileOption);
 		optionMenuBar.add(ccfOption);
 		optionMenuBar.add(rciaOption);
 		optionMenuBar.add(printOption);
+
+		//Add options to the file menu
+		fileOption.add(exitItem);
 
 		//Add options to the ccf menu
 		ccfOption.add(ccfImport);
@@ -69,6 +76,8 @@ public class MainPanel extends JFrame{
 
 
 		//Add the functionality to the menu
+		exitItem.addActionListener(new exitActionListener());
+
 		ccfImport.addActionListener(new CCFImportActionListener());
 		ccfAdmin.addActionListener(new CCFAdminActionListener());
 
@@ -84,6 +93,17 @@ public class MainPanel extends JFrame{
 
 		pack();
 		setVisible(true);
+	}
+
+	private class exitActionListener implements ActionListener
+	{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			System.exit(0);
+
+		}
+
 	}
 
 	public class CCFImportActionListener implements ActionListener
