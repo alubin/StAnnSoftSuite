@@ -17,28 +17,28 @@ import java.awt.BorderLayout;
 
 import javax.swing.SwingConstants;
 
-public class CCFImportPanel extends JDialog {
+public class CCFImportDialog extends JDialog {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	JLabel fileLabel = new JLabel("File Name");
 	JTextField fileTxtName = new JTextField("Select File to Convert");
 
 
-	public CCFImportPanel()
+	public CCFImportDialog()
 	{
 		JPanel topPanel = new JPanel();
 		JPanel btnPanel = new JPanel();
 
 		setMinimumSize(new Dimension(300, 300));
-		setName("Enter Access File");
+		setName("Import Access File");
 		setLayout(new GridLayout(2,1));
 		add(topPanel);
 		add(btnPanel);
 
-		topPanel.setLayout(new GridLayout(2, 1));
+		topPanel.setLayout(new GridLayout(1, 2));
 		topPanel.add(fileLabel);
 
 		JPanel panel = new JPanel();
@@ -66,7 +66,7 @@ public class CCFImportPanel extends JDialog {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			//TODO: Put in code that will open a file browser and convert selected file. 
+			//TODO: Put in code that will open a file browser and convert selected file.
 
 		}
 
