@@ -11,7 +11,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import ccf.CCFControlPanel;
-import ccf.CCFImportPanel;
+import ccf.CCFImportDialog;
 
 /**
  * This Panel will be the front facing GUI that the client will see.
@@ -22,19 +22,22 @@ import ccf.CCFImportPanel;
 public class MainPanel extends JFrame{
 
 	private static final long serialVersionUID = 8947518661404713452L;
+	/** This menu bar for the main screen */
 	JMenuBar optionMenuBar = new JMenuBar();
 	JMenu ccfOption = new JMenu("CCF");
 	JMenu printOption = new JMenu("Print");
 	JMenu rciaOption = new JMenu("RCIA");
-	
+
 	JMenuItem ccfImport = new JMenuItem("Import CCF Data");
 	JMenuItem rciaImport = new JMenuItem("Import RCIA Data");
 	JMenuItem ccfAdmin = new JMenuItem("Administer CCF Data");
 	JMenuItem rciaAdmin = new JMenuItem("Administer RCIA Data");
 	JMenuItem printSheet = new JMenuItem("Print Sign Sheet");
 	JMenuItem printCertificate = new JMenuItem("Print Certificate");
-	
 
+	/**
+	 * This panel is responsible for displaying the appropriate values on the main screen, based on the user selections.
+	 */
 	static JPanel displayPanel = new JPanel();
 
 	public MainPanel()
@@ -44,32 +47,41 @@ public class MainPanel extends JFrame{
 
 		setLayout(new GridLayout(1, 1));
 
+		//Set the screen to Full Size
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+		//Populate the Menu Bar
 		optionMenuBar.add(ccfOption);
 		optionMenuBar.add(rciaOption);
 		optionMenuBar.add(printOption);
-		
+
+		//Add options to the ccf menu
 		ccfOption.add(ccfImport);
 		ccfOption.add(ccfAdmin);
-		
+
+		//Add options to the rcia menu
 		rciaOption.add(rciaImport);
 		rciaOption.add(rciaAdmin);
-		
+
+		//Add options to the print menu
 		printOption.add(printSheet);
 		printOption.add(printCertificate);
 
 
+		//Add the functionality to the menu
 		ccfImport.addActionListener(new CCFImportActionListener());
 		ccfAdmin.addActionListener(new CCFAdminActionListener());
-		
+
 		rciaImport.addActionListener(new RciaImportActionListener());
 		rciaAdmin.addActionListener(new RciaAdminActionListener());
-		
+
 		printSheet.addActionListener(new PrintSheetActionListener());
 		printCertificate.addActionListener(new PrintCertificateActionListener());
 
+		//Assign the menu
 		setJMenuBar(optionMenuBar);
 		add(displayPanel);
-		
+
 		pack();
 		setVisible(true);
 	}
@@ -81,11 +93,11 @@ public class MainPanel extends JFrame{
 		public void actionPerformed(ActionEvent e) {
 			// TODO Display the CFC Dialog
 //			new CCFControlPanel().setVisible(true);
-			new CCFImportPanel().setVisible(true);;
+			new CCFImportDialog().setVisible(true);;
 		}
 
 	}
-	
+
 	public class CCFAdminActionListener implements ActionListener
 	{
 
@@ -107,7 +119,7 @@ public class MainPanel extends JFrame{
 		}
 
 	}
-	
+
 	public class PrintCertificateActionListener implements ActionListener
 	{
 
@@ -129,7 +141,7 @@ public class MainPanel extends JFrame{
 		}
 
 	}
-	
+
 	public class RciaAdminActionListener implements ActionListener
 	{
 
@@ -140,7 +152,7 @@ public class MainPanel extends JFrame{
 		}
 
 	}
-	
+
 	public static void setPanel(JPanel displayPnl)
 	{
 		displayPanel = displayPnl;
