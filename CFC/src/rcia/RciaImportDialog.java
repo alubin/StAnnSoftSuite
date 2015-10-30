@@ -1,5 +1,6 @@
 package rcia;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -8,9 +9,9 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.BoxLayout;
 
 
 
@@ -26,30 +27,28 @@ public class RciaImportDialog extends JDialog {
 
 	public RciaImportDialog()
 	{
-		JPanel bodyPanel = new JPanel();
 		JPanel topPanel = new JPanel();
 		JPanel btnPanel = new JPanel();
+		//Will Be user to display file chooser
+		JPanel choicePanel = new JPanel();
 
 		setMinimumSize(new Dimension(300, 300));
-		setContentPane(bodyPanel);
-		bodyPanel.setLayout(new GridLayout(5,1));
-		bodyPanel.setBorder(BorderFactory.createTitledBorder("Select File"));
-		bodyPanel.add(topPanel);
-//		bodyPanel.add(btnPanel,BorderLayout.SOUTH);
+		getContentPane().setLayout(new BorderLayout());
+		((JPanel)getContentPane()).setBorder(BorderFactory.createTitledBorder("Select Rcia File to Import"));
+		add(topPanel);
+		
+		topPanel.setLayout(new BorderLayout(0, 0));
+		topPanel.add(fileTxtName, BorderLayout.NORTH);
 
-		topPanel.setLayout(new GridLayout(2,1));
+//		topPanel.add(choicePanel);
+		topPanel.add(btnPanel, BorderLayout.SOUTH);
+		
+		//Empty Panel for now
+		choicePanel.setLayout(new BorderLayout(0, 0));
 
-		JPanel panel = new JPanel();
-		topPanel.add(panel);
-		topPanel.add(btnPanel);
-		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-		panel.add(fileTxtName);
 
-		//Button to browse file chooser
-		JButton browseBtn = new JButton("Browse");
-		panel.add(browseBtn);
-
-		browseBtn.addActionListener(new BrowseActionListener());
+		//Button Panel
+		btnPanel.setLayout(new GridLayout(3, 1, 0, 0));
 
 		//Button to convert selected files
 		JButton convertBtn = new JButton("Convert");
@@ -59,8 +58,12 @@ public class RciaImportDialog extends JDialog {
 		JButton closeBtn = new JButton("Close");
 		closeBtn.addActionListener(new CloseActionListener());
 
-		//Layout the buttons next to each other.
-		btnPanel.setLayout(new GridLayout(1,5));
+
+		//Button to browse file chooser
+		JButton browseBtn = new JButton("Open");
+		btnPanel.add(browseBtn);
+
+		browseBtn.addActionListener(new BrowseActionListener());
 		btnPanel.add(convertBtn);
 		btnPanel.add(closeBtn);
 	}
@@ -91,13 +94,12 @@ public class RciaImportDialog extends JDialog {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			//			//File Chooser for the access File
-			//			JFileChooser fileChooser = new JFileChooser();
-			//			int returnVal = fileChooser.showOpenDialog();
-			//			if(returnVal == JFileChooser.APPROVE_OPTION) {
-			//				System.out.println("You chose to open this file: " +
-			//						fileChooser.getSelectedFile().getName());
-			//			}
+			//File Chooser for the access File
+			JFileChooser fileChooser = new JFileChooser();
+			int returnVal = fileChooser.showOpenDialog(RciaImportDialog.this);
+			if(returnVal == JFileChooser.APPROVE_OPTION) {
+				fileTxtName.setText(fileChooser.getSelectedFile().getAbsolutePath());
+			}
 
 		}
 

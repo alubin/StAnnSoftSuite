@@ -1,4 +1,4 @@
-package ccf;
+package dialog;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -16,16 +16,18 @@ import javax.swing.JTextField;
 
 
 
-public class CCFImportDialog extends JDialog {
+public class ImportDialog extends JDialog {
 
 	/**
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	JTextField fileTxtName = new JTextField("Select File to Convert");
+	String title = "Select File to Import";
+	String filePath = new String();
 
 
-	public CCFImportDialog()
+	public ImportDialog()
 	{
 		JPanel topPanel = new JPanel();
 		JPanel btnPanel = new JPanel();
@@ -34,13 +36,11 @@ public class CCFImportDialog extends JDialog {
 
 		setMinimumSize(new Dimension(300, 300));
 		getContentPane().setLayout(new BorderLayout());
-		((JPanel)getContentPane()).setBorder(BorderFactory.createTitledBorder("Select CCF File to Import"));
 		add(topPanel);
 		
 		topPanel.setLayout(new BorderLayout(0, 0));
 		topPanel.add(fileTxtName, BorderLayout.NORTH);
 
-//		topPanel.add(choicePanel);
 		topPanel.add(btnPanel, BorderLayout.SOUTH);
 		
 		//Empty Panel for now
@@ -66,6 +66,13 @@ public class CCFImportDialog extends JDialog {
 		browseBtn.addActionListener(new BrowseActionListener());
 		btnPanel.add(convertBtn);
 		btnPanel.add(closeBtn);
+	}
+	
+	public ImportDialog(String title)
+	{
+		this();
+		this.title = title;
+		((JPanel)getContentPane()).setBorder(BorderFactory.createTitledBorder(title));
 	}
 
 	private class ConvertActionListener implements ActionListener
@@ -96,13 +103,16 @@ public class CCFImportDialog extends JDialog {
 		public void actionPerformed(ActionEvent e) {
 			//File Chooser for the access File
 			JFileChooser fileChooser = new JFileChooser();
-			int returnVal = fileChooser.showOpenDialog(CCFImportDialog.this);
+			int returnVal = fileChooser.showOpenDialog(ImportDialog.this);
 			if(returnVal == JFileChooser.APPROVE_OPTION) {
 				fileTxtName.setText(fileChooser.getSelectedFile().getAbsolutePath());
 			}
 
 		}
+	}
 
+	public String getFilePath() {
+		return filePath;
 	}
 
 }
