@@ -25,6 +25,12 @@ public class ImportDialog extends JDialog {
 	JTextField fileTxtName = new JTextField("Select File to Convert");
 	String title = "Select File to Import";
 	String filePath = new String();
+	
+	/**
+	 * Button to convert Selected File
+	 */
+	//Button was made global to allow for the reassigning of the action listener.
+	JButton convertBtn = new JButton("Convert");
 
 
 	public ImportDialog()
@@ -50,10 +56,6 @@ public class ImportDialog extends JDialog {
 		//Button Panel
 		btnPanel.setLayout(new GridLayout(3, 1, 0, 0));
 
-		//Button to convert selected files
-		JButton convertBtn = new JButton("Convert");
-		convertBtn.addActionListener(new ConvertActionListener());
-
 		//Button to close dialog box
 		JButton closeBtn = new JButton("Close");
 		closeBtn.addActionListener(new CloseActionListener());
@@ -68,23 +70,15 @@ public class ImportDialog extends JDialog {
 		btnPanel.add(closeBtn);
 	}
 	
-	public ImportDialog(String title)
+	public ImportDialog(String title, ActionListener convertAction)
 	{
 		this();
 		this.title = title;
 		((JPanel)getContentPane()).setBorder(BorderFactory.createTitledBorder(title));
+		
+		convertBtn.addActionListener(convertAction);
 	}
 
-	private class ConvertActionListener implements ActionListener
-	{
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			//TODO: Put in code that will open a file browser and convert selected file.
-
-		}
-
-	}
 
 	private class CloseActionListener implements ActionListener
 	{
