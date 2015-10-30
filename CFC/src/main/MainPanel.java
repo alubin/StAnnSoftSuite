@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 import rcia.RciaImportDialog;
 import ccf.CCFControlPanel;
-import ccf.CCFImport;
+import ccf.CCFImportDialog;
 import ccf.CCFImportDialog;
 
 /**
@@ -114,8 +114,8 @@ public class MainPanel extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Display the CFC Dialog
-//			new CCFImportDialog().setVisible(true);
-			new CCFImport().setVisible(true);
+			new CCFImportDialog().setVisible(true);
+//			new CCFImport().setVisible(true);
 		}
 
 	}
