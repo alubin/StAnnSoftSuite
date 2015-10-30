@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 import rcia.RciaImportDialog;
 import ccf.CCFControlPanel;
 import ccf.CCFImportDialog;
-import ccf.CCFImportDialog;
 
 /**
  * This Panel will be the front facing GUI that the client will see.
