@@ -30,6 +30,7 @@ public class MainPanel extends JFrame{
 	JMenu printOption = new JMenu("Print");
 	JMenu rciaOption = new JMenu("RCIA");
 
+	JMenuItem dbSetupItem = new JMenuItem("Database Setup");
 	JMenuItem exitItem = new JMenuItem("Exit");
 	JMenuItem ccfImport = new JMenuItem("Import CCF Data");
 	JMenuItem rciaImport = new JMenuItem("Import RCIA Data");
@@ -61,6 +62,7 @@ public class MainPanel extends JFrame{
 		optionMenuBar.add(printOption);
 
 		//Add options to the file menu
+		fileOption.add(dbSetupItem);
 		fileOption.add(exitItem);
 
 		//Add options to the ccf menu
@@ -77,7 +79,8 @@ public class MainPanel extends JFrame{
 
 
 		//Add the functionality to the menu
-		exitItem.addActionListener(new exitActionListener());
+		dbSetupItem.addActionListener(new SetupActionListener());
+		exitItem.addActionListener(new ExitActionListener());
 
 		ccfImport.addActionListener(new CCFImportActionListener());
 		ccfAdmin.addActionListener(new CCFAdminActionListener());
@@ -95,8 +98,20 @@ public class MainPanel extends JFrame{
 		pack();
 		setVisible(true);
 	}
+	
+	private class SetupActionListener implements ActionListener
+	{
 
-	private class exitActionListener implements ActionListener
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			//The Dialog box for the Database Settings
+			new DBSetupDialog().setVisible(true);
+			
+		}
+		
+	}
+
+	private class ExitActionListener implements ActionListener
 	{
 
 		@Override
@@ -112,9 +127,8 @@ public class MainPanel extends JFrame{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Display the CFC Dialog
+			//Display the dialog box for the Import window for the CCF
 			new CCFImportDialog().setVisible(true);
-//			new CCFImport().setVisible(true);
 		}
 
 	}

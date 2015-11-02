@@ -40,7 +40,7 @@ public class RciaData {
 	String middle;
 	String birthName;
 	String address;
-	char[] city = new char[2];
+	char[] state = new char[2];
 	int[] zip = new int[5];
 	String emailAddress;
 	String phoneNumber;
@@ -50,12 +50,46 @@ public class RciaData {
 	String occupation;
 	String birthplaceCity;
 	//Birthplace City
-	char[] bpCity = new char[2];
+	char[] bpState;
 	String fatherFullName;
 	String motherFullName;
 	boolean baptizedInChrist;
 	String dateOfBaptism;
 	String godParentNames;
+	String priestName;
+	String churchName;
+	String churchCity;
+	char[] churchState = new char[2];
+	String denom;
+	String currParish;
+	int yrsOfRegEd;
+	String monthAndYear;
+	String sacramentDesired;
+	boolean haveASponsor;
+	String sponsorName;
+	String sponsorNumber;
+	String whySponsor;
+	boolean goodStanding;
+	boolean sponsorRole;
+	boolean someoneInMind;
+	String inquirerName;
+	String inquirerPhone;
+	String maritalStatus;
+	String spouseName;
+	String spouseReligion;
+	boolean practicingCatholic;
+	boolean attendSession;
+	String catholicMarriage;
+	String catholicDate;
+	String civilMarriageDate;
+	String conA;
+	String conB;
+	String conC;
+	String conD;
+	String children;
+	int ages;
+	boolean sponsorPotential;
+	
 	
 	
 
