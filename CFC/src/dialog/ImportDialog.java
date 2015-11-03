@@ -12,6 +12,7 @@ import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import custom.Convert;
 
@@ -112,6 +113,12 @@ public class ImportDialog extends JDialog {
 		public void actionPerformed(ActionEvent e) {
 			//File Chooser for the access File
 			JFileChooser fileChooser = new JFileChooser();
+
+			//Display only Access files types when the file chooser is displayed.
+			FileNameExtensionFilter filter = new FileNameExtensionFilter(
+					"Access Files", "accdb", "mdb");
+			fileChooser.setFileFilter(filter);
+
 			int returnVal = fileChooser.showOpenDialog(ImportDialog.this);
 			if(returnVal == JFileChooser.APPROVE_OPTION) {
 				String file = fileChooser.getSelectedFile().getAbsolutePath();

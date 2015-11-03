@@ -27,10 +27,7 @@ public class AccessReader {
 		return table;
 	}
 
-	private void storeInfo()
-	{
 
-	}
 	public void displayTable(String tableName) {
 		try {
 			Table table = DatabaseBuilder.open(new File(fileName)).getTable(tableName);

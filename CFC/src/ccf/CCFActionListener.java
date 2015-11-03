@@ -12,7 +12,7 @@ public class CCFActionListener extends Convert implements ActionListener {
 		//TODO: Put in code that will open a file browser and convert selected file.
 		System.out.println("CCF");
 		System.out.println("File Path = " + getFilePath());
-		new AccessReader(getFilePath()).displayTable("Test");
+		new AccessReader(getFilePath()).displayTable("tblParishData");
 
 	}
 
