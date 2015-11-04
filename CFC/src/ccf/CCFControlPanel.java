@@ -4,12 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 
-public class CCFControlPanel extends JFrame {
+public class CCFControlPanel extends JPanel {
 
 
 	private static final long serialVersionUID = 1L;
@@ -32,7 +31,6 @@ public class CCFControlPanel extends JFrame {
 		loadAccess.addActionListener(new AccessListener());
 		searchDataBase.addActionListener(new SearchListener());
 		add(displayPanel);
-		pack();
 	}
 
 	private class AccessListener implements ActionListener

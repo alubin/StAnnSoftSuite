@@ -50,7 +50,7 @@ public class MainPanel extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		setLayout(new GridLayout(1, 1));
-//		displayPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+		//		displayPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
 
 		//Set the screen to Full Size
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -98,7 +98,7 @@ public class MainPanel extends JFrame{
 		pack();
 		setVisible(true);
 	}
-	
+
 	private class SetupActionListener implements ActionListener
 	{
 
@@ -106,9 +106,9 @@ public class MainPanel extends JFrame{
 		public void actionPerformed(ActionEvent e) {
 			//The Dialog box for the Database Settings
 			new DBSetupDialog().setVisible(true);
-			
+
 		}
-		
+
 	}
 
 	private class ExitActionListener implements ActionListener
@@ -192,6 +192,9 @@ public class MainPanel extends JFrame{
 	public static void setPanel(JPanel displayPnl)
 	{
 		displayPanel = displayPnl;
+		//		displayPanel = new CCFControlPanel();
+		displayPanel.setVisible(true);
+		System.out.println("You should something on the main screen");
 	}
 
 }
