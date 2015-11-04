@@ -12,8 +12,11 @@ import rcia.RciaData;
 
 public class DbWorker {
 	
-	String ipAddress;
-	int port;
+	static String ipAddress;
+	static int port;
+	static Connection con1 = null;
+	static Connection con2 = null; 
+	
 	
 	public DbWorker()
 	{
@@ -32,8 +35,6 @@ public class DbWorker {
 		String driver = "com.mysql.jdbc.Driver"; 
 		String userName = "root";
 		String password = "Sunshine222";
-		Connection con1 = null;
-		Connection con2 = null; 
 
 		try { 
 			Class.forName(driver).newInstance(); 
@@ -56,7 +57,7 @@ public class DbWorker {
 		
 	}
 	
-	public static void dbClose(Connection con1, Connection con2) {
+	public static void dbClose() {
 
 	    try { 
 	    	con1.close(); 
