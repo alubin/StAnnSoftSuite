@@ -11,13 +11,13 @@ import ccf.CCFData;
 import rcia.RciaData;
 
 public class DbWorker {
-	
+
 	static String ipAddress;
 	static int port;
 	static Connection con1 = null;
-	static Connection con2 = null; 
-	
-	
+	static Connection con2 = null;
+
+
 	public DbWorker()
 	{
 
@@ -27,53 +27,55 @@ public class DbWorker {
 		this();
 		dbConnect(ipAddress, port);
 	}
-	
+
 	public static void dbConnect(String ipAddress, int port) {
-		String url = "jdbc:mysql://localhost:3306/";
+		System.out.println("Address = " + ipAddress);
+		System.out.println("Port = " + port);
+		String url = "jdbc:mysql://"+ipAddress+":"+port+"/";
 		String dbName1 = "ccf";
 		String dbName2 = "rcia";
-		String driver = "com.mysql.jdbc.Driver"; 
+		String driver = "com.mysql.jdbc.Driver";
 		String userName = "root";
 		String password = "Sunshine222";
 
-		try { 
-			Class.forName(driver).newInstance(); 
-			con1 = DriverManager.getConnection(url+dbName1,userName,password); 
-			con2 = DriverManager.getConnection(url+dbName2,userName,password); 
+		try {
+			Class.forName(driver).newInstance();
+			con1 = DriverManager.getConnection(url+dbName1,userName,password);
+			con2 = DriverManager.getConnection(url+dbName2,userName,password);
 			System.out.println("Successfully connected to databases");
-			} 
-		catch (Exception e) 
-		{ 
-			e.printStackTrace(); 
+			}
+		catch (Exception e)
+		{
+			e.printStackTrace();
 		}
 	}
-	
+
 	public static void storeCCF(ArrayList<CCFData> data){
-		
-		
+
+
 	}
-	
+
 	public static void storeRCIA(ArrayList<RciaData> data){
-		
+
 	}
-	
+
 	public static void dbClose() {
 
-	    try { 
-	    	con1.close(); 
+	    try {
+	    	con1.close();
 	    	 if (con1.isClosed()) {
 	    	        System.out.println("Connection to db1 closed.");
-	    	 } 
+	    	 }
 	    }
 	    catch (Exception e1) {
 	    	System.err.println("Could NOT close connection to db1.");
 	    }
-	    
-	    try { 
-	    	con2.close(); 
+
+	    try {
+	    	con2.close();
 	    	 if (con2.isClosed()) {
 	    		 System.out.println("Connection to db2 closed.");
-	    	 } 
+	    	 }
 	    }
 	    catch (Exception e2) {
 	    	System.err.println("Could NOT close connection to db2.");

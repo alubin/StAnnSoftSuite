@@ -13,12 +13,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import database.DbWorker;
+
 public class DBSetupDialog extends JDialog {
 
 	private static final long serialVersionUID = 5582642634296508993L;
 
 	final String ipAddress = "127.0.0.1";
-	final int port = 123;
+	final int port = 3306;
 	final PreferenceManager databasePref = new PreferenceManager();
 
 	public DBSetupDialog()
@@ -58,6 +60,7 @@ public class DBSetupDialog extends JDialog {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			databasePref.setDatabaseSettings(ipAddress, port);
+//			DbWorker testWorker = new DbWorker(databasePref.getDatabaseSettings().getAddress(), databasePref.getDatabaseSettings().getPort());
 
 		}
 
