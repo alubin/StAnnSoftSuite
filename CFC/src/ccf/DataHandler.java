@@ -2,13 +2,13 @@ package ccf;
 
 import java.util.ArrayList;
 
-import ccf.DioceseData;
+import ccf.CCFData;
 
 public class DataHandler {
 
-	private ArrayList<DioceseData> users;
+	private ArrayList<CCFData> users;
 
-	public static ArrayList<DioceseData> extractInfo()
+	public static ArrayList<CCFData> extractInfo()
 	{
 		return null;
 	}

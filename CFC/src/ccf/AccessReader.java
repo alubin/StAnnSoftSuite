@@ -33,6 +33,9 @@ public class AccessReader {
 			Table table = DatabaseBuilder.open(new File(fileName)).getTable(tableName);
 			for(Row row : table)
 			{
+				System.out.println("Key Collection" + row.keySet());
+				System.out.println("Value Collection" + row.values());
+				
 				System.out.println(row);
 			}
 		} catch (IOException e) {

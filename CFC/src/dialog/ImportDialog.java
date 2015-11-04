@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -118,6 +119,7 @@ public class ImportDialog extends JDialog {
 			FileNameExtensionFilter filter = new FileNameExtensionFilter(
 					"Access Files", "accdb", "mdb");
 			fileChooser.setFileFilter(filter);
+			fileChooser.setCurrentDirectory(new File("."));
 
 			int returnVal = fileChooser.showOpenDialog(ImportDialog.this);
 			if(returnVal == JFileChooser.APPROVE_OPTION) {
