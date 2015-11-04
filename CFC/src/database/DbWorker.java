@@ -5,10 +5,27 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
+import ccf.CCFData;
+import rcia.RciaData;
 
 public class DbWorker {
 	
-	public static void dbConnect() {
+	String ipAddress;
+	int port;
+	
+	public DbWorker()
+	{
+
+	}
+	public DbWorker(String ipAddress, int port)
+	{
+		this();
+		dbConnect(ipAddress, port);
+	}
+	
+	public static void dbConnect(String ipAddress, int port) {
 		String url = "jdbc:mysql://localhost:3306/";
 		String dbName1 = "ccf";
 		String dbName2 = "rcia";
@@ -28,6 +45,15 @@ public class DbWorker {
 		{ 
 			e.printStackTrace(); 
 		}
+	}
+	
+	public static void storeCCF(ArrayList<CCFData> data){
+		
+		
+	}
+	
+	public static void storeRCIA(ArrayList<RciaData> data){
+		
 	}
 	
 	public static void dbClose(Connection con1, Connection con2) {
