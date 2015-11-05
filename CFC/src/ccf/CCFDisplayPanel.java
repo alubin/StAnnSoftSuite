@@ -56,8 +56,8 @@ public class CCFDisplayPanel extends JPanel{
 			DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort());
 			dbWorker.storeCCF(tableValues.getCCFDataArrayList());
 			dbWorker.dbClose();
-			JPanel savePanel = new JPanel(new BorderLayout());
-			add(new JLabel("Saved!"));
+//			JPanel savePanel = new JPanel(new BorderLayout());
+//			add(new JLabel("Saved!"));
 //			mainGui.
 
 		}

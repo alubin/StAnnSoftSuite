@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileFilter;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -117,7 +118,7 @@ public class ImportDialog extends JDialog {
 
 			//Display only Access files types when the file chooser is displayed.
 			FileNameExtensionFilter filter = new FileNameExtensionFilter(
-					"Access Files", "accdb", "mdb");
+					"Files", "accdb", "mdb","xls","xlsx");
 			fileChooser.setFileFilter(filter);
 			fileChooser.setCurrentDirectory(new File("."));
 
@@ -129,6 +130,7 @@ public class ImportDialog extends JDialog {
 			}
 
 		}
+
 	}
 
 }
