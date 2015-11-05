@@ -20,7 +20,7 @@ import ccf.CCFImportDialog;
  * @author AL
  *
  */
-public class MainPanel extends JFrame{
+public class MainFrame extends JFrame{
 
 	private static final long serialVersionUID = 8947518661404713452L;
 	/** This menu bar for the main screen */
@@ -44,7 +44,7 @@ public class MainPanel extends JFrame{
 	 */
 	static JPanel displayPanel = new JPanel();
 
-	public MainPanel()
+	public MainFrame()
 	{
 		setTitle("St. Ann Software Suite");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -93,7 +93,7 @@ public class MainPanel extends JFrame{
 
 		//Assign the menu
 		setJMenuBar(optionMenuBar);
-		add(displayPanel);
+		add(MainDisplayPanel.getPanel());
 
 		pack();
 		setVisible(true);
@@ -187,6 +187,12 @@ public class MainPanel extends JFrame{
 
 		}
 
+	}
+
+	public void refresh()
+	{
+		pack();
+		repaint();
 	}
 
 	public static void setPanel(JPanel displayPnl)

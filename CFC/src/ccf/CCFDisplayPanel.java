@@ -7,15 +7,15 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 
-import main.MainPanel;
+import main.MainDisplayPanel;
 
 public class CCFDisplayPanel extends JPanel{
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 4737877830412536390L;
-	
+
 	public CCFDisplayPanel(AccessReader accessReader)
 	{
 		JTable accessTable = accessReader.createTable();
@@ -26,11 +26,14 @@ public class CCFDisplayPanel extends JPanel{
 		add(btnPanel, BorderLayout.NORTH);
 		add(accessTable);
 	}
-	
+
 	public void displayPanel()
 	{
 		//Display this panel on the main GUI
-		MainPanel.setPanel(this);
+		JPanel testPanel = new JPanel(new GridLayout());
+		testPanel.add(new JButton("Help"));
+		MainDisplayPanel.setPanel(testPanel);
+//		MainDisplayPanel.setPanel(this);
 	}
 
 
