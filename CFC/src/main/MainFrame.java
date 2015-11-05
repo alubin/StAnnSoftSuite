@@ -4,6 +4,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.security.auth.Refreshable;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -23,6 +24,8 @@ import ccf.CCFImportDialog;
 public class MainFrame extends JFrame{
 
 	private static final long serialVersionUID = 8947518661404713452L;
+	
+	MainFrame instance = null;
 	/** This menu bar for the main screen */
 	JMenuBar optionMenuBar = new JMenuBar();
 	JMenu fileOption = new JMenu("File");
@@ -54,6 +57,8 @@ public class MainFrame extends JFrame{
 
 		//Set the screen to Full Size
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		
+		instance = this;
 
 		//Populate the Menu Bar
 		optionMenuBar.add(fileOption);
@@ -93,8 +98,6 @@ public class MainFrame extends JFrame{
 
 		//Assign the menu
 		setJMenuBar(optionMenuBar);
-		add(MainDisplayPanel.getPanel());
-
 		pack();
 		setVisible(true);
 	}
@@ -128,7 +131,8 @@ public class MainFrame extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			//Display the dialog box for the Import window for the CCF
-			new CCFImportDialog().setVisible(true);
+			//Note the instance of the JFrame is passed in so that the panel can be modified later.
+			new CCFImportDialog(instance).setVisible(true);
 		}
 
 	}
@@ -189,18 +193,12 @@ public class MainFrame extends JFrame{
 
 	}
 
-	public void refresh()
+	//Changes the content panel of the main gui to display the panel that was passed in.
+	public void setPanel(JPanel displayPnl)
 	{
-		pack();
-		repaint();
-	}
-
-	public static void setPanel(JPanel displayPnl)
-	{
-		displayPanel = displayPnl;
-		//		displayPanel = new CCFControlPanel();
-		displayPanel.setVisible(true);
-		System.out.println("You should something on the main screen");
+		getContentPane().removeAll();
+		getContentPane().add(displayPnl);
+		setVisible(true);
 	}
 
 }

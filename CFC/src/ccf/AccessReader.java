@@ -2,8 +2,11 @@ package ccf;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import com.healthmarketscience.jackcess.DatabaseBuilder;
 import com.healthmarketscience.jackcess.Row;
@@ -60,11 +63,19 @@ public class AccessReader {
 	{
 		Table table = null;
 		JTable accessTable = null;
+		CCFTableModel tableModel;
 		try {
 			table = DatabaseBuilder.open(new File(fileName)).getTable(tableName);
-			accessTable = new JTable(new CCFTableModel(table));
-			System.out.println("Row Count = " + table.getRowCount());
-			System.out.println("Columns Count = " + table.getColumnCount());
+			tableModel = new CCFTableModel(table);
+			
+			for(Row row: table)
+			{
+//				StringTokenizer valueString = new StringTokenizer(row.values().toString(), ',');
+				tableModel.addRow(row.values().toArray());
+				System.out.println("Value Collection" + row.values().toArray().toString());
+				
+			}
+			accessTable = new JTable(tableModel);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

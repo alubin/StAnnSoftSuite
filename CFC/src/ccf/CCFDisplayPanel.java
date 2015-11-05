@@ -5,9 +5,10 @@ import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import main.MainDisplayPanel;
+import main.MainFrame;
 
 public class CCFDisplayPanel extends JPanel{
 
@@ -22,18 +23,19 @@ public class CCFDisplayPanel extends JPanel{
 		setLayout(new BorderLayout());
 		JPanel btnPanel = new JPanel(new GridLayout(1,2));
 		JButton btnSave = new JButton("Save");
+		JButton btnCancel = new JButton("Cancel");
 		btnPanel.add(btnSave);
+		btnPanel.add(btnCancel);
 		add(btnPanel, BorderLayout.NORTH);
-		add(accessTable);
+		
+		add(new JScrollPane(accessTable),BorderLayout.CENTER);
 	}
 
-	public void displayPanel()
-	{
+
+	public void displayPanel(MainFrame mainGui) {
 		//Display this panel on the main GUI
-		JPanel testPanel = new JPanel(new GridLayout());
-		testPanel.add(new JButton("Help"));
-		MainDisplayPanel.setPanel(testPanel);
-//		MainDisplayPanel.setPanel(this);
+		mainGui.setPanel(this);
+		
 	}
 
 
