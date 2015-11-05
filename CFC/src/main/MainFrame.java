@@ -4,7 +4,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.security.auth.Refreshable;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -14,6 +13,7 @@ import javax.swing.JPanel;
 import rcia.RciaImportDialog;
 import ccf.CCFControlPanel;
 import ccf.CCFImportDialog;
+import database.DBSetupDialog;
 
 /**
  * This Panel will be the front facing GUI that the client will see.

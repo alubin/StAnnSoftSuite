@@ -1,4 +1,4 @@
-package main;
+package database;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -13,15 +13,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import database.DbWorker;
-
 public class DBSetupDialog extends JDialog {
 
 	private static final long serialVersionUID = 5582642634296508993L;
 
-	final String ipAddress = "127.0.0.1";
-	final int port = 3306;
-	final PreferenceManager databasePref = new PreferenceManager();
+	JTextField ipAddressField = new JTextField(DatabaseStore.getAddress());
+	JTextField portField = new JTextField(String.valueOf(DatabaseStore.getPort()));
 
 	public DBSetupDialog()
 	{
@@ -38,10 +35,10 @@ public class DBSetupDialog extends JDialog {
 		portPanel.setLayout(new GridLayout(2,2));
 
 		ipAddressPanel.add(new JLabel("Ip Address"));
-		ipAddressPanel.add(new JTextField(ipAddress));
+		ipAddressPanel.add(ipAddressField);
 
 		portPanel.add(new JLabel("Port"));
-		portPanel.add(new JTextField(String.valueOf(port)));
+		portPanel.add(portField);
 
 		JPanel btnPanel = new JPanel(new BorderLayout());
 		btnPanel.add(submitBtn, BorderLayout.EAST);
@@ -59,8 +56,8 @@ public class DBSetupDialog extends JDialog {
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			databasePref.setDatabaseSettings(ipAddress, port);
-//			DbWorker testWorker = new DbWorker(databasePref.getDatabaseSettings().getAddress(), databasePref.getDatabaseSettings().getPort());
+			DatabaseStore.setAddress(ipAddressField.getText());
+			DatabaseStore.setPort(Integer.valueOf(portField.getText()));
 
 		}
 

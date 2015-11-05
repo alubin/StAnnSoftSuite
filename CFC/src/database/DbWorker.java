@@ -1,14 +1,10 @@
 package database;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
-import ccf.CCFData;
 import rcia.RciaData;
+import ccf.CCFData;
 
 public class DbWorker {
 
@@ -51,6 +47,7 @@ public class DbWorker {
 	}
 
 	public static void storeCCF(ArrayList<CCFData> data){
+		System.out.println("Writing to CCF Database.");
 
 
 	}

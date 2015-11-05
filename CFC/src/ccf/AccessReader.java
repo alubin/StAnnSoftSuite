@@ -2,11 +2,8 @@ package ccf;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.StringTokenizer;
 
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 import com.healthmarketscience.jackcess.DatabaseBuilder;
 import com.healthmarketscience.jackcess.Row;
@@ -26,7 +23,7 @@ public class AccessReader {
 		this();
 		fileName = accessFile;
 	}
-	
+
 	public AccessReader(String accessFile, String tableName)
 	{
 		this();
@@ -57,32 +54,37 @@ public class AccessReader {
 
 
 	}
-	
-	
-	public JTable createTable()
+
+
+	public CCFTable createTable()
 	{
 		Table table = null;
 		JTable accessTable = null;
 		CCFTableModel tableModel;
+		CCFTable tableData = null;
 		try {
 			table = DatabaseBuilder.open(new File(fileName)).getTable(tableName);
 			tableModel = new CCFTableModel(table);
-			
+			accessTable = new JTable(tableModel);
+			tableData = new CCFTable(accessTable);
 			for(Row row: table)
 			{
-//				StringTokenizer valueString = new StringTokenizer(row.values().toString(), ',');
-				tableModel.addRow(row.values().toArray());
-				System.out.println("Value Collection" + row.values().toArray().toString());
-				
+				Object[] myData = row.values().toArray();
+				CCFData ccfData = new CCFData(myData);
+				tableData.addToList(ccfData);
+				tableModel.addRow(myData);
+//				System.out.println("Value Collection" + row.values());
+//				System.out.println("CCF Data = " + ccfData);
+
 			}
-			accessTable = new JTable(tableModel);
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return (accessTable);
-		
+
+		return tableData;
+
 	}
 
 
