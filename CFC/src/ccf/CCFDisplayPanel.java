@@ -7,12 +7,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import java.awt.Toolkit;
 
 import main.MainFrame;
 import database.DatabaseStore;

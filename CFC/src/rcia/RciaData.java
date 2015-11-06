@@ -4,25 +4,22 @@ import java.util.ArrayList;
 
 public class RciaData {
 
-	public RciaData(ArrayList<String> rowValue) {
-
-	}
 	//EForm or Paper [Enum]
-	private String typeOfForm = "";
+	private String typeOfForm;
 	//Y or N
-	private boolean badges;
+	private String badges;
 	//Y or N
-	private boolean printForm;
+	private String printForm;
 	//???
-	private char[] value = new char[2];
+	private String value;
 	//Y or N
-	private boolean verification;
+	private String verification;
 	//Y or N
-	private boolean reconciliation;
+	private String reconciliation;
 	//Y or N
-	private boolean bapCert;
+	private String bapCert;
 	//Y or N
-	private boolean birthCert;
+	private String birthCert;
 	//Name of Saint
 	private String saintName = "";
 	//Male or Female
@@ -30,7 +27,7 @@ public class RciaData {
 	//zAuditor, Lead SP, Catholic, Inquirer, Sponsor [Enum]
 	private String role;
 	//Last Name
-	private String LastName;
+	private String lastName;
 	//Desired name to be called
 	private String familiarName;
 	//First name of Sponsor
@@ -45,45 +42,45 @@ public class RciaData {
 	private String middle;
 	private String birthName;
 	private String address;
-	private char[] state = new char[2];
-	private int[] zip = new int[5];
+	private String state;
+	private double zip;
 	private String emailAddress;
 	private String phoneNumber;
 	//1/1/1999
 	private String dob;
-	private int age;
+	private double age;
 	private String occupation;
 	private String birthplaceCity;
 	//Birthplace City
-	private char[] bpState;
+	private String bpState;
 	private String fatherFullName;
 	private String motherFullName;
-	private boolean baptizedInChrist;
+	private String baptizedInChrist;
 	private String dateOfBaptism;
 	private String godParentNames;
 	private String priestName;
 	private String churchName;
 	private String churchCity;
-	private char[] churchState = new char[2];
+	private String churchState;
 	private String denom;
 	private String currParish;
-	private int yrsOfRegEd;
+	private double yrsOfRegEd;
 	private String monthAndYear;
 	private String sacramentDesired;
-	private boolean haveASponsor;
+	private String haveASponsor;
 	private String sponsorName;
 	private String sponsorNumber;
 	private String whySponsor;
-	private boolean goodStanding;
-	private boolean sponsorRole;
-	private boolean someoneInMind;
+	private String goodStanding;
+	private String sponsorRole;
+	private String someoneInMind;
 	private String inquirerName;
 	private String inquirerPhone;
 	private String maritalStatus;
 	private String spouseName;
 	private String spouseReligion;
-	private boolean practicingCatholic;
-	private boolean attendSession;
+	private String practicingCatholic;
+	private String attendSession;
 	private String catholicMarriage;
 	private String catholicDate;
 	private String civilMarriageDate;
@@ -92,8 +89,79 @@ public class RciaData {
 	private String conC;
 	private String conD;
 	private String children;
-	private int ages;
-	private boolean sponsorPotential;
+	private double ages;
+	private String sponsorPotential;
+
+	public RciaData(ArrayList<String> rowValue) {
+		this.typeOfForm = rowValue.get(0);
+		this.badges = rowValue.get(1);
+		this.printForm = rowValue.get(2);
+		this.value = rowValue.get(3);
+		this.verification = rowValue.get(4);
+		this.reconciliation = rowValue.get(5);
+		this.bapCert = rowValue.get(6);
+		this.birthCert = rowValue.get(7);
+		this.saintName = rowValue.get(8);
+		this.gender = rowValue.get(9);
+		this.role = rowValue.get(10);
+		this.lastName = rowValue.get(11);
+		this.familiarName = rowValue.get(12);
+		this.sponFirst = rowValue.get(13);
+		this.sponLast = rowValue.get(14);
+		this.sponsor = rowValue.get(15);
+		this.first = rowValue.get(16);
+		this.middle = rowValue.get(17);
+		this.birthName = rowValue.get(18);
+		this.address = rowValue.get(19);
+		this.state = rowValue.get(20);
+		this.zip = Integer.valueOf(rowValue.get(21));
+		this.emailAddress = rowValue.get(22);
+		this.phoneNumber = rowValue.get(23);
+		this.dob = rowValue.get(24);
+		this.age = Integer.valueOf(rowValue.get(25));
+		this.occupation = rowValue.get(26);
+		this.birthplaceCity = rowValue.get(27);
+		this.bpState = rowValue.get(28);
+		this.fatherFullName = rowValue.get(29);
+		this.motherFullName = rowValue.get(30);
+		this.baptizedInChrist = rowValue.get(31);
+		this.dateOfBaptism = rowValue.get(32);
+		this.godParentNames = rowValue.get(33);
+		this.priestName = rowValue.get(34);
+		this.churchName = rowValue.get(35);
+		this.churchCity = rowValue.get(36);
+		this.churchState = rowValue.get(37);
+		this.denom = rowValue.get(38);
+		this.currParish = rowValue.get(39);
+		this.yrsOfRegEd = Integer.valueOf(rowValue.get(40));
+		this.monthAndYear = rowValue.get(41);
+		this.sacramentDesired = rowValue.get(42);
+		this.haveASponsor = rowValue.get(43);
+		this.sponsorName = rowValue.get(44);
+		this.sponsorNumber = rowValue.get(45);
+		this.whySponsor = rowValue.get(46);
+		this.goodStanding = rowValue.get(47);
+		this.sponsorRole = rowValue.get(48);
+		this.someoneInMind = rowValue.get(49);
+		this.inquirerName = rowValue.get(50);
+		this.inquirerPhone = rowValue.get(51);
+		this.maritalStatus = rowValue.get(52);
+		this.spouseName = rowValue.get(53);
+		this.spouseReligion = rowValue.get(54);
+		this.practicingCatholic = rowValue.get(55);
+		this.attendSession = rowValue.get(56);
+		this.catholicMarriage = rowValue.get(57);
+		this.catholicDate = rowValue.get(58);
+		this.civilMarriageDate = rowValue.get(59);
+		this.conA = rowValue.get(60);
+		this.conB = rowValue.get(61);
+		this.conC = rowValue.get(62);
+		this.conD = rowValue.get(63);
+		this.children = rowValue.get(65);
+		this.ages = Integer.valueOf(rowValue.get(66));
+		this.sponsorPotential = rowValue.get(67);
+
+	}
 
 //	public RciaData(Object[] objArray)
 //	{

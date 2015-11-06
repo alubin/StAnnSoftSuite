@@ -83,6 +83,7 @@ public class ExcelReader {
                 }
                 rowArray.add(cellArray);
             }
+            workbook.close();
             file.close();
 
             for(ArrayList<String> rowValue: rowArray)
