@@ -12,6 +12,9 @@ public class RciaActionListener extends Convert implements ActionListener {
 		//Convert the file for RCIA purposes.
 		System.out.println("RCIA");
 		System.out.println("File Path = " + getFilePath());
+		ExcelReader excel = new ExcelReader(getFilePath());
+		excel.displayTable();
+		
 
 	}
 

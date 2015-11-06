@@ -3,92 +3,164 @@ package rcia;
 public class RciaData {
 	
 	//EForm or Paper [Enum]
-	String typeOfForm = "";
+	private String typeOfForm = "";
 	//Y or N
-	boolean badges;
+	private boolean badges;
 	//Y or N
-	boolean printForm;
+	private boolean printForm;
 	//???
-	char[] value = new char[2];
+	private char[] value = new char[2];
 	//Y or N
-	boolean verification;
+	private boolean verification;
 	//Y or N
-	boolean reconciliation;
+	private boolean reconciliation;
 	//Y or N
-	boolean bapCert;
+	private boolean bapCert;
 	//Y or N
-	boolean birthCert;
+	private boolean birthCert;
 	//Name of Saint
-	String saintName = "";
+	private String saintName = "";
 	//Male or Female
-	String gender;
+	private String gender;
 	//zAuditor, Lead SP, Catholic, Inquirer, Sponsor [Enum]
-	String role;
+	private String role;
 	//Last Name
-	String LastName;
+	private String LastName;
 	//Desired name to be called
-	String familiarName;
+	private String familiarName;
 	//First name of Sponsor
-	String sponFirst;
+	private String sponFirst;
 	//Last Name of Sponsor
-	String sponLast;
+	private String sponLast;
 	//Full name of sponsor
-	String sponsor;
+	private String sponsor;
 	//First Name
-	String first;
+	private String first;
 	//middle Name
-	String middle;
-	String birthName;
-	String address;
-	char[] state = new char[2];
-	int[] zip = new int[5];
-	String emailAddress;
-	String phoneNumber;
+	private String middle;
+	private String birthName;
+	private String address;
+	private char[] state = new char[2];
+	private int[] zip = new int[5];
+	private String emailAddress;
+	private String phoneNumber;
 	//1/1/1999
-	String DOB;
-	int age;
-	String occupation;
-	String birthplaceCity;
+	private String dob;
+	private int age;
+	private String occupation;
+	private String birthplaceCity;
 	//Birthplace City
-	char[] bpState;
-	String fatherFullName;
-	String motherFullName;
-	boolean baptizedInChrist;
-	String dateOfBaptism;
-	String godParentNames;
-	String priestName;
-	String churchName;
-	String churchCity;
-	char[] churchState = new char[2];
-	String denom;
-	String currParish;
-	int yrsOfRegEd;
-	String monthAndYear;
-	String sacramentDesired;
-	boolean haveASponsor;
-	String sponsorName;
-	String sponsorNumber;
-	String whySponsor;
-	boolean goodStanding;
-	boolean sponsorRole;
-	boolean someoneInMind;
-	String inquirerName;
-	String inquirerPhone;
-	String maritalStatus;
-	String spouseName;
-	String spouseReligion;
-	boolean practicingCatholic;
-	boolean attendSession;
-	String catholicMarriage;
-	String catholicDate;
-	String civilMarriageDate;
-	String conA;
-	String conB;
-	String conC;
-	String conD;
-	String children;
-	int ages;
-	boolean sponsorPotential;
+	private char[] bpState;
+	private String fatherFullName;
+	private String motherFullName;
+	private boolean baptizedInChrist;
+	private String dateOfBaptism;
+	private String godParentNames;
+	private String priestName;
+	private String churchName;
+	private String churchCity;
+	private char[] churchState = new char[2];
+	private String denom;
+	private String currParish;
+	private int yrsOfRegEd;
+	private String monthAndYear;
+	private String sacramentDesired;
+	private boolean haveASponsor;
+	private String sponsorName;
+	private String sponsorNumber;
+	private String whySponsor;
+	private boolean goodStanding;
+	private boolean sponsorRole;
+	private boolean someoneInMind;
+	private String inquirerName;
+	private String inquirerPhone;
+	private String maritalStatus;
+	private String spouseName;
+	private String spouseReligion;
+	private boolean practicingCatholic;
+	private boolean attendSession;
+	private String catholicMarriage;
+	private String catholicDate;
+	private String civilMarriageDate;
+	private String conA;
+	private String conB;
+	private String conC;
+	private String conD;
+	private String children;
+	private int ages;
+	private boolean sponsorPotential;
+	
+//	public RciaData(Object[] objArray)
+//	{
+//		this.typeOfForm = typeOfForm;
+//		this.badges = badges;
+//		this.printForm = printForm;
+//		this.value = value;
+//		this.verification = verification;
+//		this.reconciliation = reconciliation;
+//		this.bapCert = bapCert;
+//		this.birthCert = birthCert;
+//		this.saintName = saintName;
+//		this.gender = gender;
+//		this.role = role;
+//		this.lastName = lastName;
+//		this.familiarName = familiarName;
+//		this.sponFirst = sponFirst;
+//		this.sponLast = sponLast;
+//		this.sponsor = sponsor;
+//		this.first = first;
+//		this.middle = middle;
+//		this.birthName = birthName;
+//		this.address = address;
+//		this.state = state;
+//		this.zip = zip;
+//		this.emailAddress = emailAddress;
+//		this.phoneNumber = phoneNumber;
+//		this.dob = dob;
+//		this.age = age;
+//		this.occupation = occupation;
+//		this.birthplaceCity = birthplaceCity;
+//		this.bpState = bpState;
+//		this.fatherFullName = fatherFullName;
+//		this.motherFullName = motherFullName;
+//		this.baptizedInChrist = baptizedInChrist;
+//		this.dateOfBaptism = dateOfBaptism;
+//		this.godParentNames = godParentNames;
+//		this.priestName = priestName;
+//		this.churchName = churchName;
+//		this.churchCity = churchCity;
+//		this.churchState = churchState;
+//		this.denom = denom;
+//		this.currParish = currParish;
+//		this.yrsOfRegEd = yrsOfRegEd;
+//		this.monthAndYear = monthAndYear;
+//		this.sacramentDesired = sacramentDesired;
+//		this.haveASponsor = haveASponsor;
+//		this.sponsorName = sponsorName;
+//		this.sponsorNumber = sponsorNumber;
+//		this.whySponsor = whySponsor;
+//		this.goodStanding = goodStanding;
+//		this.sponsorRole = sponsorRole;
+//		this.someoneInMind = someoneInMind;
+//		this.inquirerName = inquirerName;
+//		this.inquirerPhone = inquirerPhone;
+//		this.maritalStatus = maritalStatus;
+//		this.spouseName = spouseName;
+//		this.spouseReligion = spouseReligion;
+//		this.practicingCatholic = practicingCatholic;
+//		this.attendSession = attendSession;
+//		this.catholicMarriage = catholicMarriage;
+//		this.catholicDate = catholicDate;
+//		this.civilMarriageDate = civilMarriageDate;
+//		this.conA = conA;
+//		this.conB = conB;
+//		this.conC = conC;
+//		this.conD = conD;
+//		this.children = children;
+//		this.ages = ages;
+//		this.sponsorPotential = sponsorPotential;
+//	}
+
 	
 	
 	
