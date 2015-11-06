@@ -16,13 +16,14 @@ public class RciaDisplayPanel extends JPanel {
 
 	public RciaDisplayPanel(ExcelReader excelReader)
 	{
-		JTable excelTable = new JTable(new RciaTableModel());
+		JTable excelTable = excelReader.createTable().getTable();
 		JScrollPane excelScroll = new JScrollPane(excelTable);
 		JPanel btnPanel = new JPanel(new GridLayout(1,2));
 		JButton btnSave = new JButton("Save");
 		JButton btnCancel = new JButton("Cancel");
 
 		excelTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
 
 		setBorder(BorderFactory.createTitledBorder("Rcia Results"));
 		setLayout(new BorderLayout());

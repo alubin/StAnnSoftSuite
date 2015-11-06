@@ -1,7 +1,12 @@
 package rcia;
 
+import java.util.ArrayList;
+
 public class RciaData {
-	
+
+	public RciaData(ArrayList<String> rowValue) {
+
+	}
 	//EForm or Paper [Enum]
 	private String typeOfForm = "";
 	//Y or N
@@ -89,7 +94,7 @@ public class RciaData {
 	private String children;
 	private int ages;
 	private boolean sponsorPotential;
-	
+
 //	public RciaData(Object[] objArray)
 //	{
 //		this.typeOfForm = typeOfForm;
@@ -161,8 +166,8 @@ public class RciaData {
 //		this.sponsorPotential = sponsorPotential;
 //	}
 
-	
-	
-	
+
+
+
 
 }

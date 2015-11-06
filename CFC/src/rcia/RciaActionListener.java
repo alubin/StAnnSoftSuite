@@ -24,7 +24,6 @@ public class RciaActionListener extends Convert implements ActionListener {
 		displayPanel = new RciaDisplayPanel(excel);
 		displayPanel.setMainGui(mainGui);
 
-		excel.displayTable();
 		displayPanel.showPanel();
 
 	}

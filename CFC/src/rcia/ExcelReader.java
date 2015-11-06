@@ -45,7 +45,8 @@ public class ExcelReader {
 	}
 
 
-	public void displayTable() {
+	public RciaTable createTable() {
+		RciaTable rciaTable = new RciaTable(new JTable(new RciaTableModel()));
 		ArrayList<ArrayList<String>> rowArray = new ArrayList<ArrayList<String>>();
 		try
         {
@@ -73,24 +74,21 @@ public class ExcelReader {
                     switch (cell.getCellType())
                     {
                         case Cell.CELL_TYPE_NUMERIC:
-//                            System.out.print(cell.getNumericCellValue());
                             cellArray.add(String.valueOf(cell.getNumericCellValue()));
                             break;
                         case Cell.CELL_TYPE_STRING:
-//                            System.out.print(cell.getStringCellValue());
                             cellArray.add(cell.getStringCellValue());
                             break;
                     }
-//                    System.out.println("");
                 }
                 rowArray.add(cellArray);
-//                System.out.println("\n");
             }
             file.close();
 
             for(ArrayList<String> rowValue: rowArray)
             {
             	System.out.println("Row = " + rowValue);
+            	rciaTable.addToList(new RciaData(rowValue));
             }
         }
         catch (Exception e)
@@ -98,44 +96,7 @@ public class ExcelReader {
             e.printStackTrace();
         }
 
-
-
+		return rciaTable;
 
 	}
-
-
-//	public RciaTable createTable()
-//	{
-//		Table table = null;
-//		JTable accessTable = null;
-//		CCFTableModel tableModel;
-//		CCFTable tableData = null;
-//		try {
-//			table = DatabaseBuilder.open(new File(fileName)).getTable(tableName);
-//			tableModel = new CCFTableModel(table);
-//			accessTable = new JTable(tableModel);
-//			tableData = new CCFTable(accessTable);
-//			for(Row row: table)
-//			{
-//				Object[] myData = row.values().toArray();
-//				CCFData ccfData = new CCFData(myData);
-//				tableData.addToList(ccfData);
-//				tableModel.addRow(myData);
-////				System.out.println("Value Collection" + row.values());
-////				System.out.println("CCF Data = " + ccfData);
-//
-//			}
-//
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//
-//		return tableData;
-//
-//	}
-
-
-
-
 }
