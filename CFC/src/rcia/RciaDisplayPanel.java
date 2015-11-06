@@ -2,6 +2,8 @@ package rcia;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -9,14 +11,18 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import database.DatabaseStore;
+import database.DbWorker;
 import main.MainFrame;
 
 public class RciaDisplayPanel extends JPanel {
 	private MainFrame mainDisplay;
+	private final RciaTable rciaTable;
 
 	public RciaDisplayPanel(ExcelReader excelReader)
 	{
-		JTable excelTable = excelReader.createTable().getTable();
+		rciaTable = excelReader.createTable();
+		JTable excelTable = rciaTable.getTable();
 		JScrollPane excelScroll = new JScrollPane(excelTable);
 		JPanel btnPanel = new JPanel(new GridLayout(1,2));
 		JButton btnSave = new JButton("Save");
@@ -43,6 +49,20 @@ public class RciaDisplayPanel extends JPanel {
 	public void showPanel() {
 		//Display this panel on the main GUI
 		mainDisplay.setPanel(this);
+
+	}
+
+	private class SaveBtnActionListener implements ActionListener
+	{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort());
+			dbWorker.storeRCIA(rciaTable.getRciaDataArrayList());
+			dbWorker.dbClose();
+
+
+		}
 
 	}
 

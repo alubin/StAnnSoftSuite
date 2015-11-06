@@ -5,92 +5,92 @@ import java.util.ArrayList;
 public class RciaData {
 
 	//EForm or Paper [Enum]
-	private String typeOfForm;
+	private final String typeOfForm;
 	//Y or N
-	private String badges;
+	private final String badges;
 	//Y or N
-	private String printForm;
+	private final String printForm;
 	//???
-	private String value;
+	private final String value;
 	//Y or N
-	private String verification;
+	private final String verification;
 	//Y or N
-	private String reconciliation;
+	private final String reconciliation;
 	//Y or N
-	private String bapCert;
+	private final String bapCert;
 	//Y or N
-	private String birthCert;
+	private final String birthCert;
 	//Name of Saint
-	private String saintName = "";
+	private final String saintName;
 	//Male or Female
-	private String gender;
+	private final String gender;
 	//zAuditor, Lead SP, Catholic, Inquirer, Sponsor [Enum]
-	private String role;
+	private final String role;
 	//Last Name
-	private String lastName;
+	private final String lastName;
 	//Desired name to be called
-	private String familiarName;
+	private final String familiarName;
 	//First name of Sponsor
-	private String sponFirst;
+	private final String sponFirst;
 	//Last Name of Sponsor
-	private String sponLast;
+	private final String sponLast;
 	//Full name of sponsor
-	private String sponsor;
+	private final String sponsor;
 	//First Name
-	private String first;
+	private final String first;
 	//middle Name
-	private String middle;
-	private String birthName;
-	private String address;
-	private String state;
-	private double zip;
-	private String emailAddress;
-	private String phoneNumber;
+	private final String middle;
+	private final String birthName;
+	private final String address;
+	private final String state;
+	private final double zip;
+	private final String emailAddress;
+	private final String phoneNumber;
 	//1/1/1999
-	private String dob;
-	private double age;
-	private String occupation;
-	private String birthplaceCity;
+	private final String dob;
+	private final double age;
+	private final String occupation;
+	private final String birthplaceCity;
 	//Birthplace City
-	private String bpState;
-	private String fatherFullName;
-	private String motherFullName;
-	private String baptizedInChrist;
-	private String dateOfBaptism;
-	private String godParentNames;
-	private String priestName;
-	private String churchName;
-	private String churchCity;
-	private String churchState;
-	private String denom;
-	private String currParish;
-	private double yrsOfRegEd;
-	private String monthAndYear;
-	private String sacramentDesired;
-	private String haveASponsor;
-	private String sponsorName;
-	private String sponsorNumber;
-	private String whySponsor;
-	private String goodStanding;
-	private String sponsorRole;
-	private String someoneInMind;
-	private String inquirerName;
-	private String inquirerPhone;
-	private String maritalStatus;
-	private String spouseName;
-	private String spouseReligion;
-	private String practicingCatholic;
-	private String attendSession;
-	private String catholicMarriage;
-	private String catholicDate;
-	private String civilMarriageDate;
-	private String conA;
-	private String conB;
-	private String conC;
-	private String conD;
-	private String children;
-	private double ages;
-	private String sponsorPotential;
+	private final String bpState;
+	private final String fatherFullName;
+	private final String motherFullName;
+	private final String baptizedInChrist;
+	private final String dateOfBaptism;
+	private final String godParentNames;
+	private final String priestName;
+	private final String churchName;
+	private final String churchCity;
+	private final String churchState;
+	private final String denom;
+	private final String currParish;
+	private final double yrsOfRegEd;
+	private final String monthAndYear;
+	private final String sacramentDesired;
+	private final String haveASponsor;
+	private final String sponsorName;
+	private final String sponsorNumber;
+	private final String whySponsor;
+	private final String goodStanding;
+	private final String sponsorRole;
+	private final String someoneInMind;
+	private final String inquirerName;
+	private final String inquirerPhone;
+	private final String maritalStatus;
+	private final String spouseName;
+	private final String spouseReligion;
+	private final String practicingCatholic;
+	private final String attendSession;
+	private final String catholicMarriage;
+	private final String catholicDate;
+	private final String civilMarriageDate;
+	private final String conA;
+	private final String conB;
+	private final String conC;
+	private final String conD;
+	private final String children;
+	private final double ages;
+	private final String sponsorPotential;
 
 	public RciaData(ArrayList<String> rowValue) {
 		this.typeOfForm = rowValue.get(0);
@@ -163,79 +163,314 @@ public class RciaData {
 
 	}
 
-//	public RciaData(Object[] objArray)
-//	{
-//		this.typeOfForm = typeOfForm;
-//		this.badges = badges;
-//		this.printForm = printForm;
-//		this.value = value;
-//		this.verification = verification;
-//		this.reconciliation = reconciliation;
-//		this.bapCert = bapCert;
-//		this.birthCert = birthCert;
-//		this.saintName = saintName;
-//		this.gender = gender;
-//		this.role = role;
-//		this.lastName = lastName;
-//		this.familiarName = familiarName;
-//		this.sponFirst = sponFirst;
-//		this.sponLast = sponLast;
-//		this.sponsor = sponsor;
-//		this.first = first;
-//		this.middle = middle;
-//		this.birthName = birthName;
-//		this.address = address;
-//		this.state = state;
-//		this.zip = zip;
-//		this.emailAddress = emailAddress;
-//		this.phoneNumber = phoneNumber;
-//		this.dob = dob;
-//		this.age = age;
-//		this.occupation = occupation;
-//		this.birthplaceCity = birthplaceCity;
-//		this.bpState = bpState;
-//		this.fatherFullName = fatherFullName;
-//		this.motherFullName = motherFullName;
-//		this.baptizedInChrist = baptizedInChrist;
-//		this.dateOfBaptism = dateOfBaptism;
-//		this.godParentNames = godParentNames;
-//		this.priestName = priestName;
-//		this.churchName = churchName;
-//		this.churchCity = churchCity;
-//		this.churchState = churchState;
-//		this.denom = denom;
-//		this.currParish = currParish;
-//		this.yrsOfRegEd = yrsOfRegEd;
-//		this.monthAndYear = monthAndYear;
-//		this.sacramentDesired = sacramentDesired;
-//		this.haveASponsor = haveASponsor;
-//		this.sponsorName = sponsorName;
-//		this.sponsorNumber = sponsorNumber;
-//		this.whySponsor = whySponsor;
-//		this.goodStanding = goodStanding;
-//		this.sponsorRole = sponsorRole;
-//		this.someoneInMind = someoneInMind;
-//		this.inquirerName = inquirerName;
-//		this.inquirerPhone = inquirerPhone;
-//		this.maritalStatus = maritalStatus;
-//		this.spouseName = spouseName;
-//		this.spouseReligion = spouseReligion;
-//		this.practicingCatholic = practicingCatholic;
-//		this.attendSession = attendSession;
-//		this.catholicMarriage = catholicMarriage;
-//		this.catholicDate = catholicDate;
-//		this.civilMarriageDate = civilMarriageDate;
-//		this.conA = conA;
-//		this.conB = conB;
-//		this.conC = conC;
-//		this.conD = conD;
-//		this.children = children;
-//		this.ages = ages;
-//		this.sponsorPotential = sponsorPotential;
-//	}
+	public final String getTypeOfForm() {
+		return typeOfForm;
+	}
 
+	public final String getBadges() {
+		return badges;
+	}
 
+	public final String getPrintForm() {
+		return printForm;
+	}
 
+	public final String getValue() {
+		return value;
+	}
+
+	public final String getVerification() {
+		return verification;
+	}
+
+	public final String getReconciliation() {
+		return reconciliation;
+	}
+
+	public final String getBapCert() {
+		return bapCert;
+	}
+
+	public final String getBirthCert() {
+		return birthCert;
+	}
+
+	public final String getSaintName() {
+		return saintName;
+	}
+
+	public final String getGender() {
+		return gender;
+	}
+
+	public final String getRole() {
+		return role;
+	}
+
+	public final String getLastName() {
+		return lastName;
+	}
+
+	public final String getFamiliarName() {
+		return familiarName;
+	}
+
+	public final String getSponFirst() {
+		return sponFirst;
+	}
+
+	public final String getSponLast() {
+		return sponLast;
+	}
+
+	public final String getSponsor() {
+		return sponsor;
+	}
+
+	public final String getFirst() {
+		return first;
+	}
+
+	public final String getMiddle() {
+		return middle;
+	}
+
+	public final String getBirthName() {
+		return birthName;
+	}
+
+	public final String getAddress() {
+		return address;
+	}
+
+	public final String getState() {
+		return state;
+	}
+
+	public final double getZip() {
+		return zip;
+	}
+
+	public final String getEmailAddress() {
+		return emailAddress;
+	}
+
+	public final String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public final String getDob() {
+		return dob;
+	}
+
+	public final double getAge() {
+		return age;
+	}
+
+	public final String getOccupation() {
+		return occupation;
+	}
+
+	public final String getBirthplaceCity() {
+		return birthplaceCity;
+	}
+
+	public final String getBpState() {
+		return bpState;
+	}
+
+	public final String getFatherFullName() {
+		return fatherFullName;
+	}
+
+	public final String getMotherFullName() {
+		return motherFullName;
+	}
+
+	public final String getBaptizedInChrist() {
+		return baptizedInChrist;
+	}
+
+	public final String getDateOfBaptism() {
+		return dateOfBaptism;
+	}
+
+	public final String getGodParentNames() {
+		return godParentNames;
+	}
+
+	public final String getPriestName() {
+		return priestName;
+	}
+
+	public final String getChurchName() {
+		return churchName;
+	}
+
+	public final String getChurchCity() {
+		return churchCity;
+	}
+
+	public final String getChurchState() {
+		return churchState;
+	}
+
+	public final String getDenom() {
+		return denom;
+	}
+
+	public final String getCurrParish() {
+		return currParish;
+	}
+
+	public final double getYrsOfRegEd() {
+		return yrsOfRegEd;
+	}
+
+	public final String getMonthAndYear() {
+		return monthAndYear;
+	}
+
+	public final String getSacramentDesired() {
+		return sacramentDesired;
+	}
+
+	public final String getHaveASponsor() {
+		return haveASponsor;
+	}
+
+	public final String getSponsorName() {
+		return sponsorName;
+	}
+
+	public final String getSponsorNumber() {
+		return sponsorNumber;
+	}
+
+	public final String getWhySponsor() {
+		return whySponsor;
+	}
+
+	public final String getGoodStanding() {
+		return goodStanding;
+	}
+
+	public final String getSponsorRole() {
+		return sponsorRole;
+	}
+
+	public final String getSomeoneInMind() {
+		return someoneInMind;
+	}
+
+	public final String getInquirerName() {
+		return inquirerName;
+	}
+
+	public final String getInquirerPhone() {
+		return inquirerPhone;
+	}
+
+	public final String getMaritalStatus() {
+		return maritalStatus;
+	}
+
+	public final String getSpouseName() {
+		return spouseName;
+	}
+
+	public final String getSpouseReligion() {
+		return spouseReligion;
+	}
+
+	public final String getPracticingCatholic() {
+		return practicingCatholic;
+	}
+
+	public final String getAttendSession() {
+		return attendSession;
+	}
+
+	public final String getCatholicMarriage() {
+		return catholicMarriage;
+	}
+
+	public final String getCatholicDate() {
+		return catholicDate;
+	}
+
+	public final String getCivilMarriageDate() {
+		return civilMarriageDate;
+	}
+
+	public final String getConA() {
+		return conA;
+	}
+
+	public final String getConB() {
+		return conB;
+	}
+
+	public final String getConC() {
+		return conC;
+	}
+
+	public final String getConD() {
+		return conD;
+	}
+
+	public final String getChildren() {
+		return children;
+	}
+
+	public final double getAges() {
+		return ages;
+	}
+
+	public final String getSponsorPotential() {
+		return sponsorPotential;
+	}
+
+	@Override
+	public String toString() {
+		return "RciaData [typeOfForm=" + typeOfForm + ", badges=" + badges
+				+ ", printForm=" + printForm + ", value=" + value
+				+ ", verification=" + verification + ", reconciliation="
+				+ reconciliation + ", bapCert=" + bapCert + ", birthCert="
+				+ birthCert + ", saintName=" + saintName + ", gender=" + gender
+				+ ", role=" + role + ", lastName=" + lastName
+				+ ", familiarName=" + familiarName + ", sponFirst=" + sponFirst
+				+ ", sponLast=" + sponLast + ", sponsor=" + sponsor
+				+ ", first=" + first + ", middle=" + middle + ", birthName="
+				+ birthName + ", address=" + address + ", state=" + state
+				+ ", zip=" + zip + ", emailAddress=" + emailAddress
+				+ ", phoneNumber=" + phoneNumber + ", dob=" + dob + ", age="
+				+ age + ", occupation=" + occupation + ", birthplaceCity="
+				+ birthplaceCity + ", bpState=" + bpState + ", fatherFullName="
+				+ fatherFullName + ", motherFullName=" + motherFullName
+				+ ", baptizedInChrist=" + baptizedInChrist + ", dateOfBaptism="
+				+ dateOfBaptism + ", godParentNames=" + godParentNames
+				+ ", priestName=" + priestName + ", churchName=" + churchName
+				+ ", churchCity=" + churchCity + ", churchState=" + churchState
+				+ ", denom=" + denom + ", currParish=" + currParish
+				+ ", yrsOfRegEd=" + yrsOfRegEd + ", monthAndYear="
+				+ monthAndYear + ", sacramentDesired=" + sacramentDesired
+				+ ", haveASponsor=" + haveASponsor + ", sponsorName="
+				+ sponsorName + ", sponsorNumber=" + sponsorNumber
+				+ ", whySponsor=" + whySponsor + ", goodStanding="
+				+ goodStanding + ", sponsorRole=" + sponsorRole
+				+ ", someoneInMind=" + someoneInMind + ", inquirerName="
+				+ inquirerName + ", inquirerPhone=" + inquirerPhone
+				+ ", maritalStatus=" + maritalStatus + ", spouseName="
+				+ spouseName + ", spouseReligion=" + spouseReligion
+				+ ", practicingCatholic=" + practicingCatholic
+				+ ", attendSession=" + attendSession + ", catholicMarriage="
+				+ catholicMarriage + ", catholicDate=" + catholicDate
+				+ ", civilMarriageDate=" + civilMarriageDate + ", conA=" + conA
+				+ ", conB=" + conB + ", conC=" + conC + ", conD=" + conD
+				+ ", children=" + children + ", ages=" + ages
+				+ ", sponsorPotential=" + sponsorPotential + "]";
+	}
 
 
 }

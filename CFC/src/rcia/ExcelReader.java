@@ -46,7 +46,8 @@ public class ExcelReader {
 
 
 	public RciaTable createTable() {
-		RciaTable rciaTable = new RciaTable(new JTable(new RciaTableModel()));
+		RciaTableModel rciaModel = new RciaTableModel();
+		RciaTable rciaTable = new RciaTable(new JTable(rciaModel));
 		ArrayList<ArrayList<String>> rowArray = new ArrayList<ArrayList<String>>();
 		try
         {
@@ -89,6 +90,7 @@ public class ExcelReader {
             for(ArrayList<String> rowValue: rowArray)
             {
             	System.out.println("Row = " + rowValue);
+//            	rciaModel.addRow(rowValue.toArray());
             	rciaTable.addToList(new RciaData(rowValue));
             }
         }

@@ -13,19 +13,18 @@ public class RciaTable {
 		this.table = table;
 		rciaArray = new ArrayList<RciaData>(1000);
 	}
-	
+
 	public JTable getTable()
 	{
 		return table;
 	}
-	
+
 	public void addToList(RciaData rciaData)
 	{
 		rciaArray.add(rciaData);
 	}
-	
-	public ArrayList<RciaData> getArray()
-	{
+
+	public ArrayList<RciaData> getRciaDataArrayList() {
 		return rciaArray;
 	}
 }

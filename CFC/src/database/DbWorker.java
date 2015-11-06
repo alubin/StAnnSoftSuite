@@ -48,6 +48,7 @@ public class DbWorker {
 
 	public static void storeCCF(ArrayList<CCFData> data){
 		System.out.println("Writing to CCF Database.");
+		//TODO: Extract the data from the array and store the data.
 		for(CCFData results : data)
 		{
 			System.out.println(results);
@@ -57,6 +58,12 @@ public class DbWorker {
 	}
 
 	public static void storeRCIA(ArrayList<RciaData> data){
+		System.out.println("Writing to RCIA Database.");
+		//TODO: Extract the data from the array and store the data.
+		for(RciaData results : data)
+		{
+			System.out.println(results);
+		}
 
 	}
 
