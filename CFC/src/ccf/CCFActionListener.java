@@ -7,7 +7,8 @@ import main.MainFrame;
 import custom.Convert;
 
 public class CCFActionListener extends Convert implements ActionListener {
-	MainFrame mainGui;
+	private final MainFrame mainGui;
+	private CCFDisplayPanel ccfDisplay;
 
 	public CCFActionListener(MainFrame instance) {
 		mainGui = instance;
@@ -16,7 +17,9 @@ public class CCFActionListener extends Convert implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		//TODO: Put in code that will open a file browser and convert selected file.
-		new CCFDisplayPanel(new AccessReader(getFilePath(), "tblParishData")).displayPanel(mainGui);
+		ccfDisplay = new CCFDisplayPanel(new AccessReader(getFilePath(), "tblParishData"));
+		ccfDisplay.setMainGui(mainGui);
+		ccfDisplay.showPanel();
 
 	}
 

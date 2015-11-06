@@ -48,6 +48,10 @@ public class DbWorker {
 
 	public static void storeCCF(ArrayList<CCFData> data){
 		System.out.println("Writing to CCF Database.");
+		for(CCFData results : data)
+		{
+			System.out.println(results);
+		}
 
 
 	}

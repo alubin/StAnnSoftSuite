@@ -5,11 +5,14 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+
+import java.awt.Toolkit;
 
 import main.MainFrame;
 import database.DatabaseStore;
@@ -21,34 +24,43 @@ public class CCFDisplayPanel extends JPanel{
 	 *
 	 */
 	private static final long serialVersionUID = 4737877830412536390L;
-	CCFTable tableValues;
+	private final CCFTable tableValues;
+	private MainFrame mainGui;
 
 	public CCFDisplayPanel(AccessReader accessReader)
 	{
 		tableValues = accessReader.createTable();
 		JTable accessTable = tableValues.getTable();
-		setLayout(new BorderLayout());
+		JScrollPane accessScroll = new JScrollPane(accessTable);
 		JPanel btnPanel = new JPanel(new GridLayout(1,2));
 		JButton btnSave = new JButton("Save");
 		JButton btnCancel = new JButton("Cancel");
 
-		btnSave.addActionListener(new saveActionListener());
+		setBorder(BorderFactory.createTitledBorder("CCF Results"));
+		setLayout(new BorderLayout());
+
+//		accessTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+//		accessTable.setPreferredScrollableViewportSize(Toolkit.getDefaultToolkit().getScreenSize());
+
+
+		btnSave.addActionListener(new SaveActionListener());
+		btnCancel.addActionListener(new CancelActionListener());
 
 		btnPanel.add(btnSave);
 		btnPanel.add(btnCancel);
 		add(btnPanel, BorderLayout.NORTH);
 
-		add(new JScrollPane(accessTable),BorderLayout.CENTER);
+		add(accessScroll,BorderLayout.CENTER);
 	}
 
 
-	public void displayPanel(MainFrame mainGui) {
+	public void showPanel() {
 		//Display this panel on the main GUI
 		mainGui.setPanel(this);
 
 	}
 
-	private class saveActionListener implements ActionListener
+	private class SaveActionListener implements ActionListener
 	{
 
 		@Override
@@ -58,9 +70,25 @@ public class CCFDisplayPanel extends JPanel{
 			dbWorker.dbClose();
 //			JPanel savePanel = new JPanel(new BorderLayout());
 //			add(new JLabel("Saved!"));
-//			mainGui.
+//			mainGui.setPanel(savePanel);
 
 		}
+
+	}
+
+	private class CancelActionListener implements ActionListener
+	{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			setVisible(false);
+
+		}
+
+	}
+
+	public void setMainGui(MainFrame mainGui) {
+		this.mainGui = mainGui;
 
 	}
 

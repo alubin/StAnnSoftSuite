@@ -24,7 +24,7 @@ import database.DBSetupDialog;
 public class MainFrame extends JFrame{
 
 	private static final long serialVersionUID = 8947518661404713452L;
-	
+
 	MainFrame instance = null;
 	/** This menu bar for the main screen */
 	JMenuBar optionMenuBar = new JMenuBar();
@@ -57,7 +57,7 @@ public class MainFrame extends JFrame{
 
 		//Set the screen to Full Size
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		
+
 		instance = this;
 
 		//Populate the Menu Bar
@@ -176,7 +176,7 @@ public class MainFrame extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Display the Rcia Dialog
-			new RciaImportDialog().setVisible(true);
+			new RciaImportDialog(instance).setVisible(true);
 
 		}
 
