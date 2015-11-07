@@ -37,8 +37,6 @@ public class CCFDisplayPanel extends JPanel{
 		setBorder(BorderFactory.createTitledBorder("CCF Results"));
 		setLayout(new BorderLayout());
 
-//		accessTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-//		accessTable.setPreferredScrollableViewportSize(Toolkit.getDefaultToolkit().getScreenSize());
 
 
 		btnSave.addActionListener(new SaveActionListener());

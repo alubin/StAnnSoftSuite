@@ -19,25 +19,6 @@ public class CCFData {
 	private final String experienced;
 	private final String courseLevel;
 
-	public CCFData()
-	{
-		Id = 0;
-		studentId = 0;
-		parishId = "";
-		dob = "";
-		function = "";
-		active = "";
-		lastName = "";
-		firstName = "";
-		name = "";
-		classOffered = 0;
-		hoursCredited = 0;
-		classDate = "";
-		courseTitle = "";
-		instructor = "";
-		experienced = "";
-		courseLevel = "";
-	}
 	public CCFData(Object[] dataArray)
 	{
 		Id = (int) dataArray[0];

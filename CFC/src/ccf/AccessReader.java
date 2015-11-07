@@ -9,53 +9,34 @@ import com.healthmarketscience.jackcess.DatabaseBuilder;
 import com.healthmarketscience.jackcess.Row;
 import com.healthmarketscience.jackcess.Table;
 
+/**
+ * This class implements the col and functionality needed to grab information from the CCF
+ * MS Access file. Given a table name this class will pull the information needed from the MS Access file
+ * and format it to a format that other classes can work with.
+ * @author AL
+ *
+ */
 public class AccessReader {
 
 	private String fileName;
 	private String tableName;
 
-	public AccessReader()
-	{
 
-	}
 	public AccessReader(String accessFile)
 	{
-		this();
 		fileName = accessFile;
 	}
 
 	public AccessReader(String accessFile, String tableName)
 	{
-		this();
 		fileName = accessFile;
 		this.tableName = tableName;
 	}
 
-	public static Table readTable(String fileName, String tableName) throws IOException
-	{
-		Table table = DatabaseBuilder.open(new File(fileName)).getTable(tableName);
-		return table;
-	}
-
-
-	public void displayTable(String tableName) {
-		try {
-			Table table = DatabaseBuilder.open(new File(fileName)).getTable(tableName);
-			for(Row row : table)
-			{
-				System.out.println("Key Collection" + row.keySet());
-				System.out.println("Value Collection" + row.values());
-
-				System.out.println(row);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-
-	}
-
-
+	/**
+	 * This method extracts the information from the given file and adds it to a table for manipulation.
+	 * @return CCFTable, an object of the extracted data.
+	 */
 	public CCFTable createTable()
 	{
 		Table table = null;
@@ -73,13 +54,10 @@ public class AccessReader {
 				CCFData ccfData = new CCFData(myData);
 				tableData.addToList(ccfData);
 				tableModel.addRow(myData);
-//				System.out.println("Value Collection" + row.values());
-//				System.out.println("CCF Data = " + ccfData);
 
 			}
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
