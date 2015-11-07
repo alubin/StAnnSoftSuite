@@ -33,6 +33,8 @@ public class RciaDisplayPanel extends JPanel {
 
 		setBorder(BorderFactory.createTitledBorder("Rcia Results"));
 		setLayout(new BorderLayout());
+		
+		btnSave.addActionListener(new SaveBtnActionListener());
 
 		btnPanel.add(btnSave);
 		btnPanel.add(btnCancel);

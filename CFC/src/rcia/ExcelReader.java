@@ -102,8 +102,8 @@ public class ExcelReader {
 
 			for(ArrayList<String> rowValue: rowArray)
 			{
-				System.out.println("Row = " + rowValue);
-				System.out.println("Value 0 = "+ rowValue.get(0));
+//				System.out.println("Row = " + rowValue);
+//				System.out.println("Value 0 = "+ rowValue.get(0));
 				rciaModel.addRow(rowValue.toArray());
 				rciaTable.addToList(new RciaData(rowValue));
 			}
