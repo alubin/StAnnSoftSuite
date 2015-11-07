@@ -43,12 +43,12 @@ public class RciaData {
 	private final String birthName;
 	private final String address;
 	private final String state;
-	private final double zip;
+	private final String zip;
 	private final String emailAddress;
 	private final String phoneNumber;
 	//1/1/1999
 	private final String dob;
-	private final double age;
+	private final String age;
 	private final String occupation;
 	private final String birthplaceCity;
 	//Birthplace City
@@ -64,7 +64,7 @@ public class RciaData {
 	private final String churchState;
 	private final String denom;
 	private final String currParish;
-	private final double yrsOfRegEd;
+	private final String yrsOfRegEd;
 	private final String monthAndYear;
 	private final String sacramentDesired;
 	private final String haveASponsor;
@@ -89,10 +89,14 @@ public class RciaData {
 	private final String conC;
 	private final String conD;
 	private final String children;
-	private final double ages;
+	private final String ages;
 	private final String sponsorPotential;
+	private final String city;
 
 	public RciaData(ArrayList<String> rowValue) {
+		
+		//Need to check the size of rowValue.
+
 		this.typeOfForm = rowValue.get(0);
 		this.badges = rowValue.get(1);
 		this.printForm = rowValue.get(2);
@@ -113,52 +117,53 @@ public class RciaData {
 		this.middle = rowValue.get(17);
 		this.birthName = rowValue.get(18);
 		this.address = rowValue.get(19);
-		this.state = rowValue.get(20);
-		this.zip = Integer.valueOf(rowValue.get(21));
-		this.emailAddress = rowValue.get(22);
-		this.phoneNumber = rowValue.get(23);
-		this.dob = rowValue.get(24);
-		this.age = Integer.valueOf(rowValue.get(25));
-		this.occupation = rowValue.get(26);
-		this.birthplaceCity = rowValue.get(27);
-		this.bpState = rowValue.get(28);
-		this.fatherFullName = rowValue.get(29);
-		this.motherFullName = rowValue.get(30);
-		this.baptizedInChrist = rowValue.get(31);
-		this.dateOfBaptism = rowValue.get(32);
-		this.godParentNames = rowValue.get(33);
-		this.priestName = rowValue.get(34);
-		this.churchName = rowValue.get(35);
-		this.churchCity = rowValue.get(36);
-		this.churchState = rowValue.get(37);
-		this.denom = rowValue.get(38);
-		this.currParish = rowValue.get(39);
-		this.yrsOfRegEd = Integer.valueOf(rowValue.get(40));
-		this.monthAndYear = rowValue.get(41);
-		this.sacramentDesired = rowValue.get(42);
-		this.haveASponsor = rowValue.get(43);
-		this.sponsorName = rowValue.get(44);
-		this.sponsorNumber = rowValue.get(45);
-		this.whySponsor = rowValue.get(46);
-		this.goodStanding = rowValue.get(47);
-		this.sponsorRole = rowValue.get(48);
-		this.someoneInMind = rowValue.get(49);
-		this.inquirerName = rowValue.get(50);
-		this.inquirerPhone = rowValue.get(51);
-		this.maritalStatus = rowValue.get(52);
-		this.spouseName = rowValue.get(53);
-		this.spouseReligion = rowValue.get(54);
-		this.practicingCatholic = rowValue.get(55);
-		this.attendSession = rowValue.get(56);
-		this.catholicMarriage = rowValue.get(57);
-		this.catholicDate = rowValue.get(58);
-		this.civilMarriageDate = rowValue.get(59);
-		this.conA = rowValue.get(60);
-		this.conB = rowValue.get(61);
-		this.conC = rowValue.get(62);
-		this.conD = rowValue.get(63);
+		this.city = rowValue.get(20);
+		this.state = rowValue.get(21);
+		this.zip = rowValue.get(22);
+		this.emailAddress = rowValue.get(23);
+		this.phoneNumber = rowValue.get(24);
+		this.dob = rowValue.get(25);
+		this.age = rowValue.get(26);
+		this.occupation = rowValue.get(27);
+		this.birthplaceCity = rowValue.get(28);
+		this.bpState = rowValue.get(29);
+		this.fatherFullName = rowValue.get(30);
+		this.motherFullName = rowValue.get(31);
+		this.baptizedInChrist = rowValue.get(32);
+		this.dateOfBaptism = rowValue.get(33);
+		this.godParentNames = rowValue.get(34);
+		this.priestName = rowValue.get(35);
+		this.churchName = rowValue.get(36);
+		this.churchCity = rowValue.get(37);
+		this.churchState = rowValue.get(38);
+		this.denom = rowValue.get(39);
+		this.currParish = rowValue.get(41);
+		this.yrsOfRegEd = rowValue.get(41);
+		this.monthAndYear = rowValue.get(42);
+		this.sacramentDesired = rowValue.get(43);
+		this.haveASponsor = rowValue.get(44);
+		this.sponsorName = rowValue.get(45);
+		this.sponsorNumber = rowValue.get(46);
+		this.whySponsor = rowValue.get(47);
+		this.goodStanding = rowValue.get(48);
+		this.sponsorRole = rowValue.get(49);
+		this.someoneInMind = rowValue.get(50);
+		this.inquirerName = rowValue.get(51);
+		this.inquirerPhone = rowValue.get(52);
+		this.maritalStatus = rowValue.get(53);
+		this.spouseName = rowValue.get(54);
+		this.spouseReligion = rowValue.get(55);
+		this.practicingCatholic = rowValue.get(56);
+		this.attendSession = rowValue.get(57);
+		this.catholicMarriage = rowValue.get(58);
+		this.catholicDate = rowValue.get(59);
+		this.civilMarriageDate = rowValue.get(60);
+		this.conA = rowValue.get(61);
+		this.conB = rowValue.get(62);
+		this.conC = rowValue.get(63);
+		this.conD = rowValue.get(64);
 		this.children = rowValue.get(65);
-		this.ages = Integer.valueOf(rowValue.get(66));
+		this.ages = rowValue.get(66);
 		this.sponsorPotential = rowValue.get(67);
 
 	}
@@ -243,11 +248,15 @@ public class RciaData {
 		return address;
 	}
 
+	public String getCity() {
+		return city;
+	}
+
 	public final String getState() {
 		return state;
 	}
 
-	public final double getZip() {
+	public final String getZip() {
 		return zip;
 	}
 
@@ -263,7 +272,7 @@ public class RciaData {
 		return dob;
 	}
 
-	public final double getAge() {
+	public final String getAge() {
 		return age;
 	}
 
@@ -323,7 +332,7 @@ public class RciaData {
 		return currParish;
 	}
 
-	public final double getYrsOfRegEd() {
+	public final String getYrsOfRegEd() {
 		return yrsOfRegEd;
 	}
 
@@ -423,7 +432,7 @@ public class RciaData {
 		return children;
 	}
 
-	public final double getAges() {
+	public final String getAges() {
 		return ages;
 	}
 

@@ -80,16 +80,23 @@ public class ExcelReader {
                         case Cell.CELL_TYPE_STRING:
                             cellArray.add(cell.getStringCellValue());
                             break;
+                        case Cell.CELL_TYPE_BLANK:
+                        	cellArray.add(new String(" "));
+                        	break;
                     }
                 }
                 rowArray.add(cellArray);
             }
             workbook.close();
             file.close();
+            
+            //The first row is removed, because it just contains the titles for the column.
+            rowArray.remove(0);
 
             for(ArrayList<String> rowValue: rowArray)
             {
             	System.out.println("Row = " + rowValue);
+            	System.out.println("Value 0 = "+ rowValue.get(0));
 //            	rciaModel.addRow(rowValue.toArray());
             	rciaTable.addToList(new RciaData(rowValue));
             }
