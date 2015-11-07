@@ -29,12 +29,5 @@ public class CCFTableModel extends DefaultTableModel {
 		this.accessTable = table;
 	}
 
-//	@Override
-//	public Class<?> getColumnClass(int columnIndex) {
-//		System.out.println("Column Class = " + columnIndex);
-//
-//		return columnIndex == 0 ? Boolean.class : super.getColumnClass(columnIndex);
-//	}
-
 
 }

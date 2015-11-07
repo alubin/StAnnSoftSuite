@@ -16,6 +16,10 @@ import database.DbWorker;
 import main.MainFrame;
 
 public class RciaDisplayPanel extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 170250086962627281L;
 	private MainFrame mainDisplay;
 	private final RciaTable rciaTable;
 

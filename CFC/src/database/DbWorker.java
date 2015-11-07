@@ -24,9 +24,7 @@ public class DbWorker {
 		dbConnect(ipAddress, port);
 	}
 
-	public static void dbConnect(String ipAddress, int port) {
-		System.out.println("Address = " + ipAddress);
-		System.out.println("Port = " + port);
+	public void dbConnect(String ipAddress, int port) {
 		String url = "jdbc:mysql://"+ipAddress+":"+port+"/";
 		String dbName1 = "ccf";
 		String dbName2 = "rcia";
@@ -46,7 +44,7 @@ public class DbWorker {
 		}
 	}
 
-	public static void storeCCF(ArrayList<CCFData> data){
+	public void storeCCF(ArrayList<CCFData> data){
 		System.out.println("Writing to CCF Database.");
 		//TODO: Extract the data from the array and store the data.
 		for(CCFData results : data)
@@ -57,7 +55,7 @@ public class DbWorker {
 
 	}
 
-	public static void storeRCIA(ArrayList<RciaData> data){
+	public void storeRCIA(ArrayList<RciaData> data){
 		System.out.println("Writing to RCIA Database.");
 		//TODO: Extract the data from the array and store the data.
 		for(RciaData results : data)
@@ -65,6 +63,26 @@ public class DbWorker {
 			System.out.println(results);
 		}
 
+	}
+	
+	public ArrayList<CCFData> retrieveCCFData()
+	{
+		return null;
+	}
+	
+	public ArrayList<RciaData> retrieveRciaData()
+	{
+		return null;
+	}
+	
+	public ArrayList<CCFData> retrieveCCFDataByName(String... name)
+	{
+		return null;
+	}
+	
+	public ArrayList<RciaData> retrieveRciaDataByName(String... name)
+	{
+		return null;
 	}
 
 	public static void dbClose() {
