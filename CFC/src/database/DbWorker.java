@@ -67,7 +67,7 @@ public class DbWorker {
 				pStmt.setString(3, results.getParishId());
 				pStmt.setString(4, results.getDob());
 				pStmt.setString(5, results.getFunction());
-				pStmt.setString(6, results.getStatus());
+				pStmt.setString(6, results.getActive());
 				pStmt.setString(7, results.getLastName());
 				pStmt.setString(8, results.getFirstName());
 				pStmt.setString(9, results.getName());
