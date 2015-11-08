@@ -1,5 +1,7 @@
 package ccf;
 
+import java.util.Date;
+
 public class CCFData {
 
 	private final int Id;
@@ -13,7 +15,7 @@ public class CCFData {
 	private final String name;
 	private final double classOffered;
 	private final double hoursCredited;
-	private final Object classDate;
+	private final Date classDate;
 	private final String courseTitle;
 	private final String instructor;
 	private final String experienced;
@@ -32,7 +34,7 @@ public class CCFData {
 		name = (String) dataArray[8];
 		classOffered = (double) dataArray[9];
 		hoursCredited = (double) dataArray[10];
-		classDate = (Object) dataArray[11];
+		classDate = (Date) dataArray[11];
 		courseTitle = (String) dataArray[12];
 		instructor = (String) dataArray[13];
 		experienced = (String) dataArray[14];
@@ -71,7 +73,7 @@ public class CCFData {
 	public double getHoursCredited() {
 		return hoursCredited;
 	}
-	public Object getClassDate() {
+	public Date getClassDate() {
 		return classDate;
 	}
 	public String getCourseTitle() {

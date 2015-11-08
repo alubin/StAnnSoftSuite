@@ -8,6 +8,7 @@ import org.apache.poi.hwpf.usermodel.DateAndTime;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 import rcia.RciaData;
 import ccf.CCFData;
@@ -62,6 +63,11 @@ public class DbWorker {
 							+ "`ClsDate`,`CrsTitle`,`Instructor`,`Expr1`,`CrsLevel`) "
 								+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 				
+				long classTime = results.getClassDate().getTime();
+				//Must convert the millisecond epoch to epoch days for the localDate.
+				LocalDate localDate = LocalDate.ofEpochDay(classTime/86400000); 
+				Date classDate = Date.valueOf(localDate);
+				
 				pStmt.setInt(1, results.getId());
 				pStmt.setDouble(2, results.getStudentId());
 				pStmt.setString(3, results.getParishId());
@@ -73,7 +79,7 @@ public class DbWorker {
 				pStmt.setString(9, results.getName());
 				pStmt.setDouble(10, results.getClassOffered());
 				pStmt.setDouble(11, results.getHoursCredited());
-				pStmt.setDate(12, (Date)results.getClassDate());
+				pStmt.setDate(12, classDate);
 				pStmt.setString(13, results.getCourseTitle());
 				pStmt.setString(14, results.getInstructor());
 				pStmt.setString(15, results.getExperienced());
