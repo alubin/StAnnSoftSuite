@@ -81,8 +81,8 @@ public class CCFData {
 	public double getHoursCredited() {
 		return hoursCredited;
 	}
-	public Date getClassDate() {
-		return classDate;
+	public String getClassDate() {
+		return classDate == null ? " " : classDate.toString();
 	}
 	public String getCourseTitle() {
 		return courseTitle;
