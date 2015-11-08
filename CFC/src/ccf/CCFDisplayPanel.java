@@ -31,8 +31,8 @@ public class CCFDisplayPanel extends JPanel{
 		JTable accessTable = tableValues.getTable();
 		JScrollPane accessScroll = new JScrollPane(accessTable);
 		JPanel btnPanel = new JPanel(new GridLayout(1,2));
-		JButton btnSave = new JButton("Save");
-		JButton btnCancel = new JButton("Cancel");
+		JButton btnSave = new JButton("Save To Database");
+		JButton btnCancel = new JButton("Cancel Import");
 
 		setBorder(BorderFactory.createTitledBorder("CCF Results"));
 		setLayout(new BorderLayout());
@@ -64,9 +64,6 @@ public class CCFDisplayPanel extends JPanel{
 			DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort());
 			dbWorker.storeCCF(tableValues.getCCFDataArrayList());
 			dbWorker.dbClose();
-//			JPanel savePanel = new JPanel(new BorderLayout());
-//			add(new JLabel("Saved!"));
-//			mainGui.setPanel(savePanel);
 
 		}
 

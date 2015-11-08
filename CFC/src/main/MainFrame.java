@@ -10,8 +10,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import rcia.RciaAdminDialog;
 import rcia.RciaImportDialog;
-import ccf.CCFControlPanel;
 import ccf.CCFImportDialog;
 import database.DBSetupDialog;
 
@@ -143,7 +143,7 @@ public class MainFrame extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Display the CFC Dialog
-			new CCFControlPanel().setVisible(true);
+//			new CCFControlPanel().setVisible(true);
 		}
 
 	}
@@ -188,6 +188,7 @@ public class MainFrame extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Display the Inquirer Dialog
+			new RciaAdminDialog().setVisible(true);
 
 		}
 

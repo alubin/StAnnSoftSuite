@@ -1,5 +1,7 @@
 package ccf;
 
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import main.MainFrame;
 import dialog.ImportDialog;
 
@@ -11,6 +13,11 @@ public class CCFImportDialog extends ImportDialog {
 	
 	public CCFImportDialog(MainFrame instance) {
 		super(ccfTitle, new CCFActionListener(instance));
+	}
+	
+	@Override
+	public FileNameExtensionFilter getFilter() {
+		return new FileNameExtensionFilter("Access Files", "accdb", "mdb");
 	}
 
 }

@@ -20,6 +20,7 @@ public class CCFData {
 	private final String instructor;
 	private final String experienced;
 	private final String courseLevel;
+	private String emailAddress;
 
 	public CCFData(Object[] dataArray)
 	{
@@ -39,6 +40,7 @@ public class CCFData {
 		instructor = (String) dataArray[13];
 		experienced = (String) dataArray[14];
 		courseLevel = (String) dataArray[15];
+		emailAddress = "N/A";
 	}
 	public int getId() {
 		return Id;
@@ -98,5 +100,8 @@ public class CCFData {
 				+ hoursCredited + ", classDate=" + classDate + ", courseTitle="
 				+ courseTitle + ", instructor=" + instructor + ", experienced="
 				+ experienced + ", courseLevel=" + courseLevel + "]";
+	}
+	public String getEmailAddress() {
+		return emailAddress;
 	}
 }
