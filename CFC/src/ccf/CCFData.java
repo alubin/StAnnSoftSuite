@@ -2,6 +2,12 @@ package ccf;
 
 import java.util.Date;
 
+/**
+ * This structure holds the values of the CCF data that is
+ *  either extracted from a file or the database.
+ * @author AL
+ *
+ */
 public class CCFData {
 
 	private final int Id;

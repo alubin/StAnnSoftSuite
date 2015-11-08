@@ -16,7 +16,7 @@ import ccf.CCFImportDialog;
 import database.DBSetupDialog;
 
 /**
- * This Panel will be the front facing GUI that the client will see.
+ * This Frame will be the front facing GUI that the client will see.
  * This is where the client will navigate to other parts of the application.
  * @author AL
  *

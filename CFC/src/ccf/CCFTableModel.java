@@ -4,6 +4,11 @@ import javax.swing.table.DefaultTableModel;
 
 import com.healthmarketscience.jackcess.Table;
 
+/**
+ * This is the custom table model for the CCF Table.
+ * @author AL
+ *
+ */
 public class CCFTableModel extends DefaultTableModel {
 
 	/**

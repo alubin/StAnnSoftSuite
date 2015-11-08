@@ -4,6 +4,12 @@ import java.util.ArrayList;
 
 import javax.swing.JTable;
 
+/**
+ * This table stores the data extracted from the file and the Java Table will be used to 
+ * contain the data.
+ * @author AL
+ *
+ */
 public class CCFTable {
 	private final JTable table;
 	private ArrayList<CCFData> ccfDataArray;

@@ -16,6 +16,11 @@ import main.MainFrame;
 import database.DatabaseStore;
 import database.DbWorker;
 
+/**
+ * This is the display panel for the CCF Table that is displayed on the Main Gui.
+ * @author AL
+ *
+ */
 public class CCFDisplayPanel extends JPanel{
 
 	/**

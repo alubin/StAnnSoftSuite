@@ -5,6 +5,11 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import main.MainFrame;
 import dialog.ImportDialog;
 
+/**
+ * This class inherits from the generic Import dialog and customizes it for the CCF Functionality.
+ * @author AL
+ *
+ */
 public class CCFImportDialog extends ImportDialog {
 
 	private static final long serialVersionUID = 2976549852767653724L;
