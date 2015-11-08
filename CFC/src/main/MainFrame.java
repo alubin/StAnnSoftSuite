@@ -26,22 +26,27 @@ public class MainFrame extends JFrame{
 
 	private static final long serialVersionUID = 8947518661404713452L;
 
-	MainFrame instance = null;
+	private final MainFrame instance;
 	/** This menu bar for the main screen */
-	JMenuBar optionMenuBar = new JMenuBar();
-	JMenu fileOption = new JMenu("File");
-	JMenu ccfOption = new JMenu("CCF");
-	JMenu printOption = new JMenu("Print");
-	JMenu rciaOption = new JMenu("RCIA");
+	private final JMenuBar optionMenuBar = new JMenuBar();
+	private final JMenu fileOption = new JMenu("File");
+	private final JMenu ccfOption = new JMenu("CCF");
+	private final JMenu printOption = new JMenu("Print");
+	private final JMenu rciaOption = new JMenu("RCIA");
 
-	JMenuItem dbSetupItem = new JMenuItem("Database Setup");
-	JMenuItem exitItem = new JMenuItem("Exit");
-	JMenuItem ccfImport = new JMenuItem("Import CCF Data");
-	JMenuItem rciaImport = new JMenuItem("Import RCIA Data");
-	JMenuItem ccfAdmin = new JMenuItem("Administer CCF Data");
-	JMenuItem rciaAdmin = new JMenuItem("Administer RCIA Data");
-	JMenuItem printSheet = new JMenuItem("Print Sign Sheet");
-	JMenuItem printCertificate = new JMenuItem("Print Certificate");
+	private final JMenuItem dbSetupItem = new JMenuItem("Database Setup");
+	private final JMenuItem exitItem = new JMenuItem("Exit");
+	private final JMenuItem ccfImport = new JMenuItem("Import CCF Data");
+	private final JMenuItem rciaImport = new JMenuItem("Import RCIA Data");
+	private final JMenuItem ccfAdmin = new JMenuItem("Administer CCF Data");
+	private final JMenuItem rciaAdmin = new JMenuItem("Administer RCIA Data");
+	private final JMenuItem printSheet = new JMenuItem("Print Sign Sheet");
+	private final JMenuItem printCertificate = new JMenuItem("Print Certificate");
+	
+	private final CCFImportDialog ccfImportDialogBox;
+	private final CCFAdminDialog ccfAdminDialogBox;
+	private final RciaImportDialog rciaImportDialogBox;
+	private final RciaAdminDialog rciaAdminDialogBox;
 
 	/**
 	 * This panel is responsible for displaying the appropriate values on the main screen, based on the user selections.
@@ -60,6 +65,11 @@ public class MainFrame extends JFrame{
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		instance = this;
+		
+		ccfImportDialogBox = new CCFImportDialog(instance);
+		ccfAdminDialogBox = new CCFAdminDialog(instance);
+		rciaImportDialogBox = new RciaImportDialog(instance);
+		rciaAdminDialogBox = new RciaAdminDialog(instance);
 
 		//Populate the Menu Bar
 		optionMenuBar.add(fileOption);
@@ -133,7 +143,7 @@ public class MainFrame extends JFrame{
 		public void actionPerformed(ActionEvent e) {
 			//Display the dialog box for the Import window for the CCF
 			//Note the instance of the JFrame is passed in so that the panel can be modified later.
-			new CCFImportDialog(instance).setVisible(true);
+			ccfImportDialogBox.setVisible(true);
 		}
 
 	}
@@ -144,7 +154,7 @@ public class MainFrame extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Display the CFC Dialog
-			new CCFAdminDialog(instance).setVisible(true);
+			ccfAdminDialogBox.setVisible(true);
 		}
 
 	}
@@ -177,7 +187,7 @@ public class MainFrame extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Display the Rcia Dialog
-			new RciaImportDialog(instance).setVisible(true);
+			rciaImportDialogBox.setVisible(true);
 
 		}
 
@@ -189,7 +199,7 @@ public class MainFrame extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Display the Inquirer Dialog
-			new RciaAdminDialog(instance).setVisible(true);
+			rciaAdminDialogBox.setVisible(true);
 
 		}
 

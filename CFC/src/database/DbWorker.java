@@ -67,8 +67,8 @@ public class DbWorker {
 			try{
 				PreparedStatement pStmt = con1.prepareStatement("INSERT INTO `ccf`.`parishdata`(`ID`,`StuID`,`lblParishID`,"
 						+ "`DOB1`,`StuFunction`,`StuStatus`,`StuLnm`,`StuFnm`,`Student`,`ClsOfferedID`,`HrsCredited`,"
-							+ "`ClsDate`,`CrsTitle`,`Instructor`,`Expr1`,`CrsLevel`) "
-								+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+							+ "`ClsDate`,`CrsTitle`,`Instructor`,`Expr1`,`CrsLevel`,`Email`) "
+								+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 				
 				
 				pStmt.setInt(1, results.getId());
@@ -87,6 +87,7 @@ public class DbWorker {
 				pStmt.setString(14, results.getInstructor());
 				pStmt.setString(15, results.getExperienced());
 				pStmt.setString(16, results.getCourseLevel());
+				pStmt.setString(17, results.getEmailAddress());
 				
 				pStmt.executeUpdate();
 				pStmt.close();
@@ -94,7 +95,6 @@ public class DbWorker {
 			catch (SQLException e) {
 				
 			}
-			results.getId();
 			System.out.println(results);
 		}
 	}
@@ -190,14 +190,6 @@ public class DbWorker {
 		return null;
 	}
 	
-	/**
-	 * This function gets all the fields in the RCIA Database with the ID
-	 * @return A collection of the different fields in the database that match the criteria.
-	 */
-	public ArrayList<RciaData> retrieveRciaDataById(String... name)
-	{
-		return null;
-	}
 
 	public static void dbClose() {
 

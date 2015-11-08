@@ -33,6 +33,11 @@ public class CCFTableModel extends DefaultTableModel {
 		super(columnNames,0);
 		this.accessTable = table;
 	}
+	
+	@Override
+	public boolean isCellEditable(int row, int column) {
+		return false;
+	}
 
 
 }

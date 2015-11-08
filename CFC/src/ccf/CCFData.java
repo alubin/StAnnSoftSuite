@@ -105,7 +105,7 @@ public class CCFData {
 				+ ", classOffered=" + classOffered + ", hoursCredited="
 				+ hoursCredited + ", classDate=" + classDate + ", courseTitle="
 				+ courseTitle + ", instructor=" + instructor + ", experienced="
-				+ experienced + ", courseLevel=" + courseLevel + "]";
+				+ experienced + ", courseLevel=" + courseLevel + emailAddress + "]";
 	}
 	public String getEmailAddress() {
 		return emailAddress;

@@ -42,8 +42,6 @@ public class CCFDisplayPanel extends JPanel{
 		setBorder(BorderFactory.createTitledBorder("CCF Results"));
 		setLayout(new BorderLayout());
 
-
-
 		btnSave.addActionListener(new SaveActionListener());
 		btnCancel.addActionListener(new CancelActionListener());
 
