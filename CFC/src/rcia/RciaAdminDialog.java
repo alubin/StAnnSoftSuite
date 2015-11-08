@@ -36,10 +36,8 @@ public class RciaAdminDialog extends JDialog {
 		JTextField lastNameField = new JTextField();
 		JButton searchLastNameBtn = new JButton("Search Last Name");
 		
-		JPanel idPanel = new JPanel(new GridLayout(1,2));
-		JLabel idTitle = new JLabel("Search by ID:");
-		JTextField idField = new JTextField();
-		JButton searchIdBtn = new JButton("Search ID");
+		JButton closeBtn = new JButton("Close");
+		
 		
 		setLayout(new GridLayout(4, 1));
 		setSize(600, 150);
@@ -56,14 +54,11 @@ public class RciaAdminDialog extends JDialog {
 		lastNamePanel.add(lastNameField);
 		lastNamePanel.add(searchLastNameBtn);
 		
-		idPanel.add(idTitle);
-		idPanel.add(idField);
-		idPanel.add(searchIdBtn);
-		
 		add(namePanel);
 		add(firstNamePanel);
 		add(lastNamePanel);
-		add(idPanel);
+		add(closeBtn);
+
 	}
 
 }
