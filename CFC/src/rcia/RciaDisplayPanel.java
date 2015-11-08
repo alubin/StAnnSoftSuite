@@ -63,7 +63,8 @@ public class RciaDisplayPanel extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort());
+			DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
+					DatabaseStore.getUserName(), DatabaseStore.getPassword());
 			dbWorker.storeRCIA(rciaTable.getRciaDataArrayList());
 			dbWorker.dbClose();
 

@@ -19,34 +19,45 @@ public class DBSetupDialog extends JDialog {
 
 	JTextField ipAddressField = new JTextField(DatabaseStore.getAddress());
 	JTextField portField = new JTextField(String.valueOf(DatabaseStore.getPort()));
+	JTextField userField = new JTextField(DatabaseStore.getUserName());
+	JTextField passField = new JTextField(String.valueOf(DatabaseStore.getPassword()));
 
 	public DBSetupDialog()
 	{
-		JPanel ipAddressPanel = new JPanel();
-		JPanel portPanel = new JPanel();
+		JPanel ipAddressPanel = new JPanel(new GridLayout(2,1));
+		JPanel portPanel = new JPanel(new GridLayout(2,1));
+		JPanel userNamePanel = new JPanel(new GridLayout(2,1));
+		JPanel passwordPanel = new JPanel(new GridLayout(2,1));
 		JButton submitBtn = new JButton("Submit");
+		JPanel btnPanel = new JPanel(new BorderLayout());
 
-		setLayout(new GridLayout(5,1));
+		setLayout(new GridLayout(6,1));
 		setMinimumSize(new Dimension(300, 300));
 		((JPanel)getContentPane()).setBorder(BorderFactory.createTitledBorder("Database Setup"));
 
-
-		ipAddressPanel.setLayout(new GridLayout(2, 2));
-		portPanel.setLayout(new GridLayout(2,2));
 
 		ipAddressPanel.add(new JLabel("Ip Address"));
 		ipAddressPanel.add(ipAddressField);
 
 		portPanel.add(new JLabel("Port"));
 		portPanel.add(portField);
+		
+		userNamePanel.add(new JLabel("User Name"));
+		userNamePanel.add(userField);
+		
+		passwordPanel.add(new JLabel("Password:"));
+		passwordPanel.add(passField);
+		
 
-		JPanel btnPanel = new JPanel(new BorderLayout());
+		
 		btnPanel.add(submitBtn, BorderLayout.EAST);
 
 		submitBtn.addActionListener(new SubmitBtnActionListener());
 
 		add(ipAddressPanel);
 		add(portPanel);
+		add(userNamePanel);
+		add(passwordPanel);
 		add(btnPanel);
 
 	}
@@ -58,6 +69,8 @@ public class DBSetupDialog extends JDialog {
 		public void actionPerformed(ActionEvent arg0) {
 			DatabaseStore.setAddress(ipAddressField.getText());
 			DatabaseStore.setPort(Integer.valueOf(portField.getText()));
+			DatabaseStore.setUser(userField.getText());
+			DatabaseStore.setPass(passField.getText());
 
 		}
 

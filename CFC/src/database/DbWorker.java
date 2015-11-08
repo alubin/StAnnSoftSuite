@@ -3,7 +3,6 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.util.ArrayList;
-
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -13,34 +12,44 @@ import ccf.CCFData;
 
 public class DbWorker {
 
-	static String ipAddress;
-	static int port;
-	static Connection con1 = null;
-	static Connection con2 = null;
+	private static String ipAddress;
+	private static int port;
+	private static Connection con1 = null;
+	private static Connection con2 = null;
+	private String user;
+	private String pass;
 
 
 	public DbWorker()
 	{
-
+		user = "root";
+		pass = "Sunshine222";
 	}
-	public DbWorker(String ipAddress, int port)
+	
+	public DbWorker(String ipAddress, int port, String userName, String password)
 	{
 		this();
+		this.user = userName;
+		this.pass = password;
 		dbConnect(ipAddress, port);
+		
 	}
+//	public DbWorker(String ipAddress, int port)
+//	{
+//		this();
+//		dbConnect(ipAddress, port);
+//	}
 
 	public void dbConnect(String ipAddress, int port) {
 		String url = "jdbc:mysql://"+ipAddress+":"+port+"/";
 		String dbName1 = "ccf";
 		String dbName2 = "rcia";
 		String driver = "com.mysql.jdbc.Driver";
-		String userName = "root";
-		String password = "Sunshine222";
-
+		
 		try {
 			Class.forName(driver).newInstance();
-			con1 = DriverManager.getConnection(url+dbName1,userName,password);
-			con2 = DriverManager.getConnection(url+dbName2,userName,password);
+			con1 = DriverManager.getConnection(url+dbName1,user,pass);
+			con2 = DriverManager.getConnection(url+dbName2,user,pass);
 			System.out.println("Successfully connected to databases");
 			}
 		catch (Exception e)
