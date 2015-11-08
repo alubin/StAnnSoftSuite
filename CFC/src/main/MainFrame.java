@@ -188,7 +188,7 @@ public class MainFrame extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Display the Inquirer Dialog
-			new RciaAdminDialog().setVisible(true);
+			new RciaAdminDialog(instance).setVisible(true);
 
 		}
 

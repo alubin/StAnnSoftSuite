@@ -8,15 +8,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import main.MainFrame;
+
 public class RciaAdminDialog extends JDialog {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3154004677319343553L;
+	private MainFrame mainGui;
 
-	public RciaAdminDialog()
+	public RciaAdminDialog(MainFrame mainGui)
 	{
+		this.mainGui = mainGui;
 		JPanel namePanel = new JPanel(new GridLayout(1,2));
 		JLabel nameTitle = new JLabel("Search by Full Name:");
 		JTextField nameField = new JTextField();

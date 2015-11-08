@@ -33,7 +33,6 @@ public class ImportDialog extends JDialog {
 	 */
 	//Button was made global to allow for the reassigning of the action listener.
 	JButton convertBtn = new JButton("Convert");
-	private FileNameExtensionFilter filter;
 
 
 	/**
@@ -118,8 +117,6 @@ public class ImportDialog extends JDialog {
 			JFileChooser fileChooser = new JFileChooser();
 
 			//Display only Access files types when the file chooser is displayed.
-//			FileNameExtensionFilter filter = new FileNameExtensionFilter(
-//					"Files", "accdb", "mdb","xls","xlsx");
 			fileChooser.setFileFilter(getFilter());
 			fileChooser.setCurrentDirectory(new File("."));
 
