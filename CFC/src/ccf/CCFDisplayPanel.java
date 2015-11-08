@@ -7,10 +7,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-
 
 import main.MainFrame;
 import database.DatabaseStore;
@@ -70,6 +70,10 @@ public class CCFDisplayPanel extends JPanel{
 					DatabaseStore.getUserName(), DatabaseStore.getPassword());
 			dbWorker.storeCCF(tableValues.getCCFDataArrayList());
 			dbWorker.dbClose();
+
+			JPanel savePanel = new JPanel();
+			savePanel.add(new JLabel("Your Data has been saved to the databse."));
+			mainGui.setPanel(savePanel);
 
 		}
 

@@ -71,6 +71,7 @@ public class DBSetupDialog extends JDialog {
 			DatabaseStore.setPort(Integer.valueOf(portField.getText()));
 			DatabaseStore.setUser(userField.getText());
 			DatabaseStore.setPass(passField.getText());
+			setVisible(false);
 
 		}
 
