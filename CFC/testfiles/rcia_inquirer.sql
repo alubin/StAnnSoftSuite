@@ -25,7 +25,7 @@ CREATE TABLE `inquirer` (
   `Email` varchar(45) DEFAULT NULL,
   `Phone` varchar(45) DEFAULT NULL,
   `DOB` varchar(45) DEFAULT NULL,
-  `Age` int(11) DEFAULT NULL,
+  `Age` varchar(45) DEFAULT NULL,
   `Occupation` varchar(45) DEFAULT NULL,
   `Birthplace_City` varchar(45) DEFAULT NULL,
   `Birthplace_State` varchar(45) DEFAULT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE `inquirer` (
   `Church_State` varchar(45) DEFAULT NULL,
   `Denomination_Note` varchar(45) DEFAULT NULL,
   `Current_Parish` varchar(45) DEFAULT NULL,
-  `Years_Of_Religious_Education` int(11) DEFAULT NULL,
+  `Years_Of_Religious_Education` varchar(45) DEFAULT NULL,
   `Month_Year_Confirmed` varchar(45) DEFAULT NULL,
   `Sacraments` varchar(45) DEFAULT NULL,
   `Have_Sponsor` varchar(45) DEFAULT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE `inquirer` (
   `CON_B` varchar(45) DEFAULT NULL,
   `CON_C` varchar(45) DEFAULT NULL,
   `CON_D` varchar(45) DEFAULT NULL,
-  `Children` int(11) DEFAULT NULL,
+  `Children` varchar(45) DEFAULT NULL,
   `Ages` varchar(45) DEFAULT NULL,
   `Sponsor_Potential` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
