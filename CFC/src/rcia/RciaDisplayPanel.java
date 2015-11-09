@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -67,8 +68,11 @@ public class RciaDisplayPanel extends JPanel {
 					DatabaseStore.getUserName(), DatabaseStore.getPassword());
 			dbWorker.storeRCIA(rciaTable.getRciaDataArrayList());
 			dbWorker.dbClose();
-
-
+			
+			JPanel savePanel = new JPanel();
+			savePanel.add(new JLabel("Your Data has been saved to the database."));
+			mainDisplay.setPanel(savePanel);
+			
 		}
 
 	}
