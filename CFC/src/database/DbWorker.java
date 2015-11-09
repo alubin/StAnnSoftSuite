@@ -2,6 +2,8 @@ package database;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -12,6 +14,8 @@ import ccf.CCFData;
 
 public class DbWorker {
 
+	private static final int ccfColumnSize = 17;
+	private static final int rciaColumnSize = 17;
 	private static String ipAddress;
 	private static int port;
 	private static Connection con1 = null;
@@ -25,33 +29,33 @@ public class DbWorker {
 		user = "root";
 		pass = "Sunshine222";
 	}
-	
+
 	public DbWorker(String ipAddress, int port, String userName, String password)
 	{
 		this();
 		this.user = userName;
 		this.pass = password;
 		dbConnect(ipAddress, port);
-		
+
 	}
-//	public DbWorker(String ipAddress, int port)
-//	{
-//		this();
-//		dbConnect(ipAddress, port);
-//	}
+	//	public DbWorker(String ipAddress, int port)
+	//	{
+	//		this();
+	//		dbConnect(ipAddress, port);
+	//	}
 
 	public void dbConnect(String ipAddress, int port) {
 		String url = "jdbc:mysql://"+ipAddress+":"+port+"/";
 		String dbName1 = "ccf";
 		String dbName2 = "rcia";
 		String driver = "com.mysql.jdbc.Driver";
-		
+
 		try {
 			Class.forName(driver).newInstance();
 			con1 = DriverManager.getConnection(url+dbName1,user,pass);
 			con2 = DriverManager.getConnection(url+dbName2,user,pass);
 			System.out.println("Successfully connected to databases");
-			}
+		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
@@ -59,7 +63,7 @@ public class DbWorker {
 	}
 
 	public void storeCCF(ArrayList<CCFData> data){
-		
+
 		System.out.println("Writing to CCF Database.");
 		//TODO: Extract the data from the array and store the data.
 		for(CCFData results : data)
@@ -67,10 +71,10 @@ public class DbWorker {
 			try{
 				PreparedStatement pStmt = con1.prepareStatement("INSERT INTO `ccf`.`parishdata`(`ID`,`StuID`,`lblParishID`,"
 						+ "`DOB1`,`StuFunction`,`StuStatus`,`StuLnm`,`StuFnm`,`Student`,`ClsOfferedID`,`HrsCredited`,"
-							+ "`ClsDate`,`CrsTitle`,`Instructor`,`Expr1`,`CrsLevel`,`Email`) "
-								+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-				
-				
+						+ "`ClsDate`,`CrsTitle`,`Instructor`,`Expr1`,`CrsLevel`,`Email`) "
+						+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
+
 				pStmt.setInt(1, results.getId());
 				pStmt.setDouble(2, results.getStudentId());
 				pStmt.setString(3, results.getParishId());
@@ -88,7 +92,7 @@ public class DbWorker {
 				pStmt.setString(15, results.getExperienced());
 				pStmt.setString(16, results.getCourseLevel());
 				pStmt.setString(17, results.getEmailAddress());
-				
+
 				pStmt.executeUpdate();
 				pStmt.close();
 			}
@@ -117,7 +121,7 @@ public class DbWorker {
 						+ "`Civil_Marriage_Date`,`CON_A`,`CON_B`,`CON_C`,`CON_D`,`Children`,`Ages`,`Sponsor_Potential`) "
 						+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
 						+ "?,?,?,?,?,?,?,?,?)");
-				
+
 				pStmt.setString(1, results.getTypeOfForm());
 				pStmt.setString(2, results.getBadges());
 				pStmt.setString(3, results.getPrintForm());
@@ -186,37 +190,93 @@ public class DbWorker {
 				pStmt.setString(66, results.getChildren());
 				pStmt.setString(67, results.getAges());
 				pStmt.setString(68, results.getSponsorPotential());
-				
+
 				pStmt.executeUpdate();
 				pStmt.close();
 			}
 			catch (SQLException e) {
 				System.err.println(e);
 			}
-			
+
 			System.out.println(results);
 		}
 
 	}
-	
+
 	/**
 	 * This function gets all the fields in the CCF Database
 	 * @return A collection of the different fields in the database.
+	 * @throws SQLException
 	 */
-	public ArrayList<CCFData> retrieveCCFData()
+	public ArrayList<CCFData> retrieveCCFData() throws SQLException
 	{
-		return null;
+		String query = "select * from parishData";
+		Statement stmt = null;
+		ArrayList<CCFData> resultArray = new ArrayList<CCFData>();
+		try {
+
+			stmt = con1.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+
+			while(rs.next())
+			{
+				Object[] results = new Object[ccfColumnSize];
+				for(int i = 0; i < 17; i++)
+				{
+					results[i] = rs.getObject(i +1);
+				}
+				CCFData data = new CCFData(results);
+				resultArray.add(data);
+			}
+
+
+		} catch (SQLException e ) {
+			e.printStackTrace();
+		} finally {
+			if (stmt != null) { stmt.close(); }
+		}
+
+
+		return resultArray;
 	}
-	
+
 	/**
 	 * This function gets all the fields in the RCIA Database
 	 * @return A collection of the different fields in the database.
+	 * @throws SQLException
 	 */
-	public ArrayList<RciaData> retrieveRciaData()
+	public ArrayList<RciaData> retrieveRciaData() throws SQLException
 	{
-		return null;
+		String query = "select * from parishData";
+		Statement stmt = null;
+		ArrayList<RciaData> resultArray = new ArrayList<RciaData>();
+		try {
+
+			stmt = con1.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+
+			while(rs.next())
+			{
+				ArrayList<String> results = new ArrayList<String>(rciaColumnSize);
+				for(int i = 0; i < 17; i++)
+				{
+					results.add(rs.getString(i +1));
+				}
+				RciaData data = new RciaData(results);
+				resultArray.add(data);
+			}
+
+
+		} catch (SQLException e ) {
+			e.printStackTrace();
+		} finally {
+			if (stmt != null) { stmt.close(); }
+		}
+
+
+		return resultArray;
 	}
-	
+
 	/**
 	 * This function gets all the fields in the CCF Database with the name
 	 * @return A collection of the different fields in the database that match the criteria.
@@ -225,7 +285,7 @@ public class DbWorker {
 	{
 		return null;
 	}
-	
+
 	/**
 	 * This function gets all the fields in the RCIA Database with the name
 	 * @return A collection of the different fields in the database that match the criteria.
@@ -234,7 +294,7 @@ public class DbWorker {
 	{
 		return null;
 	}
-	
+
 	/**
 	 * This function gets all the fields in the CCF Database with the First name
 	 * @return A collection of the different fields in the database that match the criteria.
@@ -243,7 +303,7 @@ public class DbWorker {
 	{
 		return null;
 	}
-	
+
 	/**
 	 * This function gets all the fields in the RCIA Database with the First name
 	 * @return A collection of the different fields in the database that match the criteria.
@@ -252,7 +312,7 @@ public class DbWorker {
 	{
 		return null;
 	}
-	
+
 	/**
 	 * This function gets all the fields in the CCF Database with the name
 	 * @return A collection of the different fields in the database that match the criteria.
@@ -261,7 +321,7 @@ public class DbWorker {
 	{
 		return null;
 	}
-	
+
 	/**
 	 * This function gets all the fields in the RCIA Database with the last name
 	 * @return A collection of the different fields in the database that match the criteria.
@@ -270,7 +330,7 @@ public class DbWorker {
 	{
 		return null;
 	}
-	
+
 	/**
 	 * This function gets all the fields in the CCF Database with the ID
 	 * @return A collection of the different fields in the database that match the criteria.
@@ -279,28 +339,28 @@ public class DbWorker {
 	{
 		return null;
 	}
-	
+
 
 	public static void dbClose() {
 
-	    try {
-	    	con1.close();
-	    	 if (con1.isClosed()) {
-	    	        System.out.println("Connection to db1 closed.");
-	    	 }
-	    }
-	    catch (Exception e1) {
-	    	System.err.println("Could NOT close connection to db1.");
-	    }
+		try {
+			con1.close();
+			if (con1.isClosed()) {
+				System.out.println("Connection to db1 closed.");
+			}
+		}
+		catch (Exception e1) {
+			System.err.println("Could NOT close connection to db1.");
+		}
 
-	    try {
-	    	con2.close();
-	    	 if (con2.isClosed()) {
-	    		 System.out.println("Connection to db2 closed.");
-	    	 }
-	    }
-	    catch (Exception e2) {
-	    	System.err.println("Could NOT close connection to db2.");
-	    }
+		try {
+			con2.close();
+			if (con2.isClosed()) {
+				System.out.println("Connection to db2 closed.");
+			}
+		}
+		catch (Exception e2) {
+			System.err.println("Could NOT close connection to db2.");
+		}
 	}
 }

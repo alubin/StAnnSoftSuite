@@ -17,6 +17,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.jdesktop.swingx.JXTable;
 
 import com.healthmarketscience.jackcess.DatabaseBuilder;
 import com.healthmarketscience.jackcess.Table;
@@ -52,7 +53,7 @@ public class ExcelReader {
 
 	public RciaTable createTable() {
 		RciaTableModel rciaModel = new RciaTableModel();
-		RciaTable rciaTable = new RciaTable(new JTable(rciaModel));
+		RciaTable rciaTable = new RciaTable(new JXTable(rciaModel));
 		ArrayList<ArrayList<String>> rowArray = new ArrayList<ArrayList<String>>();
 		int minSize = 0;
 		try
@@ -103,7 +104,7 @@ public class ExcelReader {
 						break;
 					}
 				}
-				if(cellArray.get(0).toLowerCase().contentEquals("eform") || 
+				if(cellArray.get(0).toLowerCase().contentEquals("eform") ||
 						cellArray.get(0).toLowerCase().contentEquals("paper"))
 				{
 					rowArray.add(cellArray);

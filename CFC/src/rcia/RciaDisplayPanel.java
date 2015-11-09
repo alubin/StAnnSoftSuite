@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import org.jdesktop.swingx.JXTable;
+
 import database.DatabaseStore;
 import database.DbWorker;
 import main.MainFrame;
@@ -27,7 +29,7 @@ public class RciaDisplayPanel extends JPanel {
 	public RciaDisplayPanel(ExcelReader excelReader)
 	{
 		rciaTable = excelReader.createTable();
-		JTable excelTable = rciaTable.getTable();
+		JXTable excelTable = rciaTable.getTable();
 		JScrollPane excelScroll = new JScrollPane(excelTable);
 		JPanel btnPanel = new JPanel(new GridLayout(1,2));
 		JButton btnSave = new JButton("Save");

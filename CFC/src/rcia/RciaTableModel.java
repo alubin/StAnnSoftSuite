@@ -9,7 +9,7 @@ public class RciaTableModel extends DefaultTableModel {
 	 */
 	private static final long serialVersionUID = 841582245942871081L;
 
-	private final static String[] columnNames = {
+	protected final static String[] columnNames = {
 		"Eform//paper",
 		"Badges",
 		"print form",
@@ -82,6 +82,11 @@ public class RciaTableModel extends DefaultTableModel {
 	public RciaTableModel()
 	{
 		super(columnNames,0);
+	}
+
+	@Override
+	public boolean isCellEditable(int row, int column) {
+		return false;
 	}
 
 

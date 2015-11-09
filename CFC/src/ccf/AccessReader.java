@@ -5,6 +5,8 @@ import java.io.IOException;
 
 import javax.swing.JTable;
 
+import org.jdesktop.swingx.JXTable;
+
 import com.healthmarketscience.jackcess.DatabaseBuilder;
 import com.healthmarketscience.jackcess.Row;
 import com.healthmarketscience.jackcess.Table;
@@ -40,13 +42,13 @@ public class AccessReader {
 	public CCFTable createTable()
 	{
 		Table table = null;
-		JTable accessTable = null;
+		JXTable accessTable = null;
 		CCFTableModel tableModel;
 		CCFTable tableData = null;
 		try {
 			table = DatabaseBuilder.open(new File(fileName)).getTable(tableName);
 			tableModel = new CCFTableModel(table);
-			accessTable = new JTable(tableModel);
+			accessTable = new JXTable(tableModel);
 			tableData = new CCFTable(accessTable);
 			for(Row row: table)
 			{

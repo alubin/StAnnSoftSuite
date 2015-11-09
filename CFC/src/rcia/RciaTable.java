@@ -4,17 +4,20 @@ import java.util.ArrayList;
 
 import javax.swing.JTable;
 
+import org.jdesktop.swingx.JXTable;
+
 public class RciaTable {
-	private JTable table;
+	private JXTable table;
 	private ArrayList<RciaData> rciaArray;
 
-	public RciaTable(JTable table)
+	public RciaTable(JXTable table)
 	{
 		this.table = table;
+		table.packAll();
 		rciaArray = new ArrayList<RciaData>(1000);
 	}
 
-	public JTable getTable()
+	public JXTable getTable()
 	{
 		return table;
 	}
