@@ -19,6 +19,8 @@ public class CCFAdminDialog extends JDialog {
 	 */
 	private static final long serialVersionUID = 4981523267433072507L;
 	
+	private CCFAdminPanel adminPanel;
+	
 	public CCFAdminDialog(MainFrame mainGui)
 	{
 		
@@ -32,10 +34,16 @@ public class CCFAdminDialog extends JDialog {
 		JTextField emailField = new JTextField();
 		JButton searchEmailBtn = new JButton("Search Email");
 		
+		JButton allBtn = new JButton("Get All Values");
 		JButton closeBtn = new JButton("Close");
 		
-		setLayout(new GridLayout(3,1));
-		setSize(500, 100);
+		adminPanel = new CCFAdminPanel(mainGui);
+		
+		setLayout(new GridLayout(4,1));
+		setSize(500, 150);
+		
+		closeBtn.addActionListener(new CloseActionListener());
+		allBtn.addActionListener(new AllActionListener());
 		
 		idPanel.add(idTitle);
 		idPanel.add(idField);
@@ -47,17 +55,27 @@ public class CCFAdminDialog extends JDialog {
 		
 		add(idPanel);
 		add(emailPanel);
+		add(allBtn);
 		add(closeBtn);
 		
 	}
 	
 	private class CloseActionListener implements ActionListener
 	{
-
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			
+		}
+	}
+	
+	private class AllActionListener implements ActionListener
+	{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			//TODO: Get fields from database.
+			System.out.println("Yikes!");
+			adminPanel.displayAll();
 		}
 		
 	}

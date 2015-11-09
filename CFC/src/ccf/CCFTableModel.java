@@ -17,7 +17,7 @@ public class CCFTableModel extends DefaultTableModel {
 	private static final long serialVersionUID = 8470548068140479664L;
 
 	// Add "\u2713" for check symbol.
-	private final static String[] columnNames = {"ID", "Student ID",
+	protected final static String[] columnNames = {"ID", "Student ID",
 		"Parish ID", "Date Of Birth",
 		"Function", "Status",
 		"Last Name", "First Name",
