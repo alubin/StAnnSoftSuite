@@ -3,11 +3,16 @@ package rcia;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
 import javax.swing.JTable;
 
+import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -77,7 +82,18 @@ public class ExcelReader {
 					switch (cell.getCellType())
 					{
 					case Cell.CELL_TYPE_NUMERIC:
-						cellArray.add(String.valueOf(cell.getNumericCellValue()));
+						if(HSSFDateUtil.isCellDateFormatted(cell))
+						{
+							Date date = new Date(cell.getDateCellValue().getTime());
+							DateFormat formatter = new SimpleDateFormat("MM/dd/YY");
+							String dateFormatted = formatter.format(date);
+							cellArray.add(dateFormatted);
+						}
+						else
+						{
+							//Remove the trailing decimal point.
+							cellArray.add(String.valueOf(new DecimalFormat("###").format(cell.getNumericCellValue())));
+						}
 						break;
 					case Cell.CELL_TYPE_STRING:
 						cellArray.add(cell.getStringCellValue());
@@ -102,8 +118,8 @@ public class ExcelReader {
 
 			for(ArrayList<String> rowValue: rowArray)
 			{
-//				System.out.println("Row = " + rowValue);
-//				System.out.println("Value 0 = "+ rowValue.get(0));
+				//				System.out.println("Row = " + rowValue);
+				//				System.out.println("Value 0 = "+ rowValue.get(0));
 				rciaModel.addRow(rowValue.toArray());
 				rciaTable.addToList(new RciaData(rowValue));
 			}
