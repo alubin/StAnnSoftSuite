@@ -93,7 +93,7 @@ public class DbWorker {
 				pStmt.close();
 			}
 			catch (SQLException e) {
-				
+				System.err.println(e);
 			}
 			System.out.println(results);
 		}
@@ -104,6 +104,96 @@ public class DbWorker {
 		//TODO: Extract the data from the array and store the data.
 		for(RciaData results : data)
 		{
+			try{
+				PreparedStatement pStmt = con1.prepareStatement("INSERT INTO `rcia`.`inquirer` (`Eform_Paper`,`Badges`,`Print_Form`,`Value`,"
+						+ "`Verification_Form`,`Reconciliation`,`Bap_Cert`,`Birth_Cert`,`Saint`,`Gender`,`Roles`,`Last_Name`,"
+						+ "`Familiar_Name`,`Sponsor_First_Name`,`Sponsor_Last_Name`,`Sponsor`,`First_Name`,`Middle_Name`,"
+						+ "`Birth_Name`,`Address`,`City`,`State`,`Zip`,`Email`,`Phone`,`DOB`,`Age`,`Occupation`,`Birthplace_City`,"
+						+ "`Birthplace_State`,`Father_Full_Name`,`Mother_Full_Name`,`Been_Baptized`,`Date_Of_Baptism`,`Godparent_Names`,"
+						+ "`Priest_Name`,`Church_Name`,`Church_City`,`Church_State`,`Denomination_Note`,`Current_Parish`,`Years_Of_Religious_Education`,"
+						+ "`Month_Year_Confirmed`,`Sacraments`,`Have_Sponsor`,`Sponsor_Name`,`Sponsor_Phone`,`Why_Sponsor`,`Good_Standing`,"
+						+ "`Sponsor_Role`,`Someone_In_Mind`,`Inquirers_Name`,`Inquirers_Phone`,`Marital_Status`,`Spouse_Fiance_Name`,"
+						+ "`Spouse_Fiance_Religious`,`Practicing_Catholic`,`Attending_Sessions`,`Catholic_Church_Marriage`,`Catholic_Convalidation_Date`,"
+						+ "`Civil_Marriage_Date`,`CON_A`,`CON_B`,`CON_C`,`CON_D`,`Children`,`Ages`,`Sponsor_Potential`) "
+						+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
+						+ "?,?,?,?,?,?,?,?,?)");
+				
+				pStmt.setString(1, results.getTypeOfForm());
+				pStmt.setString(2, results.getBadges());
+				pStmt.setString(3, results.getPrintForm());
+				pStmt.setString(4, results.getValue());
+				pStmt.setString(5, results.getVerification());
+				pStmt.setString(6, results.getReconciliation());
+				pStmt.setString(7, results.getBapCert());
+				pStmt.setString(8, results.getBirthCert());
+				pStmt.setString(9, results.getSaintName());
+				pStmt.setString(10, results.getGender());
+				pStmt.setString(11, results.getRole());
+				pStmt.setString(12, results.getLastName());
+				pStmt.setString(13, results.getFamiliarName());
+				pStmt.setString(14, results.getSponFirst());
+				pStmt.setString(15, results.getSponLast());
+				pStmt.setString(16, results.getSponsor());
+				pStmt.setString(17, results.getFirst());
+				pStmt.setString(18, results.getMiddle());
+				pStmt.setString(19, results.getBirthName());
+				pStmt.setString(20, results.getAddress());
+				pStmt.setString(21, results.getCity());
+				pStmt.setString(22, results.getState());
+				pStmt.setString(23, results.getZip());
+				pStmt.setString(24, results.getEmailAddress());
+				pStmt.setString(25, results.getPhoneNumber());
+				pStmt.setString(26, results.getDob());
+				pStmt.setString(27, results.getAge());
+				pStmt.setString(28, results.getOccupation());
+				pStmt.setString(29, results.getBirthplaceCity());
+				pStmt.setString(30, results.getBpState());
+				pStmt.setString(31, results.getFatherFullName());
+				pStmt.setString(32, results.getMotherFullName());
+				pStmt.setString(33, results.getBaptizedInChrist());
+				pStmt.setString(34, results.getDateOfBaptism());
+				pStmt.setString(35, results.getGodParentNames());
+				pStmt.setString(36, results.getPriestName());
+				pStmt.setString(37, results.getChurchName());
+				pStmt.setString(38, results.getChurchCity());
+				pStmt.setString(39, results.getChurchState());
+				pStmt.setString(40, results.getDenom());
+				pStmt.setString(41, results.getCurrParish());
+				pStmt.setString(42, results.getYrsOfRegEd());
+				pStmt.setString(43, results.getMonthAndYear());
+				pStmt.setString(44, results.getSacramentDesired());
+				pStmt.setString(45, results.getHaveASponsor());
+				pStmt.setString(46, results.getSponsorName());
+				pStmt.setString(47, results.getSponsorNumber());
+				pStmt.setString(48, results.getWhySponsor());
+				pStmt.setString(49, results.getGoodStanding());
+				pStmt.setString(50, results.getSponsorRole());
+				pStmt.setString(51, results.getSomeoneInMind());
+				pStmt.setString(52, results.getInquirerName());
+				pStmt.setString(53, results.getInquirerPhone());
+				pStmt.setString(54, results.getMaritalStatus());
+				pStmt.setString(55, results.getSpouseName());
+				pStmt.setString(56, results.getSpouseReligion());
+				pStmt.setString(57, results.getPracticingCatholic());
+				pStmt.setString(58, results.getAttendSession());
+				pStmt.setString(59, results.getCatholicMarriage());
+				pStmt.setString(60, results.getCatholicDate());
+				pStmt.setString(61, results.getCivilMarriageDate());
+				pStmt.setString(62, results.getConA());
+				pStmt.setString(63, results.getConB());
+				pStmt.setString(64, results.getConC());
+				pStmt.setString(65, results.getConD());
+				pStmt.setString(66, results.getChildren());
+				pStmt.setString(67, results.getAges());
+				pStmt.setString(68, results.getSponsorPotential());
+				
+				pStmt.executeUpdate();
+				pStmt.close();
+			}
+			catch (SQLException e) {
+				System.err.println(e);
+			}
+			
 			System.out.println(results);
 		}
 
