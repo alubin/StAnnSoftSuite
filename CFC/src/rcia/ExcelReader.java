@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
-import javax.swing.JTable;
-
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -25,7 +23,6 @@ import com.healthmarketscience.jackcess.Table;
 public class ExcelReader {
 
 	private String fileName;
-	private String tableName;
 
 	public ExcelReader()
 	{
@@ -35,13 +32,6 @@ public class ExcelReader {
 	{
 		this();
 		fileName = accessFile;
-	}
-
-	public ExcelReader(String accessFile, String tableName)
-	{
-		this();
-		fileName = accessFile;
-		this.tableName = tableName;
 	}
 
 	public static Table readTable(String fileName, String tableName) throws IOException
@@ -55,7 +45,6 @@ public class ExcelReader {
 		RciaTableModel rciaModel = new RciaTableModel();
 		RciaTable rciaTable = new RciaTable(new JXTable(rciaModel));
 		ArrayList<ArrayList<String>> rowArray = new ArrayList<ArrayList<String>>();
-		int minSize = 0;
 		try
 		{
 			FileInputStream file = new FileInputStream(new File(fileName));

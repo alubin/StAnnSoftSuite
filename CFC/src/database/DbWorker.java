@@ -227,6 +227,7 @@ public class DbWorker {
 				}
 				CCFData data = new CCFData(results);
 				resultArray.add(data);
+				System.out.println(data);
 			}
 
 

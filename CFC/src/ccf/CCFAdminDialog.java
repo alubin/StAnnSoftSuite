@@ -77,15 +77,16 @@ public class CCFAdminDialog extends JDialog {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			//TODO: Get fields from database.
-			try {
-				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
-						DatabaseStore.getUserName(), DatabaseStore.getPassword());
-				adminPanel.displayAll(dbWorker.retrieveCCFData());
-				dbWorker.dbClose();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+//			try {
+//				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
+//						DatabaseStore.getUserName(), DatabaseStore.getPassword());
+//				adminPanel.displayAll(dbWorker.retrieveCCFData());
+//				dbWorker.dbClose();
+//			} catch (SQLException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+			adminPanel.displayAll();
 		}
 
 	}

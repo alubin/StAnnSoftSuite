@@ -26,6 +26,15 @@ public class CCFTableModel extends DefaultTableModel {
 		"Title", "Instructor", "Experience",
 	"Course Level"};
 
+	protected final static String[] adminColumnNames = {"\u2713","ID", "Student ID",
+		"Parish ID", "Date Of Birth",
+		"Function", "Status",
+		"Last Name", "First Name",
+		"Full Name", "Class Offered ID",
+		"Hours Credited", "Class Date",
+		"Title", "Instructor", "Experience",
+	"Course Level"};
+
 	private final Table accessTable;
 
 	public CCFTableModel(Table table)
@@ -33,7 +42,7 @@ public class CCFTableModel extends DefaultTableModel {
 		super(columnNames,0);
 		this.accessTable = table;
 	}
-	
+
 	@Override
 	public boolean isCellEditable(int row, int column) {
 		return false;

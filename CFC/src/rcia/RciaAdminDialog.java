@@ -11,9 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import main.MainFrame;
 import database.DatabaseStore;
 import database.DbWorker;
-import main.MainFrame;
 
 public class RciaAdminDialog extends JDialog {
 
@@ -21,7 +21,7 @@ public class RciaAdminDialog extends JDialog {
 	 *
 	 */
 	private static final long serialVersionUID = -3154004677319343553L;
-	private MainFrame mainGui;
+	private final MainFrame mainGui;
 	private RciaAdminPanel rciaAdminPanel;
 
 	public RciaAdminDialog(MainFrame mainGui)
@@ -102,6 +102,7 @@ public class RciaAdminDialog extends JDialog {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			//			rciaAdminPanel.displayAll();
 
 		}
 

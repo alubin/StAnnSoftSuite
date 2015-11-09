@@ -27,9 +27,11 @@ public class CCFData {
 	private final String experienced;
 	private final String courseLevel;
 	private String emailAddress;
+	private final Object[] objArray;
 
 	public CCFData(Object[] dataArray)
 	{
+		objArray = dataArray;
 		Id = (int) dataArray[0];
 		studentId = (double) dataArray[1];
 		parishId = (String) dataArray[2];
@@ -109,5 +111,10 @@ public class CCFData {
 	}
 	public String getEmailAddress() {
 		return emailAddress;
+	}
+
+	public Object[] getObjArray()
+	{
+		return objArray;
 	}
 }
