@@ -2,6 +2,7 @@ package ccf;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 
 import javax.swing.JTable;
 
@@ -59,7 +60,7 @@ public class AccessReader {
 
 			}
 
-		} catch (IOException e) {
+		} catch (IOException | ParseException e) {
 			e.printStackTrace();
 		}
 

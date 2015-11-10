@@ -1,6 +1,7 @@
 package rcia;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class RciaData {
 
@@ -92,11 +93,13 @@ public class RciaData {
 	private final String ages;
 	private final String sponsorPotential;
 	private final String city;
+	private ArrayList<String> rowValues;
 
 	public RciaData(ArrayList<String> rowValue) {
 		
 		//Need to check the size of rowValue.
 
+		this.rowValues = rowValue;
 		this.typeOfForm = rowValue.get(0);
 		this.badges = rowValue.get(1);
 		this.printForm = rowValue.get(2);
@@ -479,6 +482,10 @@ public class RciaData {
 				+ ", conB=" + conB + ", conC=" + conC + ", conD=" + conD
 				+ ", children=" + children + ", ages=" + ages
 				+ ", sponsorPotential=" + sponsorPotential + "]";
+	}
+
+	public ArrayList<String> getArray() {
+		return rowValues;
 	}
 
 

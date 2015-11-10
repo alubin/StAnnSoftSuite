@@ -1,5 +1,7 @@
 package ccf;
 
+import java.util.ArrayList;
+
 public class CCFFieldData {
 
 	private final boolean selected;
@@ -13,13 +15,16 @@ public class CCFFieldData {
 
 	public Object[] getObjArray()
 	{
-		Object[] returnObj = new Object[data.getObjArray().length + 1];
-		returnObj[0] = selected;
-		for(int i = 1; i < data.getObjArray().length; i++ )
+//		Object[] returnObj = new Object[data.getObjArray().length + 1];
+		ArrayList<Object> returnObj= new ArrayList<Object>();
+		returnObj.add(selected);
+		for(int i = 0; i < data.getObjArray().length; i++ )
 		{
-			returnObj[i] = data.getObjArray()[i];
+//			returnObj[i] = data.getObjArray()[i];
+//			System.out.println(returnObj[i]);
+			returnObj.add(data.getObjArray()[i]);
 		}
-		return returnObj;
+		return returnObj.toArray();
 	}
 
 }

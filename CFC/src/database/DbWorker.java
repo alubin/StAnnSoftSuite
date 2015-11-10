@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.time.LocalDate;
 
 import rcia.RciaData;
@@ -15,7 +16,7 @@ import ccf.CCFData;
 public class DbWorker {
 
 	private static final int ccfColumnSize = 17;
-	private static final int rciaColumnSize = 17;
+	private static final int rciaColumnSize = 68;
 	private static String ipAddress;
 	private static int port;
 	private static Connection con1 = null;
@@ -66,6 +67,7 @@ public class DbWorker {
 
 		System.out.println("Writing to CCF Database.");
 		//TODO: Extract the data from the array and store the data.
+		
 		for(CCFData results : data)
 		{
 			try{
@@ -99,7 +101,7 @@ public class DbWorker {
 			catch (SQLException e) {
 				System.err.println(e);
 			}
-			System.out.println(results);
+//			System.out.println(results);
 		}
 	}
 
@@ -220,18 +222,19 @@ public class DbWorker {
 
 			while(rs.next())
 			{
+//				System.out.println(rs.getObject(1));
 				Object[] results = new Object[ccfColumnSize];
 				for(int i = 0; i < 17; i++)
 				{
-					results[i] = rs.getObject(i +1);
+					results[i] = rs.getObject(i+1);
 				}
 				CCFData data = new CCFData(results);
 				resultArray.add(data);
-				System.out.println(data);
+//				System.out.println(data);
 			}
 
 
-		} catch (SQLException e ) {
+		} catch (SQLException | ParseException e ) {
 			e.printStackTrace();
 		} finally {
 			if (stmt != null) { stmt.close(); }
@@ -248,23 +251,24 @@ public class DbWorker {
 	 */
 	public ArrayList<RciaData> retrieveRciaData() throws SQLException
 	{
-		String query = "select * from parishData";
+		String query = "select * from inquirer";
 		Statement stmt = null;
 		ArrayList<RciaData> resultArray = new ArrayList<RciaData>();
 		try {
 
-			stmt = con1.createStatement();
+			stmt = con2.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 
 			while(rs.next())
 			{
 				ArrayList<String> results = new ArrayList<String>(rciaColumnSize);
-				for(int i = 0; i < 17; i++)
+				for(int i = 0; i < rciaColumnSize; i++)
 				{
 					results.add(rs.getString(i +1));
 				}
 				RciaData data = new RciaData(results);
 				resultArray.add(data);
+				System.out.println(data);
 			}
 
 

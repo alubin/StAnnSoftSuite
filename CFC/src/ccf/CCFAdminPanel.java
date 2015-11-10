@@ -1,8 +1,13 @@
 package ccf;
 
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
@@ -19,14 +24,25 @@ public class CCFAdminPanel extends JPanel {
 	private static final long serialVersionUID = 1647988074485239841L;
 	private final MainFrame mainGui;
 	private JXTable resultTable;
-	private DefaultTableModel adminModel;
+	private CCFAdminTableModel adminModel;
 
 	public CCFAdminPanel(MainFrame mainGui) {
 		this.mainGui = mainGui;
+		
+		JPanel btnPanel = new JPanel(new GridLayout(1,2));
+		JButton btnSave = new JButton("Save Changes");
+		JButton btnCancel = new JButton("Cancel Edit");
+		
+		setBorder(BorderFactory.createTitledBorder("CCF Admin"));
 		setLayout(new BorderLayout());
-		adminModel = new DefaultTableModel(CCFTableModel.adminColumnNames, 0);
+		
+		btnPanel.add(btnSave);
+		btnPanel.add(btnCancel);
+		
+		adminModel = new CCFAdminTableModel(CCFAdminTableModel.adminColumnNames, 0);
 		resultTable = new JXTable(adminModel);
 		resultTable.packAll();
+		add(btnPanel, BorderLayout.NORTH);
 		add(new JScrollPane(resultTable),BorderLayout.CENTER);
 		//		mainGui.setPanel(searchResultPanel);
 
@@ -44,6 +60,29 @@ public class CCFAdminPanel extends JPanel {
 		}
 		displayAll();
 
+	}
+	
+	public class SaveActionListener implements ActionListener
+	{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("Saving Changes");
+//			adminModel.ge
+			
+		}
+		
+	}
+	
+	public class CloseActionListener implements ActionListener
+	{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			setVisible(false);
+			
+		}
+		
 	}
 
 

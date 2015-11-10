@@ -39,7 +39,7 @@ public class CCFDisplayPanel extends JPanel{
 		JButton btnSave = new JButton("Save To Database");
 		JButton btnCancel = new JButton("Cancel Import");
 
-		setBorder(BorderFactory.createTitledBorder("CCF Results"));
+		setBorder(BorderFactory.createTitledBorder("CCF Import"));
 		setLayout(new BorderLayout());
 
 		btnSave.addActionListener(new SaveActionListener());

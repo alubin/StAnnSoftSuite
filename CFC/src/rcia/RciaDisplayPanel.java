@@ -38,7 +38,7 @@ public class RciaDisplayPanel extends JPanel {
 		excelTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
 
-		setBorder(BorderFactory.createTitledBorder("Rcia Results"));
+		setBorder(BorderFactory.createTitledBorder("Rcia Import"));
 		setLayout(new BorderLayout());
 		
 		btnSave.addActionListener(new SaveBtnActionListener());
