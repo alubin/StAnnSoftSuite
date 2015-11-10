@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import org.jdesktop.swingx.JXTable;
+
 import main.MainFrame;
 import database.DatabaseStore;
 import database.DbWorker;
@@ -21,7 +23,7 @@ import database.DbWorker;
  * @author AL
  *
  */
-public class CCFDisplayPanel extends JPanel{
+public class CCFImportPanel extends JPanel{
 
 	/**
 	 *
@@ -30,17 +32,21 @@ public class CCFDisplayPanel extends JPanel{
 	private final CCFTable tableValues;
 	private MainFrame mainGui;
 
-	public CCFDisplayPanel(AccessReader accessReader)
+	public CCFImportPanel(AccessReader accessReader)
 	{
 		tableValues = accessReader.createTable();
-		JTable accessTable = tableValues.getTable();
-		JScrollPane accessScroll = new JScrollPane(accessTable);
+		JXTable accessTable = tableValues.getTable();
+		JScrollPane accessScroll = new JScrollPane(accessTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		JPanel btnPanel = new JPanel(new GridLayout(1,2));
 		JButton btnSave = new JButton("Save To Database");
 		JButton btnCancel = new JButton("Cancel Import");
 
 		setBorder(BorderFactory.createTitledBorder("CCF Import"));
 		setLayout(new BorderLayout());
+
+		accessTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		accessTable.packAll();
+
 
 		btnSave.addActionListener(new SaveActionListener());
 		btnCancel.addActionListener(new CancelActionListener());

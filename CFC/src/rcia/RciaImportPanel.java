@@ -18,15 +18,15 @@ import database.DatabaseStore;
 import database.DbWorker;
 import main.MainFrame;
 
-public class RciaDisplayPanel extends JPanel {
+public class RciaImportPanel extends JPanel {
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 170250086962627281L;
 	private MainFrame mainDisplay;
 	private final RciaTable rciaTable;
 
-	public RciaDisplayPanel(ExcelReader excelReader)
+	public RciaImportPanel(ExcelReader excelReader)
 	{
 		rciaTable = excelReader.createTable();
 		JXTable excelTable = rciaTable.getTable();
@@ -36,11 +36,11 @@ public class RciaDisplayPanel extends JPanel {
 		JButton btnCancel = new JButton("Cancel");
 
 		excelTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
+		excelTable.packAll();
 
 		setBorder(BorderFactory.createTitledBorder("Rcia Import"));
 		setLayout(new BorderLayout());
-		
+
 		btnSave.addActionListener(new SaveBtnActionListener());
 
 		btnPanel.add(btnSave);
@@ -70,11 +70,11 @@ public class RciaDisplayPanel extends JPanel {
 					DatabaseStore.getUserName(), DatabaseStore.getPassword());
 			dbWorker.storeRCIA(rciaTable.getRciaDataArrayList());
 			dbWorker.dbClose();
-			
+
 			JPanel savePanel = new JPanel();
 			savePanel.add(new JLabel("Your Data has been saved to the database."));
 			mainDisplay.setPanel(savePanel);
-			
+
 		}
 
 	}

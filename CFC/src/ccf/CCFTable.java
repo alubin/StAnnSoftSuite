@@ -13,17 +13,16 @@ import org.jdesktop.swingx.JXTable;
  *
  */
 public class CCFTable {
-	private final JTable table;
+	private final JXTable table;
 	private ArrayList<CCFData> ccfDataArray;
 
 	public CCFTable(JXTable table)
 	{
 		this.table = table;
-		table.packAll();
 		ccfDataArray = new ArrayList<CCFData>(1000);
 	}
 
-	public JTable getTable()
+	public JXTable getTable()
 	{
 		return table;
 	}

@@ -8,7 +8,7 @@ import custom.Convert;
 
 public class RciaActionListener extends Convert implements ActionListener {
 	private final MainFrame mainGui;
-	private RciaDisplayPanel displayPanel;
+	private RciaImportPanel displayPanel;
 
 	public RciaActionListener(MainFrame instance) {
 		mainGui = instance;
@@ -21,7 +21,7 @@ public class RciaActionListener extends Convert implements ActionListener {
 		System.out.println("RCIA");
 		System.out.println("File Path = " + getFilePath());
 		ExcelReader excel = new ExcelReader(getFilePath());
-		displayPanel = new RciaDisplayPanel(excel);
+		displayPanel = new RciaImportPanel(excel);
 		displayPanel.setMainGui(mainGui);
 
 		displayPanel.showPanel();
