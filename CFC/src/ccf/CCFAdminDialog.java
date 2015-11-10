@@ -11,9 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import main.MainFrame;
 import database.DatabaseStore;
 import database.DbWorker;
-import main.MainFrame;
 
 public class CCFAdminDialog extends JDialog {
 

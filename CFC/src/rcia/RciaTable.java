@@ -2,8 +2,6 @@ package rcia;
 
 import java.util.ArrayList;
 
-import javax.swing.JTable;
-
 import org.jdesktop.swingx.JXTable;
 
 public class RciaTable {

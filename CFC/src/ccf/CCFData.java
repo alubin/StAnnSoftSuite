@@ -1,11 +1,8 @@
 package ccf;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
 
 /**
  * This structure holds the values of the CCF data that is

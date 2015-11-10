@@ -4,6 +4,10 @@ import javax.swing.table.DefaultTableModel;
 
 public class CCFAdminTableModel extends DefaultTableModel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6296755378199573571L;
 	protected final static String[] adminColumnNames = {"\u2713","ID", "Student ID",
 		"Parish ID", "Date Of Birth",
 		"Function", "Status",

@@ -1,7 +1,6 @@
 package rcia;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 public class RciaData {
 

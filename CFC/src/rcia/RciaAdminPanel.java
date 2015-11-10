@@ -17,9 +17,6 @@ import main.MainFrame;
 
 import org.jdesktop.swingx.JXTable;
 
-import ccf.CCFData;
-import ccf.CCFFieldData;
-
 public class RciaAdminPanel extends JPanel {
 
 	/**

@@ -1,14 +1,12 @@
 package database;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.ParseException;
-import java.time.LocalDate;
+import java.util.ArrayList;
 
 import rcia.RciaData;
 import ccf.CCFData;
@@ -17,8 +15,6 @@ public class DbWorker {
 
 	private static final int ccfColumnSize = 17;
 	private static final int rciaColumnSize = 68;
-	private static String ipAddress;
-	private static int port;
 	private static Connection con1 = null;
 	private static Connection con2 = null;
 	private String user;

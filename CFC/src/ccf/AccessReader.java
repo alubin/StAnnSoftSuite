@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 
-import javax.swing.JTable;
-
 import org.jdesktop.swingx.JXTable;
 
 import com.healthmarketscience.jackcess.DatabaseBuilder;
