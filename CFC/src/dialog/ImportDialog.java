@@ -6,7 +6,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileFilter;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -130,7 +129,7 @@ public class ImportDialog extends JDialog {
 		}
 
 	}
-	
+
 	public FileNameExtensionFilter getFilter()
 	{
 		return new FileNameExtensionFilter("Files", "accdb", "mdb","xls","xlsx");
