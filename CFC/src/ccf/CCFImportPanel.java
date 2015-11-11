@@ -76,7 +76,7 @@ public class CCFImportPanel extends JPanel{
 			dbWorker.dbClose();
 
 			JPanel savePanel = new JPanel();
-			savePanel.add(new JLabel("Your Data has been saved to the databse."));
+			savePanel.add(new JLabel("Your Data has been saved to the database."));
 			mainGui.setPanel(savePanel);
 
 		}
