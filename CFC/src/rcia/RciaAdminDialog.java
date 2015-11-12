@@ -23,7 +23,8 @@ public class RciaAdminDialog extends JDialog {
 	private static final long serialVersionUID = -3154004677319343553L;
 	private final MainFrame mainGui;
 	private RciaAdminPanel rciaAdminPanel;
-
+	private JTextField lastNameField;
+	
 	public RciaAdminDialog(MainFrame mainGui)
 	{
 		this.mainGui = mainGui;
@@ -39,7 +40,7 @@ public class RciaAdminDialog extends JDialog {
 
 		JPanel lastNamePanel = new JPanel(new GridLayout(1,2));
 		JLabel lastNameTitle = new JLabel("Search by Last Name:");
-		JTextField lastNameField = new JTextField();
+		lastNameField = new JTextField();
 		JButton searchLastNameBtn = new JButton("Search Last Name");
 
 		JButton allBtn = new JButton("Return all values");
@@ -63,6 +64,7 @@ public class RciaAdminDialog extends JDialog {
 		lastNamePanel.add(lastNameField);
 		lastNamePanel.add(searchLastNameBtn);
 
+		searchLastNameBtn.addActionListener(new LastListener());
 		allBtn.addActionListener(new AllFieldListener());
 		closeBtn.addActionListener(new CloseListener());
 
@@ -72,6 +74,25 @@ public class RciaAdminDialog extends JDialog {
 		add(allBtn);
 		add(closeBtn);
 
+	}
+	
+	private class LastListener implements ActionListener
+	{
+		@Override 
+		public void actionPerformed(ActionEvent arg0){
+		
+			try {
+				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
+						DatabaseStore.getUserName(), DatabaseStore.getPassword());
+
+				rciaAdminPanel.displayAll(dbWorker.retrieveRciaData("last", lastNameField.getText()));
+
+				dbWorker.dbClose();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
 	}
 
 	private class CloseListener implements ActionListener
@@ -95,7 +116,7 @@ public class RciaAdminDialog extends JDialog {
 						DatabaseStore.getUserName(), DatabaseStore.getPassword());
 
 
-				rciaAdminPanel.displayAll(dbWorker.retrieveRciaData());
+				rciaAdminPanel.displayAll(dbWorker.retrieveRciaData("all", ""));
 
 				dbWorker.dbClose();
 			} catch (SQLException e1) {
