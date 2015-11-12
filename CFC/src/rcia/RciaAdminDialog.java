@@ -23,6 +23,7 @@ public class RciaAdminDialog extends JDialog {
 	private static final long serialVersionUID = -3154004677319343553L;
 	private final MainFrame mainGui;
 	private RciaAdminPanel rciaAdminPanel;
+	private JTextField firstNameField;
 	private JTextField lastNameField;
 	
 	public RciaAdminDialog(MainFrame mainGui)
@@ -35,7 +36,7 @@ public class RciaAdminDialog extends JDialog {
 
 		JPanel firstNamePanel = new JPanel(new GridLayout(1,2));
 		JLabel firstNameTitle = new JLabel("Search by First Name:");
-		JTextField firstNameField = new JTextField();
+		firstNameField = new JTextField();
 		JButton searchFirstNameBtn = new JButton("Search First Name");
 
 		JPanel lastNamePanel = new JPanel(new GridLayout(1,2));
@@ -63,7 +64,8 @@ public class RciaAdminDialog extends JDialog {
 		lastNamePanel.add(lastNameTitle);
 		lastNamePanel.add(lastNameField);
 		lastNamePanel.add(searchLastNameBtn);
-
+		
+		searchFirstNameBtn.addActionListener(new FirstListener());
 		searchLastNameBtn.addActionListener(new LastListener());
 		allBtn.addActionListener(new AllFieldListener());
 		closeBtn.addActionListener(new CloseListener());
@@ -74,6 +76,25 @@ public class RciaAdminDialog extends JDialog {
 		add(allBtn);
 		add(closeBtn);
 
+	}
+	
+	private class FirstListener implements ActionListener
+	{
+		@Override 
+		public void actionPerformed(ActionEvent arg0){
+		
+			try {
+				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
+						DatabaseStore.getUserName(), DatabaseStore.getPassword());
+
+				rciaAdminPanel.displayAll(dbWorker.retrieveRciaData("first", firstNameField.getText()));
+
+				dbWorker.dbClose();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
 	}
 	
 	private class LastListener implements ActionListener
