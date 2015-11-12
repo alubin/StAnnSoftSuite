@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.util.ArrayList;
 
+import com.sun.jmx.snmp.SnmpStringFixed;
+
 import rcia.RciaData;
 import ccf.CCFData;
 
@@ -245,9 +247,26 @@ public class DbWorker {
 	 * @return A collection of the different fields in the database.
 	 * @throws SQLException
 	 */
-	public ArrayList<RciaData> retrieveRciaData() throws SQLException
+	public ArrayList<RciaData> retrieveRciaData(String type, String input) throws SQLException
 	{
-		String query = "select * from inquirer";
+		String query = "SELECT * FROM inquirer";
+		
+		if (type == "last")
+		{
+			query = "SELECT * FROM inquirer WHERE Last_Name = '" + input + "'";
+		}
+		else if (type == "first")
+		{
+			query = "SELECT * FROM inquirer WHERE First_Name = '" + input + "'";
+		}
+		else if (type == "full")
+		{
+			query = "SELECT * FROM inquirer WHERE [Last_Name] = '" + input + "'";
+		}
+		else
+		{
+			query = "SELECT * FROM inquirer";
+		}
 		Statement stmt = null;
 		ArrayList<RciaData> resultArray = new ArrayList<RciaData>();
 		try {
