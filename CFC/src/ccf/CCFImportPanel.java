@@ -1,9 +1,13 @@
 package ccf;
 
+import java.awt.AWTException;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.Robot;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -13,6 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import org.jdesktop.swingx.JXTable;
+import org.jdesktop.swingx.search.SearchFactory;
 
 import main.MainFrame;
 import database.DatabaseStore;
@@ -37,9 +42,10 @@ public class CCFImportPanel extends JPanel{
 		tableValues = accessReader.createTable();
 		JXTable accessTable = tableValues.getTable();
 		JScrollPane accessScroll = new JScrollPane(accessTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		JPanel btnPanel = new JPanel(new GridLayout(1,2));
+		JPanel btnPanel = new JPanel(new GridLayout(1,3));
 		JButton btnSave = new JButton("Save To Database");
 		JButton btnCancel = new JButton("Cancel Import");
+		JButton btnSearch = new JButton("Search");
 
 		setBorder(BorderFactory.createTitledBorder("CCF Import"));
 		setLayout(new BorderLayout());
@@ -50,9 +56,11 @@ public class CCFImportPanel extends JPanel{
 
 		btnSave.addActionListener(new SaveActionListener());
 		btnCancel.addActionListener(new CancelActionListener());
+		btnSearch.addActionListener(new FindActionListener());
 
 		btnPanel.add(btnSave);
 		btnPanel.add(btnCancel);
+		btnPanel.add(btnSearch);
 		add(btnPanel, BorderLayout.NORTH);
 
 		add(accessScroll,BorderLayout.CENTER);
@@ -98,8 +106,10 @@ public class CCFImportPanel extends JPanel{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-//			(tableValues.getTable()).
+			
+			SearchFactory mySearch = new SearchFactory();
+			mySearch.showFindInput(tableValues.getTable(), tableValues.getTable().getSearchable());
+
 		}
 		
 	}

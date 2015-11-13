@@ -13,6 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 import org.jdesktop.swingx.JXTable;
+import org.jdesktop.swingx.search.SearchFactory;
 
 import database.DatabaseStore;
 import database.DbWorker;
@@ -31,9 +32,10 @@ public class RciaImportPanel extends JPanel {
 		rciaTable = excelReader.createTable();
 		JXTable excelTable = rciaTable.getTable();
 		JScrollPane excelScroll = new JScrollPane(excelTable);
-		JPanel btnPanel = new JPanel(new GridLayout(1,2));
+		JPanel btnPanel = new JPanel(new GridLayout(1,3));
 		JButton btnSave = new JButton("Save");
 		JButton btnCancel = new JButton("Cancel");
+		JButton btnSearch = new JButton("Search");
 
 		excelTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		excelTable.packAll();
@@ -42,9 +44,11 @@ public class RciaImportPanel extends JPanel {
 		setLayout(new BorderLayout());
 
 		btnSave.addActionListener(new SaveBtnActionListener());
+		btnSearch.addActionListener(new FindActionListener());
 
 		btnPanel.add(btnSave);
 		btnPanel.add(btnCancel);
+		btnPanel.add(btnSearch);
 
 		add(btnPanel, BorderLayout.NORTH);
 		add(excelScroll,BorderLayout.CENTER);
@@ -77,6 +81,18 @@ public class RciaImportPanel extends JPanel {
 
 		}
 
+	}
+	
+	private class FindActionListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			SearchFactory mySearch = new SearchFactory();
+			mySearch.showFindInput(rciaTable.getTable(), rciaTable.getTable().getSearchable());
+
+		}
+		
 	}
 
 }
