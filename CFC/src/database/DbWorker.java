@@ -65,7 +65,7 @@ public class DbWorker {
 
 		System.out.println("Writing to CCF Database.");
 		//TODO: Extract the data from the array and store the data.
-		
+
 		for(CCFData results : data)
 		{
 			try{
@@ -99,7 +99,7 @@ public class DbWorker {
 			catch (SQLException e) {
 				System.err.println(e);
 			}
-//			System.out.println(results);
+			//			System.out.println(results);
 		}
 	}
 
@@ -208,11 +208,26 @@ public class DbWorker {
 	 * @return A collection of the different fields in the database.
 	 * @throws SQLException
 	 */
-	public ArrayList<CCFData> retrieveCCFData() throws SQLException
+	public ArrayList<CCFData> retrieveCCFData(QueryType type, String input) throws SQLException
 	{
 		String query = "select * from parishData";
 		Statement stmt = null;
 		ArrayList<CCFData> resultArray = new ArrayList<CCFData>();
+
+		switch(type)
+		{
+		case ccfId:
+			query = "SELECT * FROM parishData WHERE student_id = '" + input + "'";
+			break;
+		case ccfEmail:
+			query = "SELECT * FROM parishData WHERE email = '" + input + "'";
+			break;
+		default:
+			query = "SELECT * FROM parishData";
+			break;
+
+		}
+
 		try {
 
 			stmt = con1.createStatement();
@@ -220,7 +235,7 @@ public class DbWorker {
 
 			while(rs.next())
 			{
-//				System.out.println(rs.getObject(1));
+				//				System.out.println(rs.getObject(1));
 				Object[] results = new Object[ccfColumnSize];
 				for(int i = 0; i < 17; i++)
 				{
@@ -228,7 +243,7 @@ public class DbWorker {
 				}
 				CCFData data = new CCFData(results);
 				resultArray.add(data);
-//				System.out.println(data);
+				//				System.out.println(data);
 			}
 
 
@@ -247,28 +262,30 @@ public class DbWorker {
 	 * @return A collection of the different fields in the database.
 	 * @throws SQLException
 	 */
-	public ArrayList<RciaData> retrieveRciaData(String type, String input) throws SQLException
+	public ArrayList<RciaData> retrieveRciaData(QueryType type, String input) throws SQLException
 	{
 		String query = "SELECT * FROM inquirer";
-		
-		if (type == "last")
-		{
-			query = "SELECT * FROM inquirer WHERE Last_Name = '" + input + "'";
-		}
-		else if (type == "first")
-		{
-			query = "SELECT * FROM inquirer WHERE First_Name = '" + input + "'";
-		}
-		else if (type == "full")
-		{
-			query = "SELECT * FROM inquirer WHERE [Last_Name] = '" + input + "'";
-		}
-		else
-		{
-			query = "SELECT * FROM inquirer";
-		}
 		Statement stmt = null;
 		ArrayList<RciaData> resultArray = new ArrayList<RciaData>();
+
+		switch(type)
+		{
+		case rciaLName:
+			query = "SELECT * FROM inquirer WHERE Last_Name = '" + input + "'";
+			break;
+		case rciaFName:
+			query = "SELECT * FROM inquirer WHERE First_Name = '" + input + "'";
+			break;
+		case rciaFull:
+			query = "SELECT * FROM inquirer WHERE [Last_Name] = '" + input + "'";
+			break;
+		default:
+			query = "SELECT * FROM inquirer";
+			break;
+
+		}
+
+
 		try {
 
 			stmt = con2.createStatement();

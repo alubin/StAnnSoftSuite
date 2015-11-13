@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import main.MainFrame;
 import database.DatabaseStore;
 import database.DbWorker;
+import database.QueryType;
 
 public class RciaAdminDialog extends JDialog {
 
@@ -25,7 +26,7 @@ public class RciaAdminDialog extends JDialog {
 	private RciaAdminPanel rciaAdminPanel;
 	private JTextField firstNameField;
 	private JTextField lastNameField;
-	
+
 	public RciaAdminDialog(MainFrame mainGui)
 	{
 		this.mainGui = mainGui;
@@ -44,7 +45,7 @@ public class RciaAdminDialog extends JDialog {
 		lastNameField = new JTextField();
 		JButton searchLastNameBtn = new JButton("Search Last Name");
 
-		JButton allBtn = new JButton("Return all values");
+		JButton searchFullNameBtn = new JButton("Return all values");
 		JButton closeBtn = new JButton("Close");
 
 		rciaAdminPanel = new RciaAdminPanel(mainGui);
@@ -64,30 +65,30 @@ public class RciaAdminDialog extends JDialog {
 		lastNamePanel.add(lastNameTitle);
 		lastNamePanel.add(lastNameField);
 		lastNamePanel.add(searchLastNameBtn);
-		
+
 		searchFirstNameBtn.addActionListener(new FirstListener());
 		searchLastNameBtn.addActionListener(new LastListener());
-		allBtn.addActionListener(new AllFieldListener());
+		searchFullNameBtn.addActionListener(new FullListener());
 		closeBtn.addActionListener(new CloseListener());
 
 		add(namePanel);
 		add(firstNamePanel);
 		add(lastNamePanel);
-		add(allBtn);
+		add(searchFullNameBtn);
 		add(closeBtn);
 
 	}
-	
+
 	private class FirstListener implements ActionListener
 	{
-		@Override 
+		@Override
 		public void actionPerformed(ActionEvent arg0){
-		
+
 			try {
 				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
 						DatabaseStore.getUserName(), DatabaseStore.getPassword());
 
-				rciaAdminPanel.displayAll(dbWorker.retrieveRciaData("first", firstNameField.getText()));
+				rciaAdminPanel.displayAll(dbWorker.retrieveRciaData(QueryType.rciaFName, firstNameField.getText()));
 
 				dbWorker.dbClose();
 			} catch (SQLException e1) {
@@ -96,17 +97,17 @@ public class RciaAdminDialog extends JDialog {
 			}
 		}
 	}
-	
+
 	private class LastListener implements ActionListener
 	{
-		@Override 
+		@Override
 		public void actionPerformed(ActionEvent arg0){
-		
+
 			try {
 				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
 						DatabaseStore.getUserName(), DatabaseStore.getPassword());
 
-				rciaAdminPanel.displayAll(dbWorker.retrieveRciaData("last", lastNameField.getText()));
+				rciaAdminPanel.displayAll(dbWorker.retrieveRciaData(QueryType.rciaLName, lastNameField.getText()));
 
 				dbWorker.dbClose();
 			} catch (SQLException e1) {
@@ -127,7 +128,7 @@ public class RciaAdminDialog extends JDialog {
 
 	}
 
-	private class AllFieldListener implements ActionListener
+	private class FullListener implements ActionListener
 	{
 
 		@Override
@@ -137,7 +138,7 @@ public class RciaAdminDialog extends JDialog {
 						DatabaseStore.getUserName(), DatabaseStore.getPassword());
 
 
-				rciaAdminPanel.displayAll(dbWorker.retrieveRciaData("all", ""));
+				rciaAdminPanel.displayAll(dbWorker.retrieveRciaData(QueryType.rciaFull, ""));
 
 				dbWorker.dbClose();
 			} catch (SQLException e1) {
@@ -145,6 +146,28 @@ public class RciaAdminDialog extends JDialog {
 				e1.printStackTrace();
 			}
 			//			rciaAdminPanel.displayAll();
+
+		}
+
+	}
+
+	private class AllListener implements ActionListener
+	{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			try {
+				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
+						DatabaseStore.getUserName(), DatabaseStore.getPassword());
+
+
+				rciaAdminPanel.displayAll(dbWorker.retrieveRciaData(QueryType.all, ""));
+
+				dbWorker.dbClose();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 
 		}
 

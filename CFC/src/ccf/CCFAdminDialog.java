@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import main.MainFrame;
 import database.DatabaseStore;
 import database.DbWorker;
+import database.QueryType;
 
 public class CCFAdminDialog extends JDialog {
 
@@ -80,7 +81,7 @@ public class CCFAdminDialog extends JDialog {
 			try {
 				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
 						DatabaseStore.getUserName(), DatabaseStore.getPassword());
-				adminPanel.displayAll(dbWorker.retrieveCCFData());
+				adminPanel.displayAll(dbWorker.retrieveCCFData(QueryType.all, ""));
 				dbWorker.dbClose();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
