@@ -93,6 +93,16 @@ public class CCFImportPanel extends JPanel{
 		}
 
 	}
+	
+	private class FindActionListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+//			(tableValues.getTable()).
+		}
+		
+	}
 
 	public void setMainGui(MainFrame mainGui) {
 		this.mainGui = mainGui;

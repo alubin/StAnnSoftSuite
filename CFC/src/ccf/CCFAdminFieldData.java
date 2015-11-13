@@ -2,12 +2,12 @@ package ccf;
 
 import java.util.ArrayList;
 
-public class CCFFieldData {
+public class CCFAdminFieldData {
 
 	private final boolean selected;
 	private final CCFData data;
 
-	public CCFFieldData(CCFData data)
+	public CCFAdminFieldData(CCFData data)
 	{
 		selected = false;
 		this.data = data;

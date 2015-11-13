@@ -210,6 +210,7 @@ public class MainFrame extends JFrame{
 	{
 		getContentPane().removeAll();
 		getContentPane().add(displayPnl);
+		repaint();
 		setVisible(true);
 	}
 

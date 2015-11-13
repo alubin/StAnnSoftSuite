@@ -483,8 +483,8 @@ public class RciaData {
 				+ ", sponsorPotential=" + sponsorPotential + "]";
 	}
 
-	public ArrayList<String> getArray() {
-		return rowValues;
+	public Object[] getArray() {
+		return rowValues.toArray();
 	}
 
 

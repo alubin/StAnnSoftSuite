@@ -59,7 +59,7 @@ public class CCFAdminPanel extends JPanel {
 	public void displayAll(ArrayList<CCFData> retrieveCCFData) {
 		for(CCFData data: retrieveCCFData)
 		{
-			adminModel.addRow(new CCFFieldData(data).getObjArray());
+			adminModel.addRow(new CCFAdminFieldData(data).getObjArray());
 		}
 		displayAll();
 
