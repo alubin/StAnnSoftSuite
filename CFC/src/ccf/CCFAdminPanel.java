@@ -42,17 +42,16 @@ public class CCFAdminPanel extends JPanel {
 		adminModel = new CCFAdminTableModel(CCFAdminTableModel.adminColumnNames, 0);
 		resultTable = new JXTable(adminModel);
 		resultTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		resultTable.packAll();
 
 		add(btnPanel, BorderLayout.NORTH);
 		add(new JScrollPane(resultTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED),BorderLayout.CENTER);
-		//		mainGui.setPanel(searchResultPanel);
 
 	}
 
 	public void displayAll()
 	{
+		resultTable.packAll();
 		mainGui.setPanel(this);
 	}
 
@@ -71,7 +70,6 @@ public class CCFAdminPanel extends JPanel {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			System.out.println("Saving Changes");
-//			adminModel.ge
 
 		}
 

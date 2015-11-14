@@ -1,6 +1,5 @@
 package rcia;
 
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 public class RciaAdminTableModel extends DefaultTableModel {
@@ -102,6 +101,18 @@ public class RciaAdminTableModel extends DefaultTableModel {
 	public boolean isCellEditable(int row, int column) {
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	public void clearRows() {
+		final int rowCount = getRowCount();
+		if ( rowCount > 0)
+		{
+			for(int i = rowCount - 1; i > -1; i--)
+			{
+				removeRow(i);
+			}
+		}
+		
 	}
 	
 

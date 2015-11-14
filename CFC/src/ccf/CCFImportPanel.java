@@ -69,6 +69,7 @@ public class CCFImportPanel extends JPanel{
 
 	public void showPanel() {
 		//Display this panel on the main GUI
+		tableValues.getTable().packAll();
 		mainGui.setPanel(this);
 
 	}
