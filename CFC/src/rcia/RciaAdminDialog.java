@@ -60,7 +60,6 @@ public class RciaAdminDialog extends JDialog {
 		
 		searchAllNameBtn.addActionListener(new AllListener());
 		//closeBtn.addActionListener(new CloseListener());
-
 		
 		add(NamePanel);
 		add(btnPanel);
