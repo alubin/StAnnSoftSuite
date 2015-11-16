@@ -15,6 +15,7 @@ import javax.swing.JTable;
 import main.MainFrame;
 
 import org.jdesktop.swingx.JXTable;
+import org.jdesktop.swingx.search.SearchFactory;
 
 public class CCFAdminPanel extends JPanel {
 
@@ -32,12 +33,15 @@ public class CCFAdminPanel extends JPanel {
 		JPanel btnPanel = new JPanel(new GridLayout(1,2));
 		JButton btnSave = new JButton("Save Changes");
 		JButton btnCancel = new JButton("Cancel Edit");
+		JButton btnFind = new JButton("Find");
 
 		setBorder(BorderFactory.createTitledBorder("CCF Admin"));
 		setLayout(new BorderLayout());
 
+		btnFind.addActionListener(new FindActionListener());
 		btnPanel.add(btnSave);
 		btnPanel.add(btnCancel);
+		btnPanel.add(btnFind);
 
 		adminModel = new CCFAdminTableModel(CCFAdminTableModel.adminColumnNames, 0);
 		resultTable = new JXTable(adminModel);
@@ -84,6 +88,18 @@ public class CCFAdminPanel extends JPanel {
 
 		}
 
+	}
+	
+	private class FindActionListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			
+			SearchFactory mySearch = new SearchFactory();
+			mySearch.showFindInput(resultTable, resultTable.getSearchable());
+
+		}
+		
 	}
 
 
