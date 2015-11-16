@@ -7,7 +7,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 
 public class RciaAdminTableModel extends DefaultTableModel {
-	
+
 	/**
 	 * 
 	 */
@@ -82,28 +82,28 @@ public class RciaAdminTableModel extends DefaultTableModel {
 		"CHILDREN",
 		"AGES",
 	"If needed, would you consider the role of a Sponsor?"};
-	
+
 	public RciaAdminTableModel(String[] col, int i) {
 		super(col,i);
 	}
 
-	@Override
-	public Class<?> getColumnClass(int columnIndex) {
-		Class<?> rtnRes = null;
-        if (columnIndex == 0) {
-            rtnRes = Boolean.class;
-        }
-        else
-        {
-        	rtnRes = super.getColumnClass(columnIndex);
-        }
-		return rtnRes;
-	}
+	//	@Override
+	//	public Class<?> getColumnClass(int columnIndex) {
+	//		Class<?> rtnRes = null;
+	//        if (columnIndex == 0) {
+	//            rtnRes = Boolean.class;
+	//        }
+	//        else
+	//        {
+	//        	rtnRes = super.getColumnClass(columnIndex);
+	//        }
+	//		return rtnRes;
+	//	}
 
-	
+
 	@Override
 	public boolean isCellEditable(int row, int column) {
-		// TODO Auto-generated method stub
+
 		return true;
 	}
 
@@ -116,6 +116,6 @@ public class RciaAdminTableModel extends DefaultTableModel {
 				removeRow(i);
 			}
 		}
-		
+
 	}
 }

@@ -3,12 +3,12 @@ package rcia;
 import java.util.ArrayList;
 
 public class RciaAdminFieldData {
-	private final boolean selected;
+	private final String selected;
 	private final RciaData data;
 	
 	public RciaAdminFieldData(RciaData rciaData)
 	{
-		selected = false;
+		selected = "";
 		data = rciaData;
 	}
 	
