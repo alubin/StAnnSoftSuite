@@ -1,5 +1,6 @@
 package rcia;
 
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,55 +29,42 @@ public class RciaAdminDialog extends JDialog {
 	private JTextField lastNameField;
 
 	public RciaAdminDialog(MainFrame mainGui)
-	{
+	{	
 		this.mainGui = mainGui;
-		JPanel namePanel = new JPanel(new GridLayout(1,2));
-		JLabel nameTitle = new JLabel("Search by Full Name:");
-		JTextField nameField = new JTextField();
-		JButton searchFullNameBtn = new JButton("Search Full Name");
-
-		JPanel firstNamePanel = new JPanel(new GridLayout(1,2));
-		JLabel firstNameTitle = new JLabel("Search by First Name:");
+		
+		JPanel NamePanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 5,5));
+		JLabel firstNameTitle = new JLabel("First Name:");
 		firstNameField = new JTextField();
-		JButton searchFirstNameBtn = new JButton("Search First Name");
+		firstNameField.setColumns(15);
 
-		JPanel lastNamePanel = new JPanel(new GridLayout(1,2));
-		JLabel lastNameTitle = new JLabel("Search by Last Name:");
+		JLabel lastNameTitle = new JLabel("Last Name:");
 		lastNameField = new JTextField();
-		JButton searchLastNameBtn = new JButton("Search Last Name");
+		lastNameField.setColumns(15);
 
-		JButton searchAllNameBtn = new JButton("Return all values");
-		JButton closeBtn = new JButton("Close");
-
-		rciaAdminPanel = new RciaAdminPanel(mainGui);
-
+		JPanel btnPanel = new JPanel(new FlowLayout());
+		JButton searchNameBtn = new JButton("Search Name");
+		JButton searchAllNameBtn = new JButton("Search All");
+		//JButton closeBtn = new JButton("Close");
 
 		setLayout(new GridLayout(5, 1));
-		setSize(600, 150);
+		setSize(320, 285);
 
-		namePanel.add(nameTitle);
-		namePanel.add(nameField);
-		namePanel.add(searchFullNameBtn);
+		NamePanel.add(firstNameTitle);
+		NamePanel.add(firstNameField);
 
-		firstNamePanel.add(firstNameTitle);
-		firstNamePanel.add(firstNameField);
-		firstNamePanel.add(searchFirstNameBtn);
-
-		lastNamePanel.add(lastNameTitle);
-		lastNamePanel.add(lastNameField);
-		lastNamePanel.add(searchLastNameBtn);
-
-		searchFirstNameBtn.addActionListener(new FirstListener());
-		searchLastNameBtn.addActionListener(new LastListener());
-		searchFullNameBtn.addActionListener(new FullListener());
+		NamePanel.add(lastNameTitle);
+		NamePanel.add(lastNameField);
+		
+		btnPanel.add(searchNameBtn);
+		btnPanel.add(searchAllNameBtn);
+		
 		searchAllNameBtn.addActionListener(new AllListener());
-		closeBtn.addActionListener(new CloseListener());
+		//closeBtn.addActionListener(new CloseListener());
 
-		add(namePanel);
-		add(firstNamePanel);
-		add(lastNamePanel);
-		add(searchAllNameBtn);
-		add(closeBtn);
+		
+		add(NamePanel);
+		add(btnPanel);
+		//add(closeBtn);
 
 	}
 
@@ -129,29 +117,6 @@ public class RciaAdminDialog extends JDialog {
 
 	}
 
-	private class FullListener implements ActionListener
-	{
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			try {
-				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
-						DatabaseStore.getUserName(), DatabaseStore.getPassword());
-
-
-				rciaAdminPanel.displayData(dbWorker.retrieveRciaData(QueryType.rciaFull, ""));
-
-				dbWorker.dbClose();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			//			rciaAdminPanel.displayAll();
-
-		}
-
-	}
-
 	private class AllListener implements ActionListener
 	{
 
@@ -161,7 +126,7 @@ public class RciaAdminDialog extends JDialog {
 				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
 						DatabaseStore.getUserName(), DatabaseStore.getPassword());
 
-
+				rciaAdminPanel = new RciaAdminPanel(mainGui);
 				rciaAdminPanel.displayData(dbWorker.retrieveRciaData(QueryType.all, ""));
 
 				dbWorker.dbClose();
