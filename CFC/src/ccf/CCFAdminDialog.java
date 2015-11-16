@@ -24,6 +24,7 @@ public class CCFAdminDialog extends JDialog {
 	private static final long serialVersionUID = 4981523267433072507L;
 
 	private CCFAdminPanel adminPanel;
+	private  MainFrame mainGui;
 
 	public CCFAdminDialog(MainFrame mainGui)
 	{
@@ -40,8 +41,6 @@ public class CCFAdminDialog extends JDialog {
 
 		JButton allBtn = new JButton("Get All Values");
 		JButton closeBtn = new JButton("Close");
-
-		adminPanel = new CCFAdminPanel(mainGui);
 
 		setLayout(new GridLayout(4,1));
 		setSize(500, 150);
@@ -81,6 +80,7 @@ public class CCFAdminDialog extends JDialog {
 			try {
 				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
 						DatabaseStore.getUserName(), DatabaseStore.getPassword());
+				adminPanel = new CCFAdminPanel(mainGui);
 				adminPanel.displayAll(dbWorker.retrieveCCFData(QueryType.all, ""));
 				dbWorker.dbClose();
 			} catch (SQLException e1) {
