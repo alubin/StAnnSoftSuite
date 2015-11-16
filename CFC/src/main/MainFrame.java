@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +10,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 
 import rcia.RciaAdminDialog;
 import rcia.RciaImportDialog;
@@ -106,7 +109,14 @@ public class MainFrame extends JFrame{
 
 		printSheet.addActionListener(new PrintSheetActionListener());
 		printCertificate.addActionListener(new PrintCertificateActionListener());
+		
+		//Adds logo to mainFrame
+		JPanel panel1 = new JPanel();
+	    ImageIcon logo = new ImageIcon(getClass().getResource("/images/logo.png"));
+	    System.out.println(logo);
+	    panel1.add(new JLabel(logo), BorderLayout.CENTER);
 
+	    this.add(panel1);
 		//Assign the menu
 		setJMenuBar(optionMenuBar);
 		pack();
