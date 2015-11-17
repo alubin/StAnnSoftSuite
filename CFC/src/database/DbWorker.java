@@ -262,29 +262,11 @@ public class DbWorker {
 	 * @return A collection of the different fields in the database.
 	 * @throws SQLException
 	 */
-	public ArrayList<RciaData> retrieveRciaData(QueryType type, String input) throws SQLException
+	public ArrayList<RciaData> retrieveRciaData(String fname, String lname) throws SQLException
 	{
-		String query = "SELECT * FROM inquirer";
+		String query = "SELECT * FROM inquirer WHERE First_Name LIKE '" + fname + "%' AND Last_Name LIKE '" + lname + "%'";
 		Statement stmt = null;
 		ArrayList<RciaData> resultArray = new ArrayList<RciaData>();
-
-		switch(type)
-		{
-		case rciaLName:
-			query = "SELECT * FROM inquirer WHERE Last_Name = '" + input + "'";
-			break;
-		case rciaFName:
-			query = "SELECT * FROM inquirer WHERE First_Name = '" + input + "'";
-			break;
-		case rciaFull:
-			query = "SELECT * FROM inquirer WHERE [Last_Name] = '" + input + "'";
-			break;
-		default:
-			query = "SELECT * FROM inquirer";
-			break;
-
-		}
-
 
 		try {
 

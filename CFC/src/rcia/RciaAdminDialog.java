@@ -58,6 +58,7 @@ public class RciaAdminDialog extends JDialog {
 		btnPanel.add(searchNameBtn);
 		btnPanel.add(searchAllNameBtn);
 		
+		searchNameBtn.addActionListener(new SearchNameListener());
 		searchAllNameBtn.addActionListener(new AllListener());
 		//closeBtn.addActionListener(new CloseListener());
 		
@@ -67,7 +68,7 @@ public class RciaAdminDialog extends JDialog {
 
 	}
 
-	private class FirstListener implements ActionListener
+	private class SearchNameListener implements ActionListener
 	{
 		@Override
 		public void actionPerformed(ActionEvent arg0){
@@ -76,26 +77,8 @@ public class RciaAdminDialog extends JDialog {
 				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
 						DatabaseStore.getUserName(), DatabaseStore.getPassword());
 
-				rciaAdminPanel.displayData(dbWorker.retrieveRciaData(QueryType.rciaFName, firstNameField.getText()));
-
-				dbWorker.dbClose();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		}
-	}
-
-	private class LastListener implements ActionListener
-	{
-		@Override
-		public void actionPerformed(ActionEvent arg0){
-
-			try {
-				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
-						DatabaseStore.getUserName(), DatabaseStore.getPassword());
-
-				rciaAdminPanel.displayData(dbWorker.retrieveRciaData(QueryType.rciaLName, lastNameField.getText()));
+				rciaAdminPanel = new RciaAdminPanel(mainGui);
+				rciaAdminPanel.displayData(dbWorker.retrieveRciaData(firstNameField.getText(), lastNameField.getText()));
 
 				dbWorker.dbClose();
 			} catch (SQLException e1) {
@@ -126,7 +109,7 @@ public class RciaAdminDialog extends JDialog {
 						DatabaseStore.getUserName(), DatabaseStore.getPassword());
 
 				rciaAdminPanel = new RciaAdminPanel(mainGui);
-				rciaAdminPanel.displayData(dbWorker.retrieveRciaData(QueryType.all, ""));
+				rciaAdminPanel.displayData(dbWorker.retrieveRciaData("", ""));
 
 				dbWorker.dbClose();
 			} catch (SQLException e1) {

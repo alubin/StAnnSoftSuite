@@ -113,7 +113,6 @@ public class MainFrame extends JFrame{
 		//Adds logo to mainFrame
 		JPanel panel1 = new JPanel();
 	    ImageIcon logo = new ImageIcon(getClass().getResource("/images/logo.png"));
-	    System.out.println(logo);
 	    panel1.add(new JLabel(logo), BorderLayout.CENTER);
 
 	    this.add(panel1);
