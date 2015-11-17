@@ -46,7 +46,7 @@ public class RciaAdminDialog extends JDialog {
 		JButton searchAllNameBtn = new JButton("Search All");
 		//JButton closeBtn = new JButton("Close");
 
-		setLayout(new GridLayout(5, 1));
+		setLayout(new GridLayout(2, 1));
 		setSize(320, 285);
 
 		NamePanel.add(firstNameTitle);
