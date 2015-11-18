@@ -43,9 +43,10 @@ public class CCFImportPanel extends JPanel{
 		JXTable accessTable = tableValues.getTable();
 		JScrollPane accessScroll = new JScrollPane(accessTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		JPanel btnPanel = new JPanel(new GridLayout(1,3));
+		JButton btnEmail = new JButton("Enter Emails");
 		JButton btnSave = new JButton("Save To Database");
 		JButton btnCancel = new JButton("Cancel Import");
-		JButton btnSearch = new JButton("Search");
+		JButton btnFind = new JButton("Find");
 
 		setBorder(BorderFactory.createTitledBorder("CCF Import"));
 		setLayout(new BorderLayout());
@@ -56,11 +57,13 @@ public class CCFImportPanel extends JPanel{
 
 		btnSave.addActionListener(new SaveActionListener());
 		btnCancel.addActionListener(new CancelActionListener());
-		btnSearch.addActionListener(new FindActionListener());
+		btnFind.addActionListener(new FindActionListener());
 
+
+		btnPanel.add(btnEmail);
 		btnPanel.add(btnSave);
 		btnPanel.add(btnCancel);
-		btnPanel.add(btnSearch);
+		btnPanel.add(btnFind);
 		add(btnPanel, BorderLayout.NORTH);
 
 		add(accessScroll,BorderLayout.CENTER);
@@ -102,17 +105,27 @@ public class CCFImportPanel extends JPanel{
 		}
 
 	}
-	
+
 	private class FindActionListener implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
+
 			SearchFactory mySearch = new SearchFactory();
 			mySearch.showFindInput(tableValues.getTable(), tableValues.getTable().getSearchable());
 
 		}
-		
+
+	}
+
+	private class EmailActionListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			//TODO: Open Dialog box and pass in the CCF Data to populate the drop down list.
+
+		}
+
 	}
 
 	public void setMainGui(MainFrame mainGui) {

@@ -147,6 +147,11 @@ public class CCFData {
 				+ courseTitle + ", instructor=" + instructor + ", experienced="
 				+ experienced + ", courseLevel=" + courseLevel + ", Email=" + emailAddress + "]";
 	}
+
+	public String getFullName()
+	{
+		return firstName +',' + lastName;
+	}
 	public String getEmailAddress() {
 		return emailAddress;
 	}

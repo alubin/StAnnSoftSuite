@@ -89,17 +89,17 @@ public class CCFAdminPanel extends JPanel {
 		}
 
 	}
-	
+
 	private class FindActionListener implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			
+
 			SearchFactory mySearch = new SearchFactory();
 			mySearch.showFindInput(resultTable, resultTable.getSearchable());
 
 		}
-		
+
 	}
 
 
