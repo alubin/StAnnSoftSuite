@@ -9,7 +9,7 @@ import com.healthmarketscience.jackcess.Table;
  * @author AL
  *
  */
-public class CCFTableModel extends DefaultTableModel {
+public class CCFImportTableModel extends DefaultTableModel {
 
 	/**
 	 *
@@ -30,7 +30,7 @@ public class CCFTableModel extends DefaultTableModel {
 
 	private final Table accessTable;
 
-	public CCFTableModel(Table table)
+	public CCFImportTableModel(Table table)
 	{
 		super(columnNames,0);
 		this.accessTable = table;

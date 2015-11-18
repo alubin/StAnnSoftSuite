@@ -2,7 +2,7 @@ package rcia;
 
 import javax.swing.table.DefaultTableModel;
 
-public class RciaTableModel extends DefaultTableModel {
+public class RciaImportTableModel extends DefaultTableModel {
 
 	/**
 	 *
@@ -79,7 +79,7 @@ public class RciaTableModel extends DefaultTableModel {
 		"AGES",
 	"If needed, would you consider the role of a Sponsor?"};
 
-	public RciaTableModel()
+	public RciaImportTableModel()
 	{
 		super(columnNames,0);
 	}

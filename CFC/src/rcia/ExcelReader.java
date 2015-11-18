@@ -42,7 +42,7 @@ public class ExcelReader {
 
 
 	public RciaTable createTable() {
-		RciaTableModel rciaModel = new RciaTableModel();
+		RciaImportTableModel rciaModel = new RciaImportTableModel();
 		RciaTable rciaTable = new RciaTable(new JXTable(rciaModel));
 		ArrayList<ArrayList<String>> rowArray = new ArrayList<ArrayList<String>>();
 		try

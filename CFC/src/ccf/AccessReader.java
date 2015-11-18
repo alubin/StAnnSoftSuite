@@ -42,11 +42,11 @@ public class AccessReader {
 	{
 		Table table = null;
 		JXTable accessTable = null;
-		CCFTableModel tableModel;
+		CCFImportTableModel tableModel;
 		CCFTable tableData = null;
 		try {
 			table = DatabaseBuilder.open(new File(fileName)).getTable(tableName);
-			tableModel = new CCFTableModel(table);
+			tableModel = new CCFImportTableModel(table);
 			accessTable = new JXTable(tableModel);
 			tableData = new CCFTable(accessTable);
 			for(Row row: table)
