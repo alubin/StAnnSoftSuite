@@ -296,69 +296,6 @@ public class DbWorker {
 		return resultArray;
 	}
 
-	/**
-	 * This function gets all the fields in the CCF Database with the name
-	 * @return A collection of the different fields in the database that match the criteria.
-	 */
-	public ArrayList<CCFData> retrieveCCFDataByName(String... name)
-	{
-		return null;
-	}
-
-	/**
-	 * This function gets all the fields in the RCIA Database with the name
-	 * @return A collection of the different fields in the database that match the criteria.
-	 */
-	public ArrayList<RciaData> retrieveRciaDataByName(String... name)
-	{
-		return null;
-	}
-
-	/**
-	 * This function gets all the fields in the CCF Database with the First name
-	 * @return A collection of the different fields in the database that match the criteria.
-	 */
-	public ArrayList<CCFData> retrieveCCFDataByFirstName(String... name)
-	{
-		return null;
-	}
-
-	/**
-	 * This function gets all the fields in the RCIA Database with the First name
-	 * @return A collection of the different fields in the database that match the criteria.
-	 */
-	public ArrayList<RciaData> retrieveRciaDataByFirstName(String... name)
-	{
-		return null;
-	}
-
-	/**
-	 * This function gets all the fields in the CCF Database with the name
-	 * @return A collection of the different fields in the database that match the criteria.
-	 */
-	public ArrayList<CCFData> retrieveCCFDataByLastName(String... name)
-	{
-		return null;
-	}
-
-	/**
-	 * This function gets all the fields in the RCIA Database with the last name
-	 * @return A collection of the different fields in the database that match the criteria.
-	 */
-	public ArrayList<RciaData> retrieveRciaDataByLastName(String... name)
-	{
-		return null;
-	}
-
-	/**
-	 * This function gets all the fields in the CCF Database with the ID
-	 * @return A collection of the different fields in the database that match the criteria.
-	 */
-	public ArrayList<CCFData> retrieveCCFDataById(String... name)
-	{
-		return null;
-	}
-
 
 	public static void dbClose() {
 
