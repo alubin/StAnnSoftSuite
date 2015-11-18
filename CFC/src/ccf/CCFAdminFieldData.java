@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class CCFAdminFieldData {
 
-	private final boolean selected;
+	private final String selected;
 	private final CCFData data;
 
 	public CCFAdminFieldData(CCFData data)
 	{
-		selected = false;
+		selected = "";
 		this.data = data;
 	}
 

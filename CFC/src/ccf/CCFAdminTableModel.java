@@ -21,24 +21,48 @@ public class CCFAdminTableModel extends DefaultTableModel {
 		super(col,i);
 	}
 
-	@Override
-	public Class<?> getColumnClass(int columnIndex) {
-		Class<?> rtnRes = null;
-        if (columnIndex == 0) {
-            rtnRes = Boolean.class;
-        }
-        else
-        {
-        	rtnRes = super.getColumnClass(columnIndex);
-        }
-		return rtnRes;
-	}
+//	@Override
+//	public Class<?> getColumnClass(int columnIndex) {
+//		Class<?> rtnRes = null;
+//        if (columnIndex == 0) {
+//            rtnRes = Boolean.class;
+//        }
+//        else
+//        {
+//        	rtnRes = super.getColumnClass(columnIndex);
+//        }
+//		return rtnRes;
+//	}
 
 
 	@Override
 	public boolean isCellEditable(int row, int column) {
-		// TODO Auto-generated method stub
-		return true;
+		boolean rtnVal = false;
+		int colCount = getColumnCount();
+
+		if(column == colCount - 1)
+		{
+			rtnVal = true;
+		}
+		else
+		{
+			rtnVal = false;
+		}
+
+		return rtnVal;
+
+	}
+
+	public void clearRows() {
+		final int rowCount = getRowCount();
+		if ( rowCount > 0)
+		{
+			for(int i = rowCount - 1; i > -1; i--)
+			{
+				removeRow(i);
+			}
+		}
+
 	}
 
 }

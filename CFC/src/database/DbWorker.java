@@ -297,6 +297,37 @@ public class DbWorker {
 	}
 
 
+
+	public void updateCCF(final int studID, final String email) throws SQLException
+	{
+		String query = "UPDATE ccf SET Email = '"+ email + "' WHERE StuID = " + studID;
+		Statement stmt = null;
+
+		try {
+
+			stmt = con2.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+
+			while(rs.next())
+			{
+
+			}
+
+
+		} catch (SQLException e ) {
+			e.printStackTrace();
+		} finally {
+			if (stmt != null) { stmt.close(); }
+		}
+
+	}
+
+	public void updateRcia()
+	{
+
+	}
+
+
 	public static void dbClose() {
 
 		try {
