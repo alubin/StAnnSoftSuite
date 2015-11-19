@@ -18,6 +18,7 @@ import rcia.RciaImportDialog;
 import ccf.CCFAdminDialog;
 import ccf.CCFImportDialog;
 import database.DBSetupDialog;
+import print.Print;
 
 /**
  * This Frame will be the front facing GUI that the client will see.
@@ -50,6 +51,7 @@ public class MainFrame extends JFrame{
 	private final CCFAdminDialog ccfAdminDialogBox;
 	private final RciaImportDialog rciaImportDialogBox;
 	private final RciaAdminDialog rciaAdminDialogBox;
+	private final Print printDialogBox;
 
 	/**
 	 * This panel is responsible for displaying the appropriate values on the main screen, based on the user selections.
@@ -73,6 +75,7 @@ public class MainFrame extends JFrame{
 		ccfAdminDialogBox = new CCFAdminDialog(instance);
 		rciaImportDialogBox = new RciaImportDialog(instance);
 		rciaAdminDialogBox = new RciaAdminDialog(instance);
+		printDialogBox = new Print(instance);
 
 		//Populate the Menu Bar
 		optionMenuBar.add(fileOption);
@@ -185,7 +188,7 @@ public class MainFrame extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Display the Print Dialog
-
+			printDialogBox.setVisible(true);
 		}
 
 	}
