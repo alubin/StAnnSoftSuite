@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/Sunshine/Documents/GitHub/StAnnSoftSuite/CFC/lib/commons-codec-1.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sunshine/Documents/GitHub/StAnnSoftSuite/CFC/lib/commons-lang-2.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sunshine/Documents/GitHub/StAnnSoftSuite/CFC/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sunshine/Documents/GitHub/StAnnSoftSuite/CFC/lib/commons-logging-1.1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sunshine/Documents/GitHub/StAnnSoftSuite/CFC/lib/hsqldb.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sunshine/Documents/GitHub/StAnnSoftSuite/CFC/lib/jackcess-2.1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sunshine/Documents/GitHub/StAnnSoftSuite/CFC/lib/junit-4.12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sunshine/Documents/GitHub/StAnnSoftSuite/CFC/lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sunshine/Documents/GitHub/StAnnSoftSuite/CFC/lib/mysql-connector-java-5.1.37-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sunshine/Documents/GitHub/StAnnSoftSuite/CFC/lib/poi-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sunshine/Documents/GitHub/StAnnSoftSuite/CFC/lib/poi-excelant-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sunshine/Documents/GitHub/StAnnSoftSuite/CFC/lib/poi-ooxml-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sunshine/Documents/GitHub/StAnnSoftSuite/CFC/lib/poi-ooxml-schemas-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sunshine/Documents/GitHub/StAnnSoftSuite/CFC/lib/poi-scratchpad-3.13-20150929.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sunshine/Documents/GitHub/StAnnSoftSuite/CFC/lib/swingx-all-1.6.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sunshine/Documents/GitHub/StAnnSoftSuite/CFC/lib/ucanaccess-3.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sunshine/Documents/GitHub/StAnnSoftSuite/CFC/lib/xmlbeans-2.6.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
