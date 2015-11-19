@@ -32,6 +32,8 @@ public class RciaAdminDialog extends JDialog {
 	{	
 		this.mainGui = mainGui;
 		
+		setResizable(false);
+		
 		JPanel NamePanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 5,5));
 		JLabel firstNameTitle = new JLabel("First Name:");
 		firstNameField = new JTextField();
@@ -47,7 +49,7 @@ public class RciaAdminDialog extends JDialog {
 		//JButton closeBtn = new JButton("Close");
 
 		setLayout(new GridLayout(2, 1));
-		setSize(320, 285);
+		setSize(310, 160);
 
 		NamePanel.add(firstNameTitle);
 		NamePanel.add(firstNameField);
