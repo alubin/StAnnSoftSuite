@@ -1,5 +1,7 @@
 package ccf;
 
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -7,38 +9,63 @@ import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class CCFEmailDialog {
+public class CCFEmailDialog extends JPanel{
 
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 4957309745869936744L;
 	private ArrayList<CCFData> data;
 	private JComboBox<String> emailList;
+	private JLabel emailDisplay;
 	private JTextField emailField;
 	private HashMap<String, String> emailMap;
 
-	public CCFEmailDialog(ArrayList<CCFData> dataList)
+	public CCFEmailDialog()
 	{
-		this.data = dataList;
+		JButton btnSave = new JButton("Save");
+
+		setLayout(new GridLayout(2,3));
 		emailMap = new HashMap<String, String>();
 		emailList = new JComboBox<String>();
+		emailDisplay = new JLabel("");
 		emailField = new JTextField("Email");
-		JButton btnSave = new JButton("Save");
+
+		add(emailList);
+		add(emailDisplay);
+		add(emailField);
+		add(btnSave, BorderLayout.EAST);
 
 		btnSave.addActionListener(new SaveListener());
 
 		populateDropBox();
 	}
 
+	public CCFEmailDialog(ArrayList<CCFData> dataList)
+	{
+		this();
+		this.data = dataList;
+
+	}
+
 	private void populateDropBox() {
 
-		for(CCFData data : this.data)
+		if(data != null)
 		{
-			emailMap.put(data.getFullName(), data.getEmailAddress());
-		}
+			for(CCFData data : this.data)
+			{
+				emailMap.put(data.getFullName(), data.getEmailAddress());
+			}
 
-		for(String fullName: emailMap.keySet())
-		{
-			emailList.addItem(fullName);
+			for(String fullName: emailMap.keySet())
+			{
+				emailList.addItem(fullName);
+			}
 		}
 	}
 

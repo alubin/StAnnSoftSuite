@@ -1,14 +1,17 @@
 package ccf;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
 import main.MainFrame;
@@ -25,10 +28,11 @@ public class CCFAdminDialog extends JDialog {
 
 	private CCFAdminPanel adminPanel;
 	private  MainFrame mainGui;
+	private CCFEmailDialog emailDialog;
 
 	public CCFAdminDialog(MainFrame mainGui)
 	{
-
+		emailDialog = new CCFEmailDialog(new ArrayList<CCFData>());
 		JPanel idPanel = new JPanel(new GridLayout(1,2));
 		JLabel idTitle = new JLabel("Search by ID:");
 		JTextField idField = new JTextField();
@@ -58,6 +62,8 @@ public class CCFAdminDialog extends JDialog {
 
 		add(idPanel);
 		add(emailPanel);
+		add(new JSeparator(JSeparator.VERTICAL), BorderLayout.LINE_START);
+		add(emailDialog);
 		add(allBtn);
 		add(closeBtn);
 
