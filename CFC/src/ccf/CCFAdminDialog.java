@@ -1,6 +1,8 @@
 package ccf;
 
 import java.awt.BorderLayout;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,20 +32,20 @@ public class CCFAdminDialog extends JDialog {
 	private CCFAdminPanel adminPanel;
 	private  MainFrame mainGui;
 	private CCFEmailDialog emailDialog;
-	private final int GAP = 2;
 
 	public CCFAdminDialog(MainFrame mainGui)
 	{
 		emailDialog = new CCFEmailDialog(new ArrayList<CCFData>());
-		JPanel searchPanel = new JPanel(new GridLayout(1,2));
+		emailDialog.setEnabled(false);
+		JPanel searchPanel = new JPanel(new GridLayout(2,1));
 		JPanel emailSettingPanel = new JPanel(new GridLayout(1,3));
 
-		JPanel idPanel = new JPanel(new GridLayout(1,3));
+		JPanel idPanel = new JPanel(new GridLayout(3,1));
 		JLabel idTitle = new JLabel("Search by ID:");
 		JTextField idField = new JTextField();
 		JButton searchIdBtn = new JButton("Search ID");
 
-		JPanel emailPanel = new JPanel(new GridLayout(1,3));
+		JPanel emailPanel = new JPanel(new GridLayout(3,1));
 		JLabel emailTitle = new JLabel("Search by Email:");
 		JTextField emailField = new JTextField();
 		JButton searchEmailBtn = new JButton("Search Email");
@@ -51,17 +53,12 @@ public class CCFAdminDialog extends JDialog {
 		JButton allBtn = new JButton("Get All Values");
 		JButton closeBtn = new JButton("Close");
 
-		JPanel btnPanel = new JPanel(new GridLayout(2,1));
+		JPanel btnPanel = new JPanel(new GridLayout(4,1));
 
 
-//		setLayout(new GridLayout(4,1));
-		setLayout(new BorderLayout());
-		((JPanel)getContentPane()).setBorder(BorderFactory.createEmptyBorder(
-                GAP/2, //top
-                0,     //left
-                GAP/2, //bottom
-                0));   //right);
-		setSize(500, 150);
+		setLayout(new GridLayout(3,1));
+
+		setSize(500, 400);
 
 
 
@@ -76,16 +73,18 @@ public class CCFAdminDialog extends JDialog {
 		searchPanel.add(idPanel);
 		searchPanel.add(emailPanel);
 
-		emailSettingPanel.add(emailDialog,BorderLayout.CENTER);
+		emailSettingPanel.add(emailDialog);
 
+		btnPanel.add(new JLabel());
 		btnPanel.add(allBtn);
 		btnPanel.add(closeBtn);
 
 		closeBtn.addActionListener(new CloseActionListener());
 		allBtn.addActionListener(new AllActionListener());
+		searchIdBtn.addActionListener(new IdSubmitActionlistener());
+		searchEmailBtn.addActionListener(new EmailSubmitActionlistener());
 
-		add(searchPanel,BorderLayout.WEST);
-		add(new JSeparator(JSeparator.VERTICAL), BorderLayout.LINE_START);
+		add(searchPanel,BorderLayout.CENTER);
 		add(emailSettingPanel, BorderLayout.EAST);
 		add(btnPanel,BorderLayout.SOUTH);
 
@@ -119,5 +118,27 @@ public class CCFAdminDialog extends JDialog {
 		}
 
 	}
+	
+	private class EmailSubmitActionlistener implements ActionListener
+	{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+	
+	private class IdSubmitActionlistener implements ActionListener
+	{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+	}
+	
+	
 
 }

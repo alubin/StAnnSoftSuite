@@ -1,12 +1,14 @@
 package ccf;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -30,16 +32,27 @@ public class CCFEmailDialog extends JPanel{
 	{
 		JButton btnSave = new JButton("Save");
 
-		setLayout(new GridLayout(2,3));
+//		setLayout(new GridLayout(2,3));
+		setLayout(new BorderLayout());
+		setBorder(BorderFactory.createDashedBorder(Color.BLACK));
 		emailMap = new HashMap<String, String>();
 		emailList = new JComboBox<String>();
-		emailDisplay = new JLabel("");
+		emailDisplay = new JLabel("Empty");
 		emailField = new JTextField("Email");
 
-		add(emailList);
-		add(emailDisplay);
-		add(emailField);
-		add(btnSave, BorderLayout.EAST);
+		JPanel topPanel = new JPanel(new GridLayout(1,2));
+		topPanel.add(emailList);
+		topPanel.add(emailDisplay);
+		
+		JPanel centerPanel = new JPanel(new GridLayout(3,1));
+		centerPanel.add(new JLabel("Please Enter New Email Address:"));
+		centerPanel.add(emailField);
+//		add(emailList);
+//		add(emailDisplay);
+		add(topPanel,BorderLayout.NORTH);
+		add(centerPanel);
+//		add(emailField);
+		add(btnSave, BorderLayout.SOUTH);
 
 		btnSave.addActionListener(new SaveListener());
 
@@ -51,6 +64,11 @@ public class CCFEmailDialog extends JPanel{
 		this();
 		this.data = dataList;
 
+	}
+	
+	public void addNames(ArrayList<CCFData> dataList)
+	{
+		this.data = dataList;
 	}
 
 	private void populateDropBox() {
