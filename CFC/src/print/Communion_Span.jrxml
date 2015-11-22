@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-11-19T00:05:41 -->
+<!-- 2015-11-22T13:54:54 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cert2" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4effc2c0-b940-4616-a809-beb3370226d6">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<queryString>
@@ -106,11 +106,11 @@
 				<reportElement x="556" y="486" width="173" height="1" uuid="5c50d2ea-135b-48da-aeca-b047670f0e93"/>
 			</line>
 			<staticText>
-				<reportElement x="65" y="90" width="660" height="53" uuid="d288b7fa-8eaf-4cd4-92ac-7f9349a8fb3c"/>
+				<reportElement x="56" y="90" width="679" height="53" uuid="d288b7fa-8eaf-4cd4-92ac-7f9349a8fb3c"/>
 				<textElement textAlignment="Center">
 					<font fontName="Old English Text MT" size="48"/>
 				</textElement>
-				<text><![CDATA[Certificado de Primera Comunion   ]]></text>
+				<text><![CDATA[Certificado de Primera Comunion]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="79" y="150" width="595" height="37" uuid="ea71bdc5-9e64-476e-8f6a-0c540c9df7c2"/>
