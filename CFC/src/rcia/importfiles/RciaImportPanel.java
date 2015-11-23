@@ -1,4 +1,4 @@
-package rcia;
+package rcia.importfiles;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -15,6 +15,8 @@ import javax.swing.JTable;
 import org.jdesktop.swingx.JXTable;
 import org.jdesktop.swingx.search.SearchFactory;
 
+import rcia.ExcelReader;
+import rcia.RciaTable;
 import database.DatabaseStore;
 import database.DbWorker;
 import main.MainFrame;

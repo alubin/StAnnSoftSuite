@@ -1,4 +1,4 @@
-package rcia;
+package rcia.admin;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -33,6 +33,7 @@ import org.jdesktop.swingx.decorator.ComponentAdapter;
 import org.jdesktop.swingx.decorator.HighlightPredicate;
 import org.jdesktop.swingx.search.SearchFactory;
 
+import rcia.RciaData;
 import database.DatabaseStore;
 import database.DbWorker;
 import database.QueryType;

@@ -1,4 +1,4 @@
-package ccf;
+package ccf.admin;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -20,6 +20,7 @@ import main.MainFrame;
 import org.jdesktop.swingx.JXTable;
 import org.jdesktop.swingx.search.SearchFactory;
 
+import ccf.CCFData;
 import database.DatabaseStore;
 import database.DbWorker;
 import database.QueryType;

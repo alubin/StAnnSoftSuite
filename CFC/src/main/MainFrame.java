@@ -13,12 +13,12 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
-import rcia.RciaAdminDialog;
-import rcia.RciaAdminPanel;
-import rcia.RciaImportDialog;
-import ccf.CCFAdminDialog;
-import ccf.CCFAdminPanel;
-import ccf.CCFImportDialog;
+import rcia.admin.RciaAdminDialog;
+import rcia.admin.RciaAdminPanel;
+import rcia.importfiles.RciaImportDialog;
+import ccf.admin.CCFAdminDialog;
+import ccf.admin.CCFAdminPanel;
+import ccf.importfiles.CCFImportDialog;
 import database.DBSetupDialog;
 import print.Print;
 

@@ -1,8 +1,9 @@
-package ccf;
+package ccf.importfiles;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import ccf.AccessReader;
 import main.MainFrame;
 import custom.Convert;
 

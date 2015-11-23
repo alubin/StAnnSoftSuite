@@ -1,4 +1,4 @@
-package ccf;
+package ccf.importfiles;
 
 import java.awt.AWTException;
 import java.awt.BorderLayout;
@@ -19,6 +19,8 @@ import javax.swing.JTable;
 import org.jdesktop.swingx.JXTable;
 import org.jdesktop.swingx.search.SearchFactory;
 
+import ccf.AccessReader;
+import ccf.CCFTable;
 import main.MainFrame;
 import database.DatabaseStore;
 import database.DbWorker;

@@ -1,4 +1,4 @@
-package rcia;
+package rcia.admin;
 
 import java.awt.Color;
 import java.awt.Component;

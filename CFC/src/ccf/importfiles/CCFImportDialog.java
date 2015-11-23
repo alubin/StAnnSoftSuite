@@ -1,4 +1,4 @@
-package ccf;
+package ccf.importfiles;
 
 import javax.swing.filechooser.FileNameExtensionFilter;
 

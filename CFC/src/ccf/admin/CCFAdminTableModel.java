@@ -1,4 +1,4 @@
-package ccf;
+package ccf.admin;
 
 import javax.swing.table.DefaultTableModel;
 

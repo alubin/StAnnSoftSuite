@@ -1,4 +1,4 @@
-package ccf;
+package ccf.admin;
 
 import java.awt.BorderLayout;
 import java.awt.GraphicsDevice;
@@ -17,6 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
+import ccf.CCFData;
+import ccf.importfiles.CCFEmailDialog;
 import main.MainFrame;
 import database.DatabaseStore;
 import database.DbWorker;
