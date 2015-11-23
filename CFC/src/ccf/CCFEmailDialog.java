@@ -2,6 +2,7 @@ package ccf;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -56,7 +57,7 @@ public class CCFEmailDialog extends JPanel{
 
 		btnSave.addActionListener(new SaveListener());
 
-		populateDropBox();
+//		populateDropBox();
 	}
 
 	public CCFEmailDialog(ArrayList<CCFData> dataList)
@@ -69,6 +70,7 @@ public class CCFEmailDialog extends JPanel{
 	public void addNames(ArrayList<CCFData> dataList)
 	{
 		this.data = dataList;
+		populateDropBox();
 	}
 
 	private void populateDropBox() {
@@ -116,6 +118,15 @@ public class CCFEmailDialog extends JPanel{
 
 	}
 
+	public void disableDialog(boolean state) 
+	{
+		for(Component comp: getComponents())
+		{
+			comp.setEnabled(state);
+		}
+		repaint();
+		
+	}
 
 
 }

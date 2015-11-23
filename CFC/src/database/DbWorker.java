@@ -58,11 +58,13 @@ public class DbWorker {
 		catch (Exception e)
 		{
 			e.printStackTrace();
+			new DbErrorDialog().setVisible(true);
 		}
 	}
 
-	public void storeCCF(ArrayList<CCFData> data){
+	public int storeCCF(ArrayList<CCFData> data){
 
+		int result = 0;
 		System.out.println("Writing to CCF Database.");
 		//TODO: Extract the data from the array and store the data.
 
@@ -98,9 +100,13 @@ public class DbWorker {
 			}
 			catch (SQLException e) {
 				System.err.println(e);
+				result = -1;
 			}
+			
+			
 			//			System.out.println(results);
 		}
+		return result;
 	}
 
 	public void storeRCIA(ArrayList<RciaData> data){

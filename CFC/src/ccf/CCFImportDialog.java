@@ -17,7 +17,7 @@ public class CCFImportDialog extends ImportDialog {
 	private final static String ccfTitle = "Select CCF File to Import";
 	
 	public CCFImportDialog(MainFrame instance) {
-		super(ccfTitle, new CCFActionListener(instance));
+		super(ccfTitle, new CCFImportActionListener(instance));
 	}
 	
 	@Override

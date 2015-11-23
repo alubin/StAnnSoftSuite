@@ -36,7 +36,7 @@ public class CCFAdminDialog extends JDialog {
 	public CCFAdminDialog(MainFrame mainGui)
 	{
 		emailDialog = new CCFEmailDialog(new ArrayList<CCFData>());
-		emailDialog.setEnabled(false);
+		emailDialog.disableDialog(true);
 		JPanel searchPanel = new JPanel(new GridLayout(2,1));
 		JPanel emailSettingPanel = new JPanel(new GridLayout(1,3));
 
@@ -50,7 +50,7 @@ public class CCFAdminDialog extends JDialog {
 		JTextField emailField = new JTextField();
 		JButton searchEmailBtn = new JButton("Search Email");
 
-		JButton allBtn = new JButton("Get All Values");
+		JButton allBtn = new JButton("Get All Students");
 		JButton closeBtn = new JButton("Close");
 
 		JPanel btnPanel = new JPanel(new GridLayout(4,1));
@@ -84,9 +84,9 @@ public class CCFAdminDialog extends JDialog {
 		searchIdBtn.addActionListener(new IdSubmitActionlistener());
 		searchEmailBtn.addActionListener(new EmailSubmitActionlistener());
 
-		add(searchPanel,BorderLayout.CENTER);
-		add(emailSettingPanel, BorderLayout.EAST);
-		add(btnPanel,BorderLayout.SOUTH);
+		add(searchPanel);
+		add(emailSettingPanel);
+		add(btnPanel);
 
 	}
 
