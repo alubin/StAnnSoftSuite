@@ -39,11 +39,6 @@ public class DbWorker {
 		dbConnect(ipAddress, port);
 
 	}
-	//	public DbWorker(String ipAddress, int port)
-	//	{
-	//		this();
-	//		dbConnect(ipAddress, port);
-	//	}
 
 	public void dbConnect(String ipAddress, int port) {
 		String url = "jdbc:mysql://"+ipAddress+":"+port+"/";
@@ -60,7 +55,7 @@ public class DbWorker {
 		catch (Exception e)
 		{
 			e.printStackTrace();
-			new DbErrorDialog().setVisible(true);
+			new DbConnectErrorDialog().setVisible(true);
 		}
 	}
 
@@ -104,8 +99,8 @@ public class DbWorker {
 				System.err.println(e);
 				result = -1;
 			}
-			
-			
+
+
 			//			System.out.println(results);
 		}
 		return result;
@@ -117,7 +112,7 @@ public class DbWorker {
 		for(RciaData results : data)
 		{
 			try{
-				PreparedStatement pStmt = con1.prepareStatement("INSERT INTO `rcia`.`inquirer` (`Eform_Paper`,`Badges`,`Print_Form`,`Value`,"
+				PreparedStatement pStmt = con2.prepareStatement("INSERT INTO `rcia`.`inquirer` (`Eform_Paper`,`Badges`,`Print_Form`,`Value`,"
 						+ "`Verification_Form`,`Reconciliation`,`Bap_Cert`,`Birth_Cert`,`Saint`,`Gender`,`Roles`,`Last_Name`,"
 						+ "`Familiar_Name`,`Sponsor_First_Name`,`Sponsor_Last_Name`,`Sponsor`,`First_Name`,`Middle_Name`,"
 						+ "`Birth_Name`,`Address`,`City`,`State`,`Zip`,`Email`,`Phone`,`DOB`,`Age`,`Occupation`,`Birthplace_City`,"
@@ -225,10 +220,13 @@ public class DbWorker {
 		switch(type)
 		{
 		case ccfId:
-			query = "SELECT * FROM parishData WHERE student_id = '" + input + "'";
+			query = "SELECT * FROM parishData WHERE StuID = '" + input + "'";
 			break;
 		case ccfEmail:
-			query = "SELECT * FROM parishData WHERE email = '" + input + "'";
+			query = "SELECT * FROM parishData WHERE Email = '" + input + "'";
+			break;
+		case all:
+			query = "SELECT * FROM parishData";
 			break;
 		default:
 			query = "SELECT * FROM parishData";
@@ -243,7 +241,6 @@ public class DbWorker {
 
 			while(rs.next())
 			{
-				//				System.out.println(rs.getObject(1));
 				Object[] results = new Object[ccfColumnSize];
 				for(int i = 0; i < 17; i++)
 				{
@@ -272,9 +269,32 @@ public class DbWorker {
 	 */
 	public ArrayList<RciaData> retrieveRciaData(String fname, String lname) throws SQLException
 	{
-		String query = "SELECT * FROM inquirer WHERE First_Name LIKE '" + fname + "%' AND Last_Name LIKE '" + lname + "%'";
+//		String query = "SELECT * FROM inquirer WHERE First_Name LIKE '" + fname + "%' AND Last_Name LIKE '" + lname + "%'";
+		String query = "SELECT * FROM inquirer";
 		Statement stmt = null;
 		ArrayList<RciaData> resultArray = new ArrayList<RciaData>();
+		
+		if(fname.isEmpty() && lname.isEmpty())
+		{
+			query = "SELECT * FROM inquirer";
+		}
+		else if(!fname.isEmpty() && lname.isEmpty())
+		{
+			System.out.println("First Name only");
+			query = query +" WHERE First_Name LIKE '" + fname + "%'";
+		}
+		else if(!lname.isEmpty() && fname.isEmpty())
+		{
+			System.out.println("Last Name only");
+			query = query +" WHERE Last_Name LIKE '" + lname + "%'";
+		}
+		else if(!fname.isEmpty() && !lname.isEmpty())
+		{
+			System.out.println("Both Names only");
+			query = "SELECT * FROM inquirer WHERE First_Name LIKE '" + fname + "%' AND Last_Name LIKE '" + lname + "%'";
+		}
+		
+		System.out.println(query);
 
 		try {
 
@@ -290,7 +310,7 @@ public class DbWorker {
 				}
 				RciaData data = new RciaData(results);
 				resultArray.add(data);
-				System.out.println(data);
+//				System.out.println(data);
 			}
 
 
@@ -303,14 +323,14 @@ public class DbWorker {
 
 		return resultArray;
 	}
-	
+
 	public ArrayList<PrintData> retrievePrintData(String fname, String lname) throws SQLException
 	{
 		System.out.println(fname + " " + lname);
 		String query = "SELECT First_Name, Last_Name, Middle_Name, Familiar_Name, Sponsor_First_Name, Sponsor_Last_Name, Sponsor, Print_Form, "
-					+ "Eform_Paper, Bap_Cert, Birth_Name, DOB, Been_Baptized, Date_Of_Baptism, Month_Year_Confirmed, Sponsor_Name, Have_Sponsor, "
-						+ "Father_Full_Name, Mother_Full_Name, Sacraments FROM inquirer WHERE First_Name LIKE '" + fname + "%' AND "
-								+ "Last_Name LIKE '" + lname + "%'";
+				+ "Eform_Paper, Bap_Cert, Birth_Name, DOB, Been_Baptized, Date_Of_Baptism, Month_Year_Confirmed, Sponsor_Name, Have_Sponsor, "
+				+ "Father_Full_Name, Mother_Full_Name, Sacraments FROM inquirer WHERE First_Name LIKE '" + fname + "%' AND "
+				+ "Last_Name LIKE '" + lname + "%'";
 		Statement stmt = null;
 		ArrayList<PrintData> resultArray = new ArrayList<PrintData>();
 
@@ -344,20 +364,23 @@ public class DbWorker {
 
 
 
-	public void updateCCF(final int studID, final String email) throws SQLException
+	public int updateCCF(final String stud, final String email) throws SQLException
 	{
-		String query = "UPDATE ccf SET Email = '"+ email + "' WHERE StuID = " + studID;
+
+		// create the java mysql update prepared statement
+		String query = "UPDATE parishData SET Email = ? WHERE Student = ?";
 		Statement stmt = null;
+		int rs = 0;
 
 		try {
 
-			stmt = con2.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
+			PreparedStatement preparedStmt = con1.prepareStatement(query);
+			preparedStmt.setString(1, email);
+			preparedStmt.setString(2, stud);
 
-			while(rs.next())
-			{
+			// execute the java prepared statement
+			preparedStmt.executeUpdate();
 
-			}
 
 
 		} catch (SQLException e ) {
@@ -365,6 +388,8 @@ public class DbWorker {
 		} finally {
 			if (stmt != null) { stmt.close(); }
 		}
+
+		return rs;
 
 	}
 

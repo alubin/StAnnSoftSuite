@@ -8,9 +8,14 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 
-public class DbErrorDialog extends JDialog {
+public class DbConnectErrorDialog extends JDialog {
 
-	public DbErrorDialog()
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6089343287580658193L;
+
+	public DbConnectErrorDialog()
 	{
 		//			super("Database Error");
 		setTitle("Database Error");

@@ -29,7 +29,6 @@ public class CCFAdminDialog extends JDialog {
 	 */
 	private static final long serialVersionUID = 4981523267433072507L;
 
-	private CCFAdminPanel adminPanel;
 	private  MainFrame mainGui;
 	private CCFEmailDialog emailDialog;
 
@@ -41,14 +40,14 @@ public class CCFAdminDialog extends JDialog {
 		JPanel emailSettingPanel = new JPanel(new GridLayout(1,3));
 
 		JPanel idPanel = new JPanel(new GridLayout(3,1));
-		JLabel idTitle = new JLabel("Search by ID:");
+		JLabel idTitle = new JLabel("Search by Student ID:");
 		JTextField idField = new JTextField();
-		JButton searchIdBtn = new JButton("Search ID");
+		JButton searchIdBtn = new JButton("Search Student ID");
 
 		JPanel emailPanel = new JPanel(new GridLayout(3,1));
-		JLabel emailTitle = new JLabel("Search by Email:");
+		JLabel emailTitle = new JLabel("Search by Email Address:");
 		JTextField emailField = new JTextField();
-		JButton searchEmailBtn = new JButton("Search Email");
+		JButton searchEmailBtn = new JButton("Search Email Address");
 
 		JButton allBtn = new JButton("Get All Students");
 		JButton closeBtn = new JButton("Close");
@@ -81,8 +80,8 @@ public class CCFAdminDialog extends JDialog {
 
 		closeBtn.addActionListener(new CloseActionListener());
 		allBtn.addActionListener(new AllActionListener());
-		searchIdBtn.addActionListener(new IdSubmitActionlistener());
-		searchEmailBtn.addActionListener(new EmailSubmitActionlistener());
+		searchIdBtn.addActionListener(new IdSubmitActionlistener(idField));
+		searchEmailBtn.addActionListener(new EmailSubmitActionlistener(emailField));
 
 		add(searchPanel);
 		add(emailSettingPanel);
@@ -94,6 +93,7 @@ public class CCFAdminDialog extends JDialog {
 	{
 		@Override
 		public void actionPerformed(ActionEvent e) {
+
 			setVisible(false);
 		}
 	}
@@ -107,38 +107,68 @@ public class CCFAdminDialog extends JDialog {
 			try {
 				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
 						DatabaseStore.getUserName(), DatabaseStore.getPassword());
-				adminPanel = new CCFAdminPanel(mainGui);
-				adminPanel.displayAll(dbWorker.retrieveCCFData(QueryType.all, ""));
+				//				adminPanel = new CCFAdminPanel(mainGui);
+				emailDialog.addNames(dbWorker.retrieveCCFData(QueryType.all, ""));
+				//				adminPanel.displayAll(dbWorker.retrieveCCFData(QueryType.all, ""));
 				dbWorker.dbClose();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-//			adminPanel.displayAll();
+			//			adminPanel.displayAll();
 		}
 
 	}
-	
+
 	private class EmailSubmitActionlistener implements ActionListener
 	{
+		private final JTextField emailAddressField;
+
+		public EmailSubmitActionlistener(JTextField emailField) {
+			this.emailAddressField = emailField;
+		}
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			
+			try {
+				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
+						DatabaseStore.getUserName(), DatabaseStore.getPassword());
+				emailDialog.addNames(dbWorker.retrieveCCFData(QueryType.ccfEmail, emailAddressField.getText()));
+				//				System.out.println("Data =" + dbWorker.retrieveCCFData(QueryType.ccfEmail,emailAddressField.getText()));
+				dbWorker.dbClose();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
 		}
 	}
-	
+
 	private class IdSubmitActionlistener implements ActionListener
 	{
+		private final JTextField id;
+
+		public IdSubmitActionlistener(JTextField idField)
+		{
+			id = idField;
+		}
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			
+			try {
+				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
+						DatabaseStore.getUserName(), DatabaseStore.getPassword());
+				//				adminPanel = new CCFAdminPanel(mainGui);
+				emailDialog.addNames(dbWorker.retrieveCCFData(QueryType.ccfId, id.getText()));
+				dbWorker.dbClose();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
 		}
 	}
-	
-	
+
+
 
 }
