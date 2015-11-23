@@ -84,7 +84,7 @@ public class PrintDisplayPanel extends JPanel {
 		tableModel.clearRows();
 		for(PrintData data: retrievePrintData)
 		{
-			tableModel.addRow(new PrintFieldData(data).getObjArray());
+			tableModel.addRow(data.getArray());
 		}
 		resultTable.packAll();
 		displayAll();
