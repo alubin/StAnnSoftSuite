@@ -32,6 +32,8 @@ import org.jdesktop.swingx.decorator.ComponentAdapter;
 import org.jdesktop.swingx.decorator.HighlightPredicate;
 import org.jdesktop.swingx.search.SearchFactory;
 
+import print.PrintData;
+
 public class PrintDisplayPanel extends JPanel {
 
 	/**
@@ -42,19 +44,20 @@ public class PrintDisplayPanel extends JPanel {
 	//	private final JPanel searchResultPanel;
 	private JXTable resultTable;
 	private PrintTableModel tableModel;
+	
 
 	public PrintDisplayPanel(MainFrame mainGui) {
 		this.mainGui = mainGui;
 
 		JPanel btnPanel = new JPanel(new GridLayout(1,3));
-		JButton btnSave = new JButton("Save Changes");
-		JButton btnCancel = new JButton("Cancel Edit");
+		JButton btnSelect = new JButton("Select");
+		JButton btnCancel = new JButton("Cancel");
 		JButton btnFind = new JButton("Search");
 
-		btnSave.addActionListener(new SaveActionListener());
+		btnSelect.addActionListener(new SelectActionListener());
 		btnCancel.addActionListener(new CloseActionListener());
 		btnFind.addActionListener(new FindActionListener());
-		btnPanel.add(btnSave);
+		btnPanel.add(btnSelect);
 		btnPanel.add(btnCancel);
 		btnPanel.add(btnFind);
 
@@ -88,41 +91,24 @@ public class PrintDisplayPanel extends JPanel {
 
 	}
 
-	private class SaveActionListener implements ActionListener
+	private class SelectActionListener implements ActionListener
 	{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Saving Changes");
-			ArrayList<PrintData> dataArray = new ArrayList<PrintData>();
-
-			for(int i = 0; i < resultTable.getRowCount(); i++)
-			{
-				ArrayList<String> stringArray = new ArrayList<String>();
-				String str = (String) resultTable.getValueAt(i, 0);
-				if(!str.isEmpty())
-				{
-
-					for(int j = 1; j <  resultTable.getColumnCount(); j++)
-					{
-						System.out.println("Column = " + (resultTable.getColumnCount() - j));
-						String result = (String) resultTable.getValueAt(i, j);
-						stringArray.add(result);
-						System.out.println(result);
-					}
-					
-				}
-				dataArray.add(new PrintData(stringArray));
-
-			}
 			
-			for(PrintData data: dataArray)
-			{
-				System.out.println(data.toString());
+			ArrayList<String> dataArray = new ArrayList<String>();
+			PrintData data = new PrintData(dataArray);
+		
+			if(data.getArray() != null){
+				String first = data.getFirst();
+				String last = data.getLastName();
+				
+				System.out.println(first + " " + last);
+				setVisible(false);
 			}
-
 		}
-
+		
 	}
 
 	private class CloseActionListener implements ActionListener

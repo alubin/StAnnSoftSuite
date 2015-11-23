@@ -49,7 +49,6 @@ public class PrintData {
 		//Need to check the size of rowValue.
 
 		this.rowValues = rowValue;
-		
 		this.first = rowValue.get(0);
 		this.lastName = rowValue.get(1);
 		this.middle = rowValue.get(2);

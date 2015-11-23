@@ -14,7 +14,7 @@ public class PrintTableModel extends DefaultTableModel {
 	private static final long serialVersionUID = 8725518370420949671L;
 	protected final static String[] columnNames = {
 		
-		"\u2713",	
+		"\u2713",
 		"FIRST NAME", 
 		"LAST NAME", 
 		"MIDDLE NAME", 
