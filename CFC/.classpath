@@ -19,9 +19,5 @@
 	<classpathentry kind="lib" path="lib/xmlbeans-2.6.0.jar"/>
 	<classpathentry kind="lib" path="lib/swingx-all-1.6.4.jar"/>
 	<classpathentry kind="lib" path="lib/jasperreports-6.1.1.jar"/>
-	<classpathentry kind="lib" path="lib/jgoodies-common-1.8.0-sources.jar"/>
-	<classpathentry kind="lib" path="lib/jgoodies-common-1.8.0.jar"/>
-	<classpathentry kind="lib" path="lib/jgoodies-forms-1.8.0-sources.jar"/>
-	<classpathentry kind="lib" path="lib/jgoodies-forms-1.8.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

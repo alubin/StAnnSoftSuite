@@ -12,11 +12,13 @@ import com.sun.jmx.snmp.SnmpStringFixed;
 
 import rcia.RciaData;
 import ccf.CCFData;
+import print.PrintData;
 
 public class DbWorker {
 
 	private static final int ccfColumnSize = 17;
 	private static final int rciaColumnSize = 68;
+	private static final int printColumnSize = 20;
 	private static Connection con1 = null;
 	private static Connection con2 = null;
 	private String user;
@@ -287,6 +289,44 @@ public class DbWorker {
 					results.add(rs.getString(i +1));
 				}
 				RciaData data = new RciaData(results);
+				resultArray.add(data);
+				System.out.println(data);
+			}
+
+
+		} catch (SQLException e ) {
+			e.printStackTrace();
+		} finally {
+			if (stmt != null) { stmt.close(); }
+		}
+
+
+		return resultArray;
+	}
+	
+	public ArrayList<PrintData> retrievePrintData(String fname, String lname) throws SQLException
+	{
+		System.out.println(fname + " " + lname);
+		String query = "SELECT First_Name, Last_Name, Middle_Name, Familiar_Name, Sponsor_First_Name, Sponsor_Last_Name, Sponsor, Print_Form, "
+					+ "Eform_Paper, Bap_Cert, Birth_Name, DOB, Been_Baptized, Date_Of_Baptism, Month_Year_Confirmed, Sponsor_Name, Have_Sponsor, "
+						+ "Father_Full_Name, Mother_Full_Name, Sacraments FROM inquirer WHERE First_Name LIKE '" + fname + "%' AND "
+								+ "Last_Name LIKE '" + lname + "%'";
+		Statement stmt = null;
+		ArrayList<PrintData> resultArray = new ArrayList<PrintData>();
+
+		try {
+
+			stmt = con2.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+
+			while(rs.next())
+			{
+				ArrayList<String> results = new ArrayList<String>(printColumnSize);
+				for(int i = 0; i < printColumnSize; i++)
+				{
+					results.add(rs.getString(i +1));
+				}
+				PrintData data = new PrintData(results);
 				resultArray.add(data);
 				System.out.println(data);
 			}

@@ -12,13 +12,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import main.MainFrame;
-import rcia.RciaAdminPanel;
+import print.PrintDisplayPanel;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 import database.DatabaseStore;
 import database.DbWorker;
@@ -34,7 +33,7 @@ private JPanel contentPane;
 	 * Create the frame.
 	 */
 	private  MainFrame mainGui;
-	private RciaAdminPanel rciaAdminPanel;
+	private PrintDisplayPanel printDisplayPanel;
 	private JTextField firstNameTextField;
 	private JTextField lastNameTextField;
 
@@ -125,8 +124,8 @@ private JPanel contentPane;
 				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
 						DatabaseStore.getUserName(), DatabaseStore.getPassword());
 
-				rciaAdminPanel = new RciaAdminPanel(mainGui);
-				rciaAdminPanel.displayData(dbWorker.retrieveRciaData(firstNameTextField.getText(), lastNameTextField.getText()));
+				printDisplayPanel = new PrintDisplayPanel(mainGui);
+				printDisplayPanel.displayData(dbWorker.retrievePrintData(firstNameTextField.getText(), lastNameTextField.getText()));
 
 				dbWorker.dbClose();
 			} catch (SQLException e1) {

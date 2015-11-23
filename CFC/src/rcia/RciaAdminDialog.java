@@ -34,28 +34,36 @@ public class RciaAdminDialog extends JDialog {
 		
 		setResizable(false);
 		
-		JPanel NamePanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 5,5));
+		JPanel NamePanel = new JPanel();
 		JLabel firstNameTitle = new JLabel("First Name:");
+		firstNameTitle.setBounds(23, 8, 74, 14);
 		firstNameField = new JTextField();
+		firstNameField.setBounds(95, 5, 170, 20);
 		firstNameField.setColumns(15);
 
 		JLabel lastNameTitle = new JLabel("Last Name:");
+		lastNameTitle.setBounds(23, 33, 74, 14);
 		lastNameField = new JTextField();
+		lastNameField.setBounds(95, 30, 170, 20);
 		lastNameField.setColumns(15);
 
-		JPanel btnPanel = new JPanel(new FlowLayout());
+		JPanel btnPanel = new JPanel();
 		JButton searchNameBtn = new JButton("Search Name");
+		searchNameBtn.setBounds(42, 11, 111, 23);
 		JButton searchAllNameBtn = new JButton("Search All");
+		searchAllNameBtn.setBounds(163, 11, 102, 23);
 		//JButton closeBtn = new JButton("Close");
 
-		setLayout(new GridLayout(2, 1));
-		setSize(310, 160);
+		getContentPane().setLayout(new GridLayout(2, 1));
+		setSize(298, 140);
+		NamePanel.setLayout(null);
 
 		NamePanel.add(firstNameTitle);
 		NamePanel.add(firstNameField);
 
 		NamePanel.add(lastNameTitle);
 		NamePanel.add(lastNameField);
+		btnPanel.setLayout(null);
 		
 		btnPanel.add(searchNameBtn);
 		btnPanel.add(searchAllNameBtn);
@@ -64,8 +72,8 @@ public class RciaAdminDialog extends JDialog {
 		searchAllNameBtn.addActionListener(new AllListener());
 		//closeBtn.addActionListener(new CloseListener());
 		
-		add(NamePanel);
-		add(btnPanel);
+		getContentPane().add(NamePanel);
+		getContentPane().add(btnPanel);
 		//add(closeBtn);
 
 	}
