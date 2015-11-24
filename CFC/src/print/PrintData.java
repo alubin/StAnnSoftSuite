@@ -3,7 +3,7 @@ package print;
 import java.util.ArrayList;
 
 public class PrintData {
-	
+
 	/*SELECT First_Name, Middle_Name, Last_Name, Familiar_Name, Sponsor_First_Name, Sponsor_Last_Name, Sponsor, 
 	Print_Form, Eform_Paper, Bap_Cert, Birth_Name, DOB, Been_Baptized, Date_Of_Baptism, Month_Year_Confirmed, 
 	Sponsor_Name, Have_Sponsor, Father_Full_Name, Mother_Full_Name, Sacraments*/
@@ -29,23 +29,23 @@ public class PrintData {
 	//middle Name
 	private final String middle;
 	private final String birthName;
-	
+
 	private final String dob;
-	
+
 	private final String fatherFullName;
 	private final String motherFullName;
 	private final String baptizedInChrist;
 	private final String dateOfBaptism;
-	
+
 	private final String monthAndYear;
 	private final String sacramentDesired;
 	private final String haveASponsor;
 	private final String sponsorName;
-	
+
 	private ArrayList<String> rowValues;
 
 	public PrintData(ArrayList<String> rowValue) {
-		
+
 		//Need to check the size of rowValue.
 
 		this.rowValues = rowValue;
@@ -154,7 +154,7 @@ public class PrintData {
 	/*SELECT First_Name, Middle_Name, Last_Name, Familiar_Name, Sponsor_First_Name, Sponsor_Last_Name, Sponsor, 
 	Print_Form, Eform_Paper, Bap_Cert, Birth_Name, DOB, Been_Baptized, Date_Of_Baptism, Month_Year_Confirmed, 
 	Sponsor_Name, Have_Sponsor, Father_Full_Name, Mother_Full_Name, Sacraments*/
-	
+
 	@Override
 	public String toString() {
 		return "PrintData [first=" + first + ", lastName=" + lastName + ", middle=" + middle + ","
@@ -166,7 +166,7 @@ public class PrintData {
 				+ "haveASponsor=" + haveASponsor + ", fatherFullName=" + fatherFullName + ","
 				+ "motherFullName=" + motherFullName +", sacramentDesired=" + sacramentDesired + "]";
 	}
-	
+
 	public Object[] getArray() {
 		return rowValues.toArray();
 	}

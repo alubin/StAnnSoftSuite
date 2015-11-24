@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import main.MainFrame;
-import print.PrintDisplayPanel;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -33,7 +32,7 @@ private JPanel contentPane;
 	 * Create the frame.
 	 */
 	private  MainFrame mainGui;
-	private PrintDisplayPanel printDisplayPanel;
+//	private PrintDisplayPanel printDisplayPanel;
 	private JTextField firstNameTextField;
 	private JTextField lastNameTextField;
 
@@ -119,19 +118,20 @@ private JPanel contentPane;
 	{
 		@Override
 		public void actionPerformed(ActionEvent arg0){
+			//TODO: Code to modify and create the PDF should be here.
+//			try {
+//				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
+//						DatabaseStore.getUserName(), DatabaseStore.getPassword());
 
-			try {
-				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
-						DatabaseStore.getUserName(), DatabaseStore.getPassword());
-
-				printDisplayPanel = new PrintDisplayPanel(mainGui);
-				printDisplayPanel.displayData(dbWorker.retrievePrintData(firstNameTextField.getText(), lastNameTextField.getText()));
-
-				dbWorker.dbClose();
-			} catch (SQLException e1) {
+//				printDisplayPanel = new PrintDisplayPanel(mainGui);
+//				printDisplayPanel.displayData(dbWorker.retrievePrintData(firstNameTextField.getText(), lastNameTextField.getText()));
+				
+				
+//				dbWorker.dbClose();
+//			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+//				e1.printStackTrace();
+//			}
 		}
 	}
 	
