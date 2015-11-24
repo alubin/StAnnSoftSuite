@@ -1,4 +1,4 @@
-package ccf.importfiles;
+package ccf.admin;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -24,7 +24,7 @@ import ccf.CCFData;
 import database.DatabaseStore;
 import database.DbWorker;
 
-public class CCFEmailDialog extends JPanel{
+public class CCFEmailDialog extends JDialog{
 
 	/**
 	 *
@@ -42,7 +42,7 @@ public class CCFEmailDialog extends JPanel{
 
 //		setLayout(new GridLayout(2,3));
 		setLayout(new BorderLayout());
-		setBorder(BorderFactory.createDashedBorder(Color.BLACK));
+		((JPanel)getContentPane()).setBorder(BorderFactory.createDashedBorder(Color.BLACK));
 		emailMap = new HashMap<String, String>();
 		emailList = new JComboBox<String>();
 		emailDisplay = new JLabel("\tNo Email Listed\t");
@@ -65,6 +65,8 @@ public class CCFEmailDialog extends JPanel{
 		btnSave.addActionListener(new SaveListener());
 		
 		emailList.addActionListener(new DropDownListener());
+		
+		setSize(500, 150);
 
 //		populateDropBox();
 	}
