@@ -1,4 +1,4 @@
-package rcia;
+package rcia.admin;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -13,7 +13,6 @@ public class RciaAdminTableModel extends DefaultTableModel {
 	 */
 	private static final long serialVersionUID = 8725518370420949671L;
 	protected final static String[] columnNames = {
-		"\u2713",
 		"Eform//paper",
 		"Badges",
 		"print form",

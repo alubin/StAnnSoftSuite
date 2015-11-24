@@ -1,7 +1,8 @@
-package rcia;
+package rcia.importfiles;
 
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import rcia.admin.RciaActionListener;
 import main.MainFrame;
 import dialog.ImportDialog;
 

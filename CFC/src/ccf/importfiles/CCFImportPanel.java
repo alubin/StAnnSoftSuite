@@ -1,4 +1,4 @@
-package ccf;
+package ccf.importfiles;
 
 import java.awt.AWTException;
 import java.awt.BorderLayout;
@@ -19,6 +19,8 @@ import javax.swing.JTable;
 import org.jdesktop.swingx.JXTable;
 import org.jdesktop.swingx.search.SearchFactory;
 
+import ccf.AccessReader;
+import ccf.CCFTable;
 import main.MainFrame;
 import database.DatabaseStore;
 import database.DbWorker;
@@ -76,20 +78,34 @@ public class CCFImportPanel extends JPanel{
 		mainGui.setPanel(this);
 
 	}
+	
+	public void saveTable()
+	{
+		final int dbSave;
+		DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
+				DatabaseStore.getUserName(), DatabaseStore.getPassword());
+		dbSave = dbWorker.storeCCF(tableValues.getCCFDataArrayList());
+		dbWorker.dbClose();
+
+		JPanel savePanel = new JPanel();
+//		if(dbSave == 0)
+//		{
+			savePanel.add(new JLabel("Your Data has been saved to the database."));
+//		}
+//		else
+//		{
+//			savePanel.add(new JLabel("Your Data could not be saved. Please check the settings."));
+//		}
+		
+		mainGui.setPanel(savePanel);
+	}
 
 	private class SaveActionListener implements ActionListener
 	{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
-					DatabaseStore.getUserName(), DatabaseStore.getPassword());
-			dbWorker.storeCCF(tableValues.getCCFDataArrayList());
-			dbWorker.dbClose();
-
-			JPanel savePanel = new JPanel();
-			savePanel.add(new JLabel("Your Data has been saved to the database."));
-			mainGui.setPanel(savePanel);
+			saveTable();
 
 		}
 

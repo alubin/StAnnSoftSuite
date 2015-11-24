@@ -6,6 +6,8 @@ import java.text.ParseException;
 
 import org.jdesktop.swingx.JXTable;
 
+import ccf.importfiles.CCFImportTableModel;
+
 import com.healthmarketscience.jackcess.DatabaseBuilder;
 import com.healthmarketscience.jackcess.Row;
 import com.healthmarketscience.jackcess.Table;

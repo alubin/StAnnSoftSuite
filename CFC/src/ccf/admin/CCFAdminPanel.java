@@ -1,4 +1,4 @@
-package ccf;
+package ccf.admin;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -20,8 +20,10 @@ import main.MainFrame;
 import org.jdesktop.swingx.JXTable;
 import org.jdesktop.swingx.search.SearchFactory;
 
+import ccf.CCFData;
 import database.DatabaseStore;
 import database.DbWorker;
+import database.QueryType;
 
 public class CCFAdminPanel extends JPanel {
 
@@ -37,15 +39,13 @@ public class CCFAdminPanel extends JPanel {
 		this.mainGui = mainGui;
 
 		JPanel btnPanel = new JPanel(new GridLayout(1,2));
-		JButton btnSave = new JButton("Save Changes");
-		JButton btnCancel = new JButton("Cancel Edit");
+		JButton btnCancel = new JButton("Close");
 		JButton btnFind = new JButton("Find");
 
 		setBorder(BorderFactory.createTitledBorder("CCF Admin"));
 		setLayout(new BorderLayout());
 
 		btnFind.addActionListener(new FindActionListener());
-		btnPanel.add(btnSave);
 		btnPanel.add(btnCancel);
 		btnPanel.add(btnFind);
 
@@ -57,7 +57,16 @@ public class CCFAdminPanel extends JPanel {
 		add(new JScrollPane(resultTable, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED),BorderLayout.CENTER);
 
-		adminModel.addTableModelListener(new AdminTableModelListener());
+//		adminModel.addTableModelListener(new AdminTableModelListener());
+		try {
+		DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
+				DatabaseStore.getUserName(), DatabaseStore.getPassword());
+		displayAll(dbWorker.retrieveCCFData(QueryType.all, ""));
+		dbWorker.dbClose();
+	} catch (SQLException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
 
 	}
 
@@ -70,20 +79,9 @@ public class CCFAdminPanel extends JPanel {
 	public void displayAll(ArrayList<CCFData> retrieveCCFData) {
 		for(CCFData data: retrieveCCFData)
 		{
-			adminModel.addRow(new CCFAdminFieldData(data).getObjArray());
+			adminModel.addRow(data.getObjArray());
 		}
 		displayAll();
-
-	}
-
-	public class SaveActionListener implements ActionListener
-	{
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			System.out.println("Saving Changes");
-
-		}
 
 	}
 
@@ -109,45 +107,5 @@ public class CCFAdminPanel extends JPanel {
 		}
 
 	}
-
-	private class AdminTableModelListener implements TableModelListener
-	{
-
-		@Override
-		public void tableChanged(TableModelEvent e) {
-			int row =  resultTable.getSelectedRow();
-
-			resultTable.clearSelection();
-			if(row == -1)
-			{
-				return;
-			}
-
-			switch(e.getType())
-			{
-			case TableModelEvent.UPDATE:
-				if(row != -1)
-				{
-					resultTable.setValueAt("\u2713", row, 0);
-					int stuId = (int) resultTable.getValueAt(row, 2);
-					String email = (String) resultTable.getValueAt(row, 2);
-					try{
-						DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
-								DatabaseStore.getUserName(), DatabaseStore.getPassword());
-						dbWorker.updateCCF(stuId, email);
-						dbWorker.dbClose();
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-				}
-				break;
-			}
-
-		}
-
-	}
-
-
 
 }

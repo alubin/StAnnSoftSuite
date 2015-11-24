@@ -150,7 +150,7 @@ public class CCFData {
 
 	public String getFullName()
 	{
-		return firstName +',' + lastName;
+		return firstName + ' ' + lastName;
 	}
 	public String getEmailAddress() {
 		return emailAddress;

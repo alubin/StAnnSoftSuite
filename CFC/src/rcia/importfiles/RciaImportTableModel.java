@@ -1,4 +1,4 @@
-package rcia;
+package rcia.importfiles;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -65,7 +65,7 @@ public class RciaImportTableModel extends DefaultTableModel {
 		"INQUIRER'S PHONE NUMBER",
 		"MARITAL STATUS",
 		"SPOUSE'S/ FIANCE'S NAME",
-		"SPOUSE'S / FIANCÉ'S RELIGIOUS AFFILIATION",
+		"SPOUSE'S / FIANCï¿½'S RELIGIOUS AFFILIATION",
 		"PRACTICING CATHOLIC",
 		"ATTENDING SESSIONS",
 		"CATHOLIC CHURCH MARRIAGE CEREMONY DATE",

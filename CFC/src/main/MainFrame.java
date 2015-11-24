@@ -13,10 +13,12 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
-import rcia.RciaAdminDialog;
-import rcia.RciaImportDialog;
-import ccf.CCFAdminDialog;
-import ccf.CCFImportDialog;
+import rcia.admin.RciaAdminDialog;
+import rcia.admin.RciaAdminPanel;
+import rcia.importfiles.RciaImportDialog;
+import ccf.admin.CCFAdminDialog;
+import ccf.admin.CCFAdminPanel;
+import ccf.importfiles.CCFImportDialog;
 import database.DBSetupDialog;
 import print.Print;
 
@@ -46,6 +48,8 @@ public class MainFrame extends JFrame{
 	private final JMenuItem rciaAdmin = new JMenuItem("Administer RCIA Data");
 	private final JMenuItem printSheet = new JMenuItem("Print Sign Sheet");
 	private final JMenuItem printCertificate = new JMenuItem("Print Certificate");
+	private final JMenuItem ccfDisplayValue = new JMenuItem("Display CCF Table");
+	private final JMenuItem rciaDisplayValue = new JMenuItem("Display RCIA Table");
 	
 	private final CCFImportDialog ccfImportDialogBox;
 	private final CCFAdminDialog ccfAdminDialogBox;
@@ -90,10 +94,12 @@ public class MainFrame extends JFrame{
 		//Add options to the ccf menu
 		ccfOption.add(ccfImport);
 		ccfOption.add(ccfAdmin);
+		ccfOption.add(ccfDisplayValue);
 
 		//Add options to the rcia menu
 		rciaOption.add(rciaImport);
 		rciaOption.add(rciaAdmin);
+		rciaOption.add(rciaDisplayValue);
 
 		//Add options to the print menu
 		printOption.add(printSheet);
@@ -106,9 +112,11 @@ public class MainFrame extends JFrame{
 
 		ccfImport.addActionListener(new CCFImportActionListener());
 		ccfAdmin.addActionListener(new CCFAdminActionListener());
+		ccfDisplayValue.addActionListener(new CCFDisplayActionListener());
 
 		rciaImport.addActionListener(new RciaImportActionListener());
 		rciaAdmin.addActionListener(new RciaAdminActionListener());
+		rciaDisplayValue.addActionListener(new RciaDisplayListener());
 
 		printSheet.addActionListener(new PrintSheetActionListener());
 		printCertificate.addActionListener(new PrintCertificateActionListener());
@@ -215,6 +223,34 @@ public class MainFrame extends JFrame{
 
 		}
 
+	}
+	
+	public class CCFDisplayActionListener implements ActionListener
+	{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			getContentPane().removeAll();
+			getContentPane().add(new CCFAdminPanel(instance));
+			repaint();
+			setVisible(true);
+			
+		}
+		
+	}
+	
+	public class RciaDisplayListener implements ActionListener
+	{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			getContentPane().removeAll();
+			getContentPane().add(new RciaAdminPanel(instance));
+			repaint();
+			setVisible(true);
+			
+		}
+		
 	}
 
 	//Changes the content panel of the main gui to display the panel that was passed in.

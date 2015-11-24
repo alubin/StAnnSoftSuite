@@ -1,10 +1,14 @@
-package ccf;
+package ccf.importfiles;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -15,6 +19,10 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import ccf.CCFData;
+import database.DatabaseStore;
+import database.DbWorker;
 
 public class CCFEmailDialog extends JPanel{
 
@@ -37,7 +45,7 @@ public class CCFEmailDialog extends JPanel{
 		setBorder(BorderFactory.createDashedBorder(Color.BLACK));
 		emailMap = new HashMap<String, String>();
 		emailList = new JComboBox<String>();
-		emailDisplay = new JLabel("Empty");
+		emailDisplay = new JLabel("\tNo Email Listed\t");
 		emailField = new JTextField("Email");
 
 		JPanel topPanel = new JPanel(new GridLayout(1,2));
@@ -55,8 +63,10 @@ public class CCFEmailDialog extends JPanel{
 		add(btnSave, BorderLayout.SOUTH);
 
 		btnSave.addActionListener(new SaveListener());
+		
+		emailList.addActionListener(new DropDownListener());
 
-		populateDropBox();
+//		populateDropBox();
 	}
 
 	public CCFEmailDialog(ArrayList<CCFData> dataList)
@@ -68,7 +78,9 @@ public class CCFEmailDialog extends JPanel{
 	
 	public void addNames(ArrayList<CCFData> dataList)
 	{
+		emailMap.clear();
 		this.data = dataList;
+		populateDropBox();
 	}
 
 	private void populateDropBox() {
@@ -77,7 +89,7 @@ public class CCFEmailDialog extends JPanel{
 		{
 			for(CCFData data : this.data)
 			{
-				emailMap.put(data.getFullName(), data.getEmailAddress());
+				emailMap.put(data.getName(), data.getEmailAddress());
 			}
 
 			for(String fullName: emailMap.keySet())
@@ -86,6 +98,7 @@ public class CCFEmailDialog extends JPanel{
 			}
 		}
 	}
+	
 
 	private class DropDownListener implements ActionListener
 	{
@@ -95,6 +108,8 @@ public class CCFEmailDialog extends JPanel{
 			JComboBox dropDown = (JComboBox)e.getSource();
 			String name = (String)dropDown.getSelectedItem();
 			emailField.setText(emailMap.get(name));
+			emailDisplay.setText(emailMap.get(name));
+			System.out.println("Name =" + name);
 
 		}
 
@@ -106,16 +121,38 @@ public class CCFEmailDialog extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			String name = (String)emailList.getSelectedItem();
+			System.out.println("Name = " + name);
 
 			if(name != null)
 			{
 				emailMap.put(name, emailField.getText());
 			}
+			
+			emailDisplay.setText(emailMap.get(name));
+			
+			try {
+			DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
+					DatabaseStore.getUserName(), DatabaseStore.getPassword());
+			dbWorker.updateCCF(name, emailMap.get(name));
+			dbWorker.dbClose();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		}
 
 	}
 
+	public void disableDialog(boolean state) 
+	{
+		for(Component comp: getComponents())
+		{
+			comp.setEnabled(state);
+		}
+		repaint();
+		
+	}
 
 
 }

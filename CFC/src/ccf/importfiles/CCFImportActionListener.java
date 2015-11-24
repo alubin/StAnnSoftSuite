@@ -1,8 +1,9 @@
-package ccf;
+package ccf.importfiles;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import ccf.AccessReader;
 import main.MainFrame;
 import custom.Convert;
 
@@ -13,11 +14,11 @@ import custom.Convert;
  * @author AL
  *
  */
-public class CCFActionListener extends Convert implements ActionListener {
+public class CCFImportActionListener extends Convert implements ActionListener {
 	private final MainFrame mainGui;
 	private CCFImportPanel ccfDisplay;
 
-	public CCFActionListener(MainFrame instance) {
+	public CCFImportActionListener(MainFrame instance) {
 		mainGui = instance;
 	}
 
@@ -26,7 +27,7 @@ public class CCFActionListener extends Convert implements ActionListener {
 		//TODO: Put in code that will open a file browser and convert selected file.
 		ccfDisplay = new CCFImportPanel(new AccessReader(getFilePath(), "tblParishData"));
 		ccfDisplay.setMainGui(mainGui);
-		ccfDisplay.showPanel();
+		ccfDisplay.saveTable();
 
 	}
 
