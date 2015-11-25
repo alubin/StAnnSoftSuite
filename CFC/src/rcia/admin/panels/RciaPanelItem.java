@@ -19,7 +19,7 @@ public class RciaPanelItem extends JPanel{
 	
 	public RciaPanelItem(String label)
 	{
-		setLayout(new GridLayout(1,3));
+		setLayout(new GridLayout(1,4));
 		selection.setSelected(false);
 		itemLbl.setText(label);
 		itemInput.setText("Enter " + label);

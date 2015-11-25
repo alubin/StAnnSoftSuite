@@ -90,11 +90,11 @@ public class RciaAdminDialog extends JDialog {
 				
 				System.out.println("first " + firstNameField.getText() + " Last: " +  lastNameField.getText());
 
-				rciaAdminPanel = new RciaAdminPanel(mainGui);
-				rciaAdminPanel.displayData(dbWorker.retrieveRciaData(firstNameField.getText(), lastNameField.getText()));
+//				rciaAdminPanel = new RciaAdminPanel(mainGui);
+//				rciaAdminPanel.displayData(dbWorker.retrieveRciaData(firstNameField.getText(), lastNameField.getText()));
 
 				//System.out.println(dbWorker.retrieveRciaData(firstNameField.getText(), lastNameField.getText()));
-				mainGui.setPanel(new RciaTabbedPanel());
+				mainGui.setPanel(new RciaTabbedPanel(dbWorker.retrieveRciaData(firstNameField.getText(), lastNameField.getText())));
 				dbWorker.dbClose();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
