@@ -1,5 +1,12 @@
 package rcia.admin.panels;
 
-public class FamilyInfo {
+import javax.swing.JPanel;
+
+public class FamilyInfo extends JPanel{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7404383422231742430L;
 
 }

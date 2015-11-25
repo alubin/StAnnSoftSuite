@@ -146,15 +146,15 @@ public class CCFEmailDialog extends JDialog{
 
 	}
 
-	public void disableDialog(boolean state) 
-	{
-		for(Component comp: getComponents())
-		{
-			comp.setEnabled(state);
-		}
-		repaint();
-		
-	}
+//	public void disableDialog(boolean state) 
+//	{
+//		for(Component comp: getComponents())
+//		{
+//			comp.setEnabled(state);
+//		}
+//		repaint();
+//		
+//	}
 
 
 }

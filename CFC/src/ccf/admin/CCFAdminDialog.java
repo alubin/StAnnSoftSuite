@@ -35,8 +35,8 @@ public class CCFAdminDialog extends JDialog {
 
 	public CCFAdminDialog(MainFrame mainGui)
 	{
-		emailDialog = new CCFEmailDialog(new ArrayList<CCFData>());
-		emailDialog.disableDialog(true);
+		emailDialog = new CCFEmailDialog();
+//		emailDialog.disableDialog(true);
 		JPanel searchPanel = new JPanel(new GridLayout(2,1));
 		JPanel emailSettingPanel = new JPanel(new GridLayout(1,3));
 

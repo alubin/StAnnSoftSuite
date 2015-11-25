@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import rcia.admin.panels.RciaTabbedPanel;
 import main.MainFrame;
 import database.DatabaseStore;
 import database.DbWorker;
@@ -93,6 +94,7 @@ public class RciaAdminDialog extends JDialog {
 				rciaAdminPanel.displayData(dbWorker.retrieveRciaData(firstNameField.getText(), lastNameField.getText()));
 
 				//System.out.println(dbWorker.retrieveRciaData(firstNameField.getText(), lastNameField.getText()));
+				mainGui.setPanel(new RciaTabbedPanel());
 				dbWorker.dbClose();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
