@@ -2,7 +2,6 @@ package rcia.importfiles;
 
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import rcia.admin.RciaActionListener;
 import main.MainFrame;
 import dialog.ImportDialog;
 
@@ -13,7 +12,7 @@ public class RciaImportDialog extends ImportDialog {
 
 	public RciaImportDialog(MainFrame instance)
 	{
-		super(rciaTitle, new RciaActionListener(instance));
+		super(rciaTitle, new RciaImportActionListener(instance));
 	}
 
 	@Override

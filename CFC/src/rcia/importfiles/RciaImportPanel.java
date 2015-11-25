@@ -35,7 +35,6 @@ public class RciaImportPanel extends JPanel {
 		JXTable excelTable = rciaTable.getTable();
 		JScrollPane excelScroll = new JScrollPane(excelTable);
 		JPanel btnPanel = new JPanel(new GridLayout(1,3));
-		JButton btnSave = new JButton("Save");
 		JButton btnCancel = new JButton("Cancel");
 		JButton btnSearch = new JButton("Search");
 
@@ -45,10 +44,8 @@ public class RciaImportPanel extends JPanel {
 		setBorder(BorderFactory.createTitledBorder("Rcia Import"));
 		setLayout(new BorderLayout());
 
-		btnSave.addActionListener(new SaveBtnActionListener());
 		btnSearch.addActionListener(new FindActionListener());
 
-		btnPanel.add(btnSave);
 		btnPanel.add(btnCancel);
 		btnPanel.add(btnSearch);
 
@@ -66,24 +63,6 @@ public class RciaImportPanel extends JPanel {
 		mainDisplay.setPanel(this);
 
 	}
-
-	private class SaveBtnActionListener implements ActionListener
-	{
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
-					DatabaseStore.getUserName(), DatabaseStore.getPassword());
-			dbWorker.storeRCIA(rciaTable.getRciaDataArrayList());
-			dbWorker.dbClose();
-
-			JPanel savePanel = new JPanel();
-			savePanel.add(new JLabel("Your Data has been saved to the database."));
-			mainDisplay.setPanel(savePanel);
-
-		}
-
-	}
 	
 	private class FindActionListener implements ActionListener{
 
@@ -94,6 +73,18 @@ public class RciaImportPanel extends JPanel {
 			mySearch.showFindInput(rciaTable.getTable(), rciaTable.getTable().getSearchable());
 
 		}
+		
+	}
+
+	public void saveTable() {
+		DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
+				DatabaseStore.getUserName(), DatabaseStore.getPassword());
+		dbWorker.storeRCIA(rciaTable.getRciaDataArrayList());
+		dbWorker.dbClose();
+
+		JPanel savePanel = new JPanel();
+		savePanel.add(new JLabel("Your Data has been saved to the database."));
+		mainDisplay.setPanel(savePanel);
 		
 	}
 

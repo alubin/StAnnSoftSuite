@@ -1,5 +1,5 @@
 CREATE DATABASE `ccf` /*!40100 DEFAULT CHARACTER SET utf8 */;
-CREATE TABLE `parishdata` (
+CREATE TABLE `ccf`.`parishdata` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `StuID` double DEFAULT NULL,
   `lblParishID` varchar(45) DEFAULT NULL,
@@ -16,6 +16,7 @@ CREATE TABLE `parishdata` (
   `Instructor` varchar(100) DEFAULT NULL,
   `Expr1` varchar(25) DEFAULT NULL,
   `CrsLevel` varchar(45) DEFAULT NULL,
+  `Email` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID_UNIQUE` (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

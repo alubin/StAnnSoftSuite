@@ -1,5 +1,5 @@
 CREATE DATABASE `rcia` /*!40100 DEFAULT CHARACTER SET utf8 */;
-CREATE TABLE `inquirer` (
+CREATE TABLE `rcia`.`inquirer` (
   `Eform_Paper` varchar(45) DEFAULT NULL,
   `Badges` varchar(45) DEFAULT NULL,
   `Print_Form` varchar(45) DEFAULT NULL,

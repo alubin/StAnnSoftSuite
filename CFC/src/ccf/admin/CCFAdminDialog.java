@@ -18,7 +18,6 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
 import ccf.CCFData;
-import ccf.importfiles.CCFEmailDialog;
 import main.MainFrame;
 import database.DatabaseStore;
 import database.DbWorker;
@@ -74,7 +73,7 @@ public class CCFAdminDialog extends JDialog {
 		searchPanel.add(idPanel);
 		searchPanel.add(emailPanel);
 
-		emailSettingPanel.add(emailDialog);
+//		emailSettingPanel.add(emailDialog);
 
 		btnPanel.add(new JLabel());
 		btnPanel.add(allBtn);
@@ -113,6 +112,7 @@ public class CCFAdminDialog extends JDialog {
 				emailDialog.addNames(dbWorker.retrieveCCFData(QueryType.all, ""));
 				//				adminPanel.displayAll(dbWorker.retrieveCCFData(QueryType.all, ""));
 				dbWorker.dbClose();
+				showEmailDialog();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -138,6 +138,7 @@ public class CCFAdminDialog extends JDialog {
 				emailDialog.addNames(dbWorker.retrieveCCFData(QueryType.ccfEmail, emailAddressField.getText()));
 				//				System.out.println("Data =" + dbWorker.retrieveCCFData(QueryType.ccfEmail,emailAddressField.getText()));
 				dbWorker.dbClose();
+				showEmailDialog();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -163,12 +164,18 @@ public class CCFAdminDialog extends JDialog {
 				//				adminPanel = new CCFAdminPanel(mainGui);
 				emailDialog.addNames(dbWorker.retrieveCCFData(QueryType.ccfId, id.getText()));
 				dbWorker.dbClose();
+				showEmailDialog();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 
 		}
+	}
+	
+	private void showEmailDialog()
+	{
+		emailDialog.setVisible(true);
 	}
 
 
