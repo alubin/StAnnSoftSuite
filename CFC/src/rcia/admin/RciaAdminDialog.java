@@ -86,11 +86,13 @@ public class RciaAdminDialog extends JDialog {
 			try {
 				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
 						DatabaseStore.getUserName(), DatabaseStore.getPassword());
+				
+				System.out.println("first " + firstNameField.getText() + " Last: " +  lastNameField.getText());
 
 				rciaAdminPanel = new RciaAdminPanel(mainGui);
-//				rciaAdminPanel.displayData(dbWorker.retrieveRciaData(firstNameField.getText(), lastNameField.getText()));
+				rciaAdminPanel.displayData(dbWorker.retrieveRciaData(firstNameField.getText(), lastNameField.getText()));
 
-				System.out.println(dbWorker.retrieveRciaData(firstNameField.getText(), lastNameField.getText()));
+				//System.out.println(dbWorker.retrieveRciaData(firstNameField.getText(), lastNameField.getText()));
 				dbWorker.dbClose();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block

@@ -74,15 +74,6 @@ public class RciaAdminPanel extends JPanel {
 		add(btnPanel, BorderLayout.NORTH);
 		add(new JScrollPane(resultTable),BorderLayout.CENTER);
 
-		try {
-			DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
-					DatabaseStore.getUserName(), DatabaseStore.getPassword());
-			displayData(dbWorker.retrieveRciaData("", ""));
-			dbWorker.dbClose();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 		//		mainGui.setPanel(searchResultPanel);
 
 		//		adminModel.addTableModelListener(new AdminTableModelListener());

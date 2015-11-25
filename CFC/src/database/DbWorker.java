@@ -269,32 +269,9 @@ public class DbWorker {
 	 */
 	public ArrayList<RciaData> retrieveRciaData(String fname, String lname) throws SQLException
 	{
-//		String query = "SELECT * FROM inquirer WHERE First_Name LIKE '" + fname + "%' AND Last_Name LIKE '" + lname + "%'";
-		String query = "SELECT * FROM inquirer";
+		String query = "SELECT * FROM inquirer WHERE First_Name LIKE '" + fname + "%' AND Last_Name LIKE '" + lname + "%'";
 		Statement stmt = null;
 		ArrayList<RciaData> resultArray = new ArrayList<RciaData>();
-		
-		if(fname.isEmpty() && lname.isEmpty())
-		{
-			query = "SELECT * FROM inquirer";
-		}
-		else if(!fname.isEmpty() && lname.isEmpty())
-		{
-			System.out.println("First Name only");
-			query = query +" WHERE First_Name LIKE '" + fname + "%'";
-		}
-		else if(!lname.isEmpty() && fname.isEmpty())
-		{
-			System.out.println("Last Name only");
-			query = query +" WHERE Last_Name LIKE '" + lname + "%'";
-		}
-		else if(!fname.isEmpty() && !lname.isEmpty())
-		{
-			System.out.println("Both Names only");
-			query = "SELECT * FROM inquirer WHERE First_Name LIKE '" + fname + "%' AND Last_Name LIKE '" + lname + "%'";
-		}
-		
-		System.out.println(query);
 
 		try {
 
@@ -310,7 +287,7 @@ public class DbWorker {
 				}
 				RciaData data = new RciaData(results);
 				resultArray.add(data);
-//				System.out.println(data);
+				System.out.println(data);
 			}
 
 
