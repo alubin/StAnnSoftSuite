@@ -123,8 +123,9 @@ public class RciaAdminDialog extends JDialog {
 				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
 						DatabaseStore.getUserName(), DatabaseStore.getPassword());
 
-				rciaAdminPanel = new RciaAdminPanel(mainGui);
-				rciaAdminPanel.displayData(dbWorker.retrieveRciaData("", ""));
+//				rciaAdminPanel = new RciaAdminPanel(mainGui);
+//				rciaAdminPanel.displayData(dbWorker.retrieveRciaData("", ""));
+				mainGui.setPanel(new RciaTabbedPanel(dbWorker.retrieveRciaData("", "")));
 
 				dbWorker.dbClose();
 			} catch (SQLException e1) {

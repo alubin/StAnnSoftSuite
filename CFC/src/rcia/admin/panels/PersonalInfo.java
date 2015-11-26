@@ -17,7 +17,8 @@ import rcia.RciaData;
  *First
  *Last
  *Gender
- *Familiar Role
+ *Familiar Name
+ *Role
  *Birth Name
  *Address
  *City
@@ -47,8 +48,9 @@ public class PersonalInfo extends JPanel{
 	private static final long serialVersionUID = -6886588971002467357L;
 	private RciaPanelItem firstNameItem = new RciaPanelItem("First", "Test");
 	private RciaPanelItem lastNameItem = new RciaPanelItem("Last");
-	private RciaPanelItem genderNameItem = new RciaPanelItem("Gender");
-	private RciaPanelItem fRoleNameItem = new RciaPanelItem("Familiar Role");
+	private RciaPanelItem genderItem = new RciaPanelItem("Gender");
+	private RciaPanelItem familiarNameItem = new RciaPanelItem("Familiar Name");
+	private RciaPanelItem roleNameItem = new RciaPanelItem("Role");
 	private RciaPanelItem birthNameItem = new RciaPanelItem("Birth Name");
 	private RciaPanelItem addressItem = new RciaPanelItem("Address");
 	private RciaPanelItem cityItem = new RciaPanelItem("City");
@@ -71,13 +73,14 @@ public class PersonalInfo extends JPanel{
 	public PersonalInfo()
 	{
 		super(new GridLayout(1,1));
-		JPanel personal = new JPanel(new GridLayout(22,1));
+		JPanel personal = new JPanel(new GridLayout(23,1));
 		JScrollPane scrollPanel = new JScrollPane(personal);
 		
 		personal.add(firstNameItem);
 		personal.add(lastNameItem);
-		personal.add(genderNameItem);
-		personal.add(fRoleNameItem);
+		personal.add(genderItem);
+		personal.add(familiarNameItem);
+		personal.add(roleNameItem);
 		personal.add(birthNameItem);
 		personal.add(addressItem);
 		personal.add(cityItem);
@@ -103,6 +106,16 @@ public class PersonalInfo extends JPanel{
 	public void setData(RciaData data)
 	{
 		firstNameItem.setDisplayValue(data.getFirst());
+		lastNameItem.setDisplayValue(data.getLastName());
+		genderItem.setDisplayValue(data.getGender());
+		familiarNameItem.setDisplayValue(data.getFamiliarName());
+		roleNameItem.setDisplayValue(data.getRole());
+		birthNameItem.setDisplayValue(data.getBirthName());
+		addressItem.setDisplayValue(data.getAddress());
+		cityItem.setDisplayValue(data.getCity());
+		stateItem.setDisplayValue(data.getState());
+		zipItem.setDisplayValue(data.getZip());
+		emailItem.setDisplayValue(data.getEmailAddress());
 		
 	}
 
