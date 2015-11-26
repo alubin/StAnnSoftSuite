@@ -27,7 +27,6 @@ public class RciaTabbedPanel extends JPanel{
 		 JTabbedPane tabbedPanel = new JTabbedPane();
 		 
 		 tabbedPanel.addTab("Personal Info", new PersonalInfo());
-		 tabbedPanel.addTab("Family Info", new FamilyInfo());
 		 tabbedPanel.addTab("Religion Info", new ReligiousInfo());
 		 tabbedPanel.addTab("Other Info", new OtherInfo());
 		 

@@ -442,8 +442,7 @@ public class RciaData {
 		return sponsorPotential;
 	}
 
-	@Override
-	public String toString() {
+	public String toValueString() {
 		return "RciaData [typeOfForm=" + typeOfForm + ", badges=" + badges
 				+ ", printForm=" + printForm + ", value=" + value
 				+ ", verification=" + verification + ", reconciliation="
@@ -485,6 +484,11 @@ public class RciaData {
 
 	public Object[] getArray() {
 		return rowValues.toArray();
+	}
+	
+	public String toString()
+	{
+		return this.first + " " + this.middle + " " + this.lastName;
 	}
 
 
