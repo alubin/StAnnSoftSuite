@@ -39,6 +39,12 @@ public class RciaPanelItem extends JPanel{
 		itemDisplay.setText(value);
 
 	}
+	
+	public void setDisplayValue(String data)
+	{
+		itemDisplay.setText(data);
+		repaint();
+	}
 
 
 }

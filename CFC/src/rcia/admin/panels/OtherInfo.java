@@ -4,6 +4,8 @@ import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 
+import rcia.RciaData;
+
 public class OtherInfo extends JPanel {
 
 	/**
@@ -29,6 +31,11 @@ public class OtherInfo extends JPanel {
 		add(verificationItem);
 		add(reconciliationItem);
 		add(bapCertItem);
+	}
+	
+	public void setData(RciaData data)
+	{
+		
 	}
 
 }

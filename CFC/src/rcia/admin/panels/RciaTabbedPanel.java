@@ -19,20 +19,27 @@ public class RciaTabbedPanel extends JPanel{
 	 */
 	private static final long serialVersionUID = -8668329054778348925L;
 	private ArrayList<RciaData> data = new ArrayList<RciaData>();
+	private final RciaSpinner rciaSpinner;
+	private final PersonalInfo pInfo;
+	private final ReligiousInfo rInfo;
+	private final OtherInfo oInfo;
 
 	public RciaTabbedPanel(ArrayList<RciaData> data)
 	{
 		super(new BorderLayout());
 		this.data = data;
 		 JTabbedPane tabbedPanel = new JTabbedPane();
-		 
-		 tabbedPanel.addTab("Personal Info", new PersonalInfo());
-		 tabbedPanel.addTab("Religion Info", new ReligiousInfo());
-		 tabbedPanel.addTab("Other Info", new OtherInfo());
+		 rciaSpinner = new RciaSpinner(data.toArray(new RciaData[data.size()]));
+		 pInfo = new PersonalInfo();
+		 rInfo = new ReligiousInfo();
+		 oInfo = new OtherInfo();
+		 tabbedPanel.addTab("Personal Info", pInfo);
+		 tabbedPanel.addTab("Religion Info", rInfo);
+		 tabbedPanel.addTab("Other Info", oInfo);
 		 
 		 JButton saveBtn = new JButton("Save Changes");
 		 
-		 JSpinner dataSpinner = new JSpinner(new RciaSpinner(data.toArray(new RciaData[data.size()])));
+		 JSpinner dataSpinner = new JSpinner(rciaSpinner);
 		 
 		 add(dataSpinner, BorderLayout.NORTH);
 		 add(tabbedPanel);
@@ -75,6 +82,18 @@ public class RciaTabbedPanel extends JPanel{
 	            }
 	        }
 	        return value;
+	    }
+	    
+	    @Override
+	    public Object getValue() {
+	    	Object rtnObj = super.getValue();
+	    	RciaData valData = (RciaData) rtnObj;
+	    	pInfo.setData(valData);
+	    	rInfo.setData(valData);
+	    	oInfo.setData(valData);
+//	    	data = valData;
+	    	System.out.println("Value = " + valData.toValueString());
+	    	return rtnObj;
 	    }
 	    
 	}

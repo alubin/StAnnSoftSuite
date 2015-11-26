@@ -5,6 +5,8 @@ import java.awt.GridLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import rcia.RciaData;
+
 /*
  * Sponsor First
  * Sponsor Last
@@ -118,6 +120,11 @@ public class ReligiousInfo extends JPanel{
 		religion.add(sponPotItem);
 		add(scrollPanel);
 
+		
+	}
+
+	public void setData(RciaData valData) {
+		
 		
 	}
 

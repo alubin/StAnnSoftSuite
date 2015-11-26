@@ -5,6 +5,8 @@ import java.awt.GridLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import rcia.RciaData;
+
 /**
  * This panel represents the personal information of an RCIA Member
  * @author AL
@@ -96,6 +98,12 @@ public class PersonalInfo extends JPanel{
 		personal.add(godFatherItem);
 		
 		add(scrollPanel);
+	}
+	
+	public void setData(RciaData data)
+	{
+		firstNameItem.setDisplayValue(data.getFirst());
+		
 	}
 
 }
