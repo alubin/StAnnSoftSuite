@@ -1,9 +1,11 @@
 package rcia.admin.panels;
 
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTabbedPane;
@@ -38,10 +40,13 @@ public class RciaTabbedPanel extends JPanel{
 		 tabbedPanel.addTab("Other Info", oInfo);
 		 
 		 JButton saveBtn = new JButton("Save Changes");
-		 
+		 JPanel returnPanel = new JPanel(new GridLayout(1,2));
 		 JSpinner dataSpinner = new JSpinner(rciaSpinner);
+		 JLabel userLabel = new JLabel(data.size() + " returned users");
+		 returnPanel.add(dataSpinner);
+		 returnPanel.add(userLabel);
 		 
-		 add(dataSpinner, BorderLayout.NORTH);
+		 add(returnPanel, BorderLayout.NORTH);
 		 add(tabbedPanel);
 		 add(saveBtn, BorderLayout.SOUTH);
 	}
@@ -91,8 +96,6 @@ public class RciaTabbedPanel extends JPanel{
 	    	pInfo.setData(valData);
 	    	rInfo.setData(valData);
 	    	oInfo.setData(valData);
-//	    	data = valData;
-//	    	System.out.println("Value = " + valData.toValueString());
 	    	return rtnObj;
 	    }
 	    

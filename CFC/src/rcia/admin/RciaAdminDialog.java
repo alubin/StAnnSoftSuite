@@ -5,6 +5,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -12,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import rcia.RciaData;
 import rcia.admin.panels.RciaTabbedPanel;
 import main.MainFrame;
 import database.DatabaseStore;
@@ -32,9 +34,9 @@ public class RciaAdminDialog extends JDialog {
 	public RciaAdminDialog(MainFrame mainGui)
 	{	
 		this.mainGui = mainGui;
-		
+
 		setResizable(false);
-		
+
 		JPanel NamePanel = new JPanel();
 		JLabel firstNameTitle = new JLabel("First Name:");
 		firstNameTitle.setBounds(23, 8, 74, 14);
@@ -65,14 +67,14 @@ public class RciaAdminDialog extends JDialog {
 		NamePanel.add(lastNameTitle);
 		NamePanel.add(lastNameField);
 		btnPanel.setLayout(null);
-		
+
 		btnPanel.add(searchNameBtn);
 		btnPanel.add(searchAllNameBtn);
-		
+
 		searchNameBtn.addActionListener(new SearchNameListener());
 		searchAllNameBtn.addActionListener(new AllListener());
 		//closeBtn.addActionListener(new CloseListener());
-		
+
 		getContentPane().add(NamePanel);
 		getContentPane().add(btnPanel);
 		//add(closeBtn);
@@ -87,14 +89,25 @@ public class RciaAdminDialog extends JDialog {
 			try {
 				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
 						DatabaseStore.getUserName(), DatabaseStore.getPassword());
-				
+
 				System.out.println("first " + firstNameField.getText() + " Last: " +  lastNameField.getText());
 
-//				rciaAdminPanel = new RciaAdminPanel(mainGui);
-//				rciaAdminPanel.displayData(dbWorker.retrieveRciaData(firstNameField.getText(), lastNameField.getText()));
+				//				rciaAdminPanel = new RciaAdminPanel(mainGui);
+				//				rciaAdminPanel.displayData(dbWorker.retrieveRciaData(firstNameField.getText(), lastNameField.getText()));
 
 				//System.out.println(dbWorker.retrieveRciaData(firstNameField.getText(), lastNameField.getText()));
-				mainGui.setPanel(new RciaTabbedPanel(dbWorker.retrieveRciaData(firstNameField.getText(), lastNameField.getText())));
+				ArrayList<RciaData> dbResults = dbWorker.retrieveRciaData(firstNameField.getText(), lastNameField.getText());
+				if(!dbResults.isEmpty())
+				{
+					RciaTabbedPanel tabbedDisplay = new RciaTabbedPanel(dbResults);
+					mainGui.setPanel(tabbedDisplay);
+				}
+				else
+				{
+					JPanel noResult = new JPanel();
+					noResult.add(new JLabel("There were no matching results."));
+					mainGui.setPanel(noResult);
+				}
 				dbWorker.dbClose();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
@@ -123,8 +136,8 @@ public class RciaAdminDialog extends JDialog {
 				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
 						DatabaseStore.getUserName(), DatabaseStore.getPassword());
 
-//				rciaAdminPanel = new RciaAdminPanel(mainGui);
-//				rciaAdminPanel.displayData(dbWorker.retrieveRciaData("", ""));
+				//				rciaAdminPanel = new RciaAdminPanel(mainGui);
+				//				rciaAdminPanel.displayData(dbWorker.retrieveRciaData("", ""));
 				mainGui.setPanel(new RciaTabbedPanel(dbWorker.retrieveRciaData("", "")));
 
 				dbWorker.dbClose();
