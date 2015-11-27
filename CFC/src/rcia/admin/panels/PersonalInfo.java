@@ -68,7 +68,7 @@ public class PersonalInfo extends JPanel{
 	private RciaPanelItem bapCertItem = new RciaPanelItem("Baptism Certificate");
 	private RciaPanelItem fatherItem = new RciaPanelItem("Father Full Name");
 	private RciaPanelItem motherItem = new RciaPanelItem("Mother Full Name");
-	private RciaPanelItem godFatherItem = new RciaPanelItem("God Father Name");
+	private RciaPanelItem godParentItem = new RciaPanelItem("God Father Name");
 	
 	public PersonalInfo()
 	{
@@ -98,7 +98,7 @@ public class PersonalInfo extends JPanel{
 		personal.add(bapCertItem);
 		personal.add(fatherItem);
 		personal.add(motherItem);
-		personal.add(godFatherItem);
+		personal.add(godParentItem);
 		
 		add(scrollPanel);
 	}
@@ -116,6 +116,17 @@ public class PersonalInfo extends JPanel{
 		stateItem.setDisplayValue(data.getState());
 		zipItem.setDisplayValue(data.getZip());
 		emailItem.setDisplayValue(data.getEmailAddress());
+		phoneItem.setDisplayValue(data.getPhoneNumber());
+		dobItem.setDisplayValue(data.getDob());
+		ageItem.setDisplayValue(data.getOccupation());
+		saintItem.setDisplayValue(data.getSaintName());
+		bpCityItem.setDisplayValue(data.getBirthplaceCity());
+		bpStateItem.setDisplayValue(data.getBpState());
+		birthCertItem.setDisplayValue(data.getBirthCert());
+		bapCertItem.setDisplayValue(data.getBapCert());
+		fatherItem.setDisplayValue(data.getFatherFullName());
+		motherItem.setDisplayValue(data.getMotherFullName());
+		godParentItem.setDisplayValue(data.getGodParentNames());
 		
 	}
 

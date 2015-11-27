@@ -1,13 +1,21 @@
 package rcia.admin.panels;
 
+import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.BevelBorder;
+import javax.swing.SwingConstants;
+
 
 public class RciaPanelItem extends JPanel{
 
@@ -18,18 +26,36 @@ public class RciaPanelItem extends JPanel{
 	private final JCheckBox selection = new JCheckBox();
 	private final JLabel itemLbl = new JLabel();
 	private JLabel itemDisplay = new JLabel();
+	private JLabel itemTitle = new JLabel();
 	private final JTextField itemInput = new JTextField();
+	private final ArrayList<JComponent> compList = new ArrayList<JComponent>(4);
 
+	/**
+	 * @wbp.parser.constructor
+	 */
 	public RciaPanelItem(String label)
 	{
-		setLayout(new GridLayout(1,4));
+		itemTitle.setHorizontalAlignment(SwingConstants.RIGHT);
+		itemTitle.setLabelFor(itemInput);
+		setLayout(new GridLayout(1,5));
 		selection.setSelected(false);
 		itemLbl.setText(label);
 		//		itemDisplay.setText("N/A");
-		itemInput.setText("Enter " + label);
+		itemInput.setText("");
+		itemTitle.setText("Enter " + label);
+		
+		itemDisplay.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.BLACK, Color.GRAY));
+		compList.add(itemDisplay);
+		compList.add(itemInput);
+		compList.add(itemLbl);
+		compList.add(selection);
+		
+		selection.addActionListener(new SelectionListener());
+		
 		add(selection);
 		add(itemLbl);
 		add(itemDisplay);
+		add(itemTitle);
 		add(itemInput);
 	}
 
@@ -44,6 +70,33 @@ public class RciaPanelItem extends JPanel{
 	{
 		itemDisplay.setText(data);
 		repaint();
+	}
+	
+	private class SelectionListener implements ActionListener
+	{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JCheckBox valueBox = (JCheckBox)e.getSource();
+			if(valueBox.isSelected())
+			{
+				for(JComponent comp : compList)
+				{
+					comp.setBackground(Color.CYAN);
+				}
+				repaint();
+			}
+			else
+			{
+				for(JComponent comp : compList)
+				{
+					comp.setBackground(Color.LIGHT_GRAY);
+				}
+				repaint();
+			}
+			
+		}
+		
 	}
 
 

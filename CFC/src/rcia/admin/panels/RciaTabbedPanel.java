@@ -92,7 +92,7 @@ public class RciaTabbedPanel extends JPanel{
 	    	rInfo.setData(valData);
 	    	oInfo.setData(valData);
 //	    	data = valData;
-	    	System.out.println("Value = " + valData.toValueString());
+//	    	System.out.println("Value = " + valData.toValueString());
 	    	return rtnObj;
 	    }
 	    

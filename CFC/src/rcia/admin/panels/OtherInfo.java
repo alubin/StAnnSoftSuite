@@ -35,7 +35,13 @@ public class OtherInfo extends JPanel {
 	
 	public void setData(RciaData data)
 	{
-		
+		eform.setDisplayValue(data.getTypeOfForm());
+		badgeItem.setDisplayValue(data.getBadges());
+		printItem.setDisplayValue(data.getPrintForm());
+		valueItem.setDisplayValue(data.getValue());
+		verificationItem.setDisplayValue(data.getVerification());
+		reconciliationItem.setDisplayValue(data.getReconciliation());
+		bapCertItem.setDisplayValue(data.getBapCert());
 	}
 
 }

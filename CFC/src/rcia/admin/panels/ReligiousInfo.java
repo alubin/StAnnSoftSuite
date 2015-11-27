@@ -49,7 +49,7 @@ public class ReligiousInfo extends JPanel{
 	private RciaPanelItem sponsorItem = new RciaPanelItem("Sponsor");
 	private RciaPanelItem bapitizedItem = new RciaPanelItem("Been Bapitized");
 	private RciaPanelItem dobBapItem = new RciaPanelItem("DOB Baptism");
-	private RciaPanelItem godItem = new RciaPanelItem("God Parent");
+	private RciaPanelItem goodItem = new RciaPanelItem("God Parent");
 	private RciaPanelItem priestItem = new RciaPanelItem("Priest Name");
 	private RciaPanelItem churchItem = new RciaPanelItem("Church Name");
 	private RciaPanelItem churchCityItem = new RciaPanelItem("Church City");
@@ -73,7 +73,7 @@ public class ReligiousInfo extends JPanel{
 	private RciaPanelItem conBItem = new RciaPanelItem("Con B");
 	private RciaPanelItem conCItem = new RciaPanelItem("Con C");
 	private RciaPanelItem conDItem = new RciaPanelItem("Con D");
-	private RciaPanelItem childrenItem = new RciaPanelItem("Children?");
+	private RciaPanelItem childrenItem = new RciaPanelItem("Children");
 	private RciaPanelItem ageItem = new RciaPanelItem("Children Age");
 	private RciaPanelItem sponPotItem = new RciaPanelItem("Sponsorship Potential");
 	
@@ -91,7 +91,7 @@ public class ReligiousInfo extends JPanel{
 		religion.add(sponsorItem);
 		religion.add(bapitizedItem);
 		religion.add(dobBapItem);
-		religion.add(godItem);
+		religion.add(goodItem);
 		religion.add(priestItem);
 		religion.add(churchItem);
 		religion.add(churchCityItem);
@@ -123,8 +123,40 @@ public class ReligiousInfo extends JPanel{
 		
 	}
 
-	public void setData(RciaData valData) {
-		
+	public void setData(RciaData valData) 
+	{
+		sponFirstNameItem.setDisplayValue(valData.getSponFirst());
+		sponLastNameItem.setDisplayValue(valData.getSponLast());
+		sponsorItem.setDisplayValue(valData.getSponsor());
+		bapitizedItem.setDisplayValue(valData.getBaptizedInChrist());
+		dobBapItem.setDisplayValue(valData.getDateOfBaptism());
+		goodItem.setDisplayValue(valData.getGoodStanding());
+		priestItem.setDisplayValue(valData.getPriestName());
+		churchItem.setDisplayValue(valData.getChurchName());
+		churchCityItem.setDisplayValue(valData.getChurchCity());
+		churchStateItem.setDisplayValue(valData.getChurchState());
+		denomItem.setDisplayValue(valData.getDenom());
+		parishItem.setDisplayValue(valData.getCurrParish());
+		yearItem.setDisplayValue(valData.getYrsOfRegEd());
+		monYrItem.setDisplayValue(valData.getMonthAndYear());
+		sacramentItem.setDisplayValue(valData.getSacramentDesired());
+		haveSacrementItem.setDisplayValue(valData.getHaveASponsor());
+		sponsorNameItem.setDisplayValue(valData.getSponsorName());
+		sponsorPhoneItem.setDisplayValue(valData.getSponsorNumber());
+		whySponsorItem.setDisplayValue(valData.getWhySponsor());
+		someoneItem.setDisplayValue(valData.getSomeoneInMind());
+		pracCathItem.setDisplayValue(valData.getPracticingCatholic());
+		attendSessItem.setDisplayValue(valData.getAttendSession());
+		cathChurchItem.setDisplayValue(valData.getChurchName());
+		cathConItem.setDisplayValue(valData.getCatholicDate());
+		civilMarrItem.setDisplayValue(valData.getCivilMarriageDate());
+		conAItem.setDisplayValue(valData.getConA());
+		conBItem.setDisplayValue(valData.getConB());
+		conCItem.setDisplayValue(valData.getConC());
+		conDItem.setDisplayValue(valData.getConD());
+		childrenItem.setDisplayValue(valData.getChildren());
+		ageItem.setDisplayValue(valData.getAge());
+		sponPotItem.setDisplayValue(valData.getSponsorPotential());
 		
 	}
 
