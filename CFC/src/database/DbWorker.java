@@ -225,6 +225,12 @@ public class DbWorker {
 		case ccfEmail:
 			query = "SELECT * FROM parishData WHERE Email = '" + input + "'";
 			break;
+		case ccfFirst:
+			query = "SELECT * FROM parishData WHERE StuFnm = '" + input + "'";
+			break;
+		case ccfLast:
+			query = "SELECT * FROM parishData WHERE StuLnm = '" + input + "'";
+			break;
 		case all:
 			query = "SELECT * FROM parishData";
 			break;

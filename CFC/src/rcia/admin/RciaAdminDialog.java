@@ -1,5 +1,6 @@
 package rcia.admin;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -19,6 +20,7 @@ import main.MainFrame;
 import database.DatabaseStore;
 import database.DbWorker;
 import database.QueryType;
+import javax.swing.SwingConstants;
 
 public class RciaAdminDialog extends JDialog {
 
@@ -39,34 +41,36 @@ public class RciaAdminDialog extends JDialog {
 
 		JPanel NamePanel = new JPanel();
 		JLabel firstNameTitle = new JLabel("First Name:");
-		firstNameTitle.setBounds(23, 8, 74, 14);
-		firstNameField = new JTextField();
-		firstNameField.setBounds(95, 5, 170, 20);
-		firstNameField.setColumns(15);
+//		firstNameTitle.setBounds(23, 8, 74, 14);
+		firstNameField = new JTextField(15);
+		firstNameTitle.setLabelFor(firstNameField);
+//		firstNameField.setBounds(95, 5, 170, 20);
+//		firstNameField.setColumns(15);
 
 		JLabel lastNameTitle = new JLabel("Last Name:");
-		lastNameTitle.setBounds(23, 33, 74, 14);
-		lastNameField = new JTextField();
-		lastNameField.setBounds(95, 30, 170, 20);
-		lastNameField.setColumns(15);
+//		lastNameTitle.setBounds(23, 33, 74, 14);
+		lastNameField = new JTextField(15);
+		lastNameTitle.setLabelFor(lastNameField);
+//		lastNameField.setBounds(95, 30, 170, 20);
+//		lastNameField.setColumns(15);
 
 		JPanel btnPanel = new JPanel();
-		JButton searchNameBtn = new JButton("Search Name");
-		searchNameBtn.setBounds(42, 11, 111, 23);
+		JButton searchNameBtn = new JButton("Search By Name");
+//		searchNameBtn.setBounds(42, 11, 111, 23);
 		JButton searchAllNameBtn = new JButton("Search All");
-		searchAllNameBtn.setBounds(163, 11, 102, 23);
+//		searchAllNameBtn.setBounds(163, 11, 102, 23);
 		//JButton closeBtn = new JButton("Close");
 
 		getContentPane().setLayout(new GridLayout(2, 1));
-		setSize(298, 140);
-		NamePanel.setLayout(null);
+		setMinimumSize(new Dimension(298, 140));
+		NamePanel.setLayout(new GridLayout(2,3));
 
 		NamePanel.add(firstNameTitle);
 		NamePanel.add(firstNameField);
 
 		NamePanel.add(lastNameTitle);
 		NamePanel.add(lastNameField);
-		btnPanel.setLayout(null);
+		btnPanel.setLayout(new GridLayout(2,4));
 
 		btnPanel.add(searchNameBtn);
 		btnPanel.add(searchAllNameBtn);

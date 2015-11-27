@@ -1,6 +1,7 @@
 package ccf.admin;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
@@ -58,7 +59,7 @@ public class CCFAdminDialog extends JDialog {
 
 		setLayout(new GridLayout(3,1));
 
-		setSize(500, 400);
+		setMinimumSize(new Dimension(500, 550));
 
 
 

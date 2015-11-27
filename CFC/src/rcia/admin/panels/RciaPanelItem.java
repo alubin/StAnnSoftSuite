@@ -44,7 +44,7 @@ public class RciaPanelItem extends JPanel{
 		itemInput.setText("");
 		itemTitle.setText("Enter " + label);
 		
-		itemDisplay.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED, Color.BLACK, Color.GRAY));
+		itemDisplay.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
 		compList.add(itemDisplay);
 		compList.add(itemInput);
 		compList.add(itemLbl);

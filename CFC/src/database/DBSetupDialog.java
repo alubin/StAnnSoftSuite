@@ -32,7 +32,7 @@ public class DBSetupDialog extends JDialog {
 		JPanel btnPanel = new JPanel(new BorderLayout());
 
 		setLayout(new GridLayout(6,1));
-		setMinimumSize(new Dimension(300, 300));
+		setMinimumSize(new Dimension(300, 400));
 		((JPanel)getContentPane()).setBorder(BorderFactory.createTitledBorder("Database Setup"));
 
 
