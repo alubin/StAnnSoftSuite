@@ -1,42 +1,23 @@
 package rcia.admin;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
 
 import main.MainFrame;
 
-import org.apache.xmlbeans.impl.xb.xmlconfig.NamespaceList.Member2.Item;
 import org.jdesktop.swingx.JXTable;
-import org.jdesktop.swingx.decorator.ColorHighlighter;
-import org.jdesktop.swingx.decorator.ComponentAdapter;
-import org.jdesktop.swingx.decorator.HighlightPredicate;
 import org.jdesktop.swingx.search.SearchFactory;
 
 import rcia.RciaData;
-import database.DatabaseStore;
-import database.DbWorker;
-import database.QueryType;
 
 public class RciaAdminPanel extends JPanel {
 

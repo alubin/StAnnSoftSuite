@@ -1,24 +1,17 @@
 package ccf.admin;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-import ccf.CCFData;
 import main.MainFrame;
 import database.DatabaseStore;
 import database.DbWorker;
@@ -31,7 +24,7 @@ public class CCFAdminDialog extends JDialog {
 	 */
 	private static final long serialVersionUID = 4981523267433072507L;
 
-	private  MainFrame mainGui;
+//	private  MainFrame mainGui;
 	private CCFEmailDialog emailDialog;
 
 	public CCFAdminDialog(MainFrame mainGui)

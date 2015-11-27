@@ -8,11 +8,9 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.util.ArrayList;
 
-import com.sun.jmx.snmp.SnmpStringFixed;
-
+import print.PrintData;
 import rcia.RciaData;
 import ccf.CCFData;
-import print.PrintData;
 
 public class DbWorker {
 

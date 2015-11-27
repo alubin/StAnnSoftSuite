@@ -28,12 +28,10 @@ public class CCFImportTableModel extends DefaultTableModel {
 
 
 
-	private final Table accessTable;
 
 	public CCFImportTableModel(Table table)
 	{
 		super(columnNames,0);
-		this.accessTable = table;
 	}
 
 	@Override

@@ -1,13 +1,9 @@
 package ccf.importfiles;
 
-import java.awt.AWTException;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.awt.Robot;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -16,12 +12,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import main.MainFrame;
+
 import org.jdesktop.swingx.JXTable;
 import org.jdesktop.swingx.search.SearchFactory;
 
 import ccf.AccessReader;
 import ccf.CCFTable;
-import main.MainFrame;
 import database.DatabaseStore;
 import database.DbWorker;
 

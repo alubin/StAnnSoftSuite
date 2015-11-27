@@ -1,10 +1,6 @@
 package rcia.admin;
 
-import java.awt.Color;
-import java.awt.Component;
-
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
 
 public class RciaAdminTableModel extends DefaultTableModel {
 

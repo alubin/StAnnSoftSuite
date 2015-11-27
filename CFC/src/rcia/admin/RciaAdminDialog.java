@@ -1,7 +1,6 @@
 package rcia.admin;
 
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,13 +13,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import main.MainFrame;
 import rcia.RciaData;
 import rcia.admin.panels.RciaTabbedPanel;
-import main.MainFrame;
 import database.DatabaseStore;
 import database.DbWorker;
-import database.QueryType;
-import javax.swing.SwingConstants;
 
 public class RciaAdminDialog extends JDialog {
 
