@@ -1,6 +1,5 @@
 package print;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,10 +19,12 @@ import javax.swing.JRadioButton;
 
 import database.DatabaseStore;
 import database.DbWorker;
+import java.awt.Color;
+import java.awt.Toolkit;
 
-import javax.swing.JTabbedPane;
-import javax.swing.JComboBox;
-import javax.swing.JProgressBar;
+import java.awt.Component;
+import com.toedter.calendar.JDateChooser;
+
 
 public class Print extends JDialog {
 
@@ -35,6 +36,8 @@ private JPanel contentPane;
 //	private PrintDisplayPanel printDisplayPanel;
 	private JTextField firstNameTextField;
 	private JTextField lastNameTextField;
+	private JTextField pastorTextField;
+
 
 	public Print(MainFrame mainGui) {
 		setResizable(false);
@@ -42,7 +45,7 @@ private JPanel contentPane;
 		this.mainGui = mainGui;
 		
 		
-		setBounds(100, 100, 300, 310);
+		setBounds(100, 100, 300, 325);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -57,82 +60,70 @@ private JPanel contentPane;
 		contentPane.add(lblLastName);
 		
 		firstNameTextField = new JTextField();
-		firstNameTextField.setBounds(88, 8, 172, 20);
+		firstNameTextField.setBounds(88, 8, 196, 20);
 		contentPane.add(firstNameTextField);
 		firstNameTextField.setColumns(10);
 		
 		lastNameTextField = new JTextField();
-		lastNameTextField.setBounds(88, 36, 172, 20);
+		lastNameTextField.setBounds(88, 36, 196, 20);
 		contentPane.add(lastNameTextField);
 		lastNameTextField.setColumns(10);
 		
-		JButton searchNameBtn = new JButton("Search Name");
-		searchNameBtn.setBounds(79, 67, 130, 23);
-		
-		contentPane.add(searchNameBtn);
-		
 		JPanel certTypePanel = new JPanel();
-		certTypePanel.setBounds(10, 112, 188, 145);
+		certTypePanel.setBounds(10, 128, 188, 145);
 		contentPane.add(certTypePanel);
 		certTypePanel.setLayout(null);
 		
-		JLabel label = new JLabel("Certificate Type:");
-		label.setEnabled(false);
-		label.setBounds(0, 0, 139, 14);
-		certTypePanel.add(label);
+		JLabel certTypeLabel = new JLabel("Certificate Type:");
+		certTypeLabel.setBounds(0, 0, 139, 14);
+		certTypePanel.add(certTypeLabel);
 		
-		JRadioButton radioButton = new JRadioButton("Confirmation");
-		radioButton.setEnabled(false);
-		radioButton.setBounds(10, 17, 109, 23);
-		certTypePanel.add(radioButton);
+		JRadioButton confirmButton = new JRadioButton("Confirmation");
+		confirmButton.setBounds(10, 17, 109, 23);
+		certTypePanel.add(confirmButton);
 		
-		JRadioButton radioButton_1 = new JRadioButton("First Communion");
-		radioButton_1.setEnabled(false);
-		radioButton_1.setBounds(10, 43, 109, 23);
-		certTypePanel.add(radioButton_1);
+		JRadioButton communionButton = new JRadioButton("First Communion");
+		communionButton.setBounds(10, 43, 109, 23);
+		certTypePanel.add(communionButton);
 		
-		JRadioButton radioButton_2 = new JRadioButton("Rite of Christian Initiation");
-		radioButton_2.setEnabled(false);
-		radioButton_2.setBounds(10, 69, 166, 23);
-		certTypePanel.add(radioButton_2);
+		JRadioButton rciaButton = new JRadioButton("Rite of Christian Initiation");
+		rciaButton.setBounds(10, 69, 166, 23);
+		certTypePanel.add(rciaButton);
 		
-		JLabel label_1 = new JLabel("Print Language:");
-		label_1.setEnabled(false);
-		label_1.setBounds(0, 99, 89, 14);
-		certTypePanel.add(label_1);
+		JLabel languageLabel = new JLabel("Print Language:");
+		languageLabel.setBounds(0, 99, 89, 14);
+		certTypePanel.add(languageLabel);
 		
-		JButton button = new JButton("English");
-		button.setEnabled(false);
-		button.setBounds(0, 122, 89, 23);
-		certTypePanel.add(button);
+		JButton englishButton = new JButton("English");
+		englishButton.setBounds(0, 122, 89, 23);
+		certTypePanel.add(englishButton);
 		
-		JButton button_1 = new JButton("Spanish");
-		button_1.setEnabled(false);
-		button_1.setBounds(99, 122, 89, 23);
-		certTypePanel.add(button_1);
+		JButton spanishButton = new JButton("Spanish");
+		spanishButton.setBounds(99, 122, 89, 23);
+		certTypePanel.add(spanishButton);
 		
-		searchNameBtn.addActionListener(new SearchNameListener());
-	}
+		JLabel lblPastorName = new JLabel("Pastor Name:");
+		lblPastorName.setBounds(10, 67, 94, 14);
+		contentPane.add(lblPastorName);
+		
+		pastorTextField = new JTextField();
+		pastorTextField.setForeground(Color.BLACK);
+		pastorTextField.setText("Fr. ");
+		pastorTextField.setColumns(10);
+		pastorTextField.setBounds(88, 64, 196, 20);
+		contentPane.add(pastorTextField);
+		
+		JLabel lblConfirmationDate = new JLabel("Confirmation Date:");
+		lblConfirmationDate.setBounds(10, 95, 107, 14);
+		contentPane.add(lblConfirmationDate);
+		
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setDateFormatString("MMMM d, yyyy");
+		dateChooser.setBounds(120, 95, 164, 20);
+		contentPane.add(dateChooser);
+		
+		
+		
 	
-	private class SearchNameListener implements ActionListener
-	{
-		@Override
-		public void actionPerformed(ActionEvent arg0){
-			//TODO: Code to modify and create the PDF should be here.
-//			try {
-//				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
-//						DatabaseStore.getUserName(), DatabaseStore.getPassword());
-
-//				printDisplayPanel = new PrintDisplayPanel(mainGui);
-//				printDisplayPanel.displayData(dbWorker.retrievePrintData(firstNameTextField.getText(), lastNameTextField.getText()));
-				
-				
-//				dbWorker.dbClose();
-//			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			}
-		}
 	}
-	
 }

@@ -2,6 +2,7 @@ package main;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,6 +12,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 import rcia.admin.RciaAdminDialog;
@@ -21,6 +23,7 @@ import ccf.admin.CCFAdminPanel;
 import ccf.importfiles.CCFImportDialog;
 import database.DBSetupDialog;
 import print.Print;
+import java.awt.Toolkit;
 
 /**
  * This Frame will be the front facing GUI that the client will see.
@@ -64,10 +67,18 @@ public class MainFrame extends JFrame{
 
 	public MainFrame()
 	{
+		try{
+		Image image = ImageIO.read(this.getClass().getResource("/images/logo_1__4Tf_icon.ico"));
+		setIconImage(image);
+		}
+		catch(Exception e){
+		
+		}
+		
 		setTitle("St. Ann Software Suite");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		setLayout(new GridLayout(1, 1));
+		getContentPane().setLayout(new GridLayout(1, 1));
 		//		displayPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
 
 		//Set the screen to Full Size
@@ -126,7 +137,7 @@ public class MainFrame extends JFrame{
 	    ImageIcon logo = new ImageIcon(getClass().getResource("/images/logo.png"));
 	    panel1.add(new JLabel(logo), BorderLayout.CENTER);
 
-	    this.add(panel1);
+	    getContentPane().add(panel1);
 		//Assign the menu
 		setJMenuBar(optionMenuBar);
 		pack();
