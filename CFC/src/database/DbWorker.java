@@ -38,6 +38,7 @@ public class DbWorker {
 
 	}
 
+
 	public void dbConnect(String ipAddress, int port) {
 		String url = "jdbc:mysql://"+ipAddress+":"+port+"/";
 		String dbName1 = "ccf";
@@ -55,6 +56,10 @@ public class DbWorker {
 			e.printStackTrace();
 			new DbConnectErrorDialog().setVisible(true);
 		}
+	}
+	
+	public Connection getConnection(){
+		return con2;
 	}
 
 	public int storeCCF(ArrayList<CCFData> data){

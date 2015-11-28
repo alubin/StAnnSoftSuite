@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2015-11-27T16:28:07 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cert2" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4effc2c0-b940-4616-a809-beb3370226d6">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="FirstName" class="java.lang.String"/>
+	<parameter name="LastName" class="java.lang.String"/>
+	<parameter name="PastorName" class="java.lang.String"/>
+	<parameter name="DateOfConfirmation" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT rcia.inquirer.`First_Name`,
+	rcia.inquirer.`Middle_Name`,
+	rcia.inquirer.`Last_Name`,
+	rcia.inquirer.`Father_Full_Name`,
+	rcia.inquirer.`Mother_Full_Name`,
+	rcia.inquirer.`Date_Of_Baptism`,
+	rcia.inquirer.`Sponsor_First_Name`,
+	rcia.inquirer.`Sponsor_Last_Name`,
+	rcia.inquirer.`Month_Year_Confirmed`
+FROM rcia.inquirer
+WHERE 
+	 rcia.inquirer.`First_Name` = $P{FirstName}
+	 AND rcia.inquirer.`Last_Name` = $P{LastName}]]>
+	</queryString>
+	<field name="First_Name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Middle_Name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Last_Name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Father_Full_Name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Mother_Full_Name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Date_Of_Baptism" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Sponsor_First_Name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Sponsor_Last_Name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Month_Year_Confirmed" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="571" splitType="Stretch">
+			<staticText>
+				<reportElement key="" x="121" y="195" width="60" height="20" uuid="e7455a71-387d-4181-9337-a09d1a4f0c0f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Old English Text MT" size="16"/>
+				</textElement>
+				<text><![CDATA[Child of]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="" x="121" y="232" width="100" height="20" uuid="ae988683-d179-4e4a-9cab-4bc56f72fb42"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Old English Text MT" size="16"/>
+				</textElement>
+				<text><![CDATA[Baptized on the]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="415" y="233" width="19" height="18" uuid="d0b0516d-6121-4a53-b6e6-e5c16dab532f"/>
+				<textElement>
+					<font fontName="Old English Text MT" size="16"/>
+				</textElement>
+				<text><![CDATA[At]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="230" width="175" height="24" uuid="ace0a946-79b1-4d7f-90b8-d9775cde3c3c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Lucida Calligraphy" size="16" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[St. Ann, Coppell, TX]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="270" width="560" height="25" uuid="853dbfd7-b02f-4bac-9f07-da78afa00323"/>
+				<textElement textAlignment="Center">
+					<font fontName="Old English Text MT" size="21"/>
+				</textElement>
+				<text><![CDATA[Received the Sacrament of Confirmation and First Communion ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="305" width="49" height="20" uuid="af32c71e-cb49-43c6-8b36-34cbc8e3c4a1"/>
+				<textElement>
+					<font fontName="Old English Text MT" size="16"/>
+				</textElement>
+				<text><![CDATA[On the]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="261" y="337" width="28" height="30" uuid="86b48376-18ef-48c2-bb03-af717a38c870"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Old English Text MT" size="16"/>
+				</textElement>
+				<text><![CDATA[By]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="442" width="250" height="118" uuid="18d25315-a883-45ce-b689-7d9e08f76dff"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Old English Text MT" size="14"/>
+					<paragraph lineSpacing="Proportional"/>
+				</textElement>
+				<text><![CDATA[As appears in the Confirmation Register 
+
+St. Ann Catholic Parish
+
+180 Samuel Blvd., Coppell, TX 75019]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="510" y="442" width="40" height="17" uuid="c200f4b8-e8d3-44d7-b95d-5cbe1fe31a4f"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Old English Text MT" size="14"/>
+				</textElement>
+				<text><![CDATA[Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="510" y="470" width="46" height="16" uuid="3046c283-91d3-4ef7-848a-0f74d9dc24e5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Old English Text MT" size="14"/>
+				</textElement>
+				<text><![CDATA[Pastor]]></text>
+			</staticText>
+			<line>
+				<reportElement x="556" y="486" width="173" height="1" uuid="5c50d2ea-135b-48da-aeca-b047670f0e93"/>
+			</line>
+			<staticText>
+				<reportElement x="103" y="90" width="584" height="53" uuid="d288b7fa-8eaf-4cd4-92ac-7f9349a8fb3c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Old English Text MT" size="48"/>
+				</textElement>
+				<text><![CDATA[First Communion Certificate   ]]></text>
+			</staticText>
+			<image>
+				<reportElement x="353" y="0" width="85" height="85" uuid="2caa3b17-0b29-4408-94ee-b802c0872a31">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA["C:/Users/Sunshine/git/StAnnSoftSuite/CFC/src/images/cert_logo.png"]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="FixRelativeToBottom" x="154" y="150" width="482" height="37" uuid="a019127d-f293-4e1c-b062-699247597901"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Calligraphy" size="26" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{First_Name} + " " + $F{Middle_Name} + " " + $F{Last_Name}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="181" y="190" width="488" height="30" uuid="4cf22254-fe85-4402-81c1-cc5740d7eab8"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Lucida Calligraphy" size="18" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Father_Full_Name} + " & " + $F{Mother_Full_Name}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="230" y="229" width="150" height="27" uuid="ea3dd908-847a-4573-a74b-b618fa6ee9fe"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Lucida Calligraphy" size="16" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Date_Of_Baptism}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="279" y="300" width="350" height="30" uuid="204eccbf-25dc-47c0-91e0-6f9e9df92169"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Lucida Calligraphy" size="18" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DateOfConfirmation}.toString()]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="289" y="340" width="260" height="30" uuid="19305384-b841-4eab-a11f-9377d3c5920d"/>
+				<textElement>
+					<font fontName="Lucida Calligraphy" size="18" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{PastorName}.toString()]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement positionType="FixRelativeToBottom" x="556" y="440" width="158" height="21" uuid="983edea8-19b6-4328-8085-1d601e5c03d2"/>
+				<textElement>
+					<font fontName="Lucida Calligraphy" size="14" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
