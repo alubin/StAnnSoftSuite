@@ -54,7 +54,7 @@ public class CCFAdminDialog extends JDialog {
 
 		setMinimumSize(new Dimension(500, 550));
 
-
+		setAlwaysOnTop(true);
 
 		idPanel.add(idTitle);
 		idPanel.add(idField);

@@ -58,6 +58,7 @@ private JPanel contentPane;
 		
 		this.mainGui = mainGui;
 		
+		setAlwaysOnTop(true);
 		
 		setBounds(100, 100, 300, 340);
 		contentPane = new JPanel();

@@ -59,6 +59,8 @@ public class DBSetupDialog extends JDialog {
 		add(userNamePanel);
 		add(passwordPanel);
 		add(btnPanel);
+		
+		setAlwaysOnTop(true);
 
 	}
 

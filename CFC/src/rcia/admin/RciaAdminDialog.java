@@ -35,6 +35,7 @@ public class RciaAdminDialog extends JDialog {
 		this.mainGui = mainGui;
 
 		setResizable(false);
+		setAlwaysOnTop(true);
 
 		JPanel NamePanel = new JPanel();
 		JLabel firstNameTitle = new JLabel("First Name:");

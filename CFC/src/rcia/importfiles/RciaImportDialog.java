@@ -13,6 +13,7 @@ public class RciaImportDialog extends ImportDialog {
 	public RciaImportDialog(MainFrame instance)
 	{
 		super(rciaTitle, new RciaImportActionListener(instance));
+		setAlwaysOnTop(true);
 	}
 
 	@Override

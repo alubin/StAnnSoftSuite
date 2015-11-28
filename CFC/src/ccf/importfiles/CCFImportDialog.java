@@ -18,6 +18,7 @@ public class CCFImportDialog extends ImportDialog {
 	
 	public CCFImportDialog(MainFrame instance) {
 		super(ccfTitle, new CCFImportActionListener(instance));
+		setAlwaysOnTop(true);
 	}
 	
 	@Override
