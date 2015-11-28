@@ -26,11 +26,9 @@ import database.DbWorker;
 import print.PrintCertificate;
 
 import java.awt.Color;
-import java.awt.Toolkit;
 
-import java.awt.Component;
 import com.toedter.calendar.JDateChooser;
-import javax.swing.JComboBox;
+
 
 
 public class Print extends JDialog {
@@ -51,6 +49,8 @@ private JPanel contentPane;
 	private JRadioButton rciaButton;
     private JButton englishButton;
     private JButton spanishButton;
+    private JPanel certTypePanel;
+    private JLabel warningLbl;
     private PrintCertificate printCert;
 
 	public Print(MainFrame mainGui) {
@@ -60,7 +60,7 @@ private JPanel contentPane;
 		
 		setAlwaysOnTop(true);
 		
-		setBounds(100, 100, 300, 340);
+		setBounds(100, 100, 300, 360);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -90,7 +90,6 @@ private JPanel contentPane;
 		
 		pastorTextField = new JTextField();
 		pastorTextField.setForeground(Color.BLACK);
-		pastorTextField.setText("Fr. ");
 		pastorTextField.setColumns(10);
 		pastorTextField.setBounds(88, 66, 196, 25);
 		contentPane.add(pastorTextField);
@@ -100,11 +99,12 @@ private JPanel contentPane;
 		contentPane.add(lblConfirmationDate);
 		
 		dateChooser = new JDateChooser();
+		dateChooser.setToolTipText("");
 		dateChooser.setDateFormatString("MMMM d, yyyy");
 		dateChooser.setBounds(120, 102, 164, 25);
 		contentPane.add(dateChooser);
 		
-		JPanel certTypePanel = new JPanel();
+		certTypePanel = new JPanel();
 		certTypePanel.setBounds(10, 150, 274, 145);
 		contentPane.add(certTypePanel);
 		certTypePanel.setLayout(null);
@@ -116,6 +116,7 @@ private JPanel contentPane;
 		ButtonGroup groupType = new ButtonGroup();
 		
 		confirmButton = new JRadioButton("Confirmation");
+		confirmButton.setSelected(true);
 		confirmButton.setBounds(10, 17, 226, 23);
 		certTypePanel.add(confirmButton);
 		
@@ -139,13 +140,19 @@ private JPanel contentPane;
 		
 		englishButton = new JButton("English");
 		englishButton.addActionListener(new ActionListener() {
-			
-
 			public void actionPerformed(ActionEvent arg0) {
-				certType = getSelectedButtonText(groupType).toLowerCase().replace(" ", "_") + "_eng";
-				System.out.println(certType);
-				
-				printCert = new PrintCertificate(certType, firstNameTextField.getText(), lastNameTextField.getText(), dateChooser.getDate().toString(), pastorTextField.getText());
+				if(firstNameTextField.getText().equals("") || lastNameTextField.getText().equals("") || dateChooser.getDate().toString().equals("") || pastorTextField.getText().equals(""))
+				{
+					warningLbl.setVisible(true);
+				}
+				else
+				{
+					warningLbl.setVisible(false);
+					certType = getSelectedButtonText(groupType).toLowerCase().replace(" ", "_") + "_eng";
+					System.out.println(certType);
+					
+					printCert = new PrintCertificate(certType, firstNameTextField.getText(), lastNameTextField.getText(), dateChooser.getDate().toString(), pastorTextField.getText());
+				}
 			}
 		});
 		englishButton.setBounds(0, 122, 89, 23);
@@ -154,14 +161,27 @@ private JPanel contentPane;
 		spanishButton = new JButton("Spanish");
 		spanishButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				certType = getSelectedButtonText(groupType).toLowerCase().replace(" ", "_") + "_span";
-				System.out.println(certType);
-				printCert = new PrintCertificate(certType, firstNameTextField.getText(), lastNameTextField.getText(), dateChooser.getDate().toString(), pastorTextField.getText());
+				if(firstNameTextField.getText().equals("") || lastNameTextField.getText().equals("") || dateChooser.getDate().toString().equals("") || pastorTextField.getText().equals(""))
+				{
+					warningLbl.setVisible(true);
+				}
+				else
+				{
+					warningLbl.setVisible(false);
+					certType = getSelectedButtonText(groupType).toLowerCase().replace(" ", "_") + "_span";
+					System.out.println(certType);
+					printCert = new PrintCertificate(certType, firstNameTextField.getText(), lastNameTextField.getText(), dateChooser.getDate().toString(), pastorTextField.getText());
+				}
 			}
 		});
 		spanishButton.setBounds(99, 122, 89, 23);
 		certTypePanel.add(spanishButton);
+		
+		warningLbl = new JLabel("All fields must be filled");
+		warningLbl.setForeground(Color.RED);
+		warningLbl.setBounds(51, 306, 138, 14);
+		contentPane.add(warningLbl);
+		warningLbl.setVisible(false);
 		
 		
 	}
@@ -177,6 +197,4 @@ private JPanel contentPane;
 
 	        return null;
 	    }
-	
-	
 }
