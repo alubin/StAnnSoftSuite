@@ -24,7 +24,8 @@ public class PrintCertificate
 	
 	public PrintCertificate( String certType, String firstName, String lastName, String confirmDate, String pastorName)
 	{
-		DbWorker db = new DbWorker();
+		//Need to swtich from hard coded Connection to db.getConnection();
+		//DbWorker db = new DbWorker();
 		//con = db.getConnection();
 		
 		try
@@ -41,27 +42,27 @@ public class PrintCertificate
 		
 		if(certType.equals("rite_of_christian_initiation_eng"))
 		{
-			REPORT = "certificates/RCI_Eng.jrxml";
+			REPORT = "./certificates/RCI_Eng.jrxml";
 		}
 		else if(certType.equals("rite_of_christian_initiation_span"))
 		{
-			REPORT = "certificates/RCIA_Span.jrxml";
+			REPORT = "./certificates/RCIA_Span.jrxml";
 		}
 		else if(certType.equals("confirmation_eng"))
 		{
-			REPORT = "certificates/Confirm_Eng.jrxml";
+			REPORT = "./certificates/Confirm_Eng.jrxml";
 		}
 		else if(certType.equals("confirmation_span"))
 		{
-			REPORT = "certificates/Confirm_Span.jrxml";
+			REPORT = "./certificates/Confirm_Span.jrxml";
 		}
 		else if(certType.equals("first_communion_eng"))
 		{
-			REPORT = "certificates/Communion_Eng.jrxml";
+			REPORT = "./certificates/Communion_Eng.jrxml";
 		}
 		else if(certType.equals("first_communion_span"))
 		{
-			REPORT = "certificates/Communion_Span.jrxml";
+			REPORT = "./certificates/Communion_Span.jrxml";
 		}
 			
 			HashMap<String, Object> map = new HashMap<>();
@@ -69,11 +70,10 @@ public class PrintCertificate
 			map.put("LastName",lastName);
 			map.put("PastorName", pastorName);
 			map.put("DateOfConfirmation", confirmDate);
-			
-			try {
-
-		        JasperReport jr = JasperCompileManager.compileReport(
-		                ClassLoader.getSystemResourceAsStream(REPORT));
+		
+			try 
+			{
+		        JasperReport jr = JasperCompileManager.compileReport(ClassLoader.getSystemResourceAsStream(REPORT));
 		        JasperPrint jp = JasperFillManager.fillReport(jr, map, con);
 		        JRDocxExporter export = new JRDocxExporter();
 			    export.setExporterInput(new SimpleExporterInput(jp));

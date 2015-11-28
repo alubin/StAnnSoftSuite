@@ -3,6 +3,8 @@ package main;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
+import org.apache.log4j.BasicConfigurator;
+
 /**
  * This is the main class of the program.
  * @author AL
@@ -27,6 +29,7 @@ public class SoftwareSuite {
 			e.printStackTrace();
 
 		}
+		BasicConfigurator.configure();
 		new MainFrame();
 
 	}
