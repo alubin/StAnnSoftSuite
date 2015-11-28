@@ -156,7 +156,7 @@ private JPanel contentPane;
 				
 				certType = getSelectedButtonText(groupType).toLowerCase().replace(" ", "_") + "_span";
 				System.out.println(certType);
-				//printCert = new PrintCertificate(certType, firstNameTextField.getText(), lastNameTextField.getText(), dateChooser.getDateFormatString(), pastorTextField.getText());
+				printCert = new PrintCertificate(certType, firstNameTextField.getText(), lastNameTextField.getText(), dateChooser.getDate().toString(), pastorTextField.getText());
 			}
 		});
 		spanishButton.setBounds(99, 122, 89, 23);

@@ -6,7 +6,9 @@ import net.sf.jasperreports.export.SimpleDocxReportConfiguration;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 
+import java.awt.Desktop;
 import java.io.File;
+import java.io.IOException;
 import java.sql.DriverManager;
 import java.util.*;
 
@@ -81,10 +83,24 @@ public class PrintCertificate
 			    SimpleDocxReportConfiguration config = new SimpleDocxReportConfiguration();
 			    export.setConfiguration(config);
 			    export.exportReport();
+			    
+			    //Opens file after completed export
+			    OpenFile(OUT_PUT);
 		    } catch (JRException ex) {
 		        ex.printStackTrace();   
 		    }
 			
-		
+	}
+	
+	public void OpenFile(String path)
+	{
+		if (Desktop.isDesktopSupported()) {
+		    try {
+		        File myFile = new File(path);
+		        Desktop.getDesktop().open(myFile);
+		    } catch (IOException ex) {
+		        // no application registered for PDFs
+		    }
+		}
 	}
 }
