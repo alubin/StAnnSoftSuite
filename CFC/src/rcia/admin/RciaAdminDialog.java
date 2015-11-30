@@ -18,6 +18,7 @@ import rcia.RciaData;
 import rcia.admin.panels.RciaTabbedPanel;
 import database.DatabaseStore;
 import database.DbWorker;
+import javax.swing.SwingConstants;
 
 public class RciaAdminDialog extends JDialog {
 
@@ -39,6 +40,7 @@ public class RciaAdminDialog extends JDialog {
 
 		JPanel NamePanel = new JPanel();
 		JLabel firstNameTitle = new JLabel("First Name:");
+		firstNameTitle.setHorizontalAlignment(SwingConstants.CENTER);
 //		firstNameTitle.setBounds(23, 8, 74, 14);
 		firstNameField = new JTextField(15);
 		firstNameTitle.setLabelFor(firstNameField);
@@ -46,6 +48,7 @@ public class RciaAdminDialog extends JDialog {
 //		firstNameField.setColumns(15);
 
 		JLabel lastNameTitle = new JLabel("Last Name:");
+		lastNameTitle.setHorizontalAlignment(SwingConstants.CENTER);
 //		lastNameTitle.setBounds(23, 33, 74, 14);
 		lastNameField = new JTextField(15);
 		lastNameTitle.setLabelFor(lastNameField);
