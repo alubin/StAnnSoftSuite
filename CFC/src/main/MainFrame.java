@@ -3,8 +3,11 @@ package main;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.InputStream;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -23,7 +26,7 @@ import ccf.admin.CCFAdminPanel;
 import ccf.importfiles.CCFImportDialog;
 import database.DBSetupDialog;
 import print.Print;
-import java.awt.Toolkit;
+
 
 /**
  * This Frame will be the front facing GUI that the client will see.
@@ -67,18 +70,8 @@ public class MainFrame extends JFrame{
 
 	public MainFrame()
 	{
-		try{
-		Image image = ImageIO.read(this.getClass().getResource("/images/logo_1__4Tf_icon.ico"));
-		setIconImage(image);
-		}
-		catch(Exception e){
-		
-		}
-		
 		setTitle("St. Ann Software Suite");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		getContentPane().setLayout(new GridLayout(1, 1));
 		//		displayPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
 
 		//Set the screen to Full Size
@@ -132,10 +125,13 @@ public class MainFrame extends JFrame{
 		printSheet.addActionListener(new PrintSheetActionListener());
 		printCertificate.addActionListener(new PrintCertificateActionListener());
 		
+		
+		setIconImage(Toolkit.getDefaultToolkit().getImage(MainFrame.class.getResource("/images/cert_logo.png")));
+		
 		//Adds logo to mainFrame
 		JPanel panel1 = new JPanel();
 	    ImageIcon logo = new ImageIcon(getClass().getResource("/images/logo.png"));
-	    panel1.add(new JLabel(logo), BorderLayout.CENTER);
+	    panel1.add(new JLabel(logo));
 
 	    getContentPane().add(panel1);
 		//Assign the menu
