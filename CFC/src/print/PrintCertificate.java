@@ -24,7 +24,7 @@ public class PrintCertificate
 {	
 	private static Connection con = null;
 	
-	public PrintCertificate( String certType, String firstName, String lastName, String confirmDate, String pastorName)
+	public PrintCertificate( String certType, String firstName, String lastName, Date confirmDate, String pastorName)
 	{
 		//Need to swtich from hard coded Connection to db.getConnection();
 		//DbWorker db = new DbWorker();

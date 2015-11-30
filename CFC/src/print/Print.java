@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Enumeration;
 
 import javax.swing.JDialog;
@@ -14,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 import main.MainFrame;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
@@ -28,6 +31,8 @@ import print.PrintCertificate;
 import java.awt.Color;
 
 import com.toedter.calendar.JDateChooser;
+import javax.swing.SwingConstants;
+import javax.swing.JTextArea;
 
 
 
@@ -60,7 +65,7 @@ private JPanel contentPane;
 		
 		setAlwaysOnTop(true);
 		
-		setBounds(100, 100, 300, 360);
+		setBounds(100, 100, 300, 350);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -138,10 +143,13 @@ private JPanel contentPane;
 		certTypePanel.add(languageLabel);
 		
 		
+		
+		
 		englishButton = new JButton("English");
 		englishButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(firstNameTextField.getText().equals("") || lastNameTextField.getText().equals("") || dateChooser.getDate().toString().equals("") || pastorTextField.getText().equals(""))
+				
+				if(firstNameTextField.getText().equals("") || lastNameTextField.getText().equals("") || dateChooser.getDate() == null || pastorTextField.getText().equals(""))
 				{
 					warningLbl.setVisible(true);
 				}
@@ -149,9 +157,16 @@ private JPanel contentPane;
 				{
 					warningLbl.setVisible(false);
 					certType = getSelectedButtonText(groupType).toLowerCase().replace(" ", "_") + "_eng";
-					System.out.println(certType);
-					
-					printCert = new PrintCertificate(certType, firstNameTextField.getText(), lastNameTextField.getText(), dateChooser.getDate().toString(), pastorTextField.getText());
+
+					try{
+						printCert = new PrintCertificate(certType, firstNameTextField.getText(), lastNameTextField.getText(), dateChooser.getDate(), pastorTextField.getText());
+						
+						 JOptionPane.showMessageDialog(mainGui, "<html>The certificate for " + 
+								 firstNameTextField.getText()  + " " + lastNameTextField.getText() + " was successfully created</html>");
+						}
+						catch(Exception e){
+							JOptionPane.showMessageDialog(mainGui, "<html>The certificate could not be created due to an error:<br>" + e + "</html>", "Error", JOptionPane.ERROR_MESSAGE);
+						}
 				}
 			}
 		});
@@ -161,8 +176,10 @@ private JPanel contentPane;
 		spanishButton = new JButton("Spanish");
 		spanishButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(firstNameTextField.getText().equals("") || lastNameTextField.getText().equals("") || dateChooser.getDate().toString().equals("") || pastorTextField.getText().equals(""))
+				if(firstNameTextField.getText().equals("") || lastNameTextField.getText().equals("") || dateChooser.getDate() == null || pastorTextField.getText().equals(""))
 				{
+					warningLbl.setText("All fields must be filled");
+					warningLbl.setForeground(Color.RED);
 					warningLbl.setVisible(true);
 				}
 				else
@@ -170,7 +187,15 @@ private JPanel contentPane;
 					warningLbl.setVisible(false);
 					certType = getSelectedButtonText(groupType).toLowerCase().replace(" ", "_") + "_span";
 					System.out.println(certType);
-					printCert = new PrintCertificate(certType, firstNameTextField.getText(), lastNameTextField.getText(), dateChooser.getDate().toString(), pastorTextField.getText());
+					try{
+					printCert = new PrintCertificate(certType, firstNameTextField.getText(), lastNameTextField.getText(), dateChooser.getDate(), pastorTextField.getText());
+					
+					 JOptionPane.showMessageDialog(mainGui, "<html>The certificate for " + 
+							 firstNameTextField.getText()  + " " + lastNameTextField.getText() + " was successfully created</html>");
+					}
+					catch(Exception e){
+						JOptionPane.showMessageDialog(mainGui, "<html>The certificate could not be created due to an error:<br>" + e + "</html>", "Error", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			}
 		});
@@ -178,14 +203,16 @@ private JPanel contentPane;
 		certTypePanel.add(spanishButton);
 		
 		warningLbl = new JLabel("All fields must be filled");
+		warningLbl.setVerticalAlignment(SwingConstants.TOP);
 		warningLbl.setForeground(Color.RED);
-		warningLbl.setBounds(51, 306, 138, 14);
+		warningLbl.setBounds(10, 296, 135, 24);
 		contentPane.add(warningLbl);
 		warningLbl.setVisible(false);
 		
 		
 	}
 	
+	//Returns String value of certificate type radio button
 	 public String getSelectedButtonText(ButtonGroup buttonGroup) {
 	        for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
 	            AbstractButton button = buttons.nextElement();

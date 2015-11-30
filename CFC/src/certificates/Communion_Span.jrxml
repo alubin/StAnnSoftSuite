@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-11-27T16:30:58 -->
+<!-- 2015-11-29T20:57:41 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cert2" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4effc2c0-b940-4616-a809-beb3370226d6">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="JDBC"/>
 	<parameter name="FirstName" class="java.lang.String"/>
 	<parameter name="LastName" class="java.lang.String"/>
 	<parameter name="PastorName" class="java.lang.String"/>
-	<parameter name="DateOfConfirmation" class="java.lang.String"/>
+	<parameter name="DateOfConfirmation" class="java.util.Date"/>
 	<queryString>
 		<![CDATA[SELECT rcia.inquirer.`First_Name`,
 	rcia.inquirer.`Middle_Name`,
 	rcia.inquirer.`Last_Name`,
 	rcia.inquirer.`Father_Full_Name`,
 	rcia.inquirer.`Mother_Full_Name`,
-	rcia.inquirer.`Date_Of_Baptism`,
+	STR_TO_DATE(Date_Of_Baptism, '%m/%d/%y') as Date_Of_Baptism,
 	rcia.inquirer.`Sponsor_First_Name`,
 	rcia.inquirer.`Sponsor_Last_Name`,
 	rcia.inquirer.`Month_Year_Confirmed`
@@ -38,9 +38,7 @@ WHERE
 	<field name="Mother_Full_Name" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="Date_Of_Baptism" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
+	<field name="Date_Of_Baptism" class="java.sql.Date"/>
 	<field name="Sponsor_First_Name" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
@@ -63,13 +61,6 @@ WHERE
 				<text><![CDATA[Hijo de ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="" x="243" y="230" width="110" height="20" uuid="ae988683-d179-4e4a-9cab-4bc56f72fb42"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Old English Text MT" size="16"/>
-				</textElement>
-				<text><![CDATA[Bautizado el día ]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="224" y="270" width="130" height="18" uuid="d0b0516d-6121-4a53-b6e6-e5c16dab532f"/>
 				<textElement>
 					<font fontName="Old English Text MT" size="16"/>
@@ -89,13 +80,6 @@ WHERE
 					<font fontName="Old English Text MT" size="21"/>
 				</textElement>
 				<text><![CDATA[recibio el sacramento de Primera Comunion por el Rito de Iniciacion Cristiana]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="250" y="355" width="20" height="20" uuid="af32c71e-cb49-43c6-8b36-34cbc8e3c4a1"/>
-				<textElement>
-					<font fontName="Old English Text MT" size="16"/>
-				</textElement>
-				<text><![CDATA[El]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="250" y="388" width="28" height="30" uuid="86b48376-18ef-48c2-bb03-af717a38c870"/>
@@ -162,20 +146,6 @@ La Parroquia de Sta. Ana
 				<textFieldExpression><![CDATA[$F{Father_Full_Name} + " y " + $F{Mother_Full_Name}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="358" y="227" width="221" height="27" uuid="6247a0c5-9b83-4065-a5f9-9c5eb8465253"/>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font fontName="Lucida Calligraphy" size="16" isUnderline="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{Date_Of_Baptism}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="276" y="348" width="350" height="30" uuid="b8f24252-37c3-4ebe-94c0-488ff290af4b"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Lucida Calligraphy" size="18" isUnderline="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{DateOfConfirmation}.toString()]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
 				<reportElement x="284" y="391" width="260" height="30" uuid="6fe6a130-d89f-4c54-8e3f-abee71c15ee2"/>
 				<textElement>
 					<font fontName="Lucida Calligraphy" size="18" isUnderline="true"/>
@@ -189,6 +159,68 @@ La Parroquia de Sta. Ana
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
+			<frame>
+				<reportElement x="243" y="230" width="305" height="27" uuid="9abe3a0f-cf71-4268-bfd0-aa1e44e3b168"/>
+				<staticText>
+					<reportElement x="150" y="1" width="20" height="25" uuid="5ba3b3b3-6562-45b1-a5ee-6a867db79cb7"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Old English Text MT" size="16"/>
+					</textElement>
+					<text><![CDATA[de]]></text>
+				</staticText>
+				<staticText>
+					<reportElement key="" x="0" y="3" width="110" height="20" uuid="4fcbe9b6-9f14-4c92-a756-41c63d092484"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Old English Text MT" size="16"/>
+					</textElement>
+					<text><![CDATA[Bautizado el día ]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="115" y="0" width="30" height="27" uuid="8ef8bc52-e59d-4719-9897-ec876d6dca09"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Lucida Calligraphy" size="16" isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new StringBuilder(new SimpleDateFormat("d").format($F{Date_Of_Baptism}))]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="174" y="0" width="127" height="27" uuid="99e8b806-df86-4c47-ac74-40603acb907c"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Lucida Calligraphy" size="16" isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new StringBuilder(new SimpleDateFormat("MMMM, yyyy").format($F{Date_Of_Baptism}))]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement x="250" y="353" width="299" height="25" uuid="8c81eea8-4608-4c88-b43e-c185d58e6961"/>
+				<staticText>
+					<reportElement x="0" y="2" width="20" height="20" uuid="af32c71e-cb49-43c6-8b36-34cbc8e3c4a1"/>
+					<textElement>
+						<font fontName="Old English Text MT" size="16"/>
+					</textElement>
+					<text><![CDATA[El]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="23" y="0" width="28" height="25" uuid="e81b5df4-7412-45f4-b966-bc84bbea898b"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Lucida Calligraphy" size="18" isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new StringBuilder(new SimpleDateFormat("d").format($P{DateOfConfirmation}))]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="52" y="0" width="20" height="25" uuid="04723285-000c-4617-885d-235bb65d8aaa"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Old English Text MT" size="16"/>
+					</textElement>
+					<text><![CDATA[de]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="73" y="0" width="226" height="25" uuid="cbe4b141-27d3-4eef-8250-c16a0ac8daf8"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Lucida Calligraphy" size="18" isUnderline="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new StringBuilder(new SimpleDateFormat("MMMM, yyyy").format($P{DateOfConfirmation}))]]></textFieldExpression>
+				</textField>
+			</frame>
 		</band>
 	</detail>
 </jasperReport>
