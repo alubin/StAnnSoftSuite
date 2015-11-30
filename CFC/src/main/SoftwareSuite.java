@@ -29,6 +29,7 @@ public class SoftwareSuite {
 			e.printStackTrace();
 
 		}
+		//DO NOT DELETE: Required in Main Method for JasperReports to configure internal settings. 
 		BasicConfigurator.configure();
 		new MainFrame();
 

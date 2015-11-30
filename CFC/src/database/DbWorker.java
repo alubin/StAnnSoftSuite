@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.text.ParseException;
 import java.util.ArrayList;
 
-import print.PrintData;
 import rcia.RciaData;
 import ccf.CCFData;
 
@@ -310,45 +309,6 @@ public class DbWorker {
 		return resultArray;
 	}
 
-	public ArrayList<PrintData> retrievePrintData(String fname, String lname) throws SQLException
-	{
-		System.out.println(fname + " " + lname);
-		String query = "SELECT First_Name, Last_Name, Middle_Name, Familiar_Name, Sponsor_First_Name, Sponsor_Last_Name, Sponsor, Print_Form, "
-				+ "Eform_Paper, Bap_Cert, Birth_Name, DOB, Been_Baptized, Date_Of_Baptism, Month_Year_Confirmed, Sponsor_Name, Have_Sponsor, "
-				+ "Father_Full_Name, Mother_Full_Name, Sacraments FROM inquirer WHERE First_Name LIKE '" + fname + "%' AND "
-				+ "Last_Name LIKE '" + lname + "%'";
-		Statement stmt = null;
-		ArrayList<PrintData> resultArray = new ArrayList<PrintData>();
-
-		try {
-
-			stmt = con2.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
-
-			while(rs.next())
-			{
-				ArrayList<String> results = new ArrayList<String>(printColumnSize);
-				for(int i = 0; i < printColumnSize; i++)
-				{
-					results.add(rs.getString(i +1));
-				}
-				PrintData data = new PrintData(results);
-				resultArray.add(data);
-				System.out.println(data);
-			}
-
-
-		} catch (SQLException e ) {
-			e.printStackTrace();
-		} finally {
-			if (stmt != null) { stmt.close(); }
-		}
-
-
-		return resultArray;
-	}
-
-
 
 	public int updateCCF(final String stud, final String email) throws SQLException
 	{
@@ -407,4 +367,43 @@ public class DbWorker {
 			System.err.println("Could NOT close connection to db2.");
 		}
 	}
+	
+	/*public ArrayList<PrintData> retrievePrintData(String fname, String lname) throws SQLException
+	{
+		System.out.println(fname + " " + lname);
+		String query = "SELECT First_Name, Last_Name, Middle_Name, Familiar_Name, Sponsor_First_Name, Sponsor_Last_Name, Sponsor, Print_Form, "
+				+ "Eform_Paper, Bap_Cert, Birth_Name, DOB, Been_Baptized, Date_Of_Baptism, Month_Year_Confirmed, Sponsor_Name, Have_Sponsor, "
+				+ "Father_Full_Name, Mother_Full_Name, Sacraments FROM inquirer WHERE First_Name LIKE '" + fname + "%' AND "
+				+ "Last_Name LIKE '" + lname + "%'";
+		Statement stmt = null;
+		ArrayList<PrintData> resultArray = new ArrayList<PrintData>();
+
+		try {
+
+			stmt = con2.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+
+			while(rs.next())
+			{
+				ArrayList<String> results = new ArrayList<String>(printColumnSize);
+				for(int i = 0; i < printColumnSize; i++)
+				{
+					results.add(rs.getString(i +1));
+				}
+				PrintData data = new PrintData(results);
+				resultArray.add(data);
+				System.out.println(data);
+			}
+
+
+		} catch (SQLException e ) {
+			e.printStackTrace();
+		} finally {
+			if (stmt != null) { stmt.close(); }
+		}
+
+
+		return resultArray;
+	}*/
+
 }
