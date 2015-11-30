@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.sql.DriverManager;
 import java.util.*;
 
+import database.DatabaseStore;
 import database.DbConnectErrorDialog;
 import database.DbWorker;
 
@@ -32,14 +33,16 @@ public class PrintCertificate
 		
 		try
 		{
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/rcia", "root", "Sunshine222");
+			con = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
+					DatabaseStore.getUserName(), DatabaseStore.getPassword()).getConnection();
+//			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/rcia", "root", "Sunshine222");
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
 			new DbConnectErrorDialog().setVisible(true);
 		}
-		String OUT_PUT = "C:/tmp/" + firstName.toLowerCase() + "_" + lastName.toLowerCase() + "_" + certType + ".docx";
+		String OUT_PUT = "./GeneratedCertificates/" + firstName.toLowerCase() + "_" + lastName.toLowerCase() + "_" + certType + ".docx";
 		String REPORT = "";
 		
 		if(certType.equals("rite_of_christian_initiation_eng"))
