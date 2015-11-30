@@ -21,21 +21,16 @@ import java.sql.SQLException;
 
 
 
-public class PrintCertificate  
-{	
+public class PrintCertificate
+{
 	private static Connection con = null;
-	
+
 	public PrintCertificate( String certType, String firstName, String lastName, Date confirmDate, String pastorName)
 	{
-		//Need to swtich from hard coded Connection to db.getConnection();
-		//DbWorker db = new DbWorker();
-		//con = db.getConnection();
-		
 		try
 		{
 			con = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
 					DatabaseStore.getUserName(), DatabaseStore.getPassword()).getConnection();
-//			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/rcia", "root", "Sunshine222");
 		}
 		catch (Exception e)
 		{
@@ -44,7 +39,7 @@ public class PrintCertificate
 		}
 		String OUT_PUT = "./GeneratedCertificates/" + firstName.toLowerCase() + "_" + lastName.toLowerCase() + "_" + certType + ".docx";
 		String REPORT = "";
-		
+
 		if(certType.equals("rite_of_christian_initiation_eng"))
 		{
 			REPORT = "./certificates/RCI_Eng.jrxml";
@@ -69,14 +64,14 @@ public class PrintCertificate
 		{
 			REPORT = "./certificates/Communion_Span.jrxml";
 		}
-			
+
 			HashMap<String, Object> map = new HashMap<>();
 			map.put("FirstName",firstName);
 			map.put("LastName",lastName);
 			map.put("PastorName", pastorName);
 			map.put("DateOfConfirmation", confirmDate);
-		
-			try 
+
+			try
 			{
 		        JasperReport jr = JasperCompileManager.compileReport(ClassLoader.getSystemResourceAsStream(REPORT));
 		        JasperPrint jp = JasperFillManager.fillReport(jr, map, con);
@@ -86,15 +81,15 @@ public class PrintCertificate
 			    SimpleDocxReportConfiguration config = new SimpleDocxReportConfiguration();
 			    export.setConfiguration(config);
 			    export.exportReport();
-			    
+
 			    //Opens file after completed export
 			    OpenFile(OUT_PUT);
 		    } catch (JRException ex) {
-		        ex.printStackTrace();   
+		        ex.printStackTrace();
 		    }
-			
+
 	}
-	
+
 	public void OpenFile(String path)
 	{
 		if (Desktop.isDesktopSupported()) {
