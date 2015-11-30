@@ -37,14 +37,14 @@ public class CCFAdminPanel extends JPanel {
 		this.mainGui = mainGui;
 
 		JPanel btnPanel = new JPanel(new GridLayout(1,2));
-		JButton btnCancel = new JButton("Close");
+//		JButton btnCancel = new JButton("Close");
 		JButton btnFind = new JButton("Find");
 
 		setBorder(BorderFactory.createTitledBorder("CCF Admin"));
 		setLayout(new BorderLayout());
 
 		btnFind.addActionListener(new FindActionListener());
-		btnPanel.add(btnCancel);
+//		btnPanel.add(btnCancel);
 		btnPanel.add(btnFind);
 
 		adminModel = new CCFAdminTableModel(CCFAdminTableModel.adminColumnNames, 0);

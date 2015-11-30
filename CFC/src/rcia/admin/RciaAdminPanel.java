@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -17,6 +18,9 @@ import main.MainFrame;
 import org.jdesktop.swingx.JXTable;
 import org.jdesktop.swingx.search.SearchFactory;
 
+import database.DatabaseStore;
+import database.DbWorker;
+import database.QueryType;
 import rcia.RciaData;
 
 public class RciaAdminPanel extends JPanel {
@@ -36,7 +40,7 @@ public class RciaAdminPanel extends JPanel {
 		JPanel btnPanel = new JPanel(new GridLayout(1,3));
 		//		JButton btnSave = new JButton("Save Changes");
 		//		JButton btnCancel = new JButton("Cancel Edit");
-		JButton btnFind = new JButton("Search");
+		JButton btnFind = new JButton("Find");
 
 		//		btnSave.addActionListener(new SaveActionListener());
 		//		btnCancel.addActionListener(new CloseActionListener());
@@ -58,6 +62,15 @@ public class RciaAdminPanel extends JPanel {
 		//		mainGui.setPanel(searchResultPanel);
 
 		//		adminModel.addTableModelListener(new AdminTableModelListener());
+		try {
+		DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
+				DatabaseStore.getUserName(), DatabaseStore.getPassword());
+		displayData(dbWorker.retrieveRciaData("", ""));
+		dbWorker.dbClose();
+	} catch (SQLException e1) {
+		// TODO Auto-generated catch block
+		e1.printStackTrace();
+	}
 
 	}
 
