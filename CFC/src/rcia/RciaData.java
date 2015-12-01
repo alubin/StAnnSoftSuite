@@ -217,7 +217,7 @@ public class RciaData {
 		return role;
 	}
 
-	public final String getLastName() {
+	public final String getLast() {
 		return lastName;
 	}
 

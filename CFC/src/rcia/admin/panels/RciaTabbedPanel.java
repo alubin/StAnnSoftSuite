@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -14,13 +15,15 @@ import javax.swing.JTabbedPane;
 import javax.swing.SpinnerListModel;
 import javax.swing.SpinnerModel;
 
+import database.DatabaseStore;
 import database.DbResult;
+import database.DbWorker;
 import rcia.RciaData;
 
 public class RciaTabbedPanel extends JPanel{
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -8668329054778348925L;
 	private ArrayList<DbResult<RciaData>> data = new ArrayList<DbResult<RciaData>>();
@@ -28,6 +31,7 @@ public class RciaTabbedPanel extends JPanel{
 	private final PersonalInfo pInfo;
 	private final ReligiousInfo rInfo;
 	private final OtherInfo oInfo;
+	private final JButton saveBtn = new JButton("Save Changes");
 
 	public RciaTabbedPanel(ArrayList<DbResult<RciaData>> arrayList)
 	{
@@ -35,7 +39,7 @@ public class RciaTabbedPanel extends JPanel{
 		this.data = arrayList;
 		JTabbedPane tabbedPanel = new JTabbedPane();
 		RciaData[] rciaList = new RciaData[arrayList.size()];
-		DbResult<RciaData>[] dbList = new DbResult[arrayList.size()];
+		arrayList.size();
 		for (int i = 0; i < arrayList.size(); i++)
 		{
 			rciaList[i] = arrayList.get(i).getData();
@@ -52,13 +56,12 @@ public class RciaTabbedPanel extends JPanel{
 		tabbedPanel.addTab("Religion Info", rInfo);
 		tabbedPanel.addTab("Other Info", oInfo);
 
-		JButton saveBtn = new JButton("Save Changes");
 		JPanel returnPanel = new JPanel(new GridLayout(1,2));
 		JSpinner dataSpinner = new JSpinner(rciaSpinner);
 		JLabel userLabel = new JLabel(arrayList.size() + " returned users");
 		returnPanel.add(dataSpinner);
 		returnPanel.add(userLabel);
-		
+
 		saveBtn.addActionListener(new SaveActionListener());
 
 		add(returnPanel, BorderLayout.NORTH);
@@ -106,29 +109,35 @@ public class RciaTabbedPanel extends JPanel{
 
 		@Override
 		public Object getValue() {
-			Object rtnObj = super.getValue();
-			RciaData valData = (RciaData) ((DbResult<RciaData>) rtnObj).getData();
-			pInfo.setData((DbResult<RciaData>) rtnObj);
-			rInfo.setData((DbResult<RciaData>) rtnObj);
-			oInfo.setData((DbResult<RciaData>) rtnObj);
+			DbResult<RciaData> rtnObj = (DbResult<RciaData>) super.getValue();
+			RciaData valData = (rtnObj).getData();
+			pInfo.setData(rtnObj);
+			rInfo.setData( rtnObj);
+			oInfo.setData( rtnObj);
+			saveBtn.setText("Save Changes for " + valData.getFirst() + " " + valData.getLast());
 			System.out.println("Result Id = " + valData.getId());
-			System.out.println("Trans Id = " + ((DbResult<RciaData>) rtnObj).getTransId());
+			System.out.println("Trans Id = " + (rtnObj).getTransId());
 			return rtnObj;
 		}
 
 	}
-	
+
 	private class SaveActionListener implements ActionListener
 	{
-
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			pInfo.getUpdates();
-			rInfo.getUpdates();
-			oInfo.getUpdates();
-			
+			try {
+				pInfo.storeUpdates();
+				rInfo.storeUpdates();
+				oInfo.storeUpdates();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+
 		}
-		
+
 	}
 
 

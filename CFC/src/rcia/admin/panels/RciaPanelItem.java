@@ -18,7 +18,7 @@ import javax.swing.SwingConstants;
 public class RciaPanelItem extends JPanel{
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 5593313896131470416L;
 	private final JCheckBox selection = new JCheckBox();
@@ -28,12 +28,14 @@ public class RciaPanelItem extends JPanel{
 	private final JTextField itemInput = new JTextField();
 	private final ArrayList<JComponent> compList = new ArrayList<JComponent>(4);
 	private boolean selected = false;
+	private final String dbField;
 
 	/**
 	 * @wbp.parser.constructor
 	 */
-	public RciaPanelItem(String label)
+	public RciaPanelItem(String label, String dbField)
 	{
+		this.dbField = dbField;
 		itemTitle.setHorizontalAlignment(SwingConstants.RIGHT);
 		itemTitle.setLabelFor(itemInput);
 		setLayout(new GridLayout(1,5));
@@ -42,15 +44,15 @@ public class RciaPanelItem extends JPanel{
 		//		itemDisplay.setText("N/A");
 		itemInput.setText("");
 		itemTitle.setText("Enter " + label);
-		
+
 		itemDisplay.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
 		compList.add(itemDisplay);
 		compList.add(itemInput);
 		compList.add(itemLbl);
 		compList.add(selection);
-		
+
 		selection.addActionListener(new SelectionListener());
-		
+
 		add(selection);
 		add(itemLbl);
 		add(itemDisplay);
@@ -58,19 +60,12 @@ public class RciaPanelItem extends JPanel{
 		add(itemInput);
 	}
 
-	public RciaPanelItem(String label, String value)
-	{
-		this(label);
-		itemDisplay.setText(value);
-
-	}
-	
 	public void setDisplayValue(String data)
 	{
 		itemDisplay.setText(data);
 		repaint();
 	}
-	
+
 	private class SelectionListener implements ActionListener
 	{
 
@@ -95,19 +90,24 @@ public class RciaPanelItem extends JPanel{
 				}
 				repaint();
 			}
-			
+
 		}
-		
+
 	}
-	
+
 	public boolean isSelected()
 	{
 		return selected;
 	}
-	
+
 	public String getNewValue()
 	{
 		return itemInput.getText();
+	}
+
+	public String getDbField()
+	{
+		return dbField;
 	}
 
 

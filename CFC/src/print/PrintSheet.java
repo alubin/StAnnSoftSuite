@@ -52,27 +52,27 @@ private JPanel contentPane;
 	 */
 	private  MainFrame mainGui;
 //	private PrintDisplayPanel printDisplayPanel;
-	
+
 	private DbWorker db;
 	private Connection con;
 
-	public PrintSheet(MainFrame mainGui) {
+	public PrintSheet(final MainFrame mainGui) {
 		setResizable(false);
-		
+
 		this.mainGui = mainGui;
-		
+
 		setAlwaysOnTop(true);
-		
+
 		setBounds(100, 100, 220, 115);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblPrintSignSheet = new JLabel("Print Sign-In Sheet: ");
 		lblPrintSignSheet.setBounds(10, 11, 149, 24);
 		contentPane.add(lblPrintSignSheet);
-		
+
 		JButton btnNewButton = new JButton("Accept");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -81,23 +81,23 @@ private JPanel contentPane;
 					db = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
 							DatabaseStore.getUserName(), DatabaseStore.getPassword());
 					con = db.getConnection();
-					
+
 				}
 				catch (Exception e1)
 				{
 					e1.printStackTrace();
 					new DbConnectErrorDialog().setVisible(true);
 				}
-				
-			
+
+
 				String OUT_PUT = "C:/tmp/sign_in_sheet.xlsx";
-				
+
 				String REPORT = "/certificates/Signing_List.jrxml";
-				
+
 				HashMap<String, Object> map = new HashMap<>();
 				//map.put("FirstName",firstName);
-				
-				try 
+
+				try
 				{
 					JasperDesign jd  = JRXmlLoader.load(getClass().getResourceAsStream(REPORT));
 			        JasperReport jr = JasperCompileManager.compileReport(jd);
@@ -109,22 +109,22 @@ private JPanel contentPane;
 				    export.setConfiguration(config);
 				    export.exportReport();
 				    JOptionPane.showMessageDialog(mainGui, "<html>The sign-in sheet was successfully created");
-				    
+
 				    setVisible(false);
-				    
+
 				    //Opens file after completed export
 				    OpenFile(OUT_PUT);
 			    } catch (JRException ex) {
-			        ex.printStackTrace(); 
+			        ex.printStackTrace();
 			        JOptionPane.showMessageDialog(mainGui, "<html>The sign-in sheet could not be created due to an error:<br>" + ex + "</html>", "Error", JOptionPane.ERROR_MESSAGE);
 			    }
-			
-				
+
+
 			}
 		});
 		btnNewButton.setBounds(10, 46, 89, 23);
 		contentPane.add(btnNewButton);
-		
+
 		JButton button = new JButton("Cancel");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -134,7 +134,7 @@ private JPanel contentPane;
 		button.setBounds(115, 46, 89, 23);
 		contentPane.add(button);
 	}
-	
+
 	public void OpenFile(String path)
 	{
 		if (Desktop.isDesktopSupported()) {
@@ -146,5 +146,5 @@ private JPanel contentPane;
 		    }
 		}
 	}
-	
+
 }

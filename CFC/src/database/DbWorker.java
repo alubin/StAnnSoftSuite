@@ -142,7 +142,7 @@ public class DbWorker {
 				pStmt.setString(9, results.getSaintName());
 				pStmt.setString(10, results.getGender());
 				pStmt.setString(11, results.getRole());
-				pStmt.setString(12, results.getLastName());
+				pStmt.setString(12, results.getLast());
 				pStmt.setString(13, results.getFamiliarName());
 				pStmt.setString(14, results.getSponFirst());
 				pStmt.setString(15, results.getSponLast());

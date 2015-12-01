@@ -1,31 +1,46 @@
 package rcia.admin.panels;
 
 import java.awt.GridLayout;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import database.DatabaseStore;
 import database.DbResult;
+import database.DbWorker;
 import rcia.RciaData;
 
 public class OtherInfo extends JPanel implements InfoPanel{
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1320378485210346314L;
-	
-	private RciaPanelItem eform = new RciaPanelItem("Eform/Paper");
-	private RciaPanelItem badgeItem = new RciaPanelItem("Badge");
-	private RciaPanelItem printItem = new RciaPanelItem("Print Form");
-	private RciaPanelItem valueItem = new RciaPanelItem("Value");
-	private RciaPanelItem verificationItem = new RciaPanelItem("Verification");
-	private RciaPanelItem reconciliationItem = new RciaPanelItem("Reconciliation");
-	private RciaPanelItem bapCertItem = new RciaPanelItem("Baptism Certificate");
-	
+
+	private RciaPanelItem eform = new RciaPanelItem("Eform/Paper", "Eform_Paper");
+	private RciaPanelItem badgeItem = new RciaPanelItem("Badge","Badges");
+	private RciaPanelItem printItem = new RciaPanelItem("Print Form","Print_Form");
+	private RciaPanelItem valueItem = new RciaPanelItem("Value","Value");
+	private RciaPanelItem verificationItem = new RciaPanelItem("Verification","Verification_Form");
+	private RciaPanelItem reconciliationItem = new RciaPanelItem("Reconciliation","Reconciliation");
+	private RciaPanelItem bapCertItem = new RciaPanelItem("Baptism Certificate","Bap_Cert");
+	private ArrayList<RciaPanelItem> itemArrayList;
+
+	private String transID;
+
 	public OtherInfo()
 	{
 		super(new GridLayout(20, 1));
+
+		itemArrayList.add(eform);
+		itemArrayList.add(badgeItem);
+		itemArrayList.add(printItem);
+		itemArrayList.add(valueItem);
+		itemArrayList.add(verificationItem);
+		itemArrayList.add(reconciliationItem);
+		itemArrayList.add(bapCertItem);
+
 		add(eform);
 		add(badgeItem);
 		add(printItem);
@@ -34,10 +49,11 @@ public class OtherInfo extends JPanel implements InfoPanel{
 		add(reconciliationItem);
 		add(bapCertItem);
 	}
-	
+
 	public void setData(DbResult<RciaData> dbData)
 	{
 		RciaData data = dbData.getData();
+		transID = dbData.getTransId();
 		eform.setDisplayValue(data.getTypeOfForm());
 		badgeItem.setDisplayValue(data.getBadges());
 		printItem.setDisplayValue(data.getPrintForm());
@@ -48,9 +64,21 @@ public class OtherInfo extends JPanel implements InfoPanel{
 	}
 
 	@Override
-	public ArrayList<RciaPanelItem> getUpdates() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<RciaPanelItem> storeUpdates() throws SQLException {
+		ArrayList<RciaPanelItem> itemList = new ArrayList<RciaPanelItem>();
+		for(RciaPanelItem item: this.itemArrayList)
+		{
+			RciaPanelItem panelItem = (RciaPanelItem) item;
+			if (panelItem.isSelected())
+			{
+				itemList.add(panelItem);
+				DbWorker db = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
+						DatabaseStore.getUserName(), DatabaseStore.getPassword());
+				db.updateRcia(panelItem.getNewValue(), panelItem.getDbField(), transID);
+				System.out.println("Value changed = " + panelItem.getNewValue() + " for " + transID);
+			}
+		}
+		return itemList;
 	}
 
 }
