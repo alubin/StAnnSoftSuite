@@ -35,10 +35,11 @@ public class CCFEmailDialog extends JDialog{
 
 	public CCFEmailDialog()
 	{
+		setResizable(false);
 		JButton btnSave = new JButton("Save");
 
 //		setLayout(new GridLayout(2,3));
-		setLayout(new BorderLayout());
+		getContentPane().setLayout(new BorderLayout());
 		((JPanel)getContentPane()).setBorder(BorderFactory.createDashedBorder(Color.BLACK));
 		emailMap = new HashMap<String, String>();
 		emailList = new JComboBox<String>();
@@ -54,16 +55,16 @@ public class CCFEmailDialog extends JDialog{
 		centerPanel.add(emailField);
 //		add(emailList);
 //		add(emailDisplay);
-		add(topPanel,BorderLayout.NORTH);
-		add(centerPanel);
+		getContentPane().add(topPanel,BorderLayout.NORTH);
+		getContentPane().add(centerPanel);
 //		add(emailField);
-		add(btnSave, BorderLayout.SOUTH);
+		getContentPane().add(btnSave, BorderLayout.SOUTH);
 
 		btnSave.addActionListener(new SaveListener());
 		
 		emailList.addActionListener(new DropDownListener());
 		
-		setSize(500, 150);
+		setSize(500, 170);
 
 //		populateDropBox();
 	}

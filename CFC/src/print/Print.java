@@ -158,15 +158,24 @@ private JPanel contentPane;
 					warningLbl.setVisible(false);
 					certType = getSelectedButtonText(groupType).toLowerCase().replace(" ", "_") + "_eng";
 
-					try{
+					try
+					{	
 						printCert = new PrintCertificate(certType, firstNameTextField.getText(), lastNameTextField.getText(), dateChooser.getDate(), pastorTextField.getText());
+						if(printCert.getExists())
+						{			
 						
 						 JOptionPane.showMessageDialog(mainGui, "<html>The certificate for " + 
 								 firstNameTextField.getText()  + " " + lastNameTextField.getText() + " was successfully created</html>");
 						}
-						catch(Exception e){
-							JOptionPane.showMessageDialog(mainGui, "<html>The certificate could not be created due to an error:<br>" + e + "</html>", "Error", JOptionPane.ERROR_MESSAGE);
+						else
+						{
+							JOptionPane.showMessageDialog(mainGui, "<html>The name: " + firstNameTextField.getText()  + " " + lastNameTextField.getText() + " could not be found in the database</html>", "Name Not Found", JOptionPane.WARNING_MESSAGE);
 						}
+					}
+					catch(Exception e)
+					{
+						JOptionPane.showMessageDialog(mainGui, "<html>The certificate could not be created due to an error:<br>" + e + "</html>", "Error", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			}
 		});
@@ -178,8 +187,6 @@ private JPanel contentPane;
 			public void actionPerformed(ActionEvent arg0) {
 				if(firstNameTextField.getText().equals("") || lastNameTextField.getText().equals("") || dateChooser.getDate() == null || pastorTextField.getText().equals(""))
 				{
-					warningLbl.setText("All fields must be filled");
-					warningLbl.setForeground(Color.RED);
 					warningLbl.setVisible(true);
 				}
 				else
@@ -187,11 +194,19 @@ private JPanel contentPane;
 					warningLbl.setVisible(false);
 					certType = getSelectedButtonText(groupType).toLowerCase().replace(" ", "_") + "_span";
 					System.out.println(certType);
-					try{
-					printCert = new PrintCertificate(certType, firstNameTextField.getText(), lastNameTextField.getText(), dateChooser.getDate(), pastorTextField.getText());
-					
-					 JOptionPane.showMessageDialog(mainGui, "<html>The certificate for " + 
-							 firstNameTextField.getText()  + " " + lastNameTextField.getText() + " was successfully created</html>");
+					try
+					{
+						printCert = new PrintCertificate(certType, firstNameTextField.getText(), lastNameTextField.getText(), dateChooser.getDate(), pastorTextField.getText());
+						if(printCert.getExists())
+						{			
+						
+						 JOptionPane.showMessageDialog(mainGui, "<html>The certificate for " + 
+								 firstNameTextField.getText()  + " " + lastNameTextField.getText() + " was successfully created</html>");
+						}
+						else
+						{
+							JOptionPane.showMessageDialog(mainGui, "<html>The name: " + firstNameTextField.getText()  + " " + lastNameTextField.getText() + " could not be found in the database</html>", "Name Not Found", JOptionPane.WARNING_MESSAGE);
+						}
 					}
 					catch(Exception e){
 						JOptionPane.showMessageDialog(mainGui, "<html>The certificate could not be created due to an error:<br>" + e + "</html>", "Error", JOptionPane.ERROR_MESSAGE);
