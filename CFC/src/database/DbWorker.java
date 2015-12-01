@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import rcia.RciaData;
 import ccf.CCFData;
@@ -14,12 +16,13 @@ import ccf.CCFData;
 public class DbWorker {
 
 	private static final int ccfColumnSize = 17;
-	private static final int rciaColumnSize = 68;
-	private static final int printColumnSize = 20;
+	private static final int rciaColumnSize = 69;
 	private static Connection con1 = null;
 	private static Connection con2 = null;
 	private String user;
 	private String pass;
+	private static final AtomicInteger transId = new AtomicInteger();
+	public static final HashMap<String, String> transMap = new HashMap<String, String>();
 
 
 	public DbWorker()
@@ -113,6 +116,7 @@ public class DbWorker {
 		//TODO: Extract the data from the array and store the data.
 		for(RciaData results : data)
 		{
+			System.out.println("id = " + results.getId());
 			try{
 				PreparedStatement pStmt = con2.prepareStatement("INSERT INTO `rcia`.`inquirer` (`Eform_Paper`,`Badges`,`Print_Form`,`Value`,"
 						+ "`Verification_Form`,`Reconciliation`,`Bap_Cert`,`Birth_Cert`,`Saint`,`Gender`,`Roles`,`Last_Name`,"
@@ -123,9 +127,9 @@ public class DbWorker {
 						+ "`Month_Year_Confirmed`,`Sacraments`,`Have_Sponsor`,`Sponsor_Name`,`Sponsor_Phone`,`Why_Sponsor`,`Good_Standing`,"
 						+ "`Sponsor_Role`,`Someone_In_Mind`,`Inquirers_Name`,`Inquirers_Phone`,`Marital_Status`,`Spouse_Fiance_Name`,"
 						+ "`Spouse_Fiance_Religious`,`Practicing_Catholic`,`Attending_Sessions`,`Catholic_Church_Marriage`,`Catholic_Convalidation_Date`,"
-						+ "`Civil_Marriage_Date`,`CON_A`,`CON_B`,`CON_C`,`CON_D`,`Children`,`Ages`,`Sponsor_Potential`) "
+						+ "`Civil_Marriage_Date`,`CON_A`,`CON_B`,`CON_C`,`CON_D`,`Children`,`Ages`,`Sponsor_Potential`,`ID`) "
 						+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
-						+ "?,?,?,?,?,?,?,?,?)");
+						+ "?,?,?,?,?,?,?,?,?,?)");
 
 				pStmt.setString(1, results.getTypeOfForm());
 				pStmt.setString(2, results.getBadges());
@@ -195,6 +199,7 @@ public class DbWorker {
 				pStmt.setString(66, results.getChildren());
 				pStmt.setString(67, results.getAges());
 				pStmt.setString(68, results.getSponsorPotential());
+				pStmt.setString(69,  results.getId());
 
 				pStmt.executeUpdate();
 				pStmt.close();
@@ -275,11 +280,11 @@ public class DbWorker {
 	 * @return A collection of the different fields in the database.
 	 * @throws SQLException
 	 */
-	public ArrayList<RciaData> retrieveRciaData(String fname, String lname) throws SQLException
+	public ArrayList<DbResult<RciaData>> retrieveRciaData(String fname, String lname) throws SQLException
 	{
 		String query = "SELECT * FROM inquirer WHERE First_Name LIKE '" + fname + "%' AND Last_Name LIKE '" + lname + "%'";
 		Statement stmt = null;
-		ArrayList<RciaData> resultArray = new ArrayList<RciaData>();
+		ArrayList<DbResult<RciaData>> resultArray = new ArrayList<DbResult<RciaData>>();
 
 		try {
 
@@ -288,14 +293,18 @@ public class DbWorker {
 
 			while(rs.next())
 			{
+				String trans = Integer.toString(transId.getAndIncrement());
 				ArrayList<String> results = new ArrayList<String>(rciaColumnSize);
 				for(int i = 0; i < rciaColumnSize; i++)
 				{
 					results.add(rs.getString(i +1));
 				}
 				RciaData data = new RciaData(results);
-				resultArray.add(data);
+				resultArray.add(new DbResult(data, trans));
 				System.out.println(data);
+//				System.out.println("ID Received = " + data.getId());
+				transMap.put(trans, data.getId());
+				
 			}
 
 
@@ -339,8 +348,33 @@ public class DbWorker {
 
 	}
 
-	public void updateRcia()
+	public int updateRcia(String value, String fieldName, String transKey) throws SQLException
 	{
+//		String transKey = transMap.get(data.getTransId());
+		// create the java mysql update prepared statement
+		String query = "UPDATE inquirer SET "+fieldName+" = ? WHERE ID = ?";
+		Statement stmt = null;
+		int rs = 0;
+
+		try {
+
+			PreparedStatement preparedStmt = con1.prepareStatement(query);
+			preparedStmt.setString(1, value);
+			preparedStmt.setString(2, transKey);
+
+			// execute the java prepared statement
+			preparedStmt.executeUpdate();
+
+
+
+		} catch (SQLException e ) {
+			e.printStackTrace();
+		} finally {
+			if (stmt != null) { stmt.close(); }
+		}
+
+		return rs;
+		
 
 	}
 
@@ -368,42 +402,4 @@ public class DbWorker {
 		}
 	}
 	
-	/*public ArrayList<PrintData> retrievePrintData(String fname, String lname) throws SQLException
-	{
-		System.out.println(fname + " " + lname);
-		String query = "SELECT First_Name, Last_Name, Middle_Name, Familiar_Name, Sponsor_First_Name, Sponsor_Last_Name, Sponsor, Print_Form, "
-				+ "Eform_Paper, Bap_Cert, Birth_Name, DOB, Been_Baptized, Date_Of_Baptism, Month_Year_Confirmed, Sponsor_Name, Have_Sponsor, "
-				+ "Father_Full_Name, Mother_Full_Name, Sacraments FROM inquirer WHERE First_Name LIKE '" + fname + "%' AND "
-				+ "Last_Name LIKE '" + lname + "%'";
-		Statement stmt = null;
-		ArrayList<PrintData> resultArray = new ArrayList<PrintData>();
-
-		try {
-
-			stmt = con2.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
-
-			while(rs.next())
-			{
-				ArrayList<String> results = new ArrayList<String>(printColumnSize);
-				for(int i = 0; i < printColumnSize; i++)
-				{
-					results.add(rs.getString(i +1));
-				}
-				PrintData data = new PrintData(results);
-				resultArray.add(data);
-				System.out.println(data);
-			}
-
-
-		} catch (SQLException e ) {
-			e.printStackTrace();
-		} finally {
-			if (stmt != null) { stmt.close(); }
-		}
-
-
-		return resultArray;
-	}*/
-
 }

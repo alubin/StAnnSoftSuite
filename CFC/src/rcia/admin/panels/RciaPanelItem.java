@@ -27,6 +27,7 @@ public class RciaPanelItem extends JPanel{
 	private JLabel itemTitle = new JLabel();
 	private final JTextField itemInput = new JTextField();
 	private final ArrayList<JComponent> compList = new ArrayList<JComponent>(4);
+	private boolean selected = false;
 
 	/**
 	 * @wbp.parser.constructor
@@ -78,6 +79,7 @@ public class RciaPanelItem extends JPanel{
 			JCheckBox valueBox = (JCheckBox)e.getSource();
 			if(valueBox.isSelected())
 			{
+				selected = true;
 				for(JComponent comp : compList)
 				{
 					comp.setBackground(Color.CYAN);
@@ -86,6 +88,7 @@ public class RciaPanelItem extends JPanel{
 			}
 			else
 			{
+				selected = false;
 				for(JComponent comp : compList)
 				{
 					comp.setBackground(Color.LIGHT_GRAY);
@@ -95,6 +98,16 @@ public class RciaPanelItem extends JPanel{
 			
 		}
 		
+	}
+	
+	public boolean isSelected()
+	{
+		return selected;
+	}
+	
+	public String getNewValue()
+	{
+		return itemInput.getText();
 	}
 
 

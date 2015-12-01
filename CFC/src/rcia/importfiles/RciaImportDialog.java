@@ -14,6 +14,7 @@ public class RciaImportDialog extends ImportDialog {
 	{
 		super(rciaTitle, new RciaImportActionListener(instance));
 		setAlwaysOnTop(true);
+		setVisible(false);
 	}
 
 	@Override

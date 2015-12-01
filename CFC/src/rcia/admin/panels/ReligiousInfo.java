@@ -1,10 +1,12 @@
 package rcia.admin.panels;
 
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import database.DbResult;
 import rcia.RciaData;
 
 /*
@@ -38,7 +40,7 @@ import rcia.RciaData;
  * 
  * 
  */
-public class ReligiousInfo extends JPanel{
+public class ReligiousInfo extends JPanel implements InfoPanel{
 
 	/**
 	 * 
@@ -123,8 +125,9 @@ public class ReligiousInfo extends JPanel{
 		
 	}
 
-	public void setData(RciaData valData) 
+	public void setData(DbResult<RciaData> dbData)
 	{
+		RciaData valData = dbData.getData();
 		sponFirstNameItem.setDisplayValue(valData.getSponFirst());
 		sponLastNameItem.setDisplayValue(valData.getSponLast());
 		sponsorItem.setDisplayValue(valData.getSponsor());
@@ -158,6 +161,12 @@ public class ReligiousInfo extends JPanel{
 		ageItem.setDisplayValue(valData.getAge());
 		sponPotItem.setDisplayValue(valData.getSponsorPotential());
 		
+	}
+
+	@Override
+	public ArrayList<RciaPanelItem> getUpdates() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

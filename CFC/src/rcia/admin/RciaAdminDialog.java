@@ -17,7 +17,9 @@ import main.MainFrame;
 import rcia.RciaData;
 import rcia.admin.panels.RciaTabbedPanel;
 import database.DatabaseStore;
+import database.DbResult;
 import database.DbWorker;
+
 import javax.swing.SwingConstants;
 
 public class RciaAdminDialog extends JDialog {
@@ -101,7 +103,7 @@ public class RciaAdminDialog extends JDialog {
 				//				rciaAdminPanel.displayData(dbWorker.retrieveRciaData(firstNameField.getText(), lastNameField.getText()));
 
 				//System.out.println(dbWorker.retrieveRciaData(firstNameField.getText(), lastNameField.getText()));
-				ArrayList<RciaData> dbResults = dbWorker.retrieveRciaData(firstNameField.getText(), lastNameField.getText());
+				ArrayList<DbResult<RciaData>> dbResults = dbWorker.retrieveRciaData(firstNameField.getText(), lastNameField.getText());
 				if(!dbResults.isEmpty())
 				{
 					RciaTabbedPanel tabbedDisplay = new RciaTabbedPanel(dbResults);

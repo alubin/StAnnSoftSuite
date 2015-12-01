@@ -19,6 +19,7 @@ import org.jdesktop.swingx.JXTable;
 import org.jdesktop.swingx.search.SearchFactory;
 
 import database.DatabaseStore;
+import database.DbResult;
 import database.DbWorker;
 import database.QueryType;
 import rcia.RciaData;
@@ -78,11 +79,11 @@ public class RciaAdminPanel extends JPanel {
 		mainGui.setPanel(this);
 
 	}
-	public void displayData(ArrayList<RciaData> retrieveRciaData) {
+	public void displayData(ArrayList<DbResult<RciaData>> retrieveRciaData) {
 		adminModel.clearRows();
-		for(RciaData data: retrieveRciaData)
+		for(DbResult<RciaData> data: retrieveRciaData)
 		{
-			adminModel.addRow(data.getArray());
+			adminModel.addRow(data.getData().getArray());
 		}
 		resultTable.packAll();
 		displayAll();

@@ -1,10 +1,14 @@
 package rcia.admin.panels;
 
+import java.awt.Component;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import database.DbResult;
 import rcia.RciaData;
 
 /**
@@ -40,7 +44,7 @@ import rcia.RciaData;
  *Spouse Fiance Name
  *Spouse Fiance Religion
  */
-public class PersonalInfo extends JPanel{
+public class PersonalInfo extends JPanel implements InfoPanel{
 	
 	/**
 	 * 
@@ -69,12 +73,39 @@ public class PersonalInfo extends JPanel{
 	private RciaPanelItem fatherItem = new RciaPanelItem("Father Full Name");
 	private RciaPanelItem motherItem = new RciaPanelItem("Mother Full Name");
 	private RciaPanelItem godParentItem = new RciaPanelItem("God Father Name");
+	private ArrayList<RciaPanelItem> itemArrayList;
+	private String transID;
 	
 	public PersonalInfo()
 	{
 		super(new GridLayout(1,1));
 		JPanel personal = new JPanel(new GridLayout(23,1));
 		JScrollPane scrollPanel = new JScrollPane(personal);
+		itemArrayList =new ArrayList<RciaPanelItem>();
+		
+		itemArrayList.add(firstNameItem);
+		itemArrayList.add(lastNameItem);
+		itemArrayList.add(genderItem);
+		itemArrayList.add(familiarNameItem);
+		itemArrayList.add(roleNameItem);
+		itemArrayList.add(birthNameItem);
+		itemArrayList.add(addressItem);
+		itemArrayList.add(cityItem);
+		itemArrayList.add(stateItem);
+		itemArrayList.add(zipItem);
+		itemArrayList.add(emailItem);
+		itemArrayList.add(phoneItem);
+		itemArrayList.add(dobItem);
+		itemArrayList.add(ageItem);
+		itemArrayList.add(occupationItem);
+		itemArrayList.add(saintItem);
+		itemArrayList.add(bpCityItem);
+		itemArrayList.add(bpStateItem);
+		itemArrayList.add(birthCertItem);
+		itemArrayList.add(bapCertItem);
+		itemArrayList.add(fatherItem);
+		itemArrayList.add(motherItem);
+		itemArrayList.add(godParentItem);
 		
 		personal.add(firstNameItem);
 		personal.add(lastNameItem);
@@ -103,8 +134,10 @@ public class PersonalInfo extends JPanel{
 		add(scrollPanel);
 	}
 	
-	public void setData(RciaData data)
+	public void setData(DbResult<RciaData> dbData)
 	{
+		RciaData data = dbData.getData();
+		transID = dbData.getTransId();
 		firstNameItem.setDisplayValue(data.getFirst());
 		lastNameItem.setDisplayValue(data.getLastName());
 		genderItem.setDisplayValue(data.getGender());
@@ -129,5 +162,21 @@ public class PersonalInfo extends JPanel{
 		godParentItem.setDisplayValue(data.getGodParentNames());
 		
 	}
+
+	@Override
+	public ArrayList<RciaPanelItem> getUpdates() {
+		ArrayList<RciaPanelItem> itemList = new ArrayList<RciaPanelItem>();
+		for(RciaPanelItem item: this.itemArrayList)
+		{
+			RciaPanelItem panelItem = (RciaPanelItem) item;
+			if (panelItem.isSelected())
+			{
+				System.out.println("Value changed = " + panelItem.getNewValue() + " for " + transID);
+			}
+		}
+		return itemList;
+	}
+
+
 
 }

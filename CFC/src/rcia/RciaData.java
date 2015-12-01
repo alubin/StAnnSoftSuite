@@ -3,6 +3,7 @@ package rcia;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class RciaData {
 
@@ -495,28 +496,8 @@ public class RciaData {
 
 	public String getId()
 	{
-		byte[] results = new byte[rowValues.size()];
-		Byte[] byteObj = new Byte[results.length];
-		byte[] hash = null;
-		String resultStr = "";
-		for(int i = 0; i < results.length; i ++)
-		{
-			byteObj[i] = results[i];
-		}
 
-		for(int i = 0; i < byteObj.length; i++)
-		{
-			results[i] = byteObj[i].byteValue();
-		}
-
-		try {
-			hash = MessageDigest.getInstance("MD5").digest(results);
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		resultStr = (hash == null) ? "" : new String(hash);
-		return resultStr;
+		return Integer.toString(this.toString().hashCode());
 
 	}
 
