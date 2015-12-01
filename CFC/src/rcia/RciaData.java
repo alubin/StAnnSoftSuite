@@ -1,5 +1,7 @@
 package rcia;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 public class RciaData {
@@ -95,7 +97,7 @@ public class RciaData {
 	private ArrayList<String> rowValues;
 
 	public RciaData(ArrayList<String> rowValue) {
-		
+
 		//Need to check the size of rowValue.
 
 		this.rowValues = rowValue;
@@ -485,10 +487,37 @@ public class RciaData {
 	public Object[] getArray() {
 		return rowValues.toArray();
 	}
-	
+
 	public String toString()
 	{
 		return this.first + " " + this.middle + " " + this.lastName;
+	}
+
+	public String getId()
+	{
+		byte[] results = new byte[rowValues.size()];
+		Byte[] byteObj = new Byte[results.length];
+		byte[] hash = null;
+		String resultStr = "";
+		for(int i = 0; i < results.length; i ++)
+		{
+			byteObj[i] = results[i];
+		}
+
+		for(int i = 0; i < byteObj.length; i++)
+		{
+			results[i] = byteObj[i].byteValue();
+		}
+
+		try {
+			hash = MessageDigest.getInstance("MD5").digest(results);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		resultStr = (hash == null) ? "" : new String(hash);
+		return resultStr;
+
 	}
 
 
