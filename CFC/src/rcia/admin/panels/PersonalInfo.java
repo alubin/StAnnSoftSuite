@@ -86,6 +86,7 @@ public class PersonalInfo extends JPanel implements InfoPanel{
 		itemArrayList =new ArrayList<RciaPanelItem>();
 
 		itemArrayList.add(firstNameItem);
+		itemArrayList.add(midNameItem);
 		itemArrayList.add(lastNameItem);
 		itemArrayList.add(genderItem);
 		itemArrayList.add(familiarNameItem);
@@ -108,6 +109,7 @@ public class PersonalInfo extends JPanel implements InfoPanel{
 		itemArrayList.add(motherItem);
 
 		personal.add(firstNameItem);
+		personal.add(midNameItem);
 		personal.add(lastNameItem);
 		personal.add(genderItem);
 		personal.add(familiarNameItem);
@@ -137,6 +139,7 @@ public class PersonalInfo extends JPanel implements InfoPanel{
 		RciaData data = dbData.getData();
 		transID = dbData.getTransId();
 		firstNameItem.setDisplayValue(data.getFirst());
+		midNameItem.setDisplayValue(data.getMiddle());
 		lastNameItem.setDisplayValue(data.getLast());
 		genderItem.setDisplayValue(data.getGender());
 		familiarNameItem.setDisplayValue(data.getFamiliarName());
