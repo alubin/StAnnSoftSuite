@@ -50,7 +50,7 @@ public class PersonalInfo extends JPanel implements InfoPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = -6886588971002467357L;
-	private RciaPanelItem firstNameItem = new RciaPanelItem("First", "Test");
+	private RciaPanelItem firstNameItem = new RciaPanelItem("First");
 	private RciaPanelItem lastNameItem = new RciaPanelItem("Last");
 	private RciaPanelItem genderItem = new RciaPanelItem("Gender");
 	private RciaPanelItem familiarNameItem = new RciaPanelItem("Familiar Name");

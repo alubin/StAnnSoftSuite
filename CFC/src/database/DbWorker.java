@@ -360,7 +360,7 @@ public class DbWorker {
 
 			PreparedStatement preparedStmt = con1.prepareStatement(query);
 			preparedStmt.setString(1, value);
-			preparedStmt.setString(2, transKey);
+			preparedStmt.setString(2, transMap.get(transKey));
 
 			// execute the java prepared statement
 			preparedStmt.executeUpdate();
