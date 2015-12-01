@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-11-30T21:14:46 -->
+<!-- 2015-11-30T21:43:33 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Signing_List" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="7bb6143c-b020-4a80-83ba-3291e5cb1179">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="JDBC"/>
@@ -154,7 +154,7 @@ ORDER BY rcia.inquirer.`Last_Name` ASC]]>
 				<textElement textAlignment="Center">
 					<font fontName="Calibri" size="26" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{Last_Name} + "-" + $F{Last_Name}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[ $F{Last_Name}.charAt(0) + " - "]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>

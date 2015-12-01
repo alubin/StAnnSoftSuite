@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-11-30T09:26:27 -->
+<!-- 2015-11-30T23:33:28 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cert2" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4effc2c0-b940-4616-a809-beb3370226d6">
 	<property name="com.jaspersoft.studio.data.sql.tables" value="cmNpYS5pbnF1aXJlciAsMTUsMTUsMDEyYmI2NGYtY2I5NS00NWIwLWEwNzEtMDI4Yjk1M2ViOGI0Ow=="/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="JDBC"/>
@@ -8,6 +8,7 @@
 	<parameter name="LastName" class="java.lang.String"/>
 	<parameter name="PastorName" class="java.lang.String"/>
 	<parameter name="DateOfConfirmation" class="java.util.Date"/>
+	<parameter name="DateOfBaptism" class="java.util.Date"/>
 	<queryString>
 		<![CDATA[SELECT rcia.inquirer.`First_Name`,
 	rcia.inquirer.`Middle_Name`,
@@ -214,20 +215,14 @@ St. Ann Catholic Parish
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Lucida Calligraphy" size="16" isUnderline="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{Date_Of_Baptism}.equals("0000-00-00") ? new SimpleDateFormat("MM/dd/yyyy").format(("1901-01-01")): new StringBuilder(new SimpleDateFormat("d").format($F{Date_Of_Baptism}))
-
-]]></textFieldExpression>
+					<textFieldExpression><![CDATA[new StringBuilder(new SimpleDateFormat("d").format($P{DateOfBaptism}))]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement x="156" y="0" width="140" height="27" uuid="f56c52ac-83fb-4e55-b930-9a0b556ec419"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font fontName="Lucida Calligraphy" size="16" isUnderline="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{Date_Of_Baptism}.equals("0000-00-00") ? new SimpleDateFormat("MM/dd/yyyy").format(("1901-01-01")) : new StringBuilder(new SimpleDateFormat("MMMM, YYYY").format($F{Date_Of_Baptism}))
-
-
-
-]]></textFieldExpression>
+					<textFieldExpression><![CDATA[new StringBuilder(new SimpleDateFormat("MMMM, yyyy").format($P{DateOfBaptism}))]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>

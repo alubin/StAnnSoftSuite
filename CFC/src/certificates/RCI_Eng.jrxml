@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-11-29T23:16:06 -->
+<!-- 2015-11-30T23:11:39 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cert2" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryNewPage="true" uuid="4effc2c0-b940-4616-a809-beb3370226d6">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="JDBC"/>
@@ -16,6 +16,7 @@
 	<parameter name="LastName" class="java.lang.String">
 		<parameterDescription><![CDATA[LastName]]></parameterDescription>
 	</parameter>
+	<parameter name="DateOfBaptism" class="java.util.Date"/>
 	<queryString>
 		<![CDATA[SELECT rcia.inquirer.`First_Name`,
 	rcia.inquirer.`Middle_Name`,
@@ -159,7 +160,7 @@ St. Ann Catholic Parish
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
-				<imageExpression><![CDATA[ "./images/cert_logo.png"]]></imageExpression>
+				<imageExpression><![CDATA["./images/cert_logo.png"]]></imageExpression>
 			</image>
 			<textField isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToBandHeight" x="320" y="367" width="260" height="30" uuid="d60df07c-4b96-4458-9962-ca851d95f9f7"/>
@@ -210,14 +211,14 @@ St. Ann Catholic Parish
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Lucida Calligraphy" size="16" isUnderline="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[new StringBuilder(new SimpleDateFormat("d").format($F{Date_Of_Baptism}))]]></textFieldExpression>
+					<textFieldExpression><![CDATA[new StringBuilder(new SimpleDateFormat("d").format($P{DateOfBaptism}))]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
 					<reportElement x="156" y="0" width="140" height="27" uuid="9dae40d6-f63b-40c2-b5d0-80cd57c7f85b"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font fontName="Lucida Calligraphy" size="16" isUnderline="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[new StringBuilder(new SimpleDateFormat("MMMM, yyyy").format($F{Date_Of_Baptism}))]]></textFieldExpression>
+					<textFieldExpression><![CDATA[new StringBuilder(new SimpleDateFormat("MMMM, yyyy").format($P{DateOfBaptism}))]]></textFieldExpression>
 				</textField>
 			</frame>
 			<frame>

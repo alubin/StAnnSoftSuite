@@ -48,6 +48,7 @@ private JPanel contentPane;
 	private JTextField lastNameTextField;
 	private JTextField pastorTextField;
 	private JDateChooser dateChooser;
+	private JDateChooser dateChooser2;
 	private String certType;
 	private JRadioButton confirmButton;
 	private JRadioButton communionButton;
@@ -65,7 +66,7 @@ private JPanel contentPane;
 
 		setAlwaysOnTop(true);
 
-		setBounds(100, 100, 300, 350);
+		setBounds(100, 100, 300, 380);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -98,19 +99,29 @@ private JPanel contentPane;
 		pastorTextField.setColumns(10);
 		pastorTextField.setBounds(88, 66, 196, 25);
 		contentPane.add(pastorTextField);
+		
+		JLabel lblBaptismDate = new JLabel("Baptism Date:");
+		lblBaptismDate.setBounds(10, 109, 107, 14);
+		contentPane.add(lblBaptismDate);
+		
+		dateChooser2 = new JDateChooser();
+		dateChooser2.setToolTipText("");
+		dateChooser2.setDateFormatString("MMMM d, yyyy");
+		dateChooser2.setBounds(120, 102, 164, 25);
+		contentPane.add(dateChooser2);
 
 		JLabel lblConfirmationDate = new JLabel("Confirmation Date:");
-		lblConfirmationDate.setBounds(10, 109, 107, 14);
+		lblConfirmationDate.setBounds(10, 152, 107, 14);
 		contentPane.add(lblConfirmationDate);
 
 		dateChooser = new JDateChooser();
 		dateChooser.setToolTipText("");
 		dateChooser.setDateFormatString("MMMM d, yyyy");
-		dateChooser.setBounds(120, 102, 164, 25);
+		dateChooser.setBounds(120, 145, 164, 25);
 		contentPane.add(dateChooser);
 
 		certTypePanel = new JPanel();
-		certTypePanel.setBounds(10, 150, 274, 145);
+		certTypePanel.setBounds(10, 181, 274, 145);
 		contentPane.add(certTypePanel);
 		certTypePanel.setLayout(null);
 
@@ -149,7 +160,7 @@ private JPanel contentPane;
 		englishButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				if(firstNameTextField.getText().equals("") || lastNameTextField.getText().equals("") || dateChooser.getDate() == null || pastorTextField.getText().equals(""))
+				if(firstNameTextField.getText().equals("") || lastNameTextField.getText().equals("") || dateChooser2.getDate() == null || dateChooser.getDate() == null || pastorTextField.getText().equals(""))
 				{
 					warningLbl.setVisible(true);
 				}
@@ -160,7 +171,7 @@ private JPanel contentPane;
 
 					try
 					{	
-						printCert = new PrintCertificate(certType, firstNameTextField.getText(), lastNameTextField.getText(), dateChooser.getDate(), pastorTextField.getText());
+						printCert = new PrintCertificate(certType, firstNameTextField.getText(), lastNameTextField.getText(), dateChooser2.getDate(), dateChooser.getDate(), pastorTextField.getText());
 						if(printCert.getExists())
 						{			
 
@@ -185,7 +196,7 @@ private JPanel contentPane;
 		spanishButton = new JButton("Spanish");
 		spanishButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(firstNameTextField.getText().equals("") || lastNameTextField.getText().equals("") || dateChooser.getDate() == null || pastorTextField.getText().equals(""))
+				if(firstNameTextField.getText().equals("") || lastNameTextField.getText().equals("") || dateChooser2.getDate() == null ||dateChooser.getDate() == null || pastorTextField.getText().equals(""))
 				{
 					warningLbl.setVisible(true);
 				}
@@ -196,7 +207,7 @@ private JPanel contentPane;
 					System.out.println(certType);
 					try
 					{
-						printCert = new PrintCertificate(certType, firstNameTextField.getText(), lastNameTextField.getText(), dateChooser.getDate(), pastorTextField.getText());
+						printCert = new PrintCertificate(certType, firstNameTextField.getText(), lastNameTextField.getText(), dateChooser2.getDate(), dateChooser.getDate(), pastorTextField.getText());
 						if(printCert.getExists())
 						{			
 						
@@ -220,8 +231,9 @@ private JPanel contentPane;
 		warningLbl = new JLabel("All fields must be filled");
 		warningLbl.setVerticalAlignment(SwingConstants.TOP);
 		warningLbl.setForeground(Color.RED);
-		warningLbl.setBounds(10, 296, 135, 24);
+		warningLbl.setBounds(10, 327, 135, 24);
 		contentPane.add(warningLbl);
+		
 		warningLbl.setVisible(false);
 
 

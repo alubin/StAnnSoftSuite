@@ -28,7 +28,7 @@ public class PrintCertificate
 	DbWorker db = null;
 	private static boolean exists;
 	
-	public PrintCertificate( String certType, String firstName, String lastName, Date confirmDate, String pastorName)
+	public PrintCertificate( String certType, String firstName, String lastName, Date baptismDate, Date confirmDate, String pastorName)
 	{
 		//Need to swtich from hard coded Connection to db.getConnection();
 		//DbWorker db = new DbWorker();
@@ -84,6 +84,7 @@ public class PrintCertificate
 				map.put("FirstName",firstName);
 				map.put("LastName",lastName);
 				map.put("PastorName", pastorName);
+				map.put("DateOfBaptism", baptismDate);
 				map.put("DateOfConfirmation", confirmDate);
 			
 				try 

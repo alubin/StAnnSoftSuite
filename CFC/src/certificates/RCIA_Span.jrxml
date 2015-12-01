@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-11-29T23:16:17 -->
+<!-- 2015-11-30T23:49:01 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cert2" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4effc2c0-b940-4616-a809-beb3370226d6">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="JDBC"/>
@@ -8,6 +8,7 @@
 	<parameter name="LastName" class="java.lang.String"/>
 	<parameter name="PastorName" class="java.lang.String"/>
 	<parameter name="DateOfConfirmation" class="java.util.Date"/>
+	<parameter name="DateOfBaptism" class="java.util.Date"/>
 	<queryString>
 		<![CDATA[SELECT rcia.inquirer.`First_Name`,
 	rcia.inquirer.`Middle_Name`,
@@ -138,7 +139,7 @@ La Parroquia de Sta. Ana
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
-				<imageExpression><![CDATA[ "./images/cert_logo.png"]]></imageExpression>
+				<imageExpression><![CDATA["./images/cert_logo.png"]]></imageExpression>
 			</image>
 			<textField isBlankWhenNull="true">
 				<reportElement positionType="FixRelativeToBottom" x="154" y="150" width="482" height="37" uuid="3adb6d54-ac9d-4c0d-a940-9e0bf2437679"/>
@@ -176,7 +177,7 @@ La Parroquia de Sta. Ana
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<frame>
-				<reportElement x="243" y="230" width="305" height="27" uuid="e86e0828-059a-4f07-b931-2be13f9c29c8"/>
+				<reportElement x="243" y="230" width="417" height="27" uuid="e86e0828-059a-4f07-b931-2be13f9c29c8"/>
 				<staticText>
 					<reportElement x="150" y="1" width="20" height="25" uuid="8c9d9378-02ee-4d51-a05a-6d36a4458433"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -196,14 +197,14 @@ La Parroquia de Sta. Ana
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Lucida Calligraphy" size="16" isUnderline="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[new StringBuilder(new SimpleDateFormat("d").format($F{Date_Of_Baptism}))]]></textFieldExpression>
+					<textFieldExpression><![CDATA[new StringBuilder(new SimpleDateFormat("d").format($P{DateOfBaptism}))]]></textFieldExpression>
 				</textField>
 				<textField isBlankWhenNull="true">
-					<reportElement x="174" y="0" width="127" height="27" uuid="7a8c45b4-5ca4-4982-a283-1311d38c86d0"/>
+					<reportElement x="174" y="0" width="229" height="27" uuid="7a8c45b4-5ca4-4982-a283-1311d38c86d0"/>
 					<textElement textAlignment="Left" verticalAlignment="Middle">
 						<font fontName="Lucida Calligraphy" size="16" isUnderline="true"/>
 					</textElement>
-					<textFieldExpression><![CDATA[new StringBuilder(new SimpleDateFormat("MMMM, yyyy").format($F{Date_Of_Baptism}))]]></textFieldExpression>
+					<textFieldExpression><![CDATA[new StringBuilder(new SimpleDateFormat("MMMM, yyyy").format($P{DateOfBaptism}))]]></textFieldExpression>
 				</textField>
 			</frame>
 			<frame>
