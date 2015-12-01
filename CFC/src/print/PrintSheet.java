@@ -13,7 +13,6 @@ import java.util.Enumeration;
 import java.util.HashMap;
 
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -23,33 +22,25 @@ import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
+import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
-import net.sf.jasperreports.export.SimpleDocxReportConfiguration;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import net.sf.jasperreports.export.SimpleXlsxReportConfiguration;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.AbstractButton;
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JRadioButton;
 
 import database.DatabaseStore;
 import database.DbConnectErrorDialog;
 import database.DbWorker;
 
-import print.PrintCertificate;
 
-import java.awt.Color;
 import java.awt.Desktop;
 
 import com.toedter.calendar.JDateChooser;
-import javax.swing.SwingConstants;
-import javax.swing.JTextArea;
 
 
 
@@ -61,19 +52,7 @@ private JPanel contentPane;
 	 */
 	private  MainFrame mainGui;
 //	private PrintDisplayPanel printDisplayPanel;
-	private JTextField firstNameTextField;
-	private JTextField lastNameTextField;
-	private JTextField pastorTextField;
-	private JDateChooser dateChooser;
-	private String certType;
-	private JRadioButton confirmButton;
-	private JRadioButton communionButton;
-	private JRadioButton rciaButton;
-    private JButton englishButton;
-    private JButton spanishButton;
-    private JPanel certTypePanel;
-    private JLabel warningLbl;
-    private PrintCertificate printCert;
+	
 	private DbWorker db;
 	private Connection con;
 
@@ -113,14 +92,15 @@ private JPanel contentPane;
 			
 				String OUT_PUT = "C:/tmp/sign_in_sheet.xlsx";
 				
-				String REPORT = "./certificates/Signing_List.jrxml";
+				String REPORT = "/certificates/Signing_List.jrxml";
 				
 				HashMap<String, Object> map = new HashMap<>();
 				//map.put("FirstName",firstName);
 				
 				try 
 				{
-			        JasperReport jr = JasperCompileManager.compileReport(ClassLoader.getSystemResourceAsStream(REPORT));
+					JasperDesign jd  = JRXmlLoader.load(getClass().getResourceAsStream(REPORT));
+			        JasperReport jr = JasperCompileManager.compileReport(jd);
 			        JasperPrint jp = JasperFillManager.fillReport(jr, map, con);
 			        JRXlsxExporter export = new JRXlsxExporter();
 				    export.setExporterInput(new SimpleExporterInput(jp));

@@ -1,7 +1,8 @@
 package print;
 import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.export.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.export.ooxml.*;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.export.SimpleDocxReportConfiguration;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
@@ -9,17 +10,14 @@ import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
-import java.sql.DriverManager;
+import java.net.URL;
 import java.util.*;
-
-import javax.swing.JOptionPane;
 
 import database.DatabaseStore;
 import database.DbConnectErrorDialog;
 import database.DbWorker;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 
 
 public class PrintCertificate  
@@ -51,33 +49,37 @@ public class PrintCertificate
 		
 		if(exists)
 		{
+			
+			URL url = PrintCertificate.class.getResource("/images/cert_logo.png");
+			
 			String OUT_PUT = "C:/tmp/" + firstName.toLowerCase() + "_" + lastName.toLowerCase() + "_" + certType + ".docx";
 			//String OUT_PUT = "./GeneratedCertificates/" + firstName.toLowerCase() + "_" + lastName.toLowerCase() + "_" + certType + ".docx";
+			
 			String REPORT = "";
 			
 			if(certType.equals("rite_of_christian_initiation_eng"))
 			{
-				REPORT = "./certificates/RCI_Eng.jrxml";
+				REPORT = "/certificates/RCI_Eng.jrxml";
 			}
 			else if(certType.equals("rite_of_christian_initiation_span"))
 			{
-				REPORT = "./certificates/RCIA_Span.jrxml";
+				REPORT = "/certificates/RCIA_Span.jrxml";
 			}
 			else if(certType.equals("confirmation_eng"))
 			{
-				REPORT = "./certificates/Confirm_Eng.jrxml";
+				REPORT = "/certificates/Confirm_Eng.jrxml";
 			}
 			else if(certType.equals("confirmation_span"))
 			{
-				REPORT = "./certificates/Confirm_Span.jrxml";
+				REPORT = "/certificates/Confirm_Span.jrxml";
 			}
 			else if(certType.equals("first_communion_eng"))
 			{
-				REPORT = "./certificates/Communion_Eng.jrxml";
+				REPORT = "/certificates/Communion_Eng.jrxml";
 			}
 			else if(certType.equals("first_communion_span"))
 			{
-				REPORT = "./certificates/Communion_Span.jrxml";
+				REPORT = "/certificates/Communion_Span.jrxml";
 			}
 				
 				HashMap<String, Object> map = new HashMap<>();
@@ -86,10 +88,12 @@ public class PrintCertificate
 				map.put("PastorName", pastorName);
 				map.put("DateOfBaptism", baptismDate);
 				map.put("DateOfConfirmation", confirmDate);
+				map.put("ImgUrl", url);
 			
 				try 
 				{
-			        JasperReport jr = JasperCompileManager.compileReport(ClassLoader.getSystemResourceAsStream(REPORT));
+					JasperDesign jd  = JRXmlLoader.load(getClass().getResourceAsStream(REPORT));
+			        JasperReport jr = JasperCompileManager.compileReport(jd);
 			        JasperPrint jp = JasperFillManager.fillReport(jr, map, con);
 			        JRDocxExporter export = new JRDocxExporter();
 				    export.setExporterInput(new SimpleExporterInput(jp));
@@ -101,7 +105,8 @@ public class PrintCertificate
 				    //Opens file after completed export
 				    OpenFile(OUT_PUT);
 			    } catch (JRException ex) {
-			        ex.printStackTrace();   
+			        ex.printStackTrace(); 
+			        return;
 			    }
 		}
 	}

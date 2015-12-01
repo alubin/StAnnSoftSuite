@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-11-30T23:48:51 -->
+<!-- 2015-12-01T02:27:03 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cert2" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4effc2c0-b940-4616-a809-beb3370226d6">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="JDBC"/>
@@ -9,6 +9,7 @@
 	<parameter name="PastorName" class="java.lang.String"/>
 	<parameter name="DateOfConfirmation" class="java.util.Date"/>
 	<parameter name="DateOfBaptism" class="java.util.Date"/>
+	<parameter name="ImgUrl" class="java.net.URL"/>
 	<queryString>
 		<![CDATA[SELECT rcia.inquirer.`First_Name`,
 	rcia.inquirer.`Middle_Name`,
@@ -132,7 +133,7 @@ La Parroquia de Sta. Ana
 					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
-				<imageExpression><![CDATA["./images/cert_logo.png"]]></imageExpression>
+				<imageExpression><![CDATA[$P{ImgUrl}]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="281" y="396" width="62" height="20" uuid="4a3b5144-06f2-4f1f-a992-627c198f7b4a"/>

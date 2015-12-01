@@ -1,15 +1,13 @@
 package print;
 
-import java.awt.EventQueue;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 import java.util.Enumeration;
 
 import javax.swing.JDialog;
-import javax.swing.JFrame;
+
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -23,16 +21,13 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JRadioButton;
 
-import database.DatabaseStore;
-import database.DbWorker;
-
 import print.PrintCertificate;
 
 import java.awt.Color;
 
 import com.toedter.calendar.JDateChooser;
 import javax.swing.SwingConstants;
-import javax.swing.JTextArea;
+
 
 
 
