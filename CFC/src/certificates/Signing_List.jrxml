@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-01T08:31:05 -->
+<!-- 2015-12-01T23:06:45 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Signing_List" pageWidth="595" pageHeight="900" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryNewPage="true" whenResourceMissingType="Error" uuid="7bb6143c-b020-4a80-83ba-3291e5cb1179">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.unit." value="pixel"/>
@@ -36,26 +36,23 @@
 	</variable>
 	<pageHeader>
 		<band height="57">
-			<rectangle>
-				<reportElement x="5" y="0" width="545" height="55" isPrintInFirstWholeBand="true" forecolor="#000000" backcolor="#FF0000" uuid="39b2159c-52cb-44ba-9877-6daa85978697"/>
-			</rectangle>
 			<textField evaluationTime="Page">
-				<reportElement x="295" y="3" width="70" height="50" uuid="07f6a130-c953-47d8-b2fb-77e10f61aff1"/>
+				<reportElement mode="Opaque" x="295" y="0" width="255" height="53" backcolor="#FF0400" uuid="07f6a130-c953-47d8-b2fb-77e10f61aff1"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Calibri" size="26" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[($V{lastValueOnPage}!=null&&$V{lastValueOnPage}.length()>0)?String.valueOf($V{lastValueOnPage}.charAt(0)).toUpperCase():""]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="200" y="3" width="59" height="50" uuid="aa436ead-70e0-44ff-be83-ac70c39a8b7e"/>
+				<reportElement mode="Opaque" x="6" y="0" width="253" height="53" backcolor="#FF0400" uuid="aa436ead-70e0-44ff-be83-ac70c39a8b7e"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Calibri" size="26" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[($V{firstValueOnPage}!=null&&$V{firstValueOnPage}.length()>0)?String.valueOf($V{firstValueOnPage}.charAt(0)).toUpperCase():""]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="265" y="8" width="27" height="39" uuid="0f75b0ba-cb78-434e-9827-853bdde2d694"/>
-				<textElement textAlignment="Center">
+				<reportElement mode="Opaque" x="259" y="0" width="36" height="53" backcolor="#FF0400" uuid="0f75b0ba-cb78-434e-9827-853bdde2d694"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="26" isBold="true"/>
 				</textElement>
 				<text><![CDATA[-]]></text>
@@ -229,7 +226,7 @@ Please verify your email or add it if missing. Thank you.]]></text>
 	<pageFooter>
 		<band height="60">
 			<textField pattern="MMMMM dd, yyyy">
-				<reportElement x="210" y="10" width="133" height="18" uuid="b6c88719-1193-47c6-8e3f-79c0d6d9af18"/>
+				<reportElement x="211" y="10" width="133" height="18" uuid="b6c88719-1193-47c6-8e3f-79c0d6d9af18"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-01T02:24:51 -->
+<!-- 2015-12-01T22:42:09 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cert2" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4effc2c0-b940-4616-a809-beb3370226d6">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="JDBC"/>
@@ -70,8 +70,8 @@ WHERE
 				<text><![CDATA[Sta. Ana, Coppell, TX]]></text>
 			</staticText>
 			<staticText>
-				<reportElement key="" x="216" y="290" width="320" height="46" uuid="853dbfd7-b02f-4bac-9f07-da78afa00323"/>
-				<textElement textAlignment="Center">
+				<reportElement key="" x="235" y="290" width="320" height="50" uuid="853dbfd7-b02f-4bac-9f07-da78afa00323"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Old English Text MT" size="21"/>
 				</textElement>
 				<text><![CDATA[recibio el sacramento de Bautismo 
@@ -209,7 +209,7 @@ La Parroquia de Sta. Ana
 				</textField>
 			</frame>
 			<frame>
-				<reportElement x="246" y="344" width="299" height="25" uuid="1fb217bf-d1ee-479f-afa2-8c05b5036fce"/>
+				<reportElement x="246" y="347" width="299" height="25" uuid="1fb217bf-d1ee-479f-afa2-8c05b5036fce"/>
 				<staticText>
 					<reportElement x="0" y="2" width="20" height="20" uuid="b84fedd9-d406-4ccf-995a-8926a5b75b86"/>
 					<textElement>

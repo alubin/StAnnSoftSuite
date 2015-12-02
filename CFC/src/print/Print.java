@@ -96,23 +96,23 @@ private JPanel contentPane;
 		contentPane.add(pastorTextField);
 		
 		JLabel lblBaptismDate = new JLabel("Baptism Date:");
-		lblBaptismDate.setBounds(10, 109, 107, 14);
+		lblBaptismDate.setBounds(10, 110, 94, 14);
 		contentPane.add(lblBaptismDate);
 		
 		dateChooser2 = new JDateChooser();
 		dateChooser2.setToolTipText("");
 		dateChooser2.setDateFormatString("MMMM d, yyyy");
-		dateChooser2.setBounds(120, 102, 164, 25);
+		dateChooser2.setBounds(115, 102, 169, 25);
 		contentPane.add(dateChooser2);
 
 		JLabel lblConfirmationDate = new JLabel("Confirmation Date:");
-		lblConfirmationDate.setBounds(10, 152, 107, 14);
+		lblConfirmationDate.setBounds(10, 146, 107, 14);
 		contentPane.add(lblConfirmationDate);
 
 		dateChooser = new JDateChooser();
 		dateChooser.setToolTipText("");
 		dateChooser.setDateFormatString("MMMM d, yyyy");
-		dateChooser.setBounds(120, 145, 164, 25);
+		dateChooser.setBounds(115, 141, 169, 25);
 		contentPane.add(dateChooser);
 
 		certTypePanel = new JPanel();
