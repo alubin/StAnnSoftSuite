@@ -282,7 +282,7 @@ public class DbWorker {
 	 */
 	public ArrayList<DbResult<RciaData>> retrieveRciaData(String fname, String lname) throws SQLException
 	{
-		String query = "SELECT * FROM inquirer WHERE First_Name LIKE '" + fname + "%' AND Last_Name LIKE '" + lname + "%'";
+		String query = "SELECT DISTINCT * FROM inquirer WHERE First_Name LIKE '" + fname + "%' AND Last_Name LIKE '" + lname + "%'";
 		Statement stmt = null;
 		ArrayList<DbResult<RciaData>> resultArray = new ArrayList<DbResult<RciaData>>();
 
