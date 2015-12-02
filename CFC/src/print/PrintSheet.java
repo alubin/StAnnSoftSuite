@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -31,6 +32,8 @@ import net.sf.jasperreports.export.SimpleXlsxReportConfiguration;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import database.DatabaseStore;
@@ -39,10 +42,8 @@ import database.DbWorker;
 
 
 import java.awt.Desktop;
-
-import com.toedter.calendar.JDateChooser;
-
-
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 
 public class PrintSheet extends JDialog {
 
@@ -51,10 +52,10 @@ private JPanel contentPane;
 	 * Create the frame.
 	 */
 	private  MainFrame mainGui;
-//	private PrintDisplayPanel printDisplayPanel;
 
 	private DbWorker db;
 	private Connection con;
+	private JLabel lbl;
 
 	public PrintSheet(final MainFrame mainGui) {
 		setResizable(false);
@@ -63,19 +64,34 @@ private JPanel contentPane;
 
 		setAlwaysOnTop(true);
 
-		setBounds(100, 100, 220, 115);
+		setBounds(100, 100, 180, 125);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		
+		URL url = getClass().getResource("/images/loading_bar_small.gif");
+		Icon img = new ImageIcon(url);
+		lbl = new JLabel(img);
+		lbl.setBounds(0, 70, 164, 17);
+		
 		contentPane.setLayout(null);
-
+		lbl.setVisible(false);
+		getContentPane().add(lbl);
+		
 		JLabel lblPrintSignSheet = new JLabel("Print Sign-In Sheet: ");
-		lblPrintSignSheet.setBounds(10, 11, 149, 24);
+		lblPrintSignSheet.setBounds(10, 11, 128, 14);
 		contentPane.add(lblPrintSignSheet);
 
-		JButton btnNewButton = new JButton("Accept");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton acceptButton = new JButton("Accept");
+		acceptButton.setBounds(10, 36, 65, 23);
+		
+		acceptButton.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
+				
+				lbl.setVisible(true);
+				lbl.repaint();
+				
 				try
 				{
 					db = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
@@ -108,33 +124,38 @@ private JPanel contentPane;
 				    SimpleXlsxReportConfiguration config = new SimpleXlsxReportConfiguration();
 				    export.setConfiguration(config);
 				    export.exportReport();
-				    JOptionPane.showMessageDialog(mainGui, "<html>The sign-in sheet was successfully created");
+				    JOptionPane.showMessageDialog(mainGui, "<html>The sign-in sheet was successfully created</html>");
 
+				    lbl.setVisible(false);
 				    setVisible(false);
-
+				    lbl.repaint();
+				    
 				    //Opens file after completed export
 				    OpenFile(OUT_PUT);
 			    } catch (JRException ex) {
 			        ex.printStackTrace();
+			        lbl.setVisible(false);
+			        lbl.repaint();
 			        JOptionPane.showMessageDialog(mainGui, "<html>The sign-in sheet could not be created due to an error:<br>" + ex + "</html>", "Error", JOptionPane.ERROR_MESSAGE);
 			    }
 
 
 			}
 		});
-		btnNewButton.setBounds(10, 46, 89, 23);
-		contentPane.add(btnNewButton);
+		contentPane.add(acceptButton);
 
 		JButton button = new JButton("Cancel");
+		button.setBounds(85, 36, 79, 23);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 			}
 		});
-		button.setBounds(115, 46, 89, 23);
 		contentPane.add(button);
+		
+	
 	}
-
+	
 	public void OpenFile(String path)
 	{
 		if (Desktop.isDesktopSupported()) {
