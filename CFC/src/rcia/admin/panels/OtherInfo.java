@@ -32,6 +32,7 @@ public class OtherInfo extends JPanel implements InfoPanel{
 	public OtherInfo()
 	{
 		super(new GridLayout(20, 1));
+		itemArrayList =new ArrayList<RciaPanelItem>();
 
 		itemArrayList.add(eform);
 		itemArrayList.add(badgeItem);

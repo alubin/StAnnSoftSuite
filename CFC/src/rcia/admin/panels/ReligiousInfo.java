@@ -100,6 +100,7 @@ public class ReligiousInfo extends JPanel implements InfoPanel{
 
 		JPanel religion = new JPanel(new GridLayout(35,1));
 		JScrollPane scrollPanel = new JScrollPane(religion);
+		itemArrayList =new ArrayList<RciaPanelItem>();
 
 		itemArrayList.add(sponFirstNameItem);
 		itemArrayList.add(sponLastNameItem);

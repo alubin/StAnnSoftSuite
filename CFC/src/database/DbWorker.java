@@ -358,12 +358,14 @@ public class DbWorker {
 
 		try {
 
-			PreparedStatement preparedStmt = con1.prepareStatement(query);
+			PreparedStatement preparedStmt = con2.prepareStatement(query);
 			preparedStmt.setString(1, value);
 			preparedStmt.setString(2, transMap.get(transKey));
 
 			// execute the java prepared statement
 			preparedStmt.executeUpdate();
+			System.out.println("Updated ID = " + transMap.get(transKey));
+			System.out.println(preparedStmt.toString());
 
 
 
