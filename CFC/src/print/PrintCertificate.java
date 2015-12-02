@@ -52,7 +52,7 @@ public class PrintCertificate
 			
 			URL url = PrintCertificate.class.getResource("/images/cert_logo.png");
 			
-			String OUT_PUT = "C:/tmp/" + firstName.toLowerCase() + "_" + lastName.toLowerCase() + "_" + certType + ".docx";
+			String OUT_PUT = "C:/temp/" + firstName.toLowerCase() + "_" + lastName.toLowerCase() + "_" + certType + ".docx";
 			//String OUT_PUT = "./GeneratedCertificates/" + firstName.toLowerCase() + "_" + lastName.toLowerCase() + "_" + certType + ".docx";
 			
 			String REPORT = "";
