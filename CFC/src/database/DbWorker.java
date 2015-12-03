@@ -317,6 +317,7 @@ public class DbWorker {
 
 		return resultArray;
 	}
+	
 
 
 	public int updateCCF(final String stud, final String email) throws SQLException
