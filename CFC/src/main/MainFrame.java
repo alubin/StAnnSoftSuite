@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -18,13 +19,17 @@ import javax.swing.JLabel;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
+import rcia.RciaData;
 import rcia.admin.RciaAdminDialog;
 import rcia.admin.RciaAdminPanel;
+import rcia.admin.RciaAdminAdd;
+import rcia.admin.panels.RciaTabbedPanel;
 import rcia.importfiles.RciaImportDialog;
 import ccf.admin.CCFAdminDialog;
 import ccf.admin.CCFAdminPanel;
 import ccf.importfiles.CCFImportDialog;
 import database.DBSetupDialog;
+import database.DbResult;
 import print.*;
 
 
@@ -52,6 +57,7 @@ public class MainFrame extends JFrame{
 	private final JMenuItem rciaImport = new JMenuItem("Import RCIA Data");
 	private final JMenuItem ccfAdmin = new JMenuItem("Administer CCF Data");
 	private final JMenuItem rciaAdmin = new JMenuItem("Administer RCIA Data");
+	private final JMenuItem rciaAdd = new JMenuItem("Add New RCIA Member");
 	private final JMenuItem printSheet = new JMenuItem("Print Sign-In Sheet");
 	private final JMenuItem printCertificate = new JMenuItem("Print Certificate");
 	private final JMenuItem ccfDisplayValue = new JMenuItem("Display CCF Table");
@@ -61,6 +67,7 @@ public class MainFrame extends JFrame{
 	private final CCFAdminDialog ccfAdminDialogBox;
 	private final RciaImportDialog rciaImportDialogBox;
 	private final RciaAdminDialog rciaAdminDialogBox;
+	private final RciaAdminAdd rciaAdminAddBox;
 	private final Print printDialogBox;
 	private final PrintSheet printSheetDialogBox;
 
@@ -83,6 +90,7 @@ public class MainFrame extends JFrame{
 		ccfImportDialogBox = new CCFImportDialog(instance);
 		ccfAdminDialogBox = new CCFAdminDialog(instance);
 		rciaImportDialogBox = new RciaImportDialog(instance);
+		rciaAdminAddBox = new RciaAdminAdd(instance);
 		rciaAdminDialogBox = new RciaAdminDialog(instance);
 		printDialogBox = new Print(instance);
 		printSheetDialogBox = new PrintSheet(instance);
@@ -104,6 +112,7 @@ public class MainFrame extends JFrame{
 
 		//Add options to the rcia menu
 		rciaOption.add(rciaImport);
+		rciaOption.add(rciaAdd);
 		rciaOption.add(rciaAdmin);
 		rciaOption.add(rciaDisplayValue);
 
@@ -121,6 +130,7 @@ public class MainFrame extends JFrame{
 		ccfDisplayValue.addActionListener(new CCFDisplayActionListener());
 
 		rciaImport.addActionListener(new RciaImportActionListener());
+		rciaAdd.addActionListener(new RciaAddActionListener());
 		rciaAdmin.addActionListener(new RciaAdminActionListener());
 		rciaDisplayValue.addActionListener(new RciaDisplayListener());
 
@@ -221,6 +231,15 @@ public class MainFrame extends JFrame{
 		}
 
 	}
+	
+	public class RciaAddActionListener implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Display the Inquirer Dialog
+			rciaAdminAddBox.setVisible(true);
+		}
+	}
 
 	public class RciaAdminActionListener implements ActionListener
 	{
@@ -233,7 +252,6 @@ public class MainFrame extends JFrame{
 		}
 
 	}
-	
 	public class RciaDisplayListener implements ActionListener
 	{
 
@@ -269,5 +287,4 @@ public class MainFrame extends JFrame{
 		repaint();
 		setVisible(true);
 	}
-
 }
