@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-02T18:43:46 -->
+<!-- 2015-12-02T19:33:33 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cert2" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4effc2c0-b940-4616-a809-beb3370226d6">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="JDBC"/>
@@ -11,12 +11,11 @@
 	<parameter name="DateOfBaptism" class="java.util.Date"/>
 	<parameter name="ImgUrl" class="java.net.URL"/>
 	<queryString>
-		<![CDATA[SELECT rcia.inquirer.`First_Name`,
+		<![CDATA[SELECT DISTINCT rcia.inquirer.`First_Name`,
 	rcia.inquirer.`Middle_Name`,
 	rcia.inquirer.`Last_Name`,
 	rcia.inquirer.`Father_Full_Name`,
 	rcia.inquirer.`Mother_Full_Name`,
-	STR_TO_DATE(Date_Of_Baptism, '%m/%d/%y') as Date_Of_Baptism,
 	rcia.inquirer.`Sponsor_First_Name`,
 	rcia.inquirer.`Sponsor_Last_Name`,
 	rcia.inquirer.`Month_Year_Confirmed`
