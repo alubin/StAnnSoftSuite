@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 
 public class RciaPanelItem extends JPanel{
@@ -21,13 +23,11 @@ public class RciaPanelItem extends JPanel{
 	 *
 	 */
 	private static final long serialVersionUID = 5593313896131470416L;
-	private final JCheckBox selection = new JCheckBox();
 	private final JLabel itemLbl = new JLabel();
 	private JLabel itemDisplay = new JLabel();
 	private JLabel itemTitle = new JLabel();
 	private final JTextField itemInput = new JTextField();
 	private final ArrayList<JComponent> compList = new ArrayList<JComponent>(4);
-	private boolean selected = false;
 	private final String dbField;
 
 	/**
@@ -39,21 +39,18 @@ public class RciaPanelItem extends JPanel{
 		itemTitle.setHorizontalAlignment(SwingConstants.RIGHT);
 		itemTitle.setLabelFor(itemInput);
 		setLayout(new GridLayout(1,5));
-		selection.setSelected(false);
 		itemLbl.setText(label);
 		//		itemDisplay.setText("N/A");
-		itemInput.setText("");
+//		itemInput.setText("");
+		itemInput.getDocument().addDocumentListener(new ValueDocListener());
 		itemTitle.setText("Enter " + label);
 
 		itemDisplay.setBorder(BorderFactory.createDashedBorder(Color.BLACK));
 		compList.add(itemDisplay);
 		compList.add(itemInput);
 		compList.add(itemLbl);
-		compList.add(selection);
 
-		selection.addActionListener(new SelectionListener());
 
-		add(selection);
 		add(itemLbl);
 		add(itemDisplay);
 		add(itemTitle);
@@ -65,40 +62,42 @@ public class RciaPanelItem extends JPanel{
 		itemDisplay.setText(data);
 		repaint();
 	}
-
-	private class SelectionListener implements ActionListener
+	
+	private class ValueDocListener implements DocumentListener
 	{
 
 		@Override
-		public void actionPerformed(ActionEvent e) {
-			JCheckBox valueBox = (JCheckBox)e.getSource();
-			if(valueBox.isSelected())
-			{
-				selected = true;
-				for(JComponent comp : compList)
-				{
-					comp.setBackground(Color.CYAN);
-				}
-				repaint();
-			}
-			else
-			{
-				selected = false;
-				for(JComponent comp : compList)
-				{
-					comp.setBackground(Color.LIGHT_GRAY);
-				}
-				repaint();
-			}
-
+		public void insertUpdate(DocumentEvent e) {
+			checkValue();
+			
 		}
 
+		@Override
+		public void removeUpdate(DocumentEvent e) {
+			checkValue();
+			
+		}
+
+		@Override
+		public void changedUpdate(DocumentEvent e) {
+			checkValue();
+			
+		}
+		
+	}
+	
+	private void checkValue()
+	{
+		if(itemInput.getText().isEmpty())
+		{
+			itemInput.setBackground(Color.WHITE);
+		}
+		else
+		{
+			itemInput.setBackground(Color.CYAN);
+		}
 	}
 
-	public boolean isSelected()
-	{
-		return selected;
-	}
 
 	public String getNewValue()
 	{
@@ -108,6 +107,11 @@ public class RciaPanelItem extends JPanel{
 	public String getDbField()
 	{
 		return dbField;
+	}
+	
+	public String getPrevValue()
+	{
+		return itemDisplay.getText();
 	}
 
 
