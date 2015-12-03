@@ -318,6 +318,11 @@ public class DbWorker {
 		return resultArray;
 	}
 	
+	/**
+	 * Returns the Email address for the student email addresses.
+	 * @return
+	 * @throws SQLException
+	 */
 	public ArrayList<String> retrieveCCFEmails() throws SQLException
 	{
 		String query = "SELECT DISTINCT Email FROM ccf.parishdata WHERE Email != 'N/A'";
