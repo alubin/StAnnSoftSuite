@@ -376,8 +376,51 @@ public class DbWorker {
 		}
 
 		return rs;
+	}
+	
+	public int addRcia(String firstName, String lastName, String address, String city, String state, String zip, String phone, String email) throws SQLException
+	{
+//		
 		
+		String query = "INSERT INTO `rcia`.`inquirer` (`Eform_Paper`,`Badges`,`Print_Form`,`Value`,"
+				+ "`Verification_Form`,`Reconciliation`,`Bap_Cert`,`Birth_Cert`,`Saint`,`Gender`,`Roles`,`Last_Name`,"
+				+ "`Familiar_Name`,`Sponsor_First_Name`,`Sponsor_Last_Name`,`Sponsor`,`First_Name`,`Middle_Name`,"
+				+ "`Birth_Name`,`Address`,`City`,`State`,`Zip`,`Email`,`Phone`,`DOB`,`Age`,`Occupation`,`Birthplace_City`,"
+				+ "`Birthplace_State`,`Father_Full_Name`,`Mother_Full_Name`,`Been_Baptized`,`Date_Of_Baptism`,`Godparent_Names`,"
+				+ "`Priest_Name`,`Church_Name`,`Church_City`,`Church_State`,`Denomination_Note`,`Current_Parish`,`Years_Of_Religious_Education`,"
+				+ "`Month_Year_Confirmed`,`Sacraments`,`Have_Sponsor`,`Sponsor_Name`,`Sponsor_Phone`,`Why_Sponsor`,`Good_Standing`,"
+				+ "`Sponsor_Role`,`Someone_In_Mind`,`Inquirers_Name`,`Inquirers_Phone`,`Marital_Status`,`Spouse_Fiance_Name`,"
+				+ "`Spouse_Fiance_Religious`,`Practicing_Catholic`,`Attending_Sessions`,`Catholic_Church_Marriage`,`Catholic_Convalidation_Date`,"
+				+ "`Civil_Marriage_Date`,`CON_A`,`CON_B`,`CON_C`,`CON_D`,`Children`,`Ages`,`Sponsor_Potential`,`ID`) "
+				+ "VALUES ('','','','','','','','','','','','" + lastName + "','','','','','" + firstName + "','','','" 
+				+ address + "','"
+				+ city + "','"
+				+ state + "','"
+				+ zip + "','"
+				+ email + "','"
+				+ phone + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','')";
+		
+		Statement stmt = null;
+		int rs = 0;
 
+		try {
+
+			PreparedStatement preparedStmt = con2.prepareStatement(query);
+
+			// execute the java prepared statement
+			preparedStmt.executeUpdate();
+			
+			System.out.println("Successfully INSERTed to the database" + preparedStmt.toString());
+
+
+
+		} catch (SQLException e ) {
+			e.printStackTrace();
+		} finally {
+			if (stmt != null) { stmt.close(); }
+		}
+
+		return rs;
 	}
 
 
