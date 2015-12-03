@@ -11,38 +11,7 @@ import database.DatabaseStore;
 import database.DbResult;
 import database.DbWorker;
 import rcia.RciaData;
-
-/*
- * Sponsor First
- * Sponsor Last
- * Sponsor
- * Been Bapitized
- * DOB Baptism
- * GodParent
- * Priest Name
- * Church Name
- * Church City
- * Church State
- * Denomination Note
- * Current Parish
- * Years of Religious Education
- * Month/Year Confirmed
- * Sacrament
- * Practicing Catholic
- * Attending Sessions
- * Catholic Church
- * Catholic Convalidation Date
- * Civil Marriage Date
- * Con_A
- * Con_B
- * Con_C
- * Con_D
- * Children
- * Ages
- * Sponsor Potential
- *
- *
- */
+import rcia.admin.UpdateDialog;
 public class ReligiousInfo extends JPanel implements InfoPanel{
 
 	/**
@@ -90,6 +59,7 @@ public class ReligiousInfo extends JPanel implements InfoPanel{
 	private RciaPanelItem sponPotItem = new RciaPanelItem("Sponsorship Potential","Sponsor_Potential");
 	private ArrayList<RciaPanelItem> itemArrayList;
 	private String transID;
+	private DbResult<RciaData> data;
 
 	public ReligiousInfo()
 	{
@@ -98,7 +68,7 @@ public class ReligiousInfo extends JPanel implements InfoPanel{
 
 		super(new GridLayout(1, 1));
 
-		JPanel religion = new JPanel(new GridLayout(35,1));
+		JPanel religion = new JPanel(new GridLayout(60,1));
 		JScrollPane scrollPanel = new JScrollPane(religion);
 		itemArrayList =new ArrayList<RciaPanelItem>();
 
@@ -189,6 +159,7 @@ public class ReligiousInfo extends JPanel implements InfoPanel{
 
 	public void setData(DbResult<RciaData> dbData)
 	{
+		this.data = dbData;
 		RciaData valData = dbData.getData();
 		transID = dbData.getTransId();
 		sponFirstNameItem.setDisplayValue(valData.getSponFirst());
@@ -239,13 +210,13 @@ public class ReligiousInfo extends JPanel implements InfoPanel{
 		for(RciaPanelItem item: this.itemArrayList)
 		{
 			RciaPanelItem panelItem = (RciaPanelItem) item;
-			if (panelItem.isSelected())
+			if(!panelItem.getNewValue().isEmpty())
 			{
 				itemList.add(panelItem);
 				DbWorker db = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
 						DatabaseStore.getUserName(), DatabaseStore.getPassword());
 				db.updateRcia(panelItem.getNewValue(), panelItem.getDbField(), transID);
-				System.out.println("Value changed = " + panelItem.getNewValue() + " for " + transID);
+				new UpdateDialog(data.getData().getFamiliarName()).setVisible(true);
 			}
 		}
 		return itemList;

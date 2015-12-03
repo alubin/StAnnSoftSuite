@@ -13,6 +13,7 @@ import database.DatabaseStore;
 import database.DbResult;
 import database.DbWorker;
 import rcia.RciaData;
+import rcia.admin.UpdateDialog;
 
 /**
  * This panel represents the personal information of an RCIA Member
@@ -77,6 +78,7 @@ public class PersonalInfo extends JPanel implements InfoPanel{
 	private RciaPanelItem motherItem = new RciaPanelItem("Mother Full Name","Mother_Full_Name");
 	private ArrayList<RciaPanelItem> itemArrayList;
 	private String transID;
+	private DbResult<RciaData> data;
 
 	public PersonalInfo()
 	{
@@ -136,6 +138,7 @@ public class PersonalInfo extends JPanel implements InfoPanel{
 
 	public void setData(DbResult<RciaData> dbData)
 	{
+		this.data = dbData;
 		RciaData data = dbData.getData();
 		transID = dbData.getTransId();
 		firstNameItem.setDisplayValue(data.getFirst());
@@ -168,14 +171,15 @@ public class PersonalInfo extends JPanel implements InfoPanel{
 		for(RciaPanelItem item: this.itemArrayList)
 		{
 			RciaPanelItem panelItem = (RciaPanelItem) item;
-			if (panelItem.isSelected())
+			if(!panelItem.getNewValue().isEmpty())
 			{
 				itemList.add(panelItem);
 				DbWorker db = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
 						DatabaseStore.getUserName(), DatabaseStore.getPassword());
 				db.updateRcia(panelItem.getNewValue(), panelItem.getDbField(), transID);
-				System.out.println("Value changed = " + panelItem.getNewValue() + " for " + transID);
+				new UpdateDialog(data.getData().getFamiliarName()).setVisible(true);
 			}
+
 		}
 		return itemList;
 	}

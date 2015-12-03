@@ -10,6 +10,7 @@ import database.DatabaseStore;
 import database.DbResult;
 import database.DbWorker;
 import rcia.RciaData;
+import rcia.admin.UpdateDialog;
 
 public class OtherInfo extends JPanel implements InfoPanel{
 
@@ -28,6 +29,8 @@ public class OtherInfo extends JPanel implements InfoPanel{
 	private ArrayList<RciaPanelItem> itemArrayList;
 
 	private String transID;
+
+	private DbResult<RciaData> data;
 
 	public OtherInfo()
 	{
@@ -53,6 +56,7 @@ public class OtherInfo extends JPanel implements InfoPanel{
 
 	public void setData(DbResult<RciaData> dbData)
 	{
+		this.data = dbData;
 		RciaData data = dbData.getData();
 		transID = dbData.getTransId();
 		eform.setDisplayValue(data.getTypeOfForm());
@@ -70,13 +74,13 @@ public class OtherInfo extends JPanel implements InfoPanel{
 		for(RciaPanelItem item: this.itemArrayList)
 		{
 			RciaPanelItem panelItem = (RciaPanelItem) item;
-			if (panelItem.isSelected())
+			if(!panelItem.getNewValue().isEmpty())
 			{
 				itemList.add(panelItem);
 				DbWorker db = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
 						DatabaseStore.getUserName(), DatabaseStore.getPassword());
 				db.updateRcia(panelItem.getNewValue(), panelItem.getDbField(), transID);
-				System.out.println("Value changed = " + panelItem.getNewValue() + " for " + transID);
+				new UpdateDialog(data.getData().getFamiliarName()).setVisible(true);
 			}
 		}
 		return itemList;
