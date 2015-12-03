@@ -318,6 +318,34 @@ public class DbWorker {
 		return resultArray;
 	}
 	
+	public ArrayList<String> retrieveCCFEmails() throws SQLException
+	{
+		String query = "SELECT DISTINCT Email FROM ccf.parishdata WHERE Email != 'N/A'";
+		ArrayList<String> resultArray = new ArrayList<String>();
+		Statement stmt = null;
+		
+		try {
+
+			stmt = con1.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			
+			int i = 0;
+
+			while(rs.next())
+			{
+				resultArray.add(rs.getString("Email"));
+				
+			}
+
+
+		} catch (SQLException e ) {
+			e.printStackTrace();
+		} finally {
+			if (stmt != null) { stmt.close(); }
+		}
+		
+		return resultArray;
+	}
 
 
 	public int updateCCF(final String stud, final String email) throws SQLException
