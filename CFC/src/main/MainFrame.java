@@ -25,6 +25,7 @@ import rcia.admin.RciaAdminPanel;
 import rcia.admin.RciaAdminAdd;
 import rcia.admin.panels.RciaTabbedPanel;
 import rcia.importfiles.RciaImportDialog;
+import ccf.SendEmail;
 import ccf.admin.CCFAdminDialog;
 import ccf.admin.CCFAdminPanel;
 import ccf.importfiles.CCFImportDialog;
@@ -62,7 +63,8 @@ public class MainFrame extends JFrame{
 	private final JMenuItem printCertificate = new JMenuItem("Print Certificate");
 	private final JMenuItem ccfDisplayValue = new JMenuItem("Display CCF Table");
 	private final JMenuItem rciaDisplayValue = new JMenuItem("Display RCIA Table");
-	
+	private final JMenuItem ccfEmail = new JMenuItem("Email Students");
+
 	private final CCFImportDialog ccfImportDialogBox;
 	private final CCFAdminDialog ccfAdminDialogBox;
 	private final RciaImportDialog rciaImportDialogBox;
@@ -86,7 +88,7 @@ public class MainFrame extends JFrame{
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		instance = this;
-		
+
 		ccfImportDialogBox = new CCFImportDialog(instance);
 		ccfAdminDialogBox = new CCFAdminDialog(instance);
 		rciaImportDialogBox = new RciaImportDialog(instance);
@@ -109,6 +111,7 @@ public class MainFrame extends JFrame{
 		ccfOption.add(ccfImport);
 		ccfOption.add(ccfAdmin);
 		ccfOption.add(ccfDisplayValue);
+		ccfOption.add(ccfEmail);
 
 		//Add options to the rcia menu
 		rciaOption.add(rciaImport);
@@ -128,6 +131,7 @@ public class MainFrame extends JFrame{
 		ccfImport.addActionListener(new CCFImportActionListener());
 		ccfAdmin.addActionListener(new CCFAdminActionListener());
 		ccfDisplayValue.addActionListener(new CCFDisplayActionListener());
+		ccfEmail.addActionListener(new CCFEmailListener());
 
 		rciaImport.addActionListener(new RciaImportActionListener());
 		rciaAdd.addActionListener(new RciaAddActionListener());
@@ -136,16 +140,16 @@ public class MainFrame extends JFrame{
 
 		printSheet.addActionListener(new PrintSheetActionListener());
 		printCertificate.addActionListener(new PrintCertificateActionListener());
-		
-		
+
+
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MainFrame.class.getResource("/images/cert_logo.png")));
-		
+
 		//Adds logo to mainFrame
 		JPanel panel1 = new JPanel();
-	    ImageIcon logo = new ImageIcon(getClass().getResource("/images/logo.png"));
-	    panel1.add(new JLabel(logo));
+		ImageIcon logo = new ImageIcon(getClass().getResource("/images/logo.png"));
+		panel1.add(new JLabel(logo));
 
-	    getContentPane().add(panel1);
+		getContentPane().add(panel1);
 		//Assign the menu
 		setJMenuBar(optionMenuBar);
 		pack();
@@ -231,7 +235,7 @@ public class MainFrame extends JFrame{
 		}
 
 	}
-	
+
 	public class RciaAddActionListener implements ActionListener
 	{
 		@Override
@@ -262,9 +266,9 @@ public class MainFrame extends JFrame{
 			repaint();
 			setVisible(true);
 		}
-		
+
 	}
-	
+
 	public class CCFDisplayActionListener implements ActionListener
 	{
 
@@ -274,9 +278,18 @@ public class MainFrame extends JFrame{
 			getContentPane().add(new CCFAdminPanel(instance));
 			repaint();
 			setVisible(true);
-			
+
 		}
-		
+
+	}
+	public class CCFEmailListener implements ActionListener
+	{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			new SendEmail();
+		}
+
 	}
 
 	//Changes the content panel of the main gui to display the panel that was passed in.
