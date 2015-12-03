@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -38,6 +39,7 @@ public class RciaAdminAdd extends JDialog {
 	private JTextField zipTextField;
 	private JTextField phoneTextField;
 	private JTextField emailTextField;
+	private static DbWorker dbWorker;
 
 	public RciaAdminAdd(MainFrame mainGui)
 	{
@@ -124,20 +126,27 @@ public class RciaAdminAdd extends JDialog {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			try {
-				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
+				dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
 						DatabaseStore.getUserName(), DatabaseStore.getPassword());
-
 				
-				mainGui.setPanel(new RciaTabbedPanel(dbWorker.retrieveRciaData("", "")));
+				
+				if(firstTextField.getText().equals("") || lastTextField.getText().equals("") || addressTextField.getText().equals("") || cityTextField.getText().equals("") || stateTextField.getText().equals("") || zipTextField.getText().equals(""))
+				{
+					JOptionPane.showMessageDialog(mainGui, "First Name, Last Name, Address, City, State, Zip are all required");
+				}
+				else
+				{
+				dbWorker.addRcia( firstTextField.getText(), lastTextField.getText(), addressTextField.getText(), cityTextField.getText(), stateTextField.getText(), zipTextField.getText(), phoneTextField.getText(), emailTextField.getText());
 
 				dbWorker.dbClose();
+				JOptionPane.showMessageDialog(mainGui,  firstTextField.getText() +" " +lastTextField.getText() + " was successfully added to the database");
+			}
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
+				JOptionPane.showMessageDialog(mainGui, "<html>The member could could not be added due to an error:<br>" + e1 + "</html>", "Error", JOptionPane.ERROR_MESSAGE);
 			}
-
 		}
-
 	}
 
 }
