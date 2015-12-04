@@ -1,18 +1,25 @@
 package database;
 
+import java.util.prefs.Preferences;
+
 public class DatabaseStore {
 
 	private static String ipAddress = "127.0.0.1";
 	private static int dbPort = 3306;
 	private static String userName;
 	private static String password;
+	private static Preferences pref;
+	private static String userPref = "user";
+	private static String passPref = "pass";
+	private static String portPref = "port";
+	private static String addressPref = "address";
 
 	public DatabaseStore(String address, int port)
 	{
 		ipAddress = address;
 		dbPort = port;
 	}
-	
+
 	public DatabaseStore(String address, int port, String userName, String password)
 	{
 		this.ipAddress = address;
@@ -51,12 +58,21 @@ public class DatabaseStore {
 
 	public static void setUser(String user) {
 		userName = user;
-		
+
 	}
 
 	public static void setPass(String pass) {
 		password = pass;
-		
+
+	}
+
+	public static void setPreference(String address, int port, String userName, String password)
+	{
+		pref.put(userPref, userName);
+		pref.put(passPref, password);
+		pref.put(addressPref, address);
+		pref.putInt(portPref, port);
+
 	}
 
 
