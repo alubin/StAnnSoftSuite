@@ -79,8 +79,7 @@ public class CCFImportPanel extends JPanel{
 	public void saveTable()
 	{
 		final int dbSave;
-		DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
-				DatabaseStore.getUserName(), DatabaseStore.getPassword());
+		DbWorker dbWorker = new DbWorker();
 		dbSave = dbWorker.storeCCF(tableValues.getCCFDataArrayList());
 		dbWorker.dbClose();
 

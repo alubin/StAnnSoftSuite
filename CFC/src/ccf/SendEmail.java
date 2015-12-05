@@ -15,8 +15,7 @@ public class SendEmail {
 	{
 		ArrayList<String> result = new ArrayList<String>();
 		try {
-			DbWorker db = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
-					DatabaseStore.getUserName(), DatabaseStore.getPassword());
+			DbWorker db = new DbWorker();
 			result = db.retrieveCCFEmails();
 			
 			String output = (result.toString().replace("[", "")).replace("]", "").replace(" ", "");

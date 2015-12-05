@@ -57,8 +57,7 @@ public class CCFAdminPanel extends JPanel {
 
 //		adminModel.addTableModelListener(new AdminTableModelListener());
 		try {
-		DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
-				DatabaseStore.getUserName(), DatabaseStore.getPassword());
+		DbWorker dbWorker = new DbWorker();
 		displayAll(dbWorker.retrieveCCFData(QueryType.all, ""));
 		dbWorker.dbClose();
 	} catch (SQLException e1) {

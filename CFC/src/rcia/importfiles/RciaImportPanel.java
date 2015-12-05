@@ -77,8 +77,7 @@ public class RciaImportPanel extends JPanel {
 	}
 
 	public void saveTable() {
-		DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
-				DatabaseStore.getUserName(), DatabaseStore.getPassword());
+		DbWorker dbWorker = new DbWorker();
 		dbWorker.storeRCIA(rciaTable.getRciaDataArrayList());
 		dbWorker.dbClose();
 

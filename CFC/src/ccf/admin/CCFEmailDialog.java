@@ -131,8 +131,7 @@ public class CCFEmailDialog extends JDialog{
 			emailDisplay.setText(emailMap.get(name));
 			
 			try {
-			DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
-					DatabaseStore.getUserName(), DatabaseStore.getPassword());
+			DbWorker dbWorker = new DbWorker();
 			dbWorker.updateCCF(name, emailMap.get(name));
 			dbWorker.dbClose();
 		} catch (SQLException e1) {

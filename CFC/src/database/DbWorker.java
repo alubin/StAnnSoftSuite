@@ -27,16 +27,15 @@ public class DbWorker {
 
 	public DbWorker()
 	{
-		user = "root";
-		pass = "Sunshine222";
+		this(DatabaseStore.getSession());
 	}
 
-	public DbWorker(String ipAddress, int port, String userName, String password)
+	private DbWorker(DatabaseStore data)
 	{
-		this();
-		this.user = userName;
-		this.pass = password;
-		dbConnect(ipAddress, port);
+		System.out.println("Connecting using = " + data.toString());
+		this.user = data.getUserName();
+		this.pass = data.getPassword();
+		dbConnect(data.getAddress(), data.getPort());
 
 	}
 

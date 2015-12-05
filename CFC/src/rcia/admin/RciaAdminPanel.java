@@ -64,8 +64,7 @@ public class RciaAdminPanel extends JPanel {
 
 		//		adminModel.addTableModelListener(new AdminTableModelListener());
 		try {
-		DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
-				DatabaseStore.getUserName(), DatabaseStore.getPassword());
+		DbWorker dbWorker = new DbWorker();
 		displayData(dbWorker.retrieveRciaData("", ""));
 		dbWorker.dbClose();
 	} catch (SQLException e1) {

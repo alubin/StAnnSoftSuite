@@ -86,8 +86,7 @@ private JPanel contentPane;
 						
 						try
 						{
-							db = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
-									DatabaseStore.getUserName(), DatabaseStore.getPassword());
+							db = new DbWorker();
 							con = db.getConnection();
 
 						}

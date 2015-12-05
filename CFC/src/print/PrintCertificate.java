@@ -34,8 +34,7 @@ public class PrintCertificate
 		
 		try
 		{
-			db = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
-					DatabaseStore.getUserName(), DatabaseStore.getPassword());
+			db = new DbWorker();
 			con = db.getConnection();
 			//con = DriverManager.getConnection("jdbc:mysql://localhost:3306/rcia", "root", "Sunshine222");
 			

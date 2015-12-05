@@ -100,8 +100,7 @@ public class CCFAdminDialog extends JDialog {
 		public void actionPerformed(ActionEvent e) {
 			//TODO: Get fields from database.
 			try {
-				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
-						DatabaseStore.getUserName(), DatabaseStore.getPassword());
+				DbWorker dbWorker = new DbWorker();
 				//				adminPanel = new CCFAdminPanel(mainGui);
 				emailDialog.addNames(dbWorker.retrieveCCFData(QueryType.all, ""));
 				//				adminPanel.displayAll(dbWorker.retrieveCCFData(QueryType.all, ""));
@@ -127,8 +126,7 @@ public class CCFAdminDialog extends JDialog {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			try {
-				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
-						DatabaseStore.getUserName(), DatabaseStore.getPassword());
+				DbWorker dbWorker = new DbWorker();
 				emailDialog.addNames(dbWorker.retrieveCCFData(QueryType.ccfEmail, emailAddressField.getText()));
 				//				System.out.println("Data =" + dbWorker.retrieveCCFData(QueryType.ccfEmail,emailAddressField.getText()));
 				dbWorker.dbClose();
@@ -153,8 +151,7 @@ public class CCFAdminDialog extends JDialog {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			try {
-				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
-						DatabaseStore.getUserName(), DatabaseStore.getPassword());
+				DbWorker dbWorker = new DbWorker();
 				//				adminPanel = new CCFAdminPanel(mainGui);
 				emailDialog.addNames(dbWorker.retrieveCCFData(QueryType.ccfId, id.getText()));
 				dbWorker.dbClose();

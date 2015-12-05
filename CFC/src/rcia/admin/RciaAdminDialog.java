@@ -94,8 +94,7 @@ public class RciaAdminDialog extends JDialog {
 		public void actionPerformed(ActionEvent arg0){
 
 			try {
-				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
-						DatabaseStore.getUserName(), DatabaseStore.getPassword());
+				DbWorker dbWorker = new DbWorker();
 
 				System.out.println("first " + firstNameField.getText() + " Last: " +  lastNameField.getText());
 
@@ -140,8 +139,7 @@ public class RciaAdminDialog extends JDialog {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			try {
-				DbWorker dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
-						DatabaseStore.getUserName(), DatabaseStore.getPassword());
+				DbWorker dbWorker = new DbWorker();
 
 				//				rciaAdminPanel = new RciaAdminPanel(mainGui);
 				//				rciaAdminPanel.displayData(dbWorker.retrieveRciaData("", ""));

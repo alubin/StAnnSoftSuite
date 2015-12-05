@@ -174,8 +174,7 @@ public class PersonalInfo extends JPanel implements InfoPanel{
 			if(!panelItem.getNewValue().isEmpty())
 			{
 				itemList.add(panelItem);
-				DbWorker db = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
-						DatabaseStore.getUserName(), DatabaseStore.getPassword());
+				DbWorker db = new DbWorker();
 				db.updateRcia(panelItem.getNewValue(), panelItem.getDbField(), transID);
 				new UpdateDialog(data.getData().getFamiliarName()).setVisible(true);
 			}

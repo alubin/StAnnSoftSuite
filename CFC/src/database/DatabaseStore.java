@@ -4,20 +4,24 @@ import java.util.prefs.Preferences;
 
 public class DatabaseStore {
 
-	private static String ipAddress = "127.0.0.1";
-	private static int dbPort = 3306;
-	private static String userName;
-	private static String password;
-	private static Preferences pref;
-	private static String userPref = "user";
-	private static String passPref = "pass";
-	private static String portPref = "port";
-	private static String addressPref = "address";
+	private Preferences pref = Preferences.userRoot().node(this.getClass().getName());;	
+	private String userPref = "user";
+	private String passPref = "pass";
+	private String portPref = "port";
+	private String addressPref = "address";
+	
+	private String ipAddress =  pref.get(addressPref, "172.16.28.52"); ;
+	private int dbPort = pref.getInt(portPref, 3306);;
+	private String userName = pref.get(userPref, "ccf");
+	private String password = pref.get(passPref, "block958@tuners");
+	
+	private static DatabaseStore sessionSettings = new DatabaseStore();
+	
 
-	public DatabaseStore(String address, int port)
+	
+	public DatabaseStore()
 	{
-		ipAddress = address;
-		dbPort = port;
+		
 	}
 
 	public DatabaseStore(String address, int port, String userName, String password)
@@ -28,51 +32,78 @@ public class DatabaseStore {
 		this.password = password;
 	}
 
-	public static String getAddress()
+	public String getAddress()
 	{
 		return ipAddress;
 	}
 
-	public static int getPort()
+	public int getPort()
 	{
 		return dbPort;
 	}
 
-	public static void setAddress(String address) {
+	public void setAddress(String address) {
 		ipAddress = address;
 
 	}
 
-	public static void setPort(int port) {
+	public void setPort(int port) {
 		dbPort = port;
 
 	}
 
-	public static String getUserName() {
-		return userName == null ? "root" : userName;
+	public String getUserName() {
+		return userName;
 	}
 
-	public static String getPassword() {
-		return password == null ? "Sunshine222" : password;
+	public String getPassword() {
+		return password;
 	}
 
-	public static void setUser(String user) {
+	public void setUser(String user) {
 		userName = user;
 
 	}
 
-	public static void setPass(String pass) {
+	public void setPass(String pass) {
 		password = pass;
 
 	}
-
-	public static void setPreference(String address, int port, String userName, String password)
+	
+	public static void setSession(DatabaseStore data)
 	{
-		pref.put(userPref, userName);
-		pref.put(passPref, password);
-		pref.put(addressPref, address);
-		pref.putInt(portPref, port);
+		sessionSettings = data;
+	}
+	
 
+	public static DatabaseStore getSession()
+	{
+		return sessionSettings;
+	}
+
+	public void setDefault(DatabaseStore data)
+	{
+		pref.put(userPref, data.getUserName());
+		pref.put(passPref, data.getPassword());
+		pref.put(addressPref, data.getAddress());
+		pref.putInt(portPref, data.getPort());
+
+	}
+	
+	public void useDefault()
+	{
+		String user = pref.get(userPref, getUserName());
+		String pass = pref.get(passPref, getPassword());
+		String address = pref.get(addressPref, getAddress());
+		int port = pref.getInt(portPref, getPort());
+		
+		sessionSettings = new DatabaseStore(address,port,user,pass);
+	}
+
+	@Override
+	public String toString() {
+		return "DatabaseStore [ipAddress=" + ipAddress + ", dbPort=" + dbPort
+				+ ", userName=" + userName + ", password=" + password + "]";
 	}
 
 

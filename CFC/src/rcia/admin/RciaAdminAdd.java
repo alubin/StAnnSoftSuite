@@ -126,8 +126,7 @@ public class RciaAdminAdd extends JDialog {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			try {
-				dbWorker = new DbWorker(DatabaseStore.getAddress(), DatabaseStore.getPort(),
-						DatabaseStore.getUserName(), DatabaseStore.getPassword());
+				dbWorker = new DbWorker();
 				
 				
 				if(firstTextField.getText().equals("") || lastTextField.getText().equals("") || addressTextField.getText().equals("") || cityTextField.getText().equals("") || stateTextField.getText().equals("") || zipTextField.getText().equals(""))
