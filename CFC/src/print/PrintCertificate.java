@@ -19,6 +19,8 @@ import database.DbWorker;
 
 import java.sql.Connection;
 
+import custom.ErrorDialog;
+
 
 public class PrintCertificate  
 {	
@@ -104,6 +106,7 @@ public class PrintCertificate
 				    //Opens file after completed export
 				    OpenFile(OUT_PUT);
 			    } catch (JRException ex) {
+			    	new ErrorDialog(ex);
 			        ex.printStackTrace(); 
 			        return;
 			    }

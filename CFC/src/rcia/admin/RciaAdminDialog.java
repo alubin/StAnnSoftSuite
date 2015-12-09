@@ -22,6 +22,8 @@ import database.DbWorker;
 
 import javax.swing.SwingConstants;
 
+import custom.ErrorDialog;
+
 public class RciaAdminDialog extends JDialog {
 
 	/**
@@ -116,7 +118,7 @@ public class RciaAdminDialog extends JDialog {
 				}
 				dbWorker.dbClose();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+				new ErrorDialog(e1);
 				e1.printStackTrace();
 			}
 		}
@@ -147,7 +149,7 @@ public class RciaAdminDialog extends JDialog {
 
 				dbWorker.dbClose();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+				new ErrorDialog(e1);
 				e1.printStackTrace();
 			}
 

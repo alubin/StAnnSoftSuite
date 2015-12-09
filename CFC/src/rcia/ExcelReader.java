@@ -22,6 +22,8 @@ import rcia.importfiles.RciaImportTableModel;
 import com.healthmarketscience.jackcess.DatabaseBuilder;
 import com.healthmarketscience.jackcess.Table;
 
+import custom.ErrorDialog;
+
 public class ExcelReader {
 
 	private String fileName;
@@ -118,6 +120,7 @@ public class ExcelReader {
 		}
 		catch (Exception e)
 		{
+			new ErrorDialog(e);
 			e.printStackTrace();
 		}
 

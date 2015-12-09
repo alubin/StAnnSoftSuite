@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import custom.ErrorDialog;
 import ccf.CCFData;
 import database.DatabaseStore;
 import database.DbWorker;
@@ -135,7 +136,7 @@ public class CCFEmailDialog extends JDialog{
 			dbWorker.updateCCF(name, emailMap.get(name));
 			dbWorker.dbClose();
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
+			new ErrorDialog(e1);
 			e1.printStackTrace();
 		}
 

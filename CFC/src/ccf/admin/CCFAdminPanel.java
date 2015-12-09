@@ -18,6 +18,7 @@ import main.MainFrame;
 import org.jdesktop.swingx.JXTable;
 import org.jdesktop.swingx.search.SearchFactory;
 
+import custom.ErrorDialog;
 import ccf.CCFData;
 import database.DatabaseStore;
 import database.DbWorker;
@@ -61,7 +62,7 @@ public class CCFAdminPanel extends JPanel {
 		displayAll(dbWorker.retrieveCCFData(QueryType.all, ""));
 		dbWorker.dbClose();
 	} catch (SQLException e1) {
-		// TODO Auto-generated catch block
+		new ErrorDialog(e1);
 		e1.printStackTrace();
 	}
 

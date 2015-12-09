@@ -7,6 +7,7 @@ import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import custom.ErrorDialog;
 import database.DatabaseStore;
 import database.DbWorker;
 
@@ -23,7 +24,7 @@ public class SendEmail {
 			
 			Desktop.getDesktop().browse(new URI("mailto:"+output+ "?subject=Info"));
 		} catch (IOException | URISyntaxException | SQLException e) {
-			// TODO Auto-generated catch block
+			new ErrorDialog(e);
 			e.printStackTrace();
 		}
 	}

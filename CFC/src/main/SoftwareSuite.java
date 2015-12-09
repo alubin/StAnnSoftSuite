@@ -5,6 +5,8 @@ import javax.swing.UIManager.LookAndFeelInfo;
 
 import org.apache.log4j.BasicConfigurator;
 
+import custom.ErrorDialog;
+
 /**
  * This is the main class of the program.
  * @author AL
@@ -26,6 +28,7 @@ public class SoftwareSuite {
 		    }
 		} catch (Exception e) {
 		    // If Nimbus is not available, you can set the GUI to another look and feel.
+			new ErrorDialog(e);
 			e.printStackTrace();
 
 		}

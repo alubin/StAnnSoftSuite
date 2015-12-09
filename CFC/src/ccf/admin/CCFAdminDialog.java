@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import custom.ErrorDialog;
 import main.MainFrame;
 import database.DatabaseStore;
 import database.DbWorker;
@@ -107,7 +108,7 @@ public class CCFAdminDialog extends JDialog {
 				dbWorker.dbClose();
 				showEmailDialog();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+				new ErrorDialog(e1);
 				e1.printStackTrace();
 			}
 			//			adminPanel.displayAll();
@@ -132,7 +133,7 @@ public class CCFAdminDialog extends JDialog {
 				dbWorker.dbClose();
 				showEmailDialog();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+				new ErrorDialog(e1);
 				e1.printStackTrace();
 			}
 
@@ -157,7 +158,7 @@ public class CCFAdminDialog extends JDialog {
 				dbWorker.dbClose();
 				showEmailDialog();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+				new ErrorDialog(e1);
 				e1.printStackTrace();
 			}
 

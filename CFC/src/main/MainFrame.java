@@ -28,6 +28,7 @@ import rcia.importfiles.RciaImportDialog;
 import ccf.SendEmail;
 import ccf.admin.CCFAdminDialog;
 import ccf.admin.CCFAdminPanel;
+import ccf.export.AccessExport;
 import ccf.importfiles.CCFImportDialog;
 import database.DBSetupDialog;
 import database.DbResult;
@@ -64,6 +65,7 @@ public class MainFrame extends JFrame{
 	private final JMenuItem ccfDisplayValue = new JMenuItem("Display CCF Table");
 	private final JMenuItem rciaDisplayValue = new JMenuItem("Display RCIA Table");
 	private final JMenuItem ccfEmail = new JMenuItem("Email Students");
+	private final JMenuItem ccfExport = new JMenuItem("Export Email Access List");
 
 	private final CCFImportDialog ccfImportDialogBox;
 	private final CCFAdminDialog ccfAdminDialogBox;
@@ -112,6 +114,7 @@ public class MainFrame extends JFrame{
 		ccfOption.add(ccfAdmin);
 		ccfOption.add(ccfDisplayValue);
 		ccfOption.add(ccfEmail);
+		ccfOption.add(ccfExport);
 
 		//Add options to the rcia menu
 		rciaOption.add(rciaImport);
@@ -132,6 +135,8 @@ public class MainFrame extends JFrame{
 		ccfAdmin.addActionListener(new CCFAdminActionListener());
 		ccfDisplayValue.addActionListener(new CCFDisplayActionListener());
 		ccfEmail.addActionListener(new CCFEmailListener());
+		ccfExport.addActionListener(new ExportCCF());
+		
 
 		rciaImport.addActionListener(new RciaImportActionListener());
 		rciaAdd.addActionListener(new RciaAddActionListener());
@@ -282,6 +287,7 @@ public class MainFrame extends JFrame{
 		}
 
 	}
+	
 	public class CCFEmailListener implements ActionListener
 	{
 
@@ -290,6 +296,17 @@ public class MainFrame extends JFrame{
 			new SendEmail();
 		}
 
+	}
+	
+	public class ExportCCF implements ActionListener
+	{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			new AccessExport(instance);
+			
+		}
+		
 	}
 
 	//Changes the content panel of the main gui to display the panel that was passed in.

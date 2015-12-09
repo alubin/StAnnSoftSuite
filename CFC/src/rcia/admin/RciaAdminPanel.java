@@ -18,6 +18,7 @@ import main.MainFrame;
 import org.jdesktop.swingx.JXTable;
 import org.jdesktop.swingx.search.SearchFactory;
 
+import custom.ErrorDialog;
 import database.DatabaseStore;
 import database.DbResult;
 import database.DbWorker;
@@ -68,7 +69,7 @@ public class RciaAdminPanel extends JPanel {
 		displayData(dbWorker.retrieveRciaData("", ""));
 		dbWorker.dbClose();
 	} catch (SQLException e1) {
-		// TODO Auto-generated catch block
+		new ErrorDialog(e1);
 		e1.printStackTrace();
 	}
 

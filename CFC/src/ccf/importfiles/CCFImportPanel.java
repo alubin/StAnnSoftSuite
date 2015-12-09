@@ -19,7 +19,6 @@ import org.jdesktop.swingx.search.SearchFactory;
 
 import ccf.AccessReader;
 import ccf.CCFTable;
-import database.DatabaseStore;
 import database.DbWorker;
 
 /**

@@ -12,6 +12,8 @@ import com.healthmarketscience.jackcess.DatabaseBuilder;
 import com.healthmarketscience.jackcess.Row;
 import com.healthmarketscience.jackcess.Table;
 
+import custom.ErrorDialog;
+
 /**
  * This class implements the col and functionality needed to grab information from the CCF
  * MS Access file. Given a table name this class will pull the information needed from the MS Access file
@@ -61,6 +63,7 @@ public class AccessReader {
 			}
 
 		} catch (IOException | ParseException e) {
+			new ErrorDialog(e);
 			e.printStackTrace();
 		}
 
