@@ -19,20 +19,24 @@ import javax.swing.JLabel;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
+import org.eclipse.jdt.internal.compiler.ast.AllocationExpression;
+
 import rcia.RciaData;
 import rcia.admin.RciaAdminDialog;
 import rcia.admin.RciaAdminPanel;
 import rcia.admin.RciaAdminAdd;
 import rcia.admin.panels.RciaTabbedPanel;
+import rcia.export.RciaAccessExport;
 import rcia.importfiles.RciaImportDialog;
 import ccf.SendEmail;
 import ccf.admin.CCFAdminDialog;
 import ccf.admin.CCFAdminPanel;
-import ccf.export.AccessExport;
+import ccf.export.CCFAccessExport;
 import ccf.importfiles.CCFImportDialog;
 import database.DBSetupDialog;
 import database.DbResult;
 import print.*;
+import print.export.AllAccessExport;
 
 
 /**
@@ -65,7 +69,10 @@ public class MainFrame extends JFrame{
 	private final JMenuItem ccfDisplayValue = new JMenuItem("Display CCF Table");
 	private final JMenuItem rciaDisplayValue = new JMenuItem("Display RCIA Table");
 	private final JMenuItem ccfEmail = new JMenuItem("Email Students");
-	private final JMenuItem ccfExport = new JMenuItem("Export Email Access List");
+	private final JMenuItem ccfExport = new JMenuItem("Export CCF Access List");
+	private final JMenuItem rciaExport = new JMenuItem("Export Rcia Access List");
+	private final JMenuItem allExport = new JMenuItem("Export Rcia and CCF Access List");
+	
 
 	private final CCFImportDialog ccfImportDialogBox;
 	private final CCFAdminDialog ccfAdminDialogBox;
@@ -121,10 +128,12 @@ public class MainFrame extends JFrame{
 		rciaOption.add(rciaAdd);
 		rciaOption.add(rciaAdmin);
 		rciaOption.add(rciaDisplayValue);
+		rciaOption.add(rciaExport);
 
 		//Add options to the print menu
 		printOption.add(printSheet);
 		printOption.add(printCertificate);
+		printOption.add(allExport);
 
 
 		//Add the functionality to the menu
@@ -135,16 +144,18 @@ public class MainFrame extends JFrame{
 		ccfAdmin.addActionListener(new CCFAdminActionListener());
 		ccfDisplayValue.addActionListener(new CCFDisplayActionListener());
 		ccfEmail.addActionListener(new CCFEmailListener());
-		ccfExport.addActionListener(new ExportCCF());
+		ccfExport.addActionListener(new ExportCCFListener());
 		
 
 		rciaImport.addActionListener(new RciaImportActionListener());
 		rciaAdd.addActionListener(new RciaAddActionListener());
 		rciaAdmin.addActionListener(new RciaAdminActionListener());
 		rciaDisplayValue.addActionListener(new RciaDisplayListener());
+		rciaExport.addActionListener(new ExportRciaListener());
 
 		printSheet.addActionListener(new PrintSheetActionListener());
 		printCertificate.addActionListener(new PrintCertificateActionListener());
+		allExport.addActionListener(new ExportAllListener());
 
 
 		setIconImage(Toolkit.getDefaultToolkit().getImage(MainFrame.class.getResource("/images/cert_logo.png")));
@@ -298,12 +309,34 @@ public class MainFrame extends JFrame{
 
 	}
 	
-	public class ExportCCF implements ActionListener
+	public class ExportCCFListener implements ActionListener
 	{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			new AccessExport(instance);
+			new CCFAccessExport(instance);
+			
+		}
+		
+	}
+	
+	public class ExportRciaListener implements ActionListener
+	{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			new RciaAccessExport(instance);
+			
+		}
+		
+	}
+	
+	public class ExportAllListener implements ActionListener
+	{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			new AllAccessExport(instance);
 			
 		}
 		

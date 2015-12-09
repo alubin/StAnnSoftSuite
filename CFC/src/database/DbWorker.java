@@ -526,7 +526,6 @@ public class DbWorker {
 	{
 		String query = "select * from parishData";
 		Statement stmt = null;
-		ArrayList<CCFData> resultArray = new ArrayList<CCFData>();
 		final ResultSet returnData;
 
 		switch(type)
@@ -553,11 +552,28 @@ public class DbWorker {
 		}
 
 
-			stmt = con1.createStatement();
-			returnData = stmt.executeQuery(query);
+		stmt = con1.createStatement();
+		returnData = stmt.executeQuery(query);
 
-//			stmt.close();
+		//			stmt.close();
 		return returnData;
+	}
+
+	/**
+	 * This function gets all the fields in the RCIA Database
+	 * @return A collection of the different fields in the database.
+	 * @throws SQLException
+	 */
+	public ResultSet retrieveRciaDataSet(String fname, String lname) throws SQLException
+	{
+		String query = "SELECT DISTINCT * FROM inquirer WHERE First_Name LIKE '" + fname + "%' AND Last_Name LIKE '" + lname + "%'";
+		Statement stmt = null;
+		final ResultSet rtnData;
+
+		stmt = con2.createStatement();
+		rtnData = stmt.executeQuery(query);
+
+		return rtnData;
 	}
 
 	public static void dbClose() {

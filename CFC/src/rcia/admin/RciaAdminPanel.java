@@ -40,18 +40,11 @@ public class RciaAdminPanel extends JPanel {
 		this.mainGui = mainGui;
 
 		JPanel btnPanel = new JPanel(new GridLayout(1,3));
-		//		JButton btnSave = new JButton("Save Changes");
-		//		JButton btnCancel = new JButton("Cancel Edit");
 		JButton btnFind = new JButton("Find");
 
-		//		btnSave.addActionListener(new SaveActionListener());
-		//		btnCancel.addActionListener(new CloseActionListener());
 		btnFind.addActionListener(new FindActionListener());
-		//		btnPanel.add(btnSave);
-		//		btnPanel.add(btnCancel);
 		btnPanel.add(btnFind);
 
-		//		searchResultPanel = new JPanel(new BorderLayout());
 		adminModel = new RciaAdminTableModel(RciaAdminTableModel.columnNames, 0);
 		resultTable = new JXTable(adminModel);
 		resultTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -61,9 +54,6 @@ public class RciaAdminPanel extends JPanel {
 		add(btnPanel, BorderLayout.NORTH);
 		add(new JScrollPane(resultTable),BorderLayout.CENTER);
 
-		//		mainGui.setPanel(searchResultPanel);
-
-		//		adminModel.addTableModelListener(new AdminTableModelListener());
 		try {
 		DbWorker dbWorker = new DbWorker();
 		displayData(dbWorker.retrieveRciaData("", ""));
