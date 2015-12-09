@@ -1,101 +1,266 @@
 package rcia;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class RciaData {
 
 	//EForm or Paper [Enum]
-	private final String typeOfForm;
+	private  String typeOfForm;
 	//Y or N
-	private final String badges;
+	private  String badges;
 	//Y or N
-	private final String printForm;
+	private  String printForm;
 	//???
-	private final String value;
+	private  String value;
 	//Y or N
-	private final String verification;
+	private  String verification;
 	//Y or N
-	private final String reconciliation;
+	private  String reconciliation;
 	//Y or N
-	private final String bapCert;
+	private  String bapCert;
 	//Y or N
-	private final String birthCert;
+	private  String birthCert;
 	//Name of Saint
-	private final String saintName;
+	private  String saintName;
 	//Male or Female
-	private final String gender;
+	private  String gender;
 	//zAuditor, Lead SP, Catholic, Inquirer, Sponsor [Enum]
-	private final String role;
+	private  String role;
 	//Last Name
-	private final String lastName;
+	private  String lastName;
 	//Desired name to be called
-	private final String familiarName;
+	private  String familiarName;
 	//First name of Sponsor
-	private final String sponFirst;
+	private  String sponFirst;
 	//Last Name of Sponsor
-	private final String sponLast;
+	private  String sponLast;
 	//Full name of sponsor
-	private final String sponsor;
+	private  String sponsor;
 	//First Name
-	private final String first;
+	private  String first;
 	//middle Name
-	private final String middle;
-	private final String birthName;
-	private final String address;
-	private final String state;
-	private final String zip;
-	private final String emailAddress;
-	private final String phoneNumber;
+	private  String middle;
+	private  String birthName;
+	private  String address;
+	private  String state;
+	private  String zip;
+	private  String emailAddress;
+	private  String phoneNumber;
 	//1/1/1999
-	private final String dob;
-	private final String age;
-	private final String occupation;
-	private final String birthplaceCity;
+	private  String dob;
+	private  String age;
+	private  String occupation;
+	private  String birthplaceCity;
 	//Birthplace City
-	private final String bpState;
-	private final String fatherFullName;
-	private final String motherFullName;
-	private final String baptizedInChrist;
-	private final String dateOfBaptism;
-	private final String godParentNames;
-	private final String priestName;
-	private final String churchName;
-	private final String churchCity;
-	private final String churchState;
-	private final String denom;
-	private final String currParish;
-	private final String yrsOfRegEd;
-	private final String monthAndYear;
-	private final String sacramentDesired;
-	private final String haveASponsor;
-	private final String sponsorName;
-	private final String sponsorNumber;
-	private final String whySponsor;
-	private final String goodStanding;
-	private final String sponsorRole;
-	private final String someoneInMind;
-	private final String inquirerName;
-	private final String inquirerPhone;
-	private final String maritalStatus;
-	private final String spouseName;
-	private final String spouseReligion;
-	private final String practicingCatholic;
-	private final String attendSession;
-	private final String catholicMarriage;
-	private final String catholicDate;
-	private final String civilMarriageDate;
-	private final String conA;
-	private final String conB;
-	private final String conC;
-	private final String conD;
-	private final String children;
-	private final String ages;
-	private final String sponsorPotential;
-	private final String city;
+	private  String bpState;
+	private  String fatherFullName;
+	private  String motherFullName;
+	private  String baptizedInChrist;
+	private  String dateOfBaptism;
+	private  String godParentNames;
+	private  String priestName;
+	private  String churchName;
+	private  String churchCity;
+	private  String churchState;
+	private  String denom;
+	private  String currParish;
+	private  String yrsOfRegEd;
+	private  String monthAndYear;
+	private  String sacramentDesired;
+	private  String haveASponsor;
+	private  String sponsorName;
+	private  String sponsorNumber;
+	private  String whySponsor;
+	private  String goodStanding;
+	private  String sponsorRole;
+	private  String someoneInMind;
+	private  String inquirerName;
+	private  String inquirerPhone;
+	private  String maritalStatus;
+	private  String spouseName;
+	private  String spouseReligion;
+	private  String practicingCatholic;
+	private  String attendSession;
+	private  String catholicMarriage;
+	private  String catholicDate;
+	private  String civilMarriageDate;
+	private  String conA;
+	private  String conB;
+	private  String conC;
+	private  String conD;
+	private  String children;
+	private  String ages;
+	private  String sponsorPotential;
+	private  String city;
 	private ArrayList<String> rowValues;
+	
+	
+
+	public RciaData() {
+		this.typeOfForm = "";
+		this.badges = "";
+		this.printForm = "";
+		this.value  = "";
+		this.verification  = "";
+		this.reconciliation  = "";
+		this.bapCert  = "";
+		this.birthCert  = "";
+		this.saintName  = "";
+		this.gender  = "";
+		this.role  = "";
+		this.lastName  = "";
+		this.familiarName  = "";
+		this.sponFirst  = "";
+		this.sponLast  = "";
+		this.sponsor  = "";
+		this.first = "";
+		this.middle  = "";
+		this.birthName  = "";
+		this.address  = "";
+		this.state = "";
+		this.zip = "";
+		this.emailAddress = "";
+		this.phoneNumber = "";
+		this.dob = "";
+		this.age = "";
+		this.occupation = "";
+		this.birthplaceCity = "";
+		this.bpState = "";
+		this.fatherFullName = "";
+		this.motherFullName = "";
+		this.baptizedInChrist = "";
+		this.dateOfBaptism = "";
+		this.godParentNames = "";
+		this.priestName = "";
+		this.churchName = "";
+		this.churchCity = "";
+		this.churchState = "";
+		this.denom = "";
+		this.currParish = "";
+		this.yrsOfRegEd = "";
+		this.monthAndYear = "";
+		this.sacramentDesired = "";
+		this.haveASponsor = "";
+		this.sponsorName = "";
+		this.sponsorNumber = "";
+		this.whySponsor = "";
+		this.goodStanding = "";
+		this.sponsorRole = "";
+		this.someoneInMind = "";
+		this.inquirerName = "";
+		this.inquirerPhone = "";
+		this.maritalStatus = "";
+		this.spouseName = "";
+		this.spouseReligion = "";
+		this.practicingCatholic = "";
+		this.attendSession = "";
+		this.catholicMarriage = "";
+		this.catholicDate = "";
+		this.civilMarriageDate  = "";
+		this.conA  = "";
+		this.conB = "";
+		this.conC = "";
+		this.conD = "";
+		this.children = "";
+		this.ages = "";
+		this.sponsorPotential = "";
+		this.city = "";
+		this.rowValues = new ArrayList<>();
+	}
+
+	public RciaData(String typeOfForm, String badges, String printForm,
+			String value, String verification, String reconciliation,
+			String bapCert, String birthCert, String saintName, String gender,
+			String role, String lastName, String familiarName,
+			String sponFirst, String sponLast, String sponsor, String first,
+			String middle, String birthName, String address, String state,
+			String zip, String emailAddress, String phoneNumber, String dob,
+			String age, String occupation, String birthplaceCity,
+			String bpState, String fatherFullName, String motherFullName,
+			String baptizedInChrist, String dateOfBaptism,
+			String godParentNames, String priestName, String churchName,
+			String churchCity, String churchState, String denom,
+			String currParish, String yrsOfRegEd, String monthAndYear,
+			String sacramentDesired, String haveASponsor, String sponsorName,
+			String sponsorNumber, String whySponsor, String goodStanding,
+			String sponsorRole, String someoneInMind, String inquirerName,
+			String inquirerPhone, String maritalStatus, String spouseName,
+			String spouseReligion, String practicingCatholic,
+			String attendSession, String catholicMarriage, String catholicDate,
+			String civilMarriageDate, String conA, String conB, String conC,
+			String conD, String children, String ages, String sponsorPotential,
+			String city, ArrayList<String> rowValues) {
+		super();
+		this.typeOfForm = typeOfForm;
+		this.badges = badges;
+		this.printForm = printForm;
+		this.value = value;
+		this.verification = verification;
+		this.reconciliation = reconciliation;
+		this.bapCert = bapCert;
+		this.birthCert = birthCert;
+		this.saintName = saintName;
+		this.gender = gender;
+		this.role = role;
+		this.lastName = lastName;
+		this.familiarName = familiarName;
+		this.sponFirst = sponFirst;
+		this.sponLast = sponLast;
+		this.sponsor = sponsor;
+		this.first = first;
+		this.middle = middle;
+		this.birthName = birthName;
+		this.address = address;
+		this.state = state;
+		this.zip = zip;
+		this.emailAddress = emailAddress;
+		this.phoneNumber = phoneNumber;
+		this.dob = dob;
+		this.age = age;
+		this.occupation = occupation;
+		this.birthplaceCity = birthplaceCity;
+		this.bpState = bpState;
+		this.fatherFullName = fatherFullName;
+		this.motherFullName = motherFullName;
+		this.baptizedInChrist = baptizedInChrist;
+		this.dateOfBaptism = dateOfBaptism;
+		this.godParentNames = godParentNames;
+		this.priestName = priestName;
+		this.churchName = churchName;
+		this.churchCity = churchCity;
+		this.churchState = churchState;
+		this.denom = denom;
+		this.currParish = currParish;
+		this.yrsOfRegEd = yrsOfRegEd;
+		this.monthAndYear = monthAndYear;
+		this.sacramentDesired = sacramentDesired;
+		this.haveASponsor = haveASponsor;
+		this.sponsorName = sponsorName;
+		this.sponsorNumber = sponsorNumber;
+		this.whySponsor = whySponsor;
+		this.goodStanding = goodStanding;
+		this.sponsorRole = sponsorRole;
+		this.someoneInMind = someoneInMind;
+		this.inquirerName = inquirerName;
+		this.inquirerPhone = inquirerPhone;
+		this.maritalStatus = maritalStatus;
+		this.spouseName = spouseName;
+		this.spouseReligion = spouseReligion;
+		this.practicingCatholic = practicingCatholic;
+		this.attendSession = attendSession;
+		this.catholicMarriage = catholicMarriage;
+		this.catholicDate = catholicDate;
+		this.civilMarriageDate = civilMarriageDate;
+		this.conA = conA;
+		this.conB = conB;
+		this.conC = conC;
+		this.conD = conD;
+		this.children = children;
+		this.ages = ages;
+		this.sponsorPotential = sponsorPotential;
+		this.city = city;
+		this.rowValues = rowValues;
+	}
 
 	public RciaData(ArrayList<String> rowValue) {
 
@@ -445,6 +610,298 @@ public class RciaData {
 		return sponsorPotential;
 	}
 
+	public Object[] getArray() {
+		return rowValues.toArray();
+	}
+
+	public String getId()
+	{
+	
+		return Integer.toString(this.toString().hashCode());
+	
+	}
+
+	public void setTypeOfForm(String typeOfForm) {
+		this.typeOfForm = typeOfForm;
+	}
+
+	public void setBadges(String badges) {
+		this.badges = badges;
+	}
+
+	public void setPrintForm(String printForm) {
+		this.printForm = printForm;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+
+	public void setVerification(String verification) {
+		this.verification = verification;
+	}
+
+	public void setReconciliation(String reconciliation) {
+		this.reconciliation = reconciliation;
+	}
+
+	public void setBapCert(String bapCert) {
+		this.bapCert = bapCert;
+	}
+
+	public void setBirthCert(String birthCert) {
+		this.birthCert = birthCert;
+	}
+
+	public void setSaintName(String saintName) {
+		this.saintName = saintName;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public void setFamiliarName(String familiarName) {
+		this.familiarName = familiarName;
+	}
+
+	public void setSponFirst(String sponFirst) {
+		this.sponFirst = sponFirst;
+	}
+
+	public void setSponLast(String sponLast) {
+		this.sponLast = sponLast;
+	}
+
+	public void setSponsor(String sponsor) {
+		this.sponsor = sponsor;
+	}
+
+	public void setFirst(String first) {
+		this.first = first;
+	}
+
+	public void setMiddle(String middle) {
+		this.middle = middle;
+	}
+
+	public void setBirthName(String birthName) {
+		this.birthName = birthName;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public void setDob(String dob) {
+		this.dob = dob;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
+	}
+
+	public void setOccupation(String occupation) {
+		this.occupation = occupation;
+	}
+
+	public void setBirthplaceCity(String birthplaceCity) {
+		this.birthplaceCity = birthplaceCity;
+	}
+
+	public void setBpState(String bpState) {
+		this.bpState = bpState;
+	}
+
+	public void setFatherFullName(String fatherFullName) {
+		this.fatherFullName = fatherFullName;
+	}
+
+	public void setMotherFullName(String motherFullName) {
+		this.motherFullName = motherFullName;
+	}
+
+	public void setBaptizedInChrist(String baptizedInChrist) {
+		this.baptizedInChrist = baptizedInChrist;
+	}
+
+	public void setDateOfBaptism(String dateOfBaptism) {
+		this.dateOfBaptism = dateOfBaptism;
+	}
+
+	public void setGodParentNames(String godParentNames) {
+		this.godParentNames = godParentNames;
+	}
+
+	public void setPriestName(String priestName) {
+		this.priestName = priestName;
+	}
+
+	public void setChurchName(String churchName) {
+		this.churchName = churchName;
+	}
+
+	public void setChurchCity(String churchCity) {
+		this.churchCity = churchCity;
+	}
+
+	public void setChurchState(String churchState) {
+		this.churchState = churchState;
+	}
+
+	public void setDenom(String denom) {
+		this.denom = denom;
+	}
+
+	public void setCurrParish(String currParish) {
+		this.currParish = currParish;
+	}
+
+	public void setYrsOfRegEd(String yrsOfRegEd) {
+		this.yrsOfRegEd = yrsOfRegEd;
+	}
+
+	public void setMonthAndYear(String monthAndYear) {
+		this.monthAndYear = monthAndYear;
+	}
+
+	public void setSacramentDesired(String sacramentDesired) {
+		this.sacramentDesired = sacramentDesired;
+	}
+
+	public void setHaveASponsor(String haveASponsor) {
+		this.haveASponsor = haveASponsor;
+	}
+
+	public void setSponsorName(String sponsorName) {
+		this.sponsorName = sponsorName;
+	}
+
+	public void setSponsorNumber(String sponsorNumber) {
+		this.sponsorNumber = sponsorNumber;
+	}
+
+	public void setWhySponsor(String whySponsor) {
+		this.whySponsor = whySponsor;
+	}
+
+	public void setGoodStanding(String goodStanding) {
+		this.goodStanding = goodStanding;
+	}
+
+	public void setSponsorRole(String sponsorRole) {
+		this.sponsorRole = sponsorRole;
+	}
+
+	public void setSomeoneInMind(String someoneInMind) {
+		this.someoneInMind = someoneInMind;
+	}
+
+	public void setInquirerName(String inquirerName) {
+		this.inquirerName = inquirerName;
+	}
+
+	public void setInquirerPhone(String inquirerPhone) {
+		this.inquirerPhone = inquirerPhone;
+	}
+
+	public void setMaritalStatus(String maritalStatus) {
+		this.maritalStatus = maritalStatus;
+	}
+
+	public void setSpouseName(String spouseName) {
+		this.spouseName = spouseName;
+	}
+
+	public void setSpouseReligion(String spouseReligion) {
+		this.spouseReligion = spouseReligion;
+	}
+
+	public void setPracticingCatholic(String practicingCatholic) {
+		this.practicingCatholic = practicingCatholic;
+	}
+
+	public void setAttendSession(String attendSession) {
+		this.attendSession = attendSession;
+	}
+
+	public void setCatholicMarriage(String catholicMarriage) {
+		this.catholicMarriage = catholicMarriage;
+	}
+
+	public void setCatholicDate(String catholicDate) {
+		this.catholicDate = catholicDate;
+	}
+
+	public void setCivilMarriageDate(String civilMarriageDate) {
+		this.civilMarriageDate = civilMarriageDate;
+	}
+
+	public void setConA(String conA) {
+		this.conA = conA;
+	}
+
+	public void setConB(String conB) {
+		this.conB = conB;
+	}
+
+	public void setConC(String conC) {
+		this.conC = conC;
+	}
+
+	public void setConD(String conD) {
+		this.conD = conD;
+	}
+
+	public void setChildren(String children) {
+		this.children = children;
+	}
+
+	public void setAges(String ages) {
+		this.ages = ages;
+	}
+
+	public void setSponsorPotential(String sponsorPotential) {
+		this.sponsorPotential = sponsorPotential;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public void setRowValues(ArrayList<String> rowValues) {
+		this.rowValues = rowValues;
+	}
+
+	public String toString()
+	{
+		return this.first + " " + this.middle + " " + this.lastName;
+	}
+
 	public String toValueString() {
 		return "RciaData [typeOfForm=" + typeOfForm + ", badges=" + badges
 				+ ", printForm=" + printForm + ", value=" + value
@@ -483,22 +940,6 @@ public class RciaData {
 				+ ", conB=" + conB + ", conC=" + conC + ", conD=" + conD
 				+ ", children=" + children + ", ages=" + ages
 				+ ", sponsorPotential=" + sponsorPotential + "]";
-	}
-
-	public Object[] getArray() {
-		return rowValues.toArray();
-	}
-
-	public String toString()
-	{
-		return this.first + " " + this.middle + " " + this.lastName;
-	}
-
-	public String getId()
-	{
-
-		return Integer.toString(this.toString().hashCode());
-
 	}
 
 
